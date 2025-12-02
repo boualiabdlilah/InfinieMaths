@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminale - InfinieMaths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés de mathématiques pour la classe de Terminale.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-main">InfinieMaths</span>
+            <span class="logo-tagline">Les maths du lycée, simplement.</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html">Seconde</a>
+            <a href="premiere.html">Première</a>
+            <a href="terminale.html" class="active">Terminale</a>
+            <a href="#">Cours</a>
+            <a href="#">Exercices</a>
+            <a href="#">À propos</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>La Terminale : préparer le bac sereinement.</h1>
+                <p class="hero-subtitle">
+                    En Terminale, on consolide tout ce qui a été vu et on se prépare au baccalauréat :
+                    fonctions avancées, dérivation, suites, probabilités, lois continues, géométrie, intégrales…
+                </p>
+                <div class="hero-buttons">
+                    <a href="#chapitres" class="btn primary">Voir les chapitres</a>
+                    <a href="#bac" class="btn secondary">Préparation bac</a>
+                </div>
+            </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <h2>Objectifs en Terminale</h2>
+                    <ul>
+                        <li>Maîtriser les notions essentielles pour l’épreuve de maths du bac.</li>
+                        <li>Être à l’aise avec les méthodes de calcul et de rédaction.</li>
+                        <li>Savoir reconnaître les types d’exercices classiques.</li>
+                        <li>Gérer son temps et son stress le jour J.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="chapitres" class="levels">
+            <h2>Chapitres de Terminale</h2>
+            <div class="level-grid">
+                <div class="level-card">
+                    <h3>Analyse de fonctions</h3>
+                    <p>Études complètes de fonctions, dérivation, variations, limites, courbes représentatives.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Suites</h3>
+                    <p>Suites arithmétiques et géométriques, convergence, raisonnement par récurrence.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Probabilités et lois</h3>
+                    <p>Variables aléatoires, lois usuelles, espérance, variance, intervalles de confiance (selon programme).</p>
+                </div>
+                <div class="level-card">
+                    <h3>Géométrie / produit scalaire</h3>
+                    <p>Vecteurs, produit scalaire, angles, distances, applications géométriques.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Intégrales (si au programme)</h3>
+                    <p>Notion d’intégrale, calculs simples, interprétation géométrique (aires sous une courbe).</p>
+                </div>
+                <div class="level-card">
+                    <h3>Méthodes pour le supérieur</h3>
+                    <p>Habitudes de travail utiles pour les études après le bac (prépa, fac, BUT, etc.).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="bac" class="features">
+            <h2>Préparation au baccalauréat</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Annales de bac corrigées</h3>
+                    <p>Bientôt : une sélection d’annales récentes, avec des corrigés détaillés et des commentaires de méthode.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Sujets type bac</h3>
+                    <p>Des sujets inédits dans l’esprit du bac, pour s’entraîner sur tous les types d’exercices classiques.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Stratégies pour l’épreuve</h3>
+                    <p>Comment aborder le sujet, quelles questions traiter en premier, comment vérifier ses résultats.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year-terminale"></span> InfinieMaths. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year-terminale").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

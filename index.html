@@ -2,12 +2,99 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Test InfinieMaths</title>
+    <title>InfinieMaths - Les maths du lycée, simplement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés pour les élèves de lycée (Seconde, Première, Terminale).">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Ça marche !</h1>
-    <p>Si tu vois ce texte, GitHub Pages fonctionne bien.</p>
-    <p>On remettra ensuite la vraie page d'accueil InfinieMaths.</p>
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-main">InfinieMaths</span>
+            <span class="logo-tagline">Les maths du lycée, simplement.</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="active">Accueil</a>
+            <a href="seconde.html">Seconde</a>
+            <a href="#">Première</a>
+            <a href="#">Terminale</a>
+            <a href="#">Cours</a>
+            <a href="#">Exercices</a>
+            <a href="#">À propos</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Réussir les maths du lycée sans se perdre.</h1>
+                <p class="hero-subtitle">
+                    Cours clairs, exercices progressifs et contrôles corrigés pour la Seconde, la Première et la Terminale.
+                    Pensé pour les élèves, utile pour les profs.
+                </p>
+                <div class="hero-buttons">
+                    <a href="seconde.html" class="btn primary">Commencer en Seconde</a>
+                    <a href="#" class="btn secondary">Voir tous les cours</a>
+                </div>
+            </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <h2>Ce que tu trouveras sur InfinieMaths</h2>
+                    <ul>
+                        <li>Des cours résumés pour aller à l’essentiel.</li>
+                        <li>Des exercices progressifs, avec corrigés détaillés.</li>
+                        <li>Des sujets de contrôles et d’évaluations avec solutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="levels">
+            <h2>Choisis ton niveau</h2>
+            <div class="level-grid">
+                <a href="seconde.html" class="level-card">
+                    <h3>Seconde</h3>
+                    <p>Reprendre les bases du collège, découvrir les fonctions, les stats et la géométrie analytique.</p>
+                </a>
+                <a href="#" class="level-card">
+                    <h3>Première</h3>
+                    <p>Approfondir les fonctions, les suites, les probabilités et la trigonométrie.</p>
+                </a>
+                <a href="#" class="level-card">
+                    <h3>Terminale</h3>
+                    <p>Se préparer au bac avec des exercices type examen, annales et méthodes incontournables.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>La méthode InfinieMaths</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Cours structurés</h3>
+                    <p>Des cours courts et organisés, pour revoir l’essentiel avant un contrôle ou un DS.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Exercices progressifs</h3>
+                    <p>On commence par des questions simples, puis on augmente petit à petit la difficulté.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Contrôles corrigés</h3>
+                    <p>Des sujets complets avec correction détaillée, pour s’entraîner dans les conditions réelles.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> InfinieMaths. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Met l'année actuelle automatiquement
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
+
 

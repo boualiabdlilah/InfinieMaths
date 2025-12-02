@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Première - InfinieMaths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés de mathématiques pour la classe de Première.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-main">InfinieMaths</span>
+            <span class="logo-tagline">Les maths du lycée, simplement.</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html">Seconde</a>
+            <a href="premiere.html" class="active">Première</a>
+            <a href="terminale.html">Terminale</a>
+            <a href="#">Cours</a>
+            <a href="#">Exercices</a>
+            <a href="#">À propos</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>La Première : consolider et approfondir.</h1>
+                <p class="hero-subtitle">
+                    En Première, les maths deviennent plus techniques, mais restent accessibles avec une bonne méthode :
+                    fonctions, dérivation, suites, probabilités, géométrie… tout est lié.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#chapitres" class="btn primary">Voir les chapitres</a>
+                    <a href="#controles" class="btn secondary">Contrôles corrigés</a>
+                </div>
+            </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <h2>Objectifs en Première</h2>
+                    <ul>
+                        <li>Renforcer les automatismes vus en Seconde.</li>
+                        <li>Comprendre la dérivation et ses applications.</li>
+                        <li>Savoir lire et utiliser des fonctions et suites.</li>
+                        <li>Maîtriser les bases pour la Terminale et le bac.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="chapitres" class="levels">
+            <h2>Chapitres de Première</h2>
+            <div class="level-grid">
+                <div class="level-card">
+                    <h3>Fonctions et variations</h3>
+                    <p>Étude de fonctions, tableaux de variations, inégalités, résolution graphique et algébrique.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Dérivation</h3>
+                    <p>Notion de dérivée, taux de variation, tangente, liens avec les variations d’une fonction.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Suites numériques</h3>
+                    <p>Suites définies explicitement ou par récurrence, sens de variation, limite, interprétation concrète.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Probabilités</h3>
+                    <p>Probabilités conditionnelles, arbres pondérés, loi binomiale dans certains programmes.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Géométrie</h3>
+                    <p>Vecteurs, repère du plan (et parfois de l’espace), droites, distances, barycentres selon les programmes.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Méthodes transversales</h3>
+                    <p>Utiliser un tableur, un logiciel de géométrie dynamique ou de calcul pour mieux comprendre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="controles" class="features">
+            <h2>Contrôles et devoirs surveillés</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Contrôles par chapitre</h3>
+                    <p>Bientôt : un contrôle type pour chaque chapitre, avec une correction rédigée étape par étape.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>DS de synthèse</h3>
+                    <p>Des devoirs surveillés mélangeant plusieurs chapitres, pour se préparer au bac et aux évaluations communes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Conseils de méthode</h3>
+                    <p>Comment analyser un énoncé, organiser sa copie, vérifier ses résultats, gérer le temps pendant un contrôle.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year-premiere"></span> InfinieMaths. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year-premiere").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

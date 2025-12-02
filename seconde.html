@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Seconde - InfinieMaths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés de mathématiques pour la classe de Seconde.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-main">InfinieMaths</span>
+            <span class="logo-tagline">Les maths du lycée, simplement.</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html" class="active">Seconde</a>
+            <a href="#">Première</a>
+            <a href="#">Terminale</a>
+            <a href="#">Cours</a>
+            <a href="#">Exercices</a>
+            <a href="#">À propos</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>La Seconde en maths, pas à pas.</h1>
+                <p class="hero-subtitle">
+                    Revoir les bases du collège, découvrir les fonctions, les statistiques, les probabilités
+                    et la géométrie analytique, avec des explications simples et des exercices progressifs.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#cours" class="btn primary">Voir les chapitres</a>
+                    <a href="#controles" class="btn secondary">Contrôles corrigés</a>
+                </div>
+            </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <h2>Objectif de la Seconde</h2>
+                    <ul>
+                        <li>Consolider les bases (calculs, fractions, équations, fonctions simples).</li>
+                        <li>Découvrir de nouveaux outils (fonctions, vecteurs, statistiques).</li>
+                        <li>Préparer l’entrée en Première générale ou techno sereinement.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cours" class="levels">
+            <h2>Chapitres de Seconde</h2>
+            <div class="level-grid">
+                <div class="level-card">
+                    <h3>Calcul numérique et algébrique</h3>
+                    <p>Priorités opératoires, développement, factorisation, fractions, puissances.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Équations et inéquations</h3>
+                    <p>Résoudre des équations simples, interpréter un résultat, problèmes concrets.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Fonctions</h3>
+                    <p>Notion de fonction, lectures de graphiques, variations, tableaux de valeurs.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Statistiques</h3>
+                    <p>Moyenne, médiane, quartiles, diagrammes, interprétation de données.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Probabilités</h3>
+                    <p>Expériences aléatoires, événements, calcul de probabilités simples.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Géométrie et géométrie analytique</h3>
+                    <p>Vecteurs, droites du plan, repère, distance, milieu, colinéarité.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="controles" class="features">
+            <h2>Contrôles et devoirs surveillés</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Contrôles par chapitre</h3>
+                    <p>Bientôt : des sujets complets sur chaque chapitre, avec leur correction détaillée.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Devoirs surveillés type</h3>
+                    <p>Des DS de 1h à 2h pour s’entraîner dans les conditions réelles du lycée.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Méthodes à retenir</h3>
+                    <p>Des fiches mémo avec les méthodes et automatismes indispensables.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> InfinieMaths. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
 

@@ -27,7 +27,7 @@
 
     <!-- Contenu du contrôle -->
     <main class="hero">
-        <div class="hero-content" style="max-width: 900px; text-align:left;">
+        <div class="hero-content" style="max-width: 900px; text-align:left; color:#e5e7eb;">
             <h1>Contrôle n°1 – Polynômes et probabilités</h1>
             <p class="hero-subtitle">
                 Durée : 2 heures. Tous les résultats doivent être justifiés.
@@ -41,31 +41,29 @@
                     <h2>Exercice 1 – Polynôme et équation (4 points)</h2>
 
                     <p>On considère le polynôme :</p>
-                    <p>P(x) = −3x³ − 7x² + 7x + 3.</p>
+                    <p><strong>P(x) = −3x³ − 7x² + 7x + 3.</strong></p>
 
                     <h3>Partie A – Factorisation</h3>
                     <ol>
                         <li>
                             Montrer que le polynôme P peut se factoriser sous la forme<br>
-                            P(x) = (x − 1) × Q(x),<br>
+                            <strong>P(x) = (x − 1) × Q(x)</strong>,<br>
                             où Q(x) est un polynôme du second degré que l’on déterminera.
                         </li>
                         <li>
                             En déduire les solutions de l’équation :<br>
-                            3x³ + 7x² − 7x − 3 = 0.
+                            <strong>3x³ + 7x² − 7x − 3 = 0.</strong>
                         </li>
                     </ol>
 
                     <h3>Partie B – Fraction rationnelle</h3>
+                    <p>On considère la fonction rationnelle suivante :</p>
                     <p>
-                        On considère la fraction rationnelle suivante :
+                        <strong>f(x) = (−3x³ − 7x² + 7x + 3) / (3x² − x − 4).</strong>
                     </p>
-                    <p>
-                        f(x) = (−3x³ − 7x² + 7x + 3) / (3x² − x − 4).
-                    </p>
-                    <ol start="3">
+                    <ol>
                         <li>
-                            Déterminer l’ensemble de définition de la fonction f.
+                            Déterminer l’ensemble de définition de f.
                         </li>
                         <li>
                             Résoudre l’inéquation f(x) ≤ 0.
@@ -75,85 +73,77 @@
 
                 <!-- EXERCICE 2 -->
                 <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 2 – Consommation de produits biologiques (5 points)</h2>
+                    <h2>Exercice 2 – Produits biologiques (5 points)</h2>
 
                     <p>
-                        D’après une étude sur la consommation de produits biologiques en France :
+                        On s’intéresse à la consommation de produits biologiques dans une population.
                     </p>
                     <ul>
-                        <li>40 % de la population consomme au moins une fois par mois des produits biologiques ;</li>
-                        <li>parmi ces consommateurs, 56 % trouvent normal de payer plus cher les produits biologiques ;</li>
+                        <li>40 % de la population consomme au moins une fois par mois des produits biologiques.</li>
+                        <li>Parmi ces consommateurs, 56 % trouvent normal de payer plus cher les produits biologiques.</li>
                         <li>36 % de l’ensemble de la population trouve normal de payer plus cher les produits biologiques.</li>
                     </ul>
 
-                    <p>
-                        On interroge une personne prise au hasard dans la population.
-                    </p>
-                    <p>
-                        On note :
-                    </p>
+                    <p>On note :</p>
                     <ul>
-                        <li>B : « La personne consomme au moins une fois par mois des produits biologiques » ;</li>
+                        <li>B : « La personne consomme au moins une fois par mois des produits biologiques ».</li>
                         <li>C : « La personne trouve normal de payer plus cher les produits biologiques ».</li>
                     </ul>
 
                     <ol>
                         <li>
-                            Donner, sans justification, la probabilité de l’évènement B et celle de l’évènement C.
-                            Donner également la probabilité de C sachant B, notée P(C | B).
+                            Donner, sans justification, la probabilité de B, la probabilité de C et la probabilité
+                            conditionnelle P(C sachant B).
                         </li>
                         <li>
-                            Représenter la situation par un arbre de probabilités pondéré.
+                            Représenter la situation par un arbre de probabilités pondéré
+                            (avec les évènements B / non B, puis C / non C).
                         </li>
                         <li>
-                            Interpréter par une phrase l’évènement B ∩ C puis calculer sa probabilité.
+                            Exprimer par une phrase l’évènement B ∩ C puis calculer sa probabilité.
                         </li>
                         <li>
-                            Calculer la probabilité que la personne choisie trouve normal de payer plus cher
-                            les produits biologiques et consomme au moins une fois par mois des produits biologiques.
+                            En utilisant l’arbre, calculer P(non B ∩ C).
+                        </li>
+                        <li>
+                            Peut-on dire que les évènements B et C sont indépendants ? Justifier la réponse.
                         </li>
                     </ol>
                 </article>
 
                 <!-- EXERCICE 3 -->
                 <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 3 – Articles défectueux (5 points)</h2>
+                    <h2>Exercice 3 – Défauts sur des articles (5 points)</h2>
 
-                    <h3>Partie 1 – Défauts A et B</h3>
                     <p>
-                        Dans une production d’articles, deux types de défauts peuvent apparaître : a et b.
-                        On note :
+                        Une entreprise fabrique des articles qui peuvent présenter deux types de défauts : a et b.
                     </p>
                     <ul>
-                        <li>A : « L’article présente le défaut a » ;</li>
-                        <li>B : « L’article présente le défaut b ».</li>
-                    </ul>
-                    <p>
-                        On sait que :
-                    </p>
-                    <ul>
-                        <li>P(A) = 0,12 ;</li>
-                        <li>P(B) = 0,08 ;</li>
-                        <li>P(A ∩ B) = 0,03.</li>
+                        <li>12 % des articles présentent le défaut a.</li>
+                        <li>7 % des articles présentent le défaut b.</li>
+                        <li>3 % des articles présentent les deux défauts à la fois.</li>
                     </ul>
 
+                    <p>On note :</p>
+                    <ul>
+                        <li>A : « l’article présente le défaut a » ;</li>
+                        <li>B : « l’article présente le défaut b ».</li>
+                    </ul>
+
+                    <h3>Partie 1 – Probabilités sur un article</h3>
                     <ol>
+                        <li>Calculer P(A), P(B) et P(A ∩ B).</li>
+                        <li>En déduire la probabilité que l’article présente au moins un des deux défauts.</li>
                         <li>
-                            Calculer la probabilité qu’un article ne présente aucun des deux défauts.
-                        </li>
-                        <li>
-                            Calculer la probabilité qu’un article présente au moins un des deux défauts.
-                        </li>
-                        <li>
-                            On choisit un article parmi ceux qui présentent le défaut a.
+                            On choisit au hasard un article parmi ceux qui présentent le défaut a.
                             Calculer la probabilité qu’il présente aussi le défaut b.
                         </li>
                         <li>
-                            Les évènements A et B sont-ils indépendants ? Justifier.
+                            Les évènements A et B sont-ils indépendants ? Justifier la réponse.
                         </li>
                     </ol>
 
-                    <h3>Partie 2 – Trois prélèvements</h3>
+                    <h3>Partie 2 – Prélèvements</h3>
                     <p>
                         On prélève au hasard trois articles, de manière indépendante.
                     </p>
@@ -168,26 +158,25 @@
 
                     <h3>Partie 3 – Contrôle qualité</h3>
                     <p>
-                        Un test de contrôle élimine 85 % des articles défectueux et, par erreur,
+                        Un test de contrôle élimine 85 % des articles défectueux, et élimine par erreur
                         5 % des articles non défectueux. Les articles non éliminés sont mis en vente.
                     </p>
-                    <p>
-                        On note :
-                    </p>
+                    <p>On note :</p>
                     <ul>
-                        <li>D : « L’article est défectueux » ;</li>
-                        <li>V : « L’article est mis en vente ».</li>
+                        <li>D : « l’article est défectueux » ;</li>
+                        <li>V : « l’article est mis en vente ».</li>
                     </ul>
 
                     <ol start="7">
                         <li>
-                            Construire un arbre de probabilités représentant la situation.
+                            Représenter la situation par un arbre de probabilités pondéré
+                            (branche D / non D, puis V / non V).
                         </li>
                         <li>
-                            Montrer que la probabilité qu’un article soit mis en vente après contrôle est égale à 0,87.
+                            Calculer la probabilité qu’un article soit mis en vente.
                         </li>
                         <li>
-                            Calculer la probabilité qu’un article mis en vente après contrôle soit défectueux.
+                            Calculer la probabilité qu’un article mis en vente soit défectueux.
                         </li>
                     </ol>
                 </article>
@@ -208,7 +197,8 @@
                     <h3>Partie 1 – Probabilité de défaut</h3>
                     <ol>
                         <li>
-                            Recopier et compléter l’arbre de probabilités correspondant à la situation.
+                            Recopier et compléter l’arbre de probabilités correspondant à la situation
+                            (premier niveau : A / B, second niveau : D / non D).
                         </li>
                         <li>
                             Calculer la probabilité qu’un article présente un défaut
@@ -228,7 +218,7 @@
                         <li>il élimine à tort 4 % des articles non défectueux.</li>
                     </ul>
                     <p>
-                        Les articles non éliminés sont mis en vente. On note toujours :
+                        Les articles non éliminés sont mis en vente. On note :
                         D : « article défectueux », V : « article mis en vente ».
                     </p>
 

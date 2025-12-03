@@ -5,6 +5,19 @@
     <title>Contrôle n°1 - Probabilités et Statistiques | InfinieMaths</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+
+    <!-- MathJax pour afficher le LaTeX -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\$$','\$$'], ['$', '$']],
+          displayMath: [['$$','$$'], ['\$$','\$$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
 </head>
 <body>
 <div class="page-wrapper">
@@ -25,9 +38,9 @@
         </nav>
     </header>
 
-    <!-- Contenu principal du contrôle dans un bloc comme les autres sections -->
+    <!-- Contenu principal du contrôle -->
     <main class="hero">
-        <div class="hero-content" style="max-width: 900px;">
+        <div class="hero-content" style="max-width: 900px; text-align:left;">
             <h1>Contrôle n°1 – Probabilités et statistiques</h1>
             <p class="hero-subtitle">
                 Durée : 2 heures – Tous les résultats doivent être justifiés. La qualité de la rédaction
@@ -35,123 +48,148 @@
             </p>
 
             <div class="feature-grid" style="margin-top: 1.5rem;">
-                <article class="feature-card" style="grid-column: 1 / -1; text-align: left;">
+
+                <!-- EXERCICE 1 -->
+                <article class="feature-card" style="grid-column: 1 / -1; text-align:left;">
                     <h2>Exercice 1 – Polynôme et fraction rationnelle (4 points)</h2>
-                    <p><strong>Partie 1 : Factorisation d’un polynôme</strong></p>
-                    <p>Soit le polynôme $$ P(x) = -3x^3 - 7x^2 + 7x + 3 $$.</p>
+
+                    <h3>Partie A – Factorisation d’un polynôme</h3>
+                    <p>
+                        On considère le polynôme
+                        \$$ P(x) = -3x^3 - 7x^2 + 7x + 3. \$$
+                    </p>
                     <ol>
-                        <li>Montrer que le polynôme $$ P $$ peut se factoriser sous la forme $$ P(x) = (x - 1)\,Q(x) $$,
-                            où $$ Q(x) $$ est un trinôme du second degré que l’on déterminera.</li>
-                        <li>En déduire les solutions de l’équation $$ 3x^3 + 7x^2 - 7x - 3 = 0 $$.</li>
+                        <li>
+                            Montrer que le polynôme \$$ P \$$ peut se factoriser sous la forme
+                            \$$ P(x) = (x - 1)\,Q(x) \$$, où \$$ Q(x) \$$ est un trinôme du second degré
+                            que l’on déterminera.
+                        </li>
+                        <li>
+                            En déduire les solutions de l’équation
+                            \$$ 3x^3 + 7x^2 - 7x - 3 = 0. \$$
+                        </li>
                     </ol>
 
-                    <p><strong>Partie 2 : Fraction rationnelle</strong></p>
-                    <p>On considère la fraction rationnelle :</p>
-                    <p style="text-align:center;">$$ f(x) = \dfrac{-3x^3 - 7x^2 + 7x + 3}{3x^2 - x - 4} $$</p>
+                    <h3>Partie B – Étude d’une fraction rationnelle</h3>
+                    <p>
+                        On considère la fonction définie sur \$$ \mathbb{R} \setminus \{1\} \$$ par
+                        \$$                          f(x) = \dfrac{3x^3 + 7x^2 - 7x - 3}{x - 1}.                        \$$
+                    </p>
                     <ol start="3">
-                        <li>Déterminer l’ensemble de définition de la fonction $$ f $$.</li>
-                        <li>Résoudre l’inéquation $$ f(x) \leq 0 $$.</li>
+                        <li>
+                            Simplifier l’expression de \$$ f(x) \$$ en utilisant la factorisation précédente.
+                        </li>
+                        <li>
+                            Déterminer les limites de \$$ f \$$ en \$$ +\infty \$$ et en \$$ -\infty \$$.
+                        </li>
+                        <li>
+                            Étudier le signe de \$$ f(x) \$$ sur \$$ \mathbb{R} \setminus \{1\} \$$.
+                        </li>
                     </ol>
                 </article>
 
-                <article class="feature-card" style="grid-column: 1 / -1; text-align: left;">
-                    <h2>Exercice 2 – Consommation de produits biologiques (5 points)</h2>
-                    <p>On considère une étude sur la consommation de produits biologiques en France :</p>
-                    <ul>
-                        <li>40 % de la population consomme au moins une fois par mois des produits biologiques.</li>
-                        <li>Parmi ces consommateurs, 56 % trouvent normal de payer plus cher les produits biologiques.</li>
-                        <li>36 % de l’ensemble de la population trouve normal de payer plus cher les produits biologiques.</li>
-                    </ul>
-                    <p>On interroge au hasard une personne de la population.</p>
-                    <p>On note :</p>
-                    <ul>
-                        <li>$$ B $$ : « La personne consomme au moins une fois par mois des produits biologiques » ;</li>
-                        <li>$$ C $$ : « La personne trouve normal de payer plus cher les produits biologiques ».</li>
-                    </ul>
+                <!-- EXERCICE 2 -->
+                <article class="feature-card" style="grid-column: 1 / -1; text-align:left;">
+                    <h2>Exercice 2 – Statistiques à une variable (5 points)</h2>
+                    <p>
+                        On a relevé les notes (sur 20) obtenues par les élèves d’une classe à un devoir de mathématiques.
+                        Résultats (non classés) :
+                    </p>
+                    <p>
+                        7 ; 12 ; 15 ; 9 ; 8 ; 14 ; 10 ; 11 ; 13 ; 6 ; 16 ; 9 ; 10 ; 12 ; 7 ; 8 ; 15 ; 13 ; 11 ; 10
+                    </p>
+
                     <ol>
-                        <li>Donner, sans justification, la probabilité de l’événement $$ B $$ et celle de l’événement $$ C $$.
-                            Donner également la probabilité de l’événement $$ C $$ sachant que $$ B $$ est réalisé, notée $$ P_B(C) $$.</li>
-                        <li>Représenter la situation à l’aide d’un arbre pondéré. (L’arbre pourra être complété au fur et à mesure des questions.)</li>
-                        <li>Définir par une phrase l’événement $$ B \cap C $$, puis calculer sa probabilité.</li>
-                        <li>Déterminer la probabilité que la personne consomme des produits biologiques et ne trouve pas normal
-                            de payer plus cher ces produits.</li>
+                        <li>
+                            Construire un tableau d’effectifs en regroupant les notes par valeur.
+                        </li>
+                        <li>
+                            Calculer la moyenne de cette série statistique.
+                        </li>
+                        <li>
+                            Déterminer la médiane de la série.
+                        </li>
+                        <li>
+                            Représenter la série par un diagramme en bâtons.
+                        </li>
                     </ol>
                 </article>
 
-                <article class="feature-card" style="grid-column: 1 / -1; text-align: left;">
-                    <h2>Exercice 3 – Défauts sur des articles (6 points)</h2>
-                    <p>Une entreprise fabrique des articles qui peuvent présenter deux types de défauts : un défaut $$ a $$ et un défaut $$ b $$.</p>
-                    <p>On sait que :</p>
-                    <ul>
-                        <li>15 % des articles présentent le défaut $$ a $$ ;</li>
-                        <li>12 % des articles présentent le défaut $$ b $$ ;</li>
-                        <li>5 % des articles présentent à la fois les défauts $$ a $$ et $$ b $$.</li>
-                    </ul>
-                    <p>On note :</p>
-                    <ul>
-                        <li>$$ A $$ : « L’article présente le défaut $$ a $$ » ;</li>
-                        <li>$$ B $$ : « L’article présente le défaut $$ b $$ ».</li>
-                    </ul>
+                <!-- EXERCICE 3 -->
+                <article class="feature-card" style="grid-column: 1 / -1; text-align:left;">
+                    <h2>Exercice 3 – Variables aléatoires discrètes (6 points)</h2>
+                    <p>
+                        On considère un jeu dans lequel on tire au hasard une carte dans un sac contenant 5 cartes
+                        numérotées : 1, 2, 3, 4 et 5. On définit la variable aléatoire \$$ X \$$ qui, à chaque tirage,
+                        associe le numéro inscrit sur la carte obtenue.
+                    </p>
 
-                    <p><strong>Partie 1 – Probabilités sur un article</strong></p>
                     <ol>
-                        <li>Calculer la probabilité que l’article présente au moins un des deux défauts.</li>
-                        <li>Calculer la probabilité que l’article ne présente aucun des deux défauts.</li>
-                        <li>En élevant un article parmi ceux qui présentent le défaut $$ a $$, calculer la probabilité
-                            qu’il présente également le défaut $$ b $$.</li>
-                        <li>Les événements $$ A $$ et $$ B $$ sont-ils indépendants ? Justifier la réponse.</li>
+                        <li>
+                            Donner la loi de probabilité de \$$ X \$$.
+                        </li>
+                        <li>
+                            Calculer l’espérance mathématique \$$ E(X) \$$.
+                        </li>
+                        <li>
+                            Calculer la variance \$$ V(X) \$$ et l’écart-type \$$ \sigma(X) \$$.
+                        </li>
                     </ol>
 
-                    <p><strong>Partie 2 – Prélèvements indépendants</strong></p>
-                    <p>On prélève au hasard trois articles, supposés indépendants.</p>
-                    <ol start="5">
-                        <li>Calculer la probabilité qu’un seul des trois articles soit sans défaut.</li>
-                        <li>Calculer la probabilité qu’au moins un des trois articles soit sans défaut.</li>
-                    </ol>
+                    <p>
+                        On modifie maintenant le jeu : si le numéro obtenu est pair, le joueur gagne 2 euros,
+                        sinon il perd 1 euro. On définit la variable aléatoire \$$ Y \$$ représentant le gain
+                        (algébrique) du joueur.
+                    </p>
 
-                    <p><strong>Partie 3 – Contrôle qualité</strong></p>
-                    <p>Un test de contrôle permet d’éliminer 85 % des articles défectueux, et à tort 5 % des articles non défectueux.
-                       Les articles non éliminés sont mis en vente.</p>
-                    <p>On note :</p>
-                    <ul>
-                        <li>$$ D $$ : « L’article est défectueux » ;</li>
-                        <li>$$ V $$ : « L’article est mis en vente ».</li>
-                    </ul>
-                    <ol start="7">
-                        <li>Construire un arbre pondéré représentant la situation.</li>
-                        <li>Montrer que la probabilité qu’un article fabriqué soit mis en vente après contrôle est égale à 0,87.</li>
-                        <li>Calculer la probabilité qu’un article mis en vente après contrôle soit défectueux.</li>
+                    <ol start="4">
+                        <li>
+                            Donner la loi de probabilité de \$$ Y \$$.
+                        </li>
+                        <li>
+                            Calculer \$$ E(Y) \$$ et interpréter le résultat.
+                        </li>
                     </ol>
                 </article>
 
-                <article class="feature-card" style="grid-column: 1 / -1; text-align: left;">
-                    <h2>Exercice 4 – Production dans deux unités (5 points)</h2>
+                <!-- EXERCICE 4 -->
+                <article class="feature-card" style="grid-column: 1 / -1; text-align:left;">
+                    <h2>Exercice 4 – Probabilités conditionnelles et contrôle qualité (5 points)</h2>
                     <p>Une entreprise fabrique des articles dans deux unités de production : A et B.</p>
                     <ul>
-                        <li>L’unité A assure 60 % de la production.</li>
-                        <li>3 % des pièces de l’unité A présentent un défaut.</li>
-                        <li>8 % des pièces de l’unité B présentent un défaut.</li>
+                        <li>L’unité A assure 60&nbsp;% de la production.</li>
+                        <li>3&nbsp;% des pièces de l’unité A présentent un défaut.</li>
+                        <li>8&nbsp;% des pièces de l’unité B présentent un défaut.</li>
                     </ul>
 
-                    <p><strong>Partie 1 – Probabilité de défaut</strong></p>
+                    <h3>Partie 1 – Probabilité de défaut</h3>
                     <ol>
                         <li>Recopier et compléter l’arbre de probabilités correspondant à la situation.</li>
                         <li>Calculer la probabilité qu’un article présente un défaut et provienne de l’unité A.</li>
                         <li>Montrer que la probabilité qu’un article présente un défaut est égale à 0,05.</li>
                     </ol>
 
-                    <p><strong>Partie 2 – Contrôle qualité</strong></p>
+                    <h3>Partie 2 – Contrôle qualité</h3>
                     <p>On met en place un contrôle qualité :</p>
                     <ul>
-                        <li>il détecte et élimine 82 % des articles défectueux ;</li>
-                        <li>il élimine à tort 4 % des articles non défectueux.</li>
+                        <li>il détecte et élimine 82&nbsp;% des articles défectueux ;</li>
+                        <li>il élimine à tort 4&nbsp;% des articles non défectueux.</li>
                     </ul>
-                    <p>Les articles non éliminés sont mis en vente.</p>
+                    <p>Les articles non éliminés sont mis en vente. On note :</p>
+                    <ul>
+                        <li>\$$ D \$$ l’évènement « l’article est défectueux » ;</li>
+                        <li>\$$ V \$$ l’évènement « l’article est mis en vente après contrôle ».</li>
+                    </ul>
+
                     <ol start="4">
-                        <li>Calculer $$ P(V \cap D) $$ et $$ P(V \cap D') $$. En déduire que la probabilité
-                            qu’un article soit mis en vente après contrôle est égale à 0,921.</li>
-                        <li>L’entreprise souhaite que moins de 1 % des articles vendus soient défectueux.
-                            Ce contrôle permet-il d’atteindre cet objectif ? Justifier la réponse.</li>
+                        <li>
+                            Calculer \$$ P(V \cap D) \$$ et \$$ P(V \cap D') \$$. En déduire que la probabilité
+                            qu’un article soit mis en vente après contrôle est égale à 0,921.
+                        </li>
+                        <li>
+                            L’entreprise souhaite que moins de 1&nbsp;% des articles vendus soient défectueux.
+                            Ce contrôle permet-il d’atteindre cet objectif&nbsp;? Justifier la réponse.
+                        </li>
                     </ol>
                 </article>
             </div>

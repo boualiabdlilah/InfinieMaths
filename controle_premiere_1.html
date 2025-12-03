@@ -2,13 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Contrôle n°1 - Polynômes et probabilités | InfinieMaths</title>
+    <title>Contrôle Première – Sujet PDF</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- On garde ton style général -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="page-wrapper">
-    <!-- Barre du haut -->
+    <!-- Barre du haut identique au reste du site -->
     <header class="topbar">
         <div class="logo">
             <span class="logo-mark">∞</span>
@@ -25,219 +26,28 @@
         </nav>
     </header>
 
-    <!-- Contenu du contrôle -->
+    <!-- Contenu principal -->
     <main class="hero">
-        <div class="hero-content" style="max-width: 900px; text-align:left; color:#e5e7eb;">
-            <h1>Contrôle n°1 – Polynômes et probabilités</h1>
+        <div class="hero-content" style="max-width: 1000px; text-align:left;">
+            <h1>Contrôle de Première – Sujet</h1>
             <p class="hero-subtitle">
-                Durée : 2 heures. Tous les résultats doivent être justifiés.
-                La qualité de la rédaction et la clarté des raisonnements seront prises en compte dans la notation.
+                Vous pouvez lire le contrôle directement ci-dessous ou le télécharger au format PDF.
             </p>
 
-            <div class="feature-grid" style="margin-top: 1.5rem;">
+            <!-- Lien de téléchargement du PDF -->
+            <p style="margin-bottom:1rem;">
+                <a href="controlesmnt.pdf" target="_blank" style="color:#f97316; font-weight:bold;">
+                    Télécharger le sujet en PDF
+                </a>
+            </p>
 
-                <!-- EXERCICE 1 -->
-                <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 1 – Polynôme et équation (4 points)</h2>
-
-                    <p>On considère le polynôme :</p>
-                    <p><strong>P(x) = −3x³ − 7x² + 7x + 3.</strong></p>
-
-                    <h3>Partie A – Factorisation</h3>
-                    <ol>
-                        <li>
-                            Montrer que le polynôme P peut se factoriser sous la forme<br>
-                            <strong>P(x) = (x − 1) × Q(x)</strong>,<br>
-                            où Q(x) est un polynôme du second degré que l’on déterminera.
-                        </li>
-                        <li>
-                            En déduire les solutions de l’équation :<br>
-                            <strong>3x³ + 7x² − 7x − 3 = 0.</strong>
-                        </li>
-                    </ol>
-
-                    <h3>Partie B – Fraction rationnelle</h3>
-                    <p>On considère la fonction rationnelle suivante :</p>
-                    <p>
-                        <strong>f(x) = (−3x³ − 7x² + 7x + 3) / (3x² − x − 4).</strong>
-                    </p>
-                    <ol>
-                        <li>
-                            Déterminer l’ensemble de définition de f.
-                        </li>
-                        <li>
-                            Résoudre l’inéquation f(x) ≤ 0.
-                        </li>
-                    </ol>
-                </article>
-
-                <!-- EXERCICE 2 -->
-                <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 2 – Produits biologiques (5 points)</h2>
-
-                    <p>
-                        On s’intéresse à la consommation de produits biologiques dans une population.
-                    </p>
-                    <ul>
-                        <li>40 % de la population consomme au moins une fois par mois des produits biologiques.</li>
-                        <li>Parmi ces consommateurs, 56 % trouvent normal de payer plus cher les produits biologiques.</li>
-                        <li>36 % de l’ensemble de la population trouve normal de payer plus cher les produits biologiques.</li>
-                    </ul>
-
-                    <p>On note :</p>
-                    <ul>
-                        <li>B : « La personne consomme au moins une fois par mois des produits biologiques ».</li>
-                        <li>C : « La personne trouve normal de payer plus cher les produits biologiques ».</li>
-                    </ul>
-
-                    <ol>
-                        <li>
-                            Donner, sans justification, la probabilité de B, la probabilité de C et la probabilité
-                            conditionnelle P(C sachant B).
-                        </li>
-                        <li>
-                            Représenter la situation par un arbre de probabilités pondéré
-                            (avec les évènements B / non B, puis C / non C).
-                        </li>
-                        <li>
-                            Exprimer par une phrase l’évènement B ∩ C puis calculer sa probabilité.
-                        </li>
-                        <li>
-                            En utilisant l’arbre, calculer P(non B ∩ C).
-                        </li>
-                        <li>
-                            Peut-on dire que les évènements B et C sont indépendants ? Justifier la réponse.
-                        </li>
-                    </ol>
-                </article>
-
-                <!-- EXERCICE 3 -->
-                <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 3 – Défauts sur des articles (5 points)</h2>
-
-                    <p>
-                        Une entreprise fabrique des articles qui peuvent présenter deux types de défauts : a et b.
-                    </p>
-                    <ul>
-                        <li>12 % des articles présentent le défaut a.</li>
-                        <li>7 % des articles présentent le défaut b.</li>
-                        <li>3 % des articles présentent les deux défauts à la fois.</li>
-                    </ul>
-
-                    <p>On note :</p>
-                    <ul>
-                        <li>A : « l’article présente le défaut a » ;</li>
-                        <li>B : « l’article présente le défaut b ».</li>
-                    </ul>
-
-                    <h3>Partie 1 – Probabilités sur un article</h3>
-                    <ol>
-                        <li>Calculer P(A), P(B) et P(A ∩ B).</li>
-                        <li>En déduire la probabilité que l’article présente au moins un des deux défauts.</li>
-                        <li>
-                            On choisit au hasard un article parmi ceux qui présentent le défaut a.
-                            Calculer la probabilité qu’il présente aussi le défaut b.
-                        </li>
-                        <li>
-                            Les évènements A et B sont-ils indépendants ? Justifier la réponse.
-                        </li>
-                    </ol>
-
-                    <h3>Partie 2 – Prélèvements</h3>
-                    <p>
-                        On prélève au hasard trois articles, de manière indépendante.
-                    </p>
-                    <ol start="5">
-                        <li>
-                            Calculer la probabilité qu’un seul des trois articles soit sans défaut.
-                        </li>
-                        <li>
-                            Calculer la probabilité qu’au moins un des trois articles soit sans défaut.
-                        </li>
-                    </ol>
-
-                    <h3>Partie 3 – Contrôle qualité</h3>
-                    <p>
-                        Un test de contrôle élimine 85 % des articles défectueux, et élimine par erreur
-                        5 % des articles non défectueux. Les articles non éliminés sont mis en vente.
-                    </p>
-                    <p>On note :</p>
-                    <ul>
-                        <li>D : « l’article est défectueux » ;</li>
-                        <li>V : « l’article est mis en vente ».</li>
-                    </ul>
-
-                    <ol start="7">
-                        <li>
-                            Représenter la situation par un arbre de probabilités pondéré
-                            (branche D / non D, puis V / non V).
-                        </li>
-                        <li>
-                            Calculer la probabilité qu’un article soit mis en vente.
-                        </li>
-                        <li>
-                            Calculer la probabilité qu’un article mis en vente soit défectueux.
-                        </li>
-                    </ol>
-                </article>
-
-                <!-- EXERCICE 4 -->
-                <article class="feature-card" style="grid-column:1 / -1; text-align:left;">
-                    <h2>Exercice 4 – Deux unités de production (5 points)</h2>
-
-                    <p>
-                        Une entreprise fabrique des articles dans deux unités de production : A et B.
-                    </p>
-                    <ul>
-                        <li>l’unité A assure 60 % de la production ;</li>
-                        <li>3 % des articles produits par l’unité A sont défectueux ;</li>
-                        <li>8 % des articles produits par l’unité B sont défectueux.</li>
-                    </ul>
-
-                    <h3>Partie 1 – Probabilité de défaut</h3>
-                    <ol>
-                        <li>
-                            Recopier et compléter l’arbre de probabilités correspondant à la situation
-                            (premier niveau : A / B, second niveau : D / non D).
-                        </li>
-                        <li>
-                            Calculer la probabilité qu’un article présente un défaut
-                            et provienne de l’unité A.
-                        </li>
-                        <li>
-                            Montrer que la probabilité qu’un article présente un défaut est égale à 0,05.
-                        </li>
-                    </ol>
-
-                    <h3>Partie 2 – Contrôle qualité</h3>
-                    <p>
-                        On met en place un contrôle qualité :
-                    </p>
-                    <ul>
-                        <li>il détecte et élimine 82 % des articles défectueux ;</li>
-                        <li>il élimine à tort 4 % des articles non défectueux.</li>
-                    </ul>
-                    <p>
-                        Les articles non éliminés sont mis en vente. On note :
-                        D : « article défectueux », V : « article mis en vente ».
-                    </p>
-
-                    <ol start="4">
-                        <li>
-                            Calculer P(V ∩ D) et P(V ∩ non D).
-                            En déduire la probabilité qu’un article soit mis en vente après contrôle.
-                        </li>
-                        <li>
-                            L’entreprise souhaite que moins de 1 % des articles vendus soient défectueux.
-                            Ce contrôle permet-il d’atteindre cet objectif ? Justifier la réponse.
-                        </li>
-                    </ol>
-                </article>
+            <!-- Affichage du PDF dans un cadre -->
+            <div style="border:1px solid #4b5563; border-radius:0.5rem; overflow:hidden; height:80vh;">
+                <iframe src="controlesmnt.pdf" style="width:100%; height:100%;" frameborder="0">
+                    Votre navigateur ne peut pas afficher les PDF.
+                    <a href="controlesmnt.pdf">Télécharger le fichier PDF</a>.
+                </iframe>
             </div>
-
-            <p style="margin-top: 1rem; color:#9ca3af; font-size:0.9rem;">
-                Fin du contrôle – Relisez-vous avant de rendre votre copie.
-            </p>
         </div>
     </main>
 </div>

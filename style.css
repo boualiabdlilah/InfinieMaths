@@ -9,7 +9,13 @@ body {
     background: #0f172a;
     color: #e5e7eb;
 }
-
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* logo à gauche, nav à droite */
+    gap: 2rem;
+    padding: 1rem 2rem;
+}
 /* Topbar (en-tête) */
 .topbar {
     display: flex;
@@ -325,5 +331,6 @@ h1, h2, h3 {
 .link-list a:hover {
   text-decoration: underline;
 }
+
 
 

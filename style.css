@@ -10,24 +10,13 @@ body {
     color: #e5e7eb;
 }
 
-/* Header / topbar */
+/* Header */
 .site-header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* logo gauche / nav droite */
+    justify-content: space-between;
     gap: 2rem;
     padding: 1rem 2rem;
-}
-
-/* Topbar (en-tête) */
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
-    background: #020617;
-    color: #e5e7eb;
-    border-bottom: 1px solid #1f2937;
 }
 
 /* Logo */
@@ -64,7 +53,7 @@ body {
 .main-nav {
     display: flex;
     gap: 1.5rem;
-    margin-left: auto;            /* pousse la nav à droite */
+    margin-left: auto;
 }
 
 .main-nav a {
@@ -87,9 +76,9 @@ body {
     color: #f97316;
 }
 
-/* Conteneur principal générique */
+/* Conteneur principal plus large */
 .container {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 1.5rem auto;
     padding: 0 1rem;
 }
@@ -101,9 +90,9 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 1.5rem auto 3rem auto;
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 1.25rem;
     box-sizing: border-box;
 }
 
@@ -134,7 +123,7 @@ body {
     margin-top: 0.5rem;
 }
 
-/* Boutons génériques */
+/* Boutons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -176,7 +165,7 @@ body {
     align-items: center;
 }
 
-/* Carte "Objectifs en Terminale" */
+/* Carte Objectifs */
 .hero-card {
     max-width: 340px;
     width: 100%;
@@ -213,7 +202,7 @@ body {
     color: #d1d5db;
 }
 
-/* ===== Niveaux (Seconde / Première / Terminale) ===== */
+/* ===== Grille de chapitres ===== */
 
 .levels {
     margin-top: 2.5rem;
@@ -256,46 +245,10 @@ body {
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
 }
 
-/* ===== Features (si tu en as) ===== */
-
-.features {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-}
-
-.features h2 {
-    margin-bottom: 1rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.feature-card {
-    background: #0b1120;
-    border-radius: 10px;
-    padding: 1rem;
-    border: 1px solid #1f2937;
-}
-
-.feature-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.4rem;
-}
-
-.feature-card p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #e5e7eb;
-}
-
 /* ===== Responsive ===== */
 
 @media (max-width: 900px) {
-    .level-grid,
-    .feature-grid {
+    .level-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
@@ -317,8 +270,7 @@ body {
         max-width: 100%;
     }
 
-    .level-grid,
-    .feature-grid {
+    .level-grid {
         grid-template-columns: 1fr;
     }
 
@@ -332,6 +284,7 @@ body {
         margin-left: 0;
     }
 }
+
 
 
 

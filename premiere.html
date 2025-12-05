@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,31 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés de mathématiques pour la classe de Première.">
     <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <header class="topbar">
         <div class="logo">
             <span class="logo-mark">∞</span>
-        <span class="logo-text">InfinieMaths</span>
-        <span class="logo-subtitle">Les maths du lycée, simplement.</span>
+            <span class="logo-text">InfinieMaths</span>
+            <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
         <nav class="main-nav">
             <a href="index.html">Accueil</a>
             <a href="seconde.html">Seconde</a>
             <a href="premiere.html" class="active">Première</a>
             <a href="terminale.html">Terminale</a>
-            <a href="#">Cours</a>
-            <a href="#">Exercices</a>
-            <a href="#">À propos</a>
+            <a href="concours.html">Préparations aux concours</a>
+            <a href="https://github.com/boualiabdlilah" target="_blank">GitHub</a>
         </nav>
     </header>
 
     <main class="container">
+
+        <!-- HERO / INTRO -->
         <section class="hero">
             <div class="hero-text">
                 <h1>La Première : consolider et approfondir.</h1>
                 <p class="hero-subtitle">
                     En Première, les maths deviennent plus techniques, mais restent accessibles avec une bonne méthode :
-                    fonctions, dérivation, suites, probabilités, géométrie… tout est lié.
+                    trinôme, probabilités, dérivation, suites, fonction exponentielle, trigonométrie, produit scalaire… tout est lié.
                 </p>
                 <div class="hero-buttons">
                     <a href="#chapitres" class="btn primary">Voir les chapitres</a>
@@ -42,69 +45,153 @@
                     <h2>Objectifs en Première</h2>
                     <ul>
                         <li>Renforcer les automatismes vus en Seconde.</li>
-                        <li>Comprendre la dérivation et ses applications.</li>
-                        <li>Savoir lire et utiliser des fonctions et suites.</li>
-                        <li>Maîtriser les bases pour la Terminale et le bac.</li>
+                        <li>Comprendre le trinôme, la dérivation et leurs applications.</li>
+                        <li>Savoir travailler avec des suites, des probabilités et des fonctions.</li>
+                        <li>Préparer sereinement la spécialité maths en Terminale.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- CHAPITRES (alignés sur ta progression) -->
         <section id="chapitres" class="levels">
-            <h2>Chapitres de Première</h2>
+            <h2 class="chapitres-titre">Chapitres de la spécialité mathématiques en Première</h2>
             <div class="level-grid">
+
+                <!-- Chapitre 1 -->
                 <div class="level-card">
-                    <h3>Fonctions et variations</h3>
-                    <p>Étude de fonctions, tableaux de variations, inégalités, résolution graphique et algébrique.</p>
+                    <h3>Chapitre 1 – Trinôme du second degré</h3>
+                    <p>
+                        Étude des fonctions du second degré : forme canonique, signe, variations,
+                        résolution d’équations et d’inéquations.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap1_trinome_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap1_trinome_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
                 </div>
+
+                <!-- Chapitre 2 -->
                 <div class="level-card">
-                    <h3>Dérivation</h3>
-                    <p>Notion de dérivée, taux de variation, tangente, liens avec les variations d’une fonction.</p>
+                    <h3>Chapitre 2 – Probabilité conditionnelle et variable aléatoire</h3>
+                    <p>
+                        Probabilités conditionnelles, arbres pondérés, variables aléatoires discrètes
+                        et espérance mathématique.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap2_proba_conditionnelle_va_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap2_proba_conditionnelle_va_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
                 </div>
+
+                <!-- Chapitre 3 -->
                 <div class="level-card">
-                    <h3>Suites numériques</h3>
-                    <p>Suites définies explicitement ou par récurrence, sens de variation, limite, interprétation concrète.</p>
+                    <h3>Chapitre 3 – Dérivation</h3>
+                    <p>
+                        Nombre dérivé, taux de variation, tangente à une courbe et lien avec le sens
+                        de variation d’une fonction.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap3_derivation_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap3_derivation_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
                 </div>
+
+                <!-- Chapitre 4 -->
                 <div class="level-card">
-                    <h3>Probabilités</h3>
-                    <p>Probabilités conditionnelles, arbres pondérés, loi binomiale dans certains programmes.</p>
+                    <h3>Chapitre 4 – Suites numériques</h3>
+                    <p>
+                        Suites définies explicitement ou par récurrence, suites arithmétiques et géométriques,
+                        sens de variation et premières études de limites.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap4_suites_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap4_suites_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
                 </div>
+
+                <!-- Chapitre 5 -->
                 <div class="level-card">
-                    <h3>Géométrie</h3>
-                    <p>Vecteurs, repère du plan (et parfois de l’espace), droites, distances, barycentres selon les programmes.</p>
+                    <h3>Chapitre 5 – Fonction exponentielle</h3>
+                    <p>
+                        Définition et propriétés de la fonction exponentielle, variations et
+                        premières applications à la modélisation.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap5_exponentielle_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap5_exponentielle_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
                 </div>
+
+                <!-- Chapitre 6 -->
                 <div class="level-card">
-                    <h3>Méthodes transversales</h3>
-                    <p>Utiliser un tableur, un logiciel de géométrie dynamique ou de calcul pour mieux comprendre.</p>
+                    <h3>Chapitre 6 – Fonctions trigonométriques</h3>
+                    <p>
+                        Radian, fonctions sinus et cosinus, courbes représentatives, identités simples
+                        et applications géométriques.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap6_trigonometrie_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap6_trigonometrie_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 7 -->
+                <div class="level-card">
+                    <h3>Chapitre 7 – Produit scalaire et ses applications</h3>
+                    <p>
+                        Produit scalaire dans le plan, calculs avec les coordonnées, angles,
+                        orthogonalité et applications à la géométrie.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="premiere_chap7_produit_scalaire_cours.pdf" target="_blank">Cours du chapitre</a></li>
+                        <li><a href="premiere_chap7_produit_scalaire_exos.pdf" target="_blank">Exercices du chapitre</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTROLE(S) DE PREMIÈRE -->
+        <section class="features">
+            <h2>Contrôles – Première</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Contrôle n°1 – Probabilités et statistiques</h3>
+                    <p>
+                        Contrôle de 2 heures avec exercices sur les probabilités, les statistiques
+                        et des situations concrètes de contrôle de qualité.
+                    </p>
+                    <a href="controle_premiere_1.html" class="btn secondary">
+                        Voir le contrôle
+                    </a>
                 </div>
             </div>
         </section>
-<section class="features">
-    <h2>Contrôles – Première</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3>Contrôle n°1 – Probabilités et statistiques</h3>
-            <p>Contrôle de 2 heures avec exercices sur les probabilités, statistiques et contrôle qualité.</p>
-            <a href="controle_premiere_1.html" class="btn secondary">
-                Voir le contrôle
-            </a>
-        </div>
-    </div>
-</section>
+
         <section id="controles" class="features">
             <h2>Contrôles et devoirs surveillés</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>Contrôles par chapitre</h3>
-                    <p>Bientôt : un contrôle type pour chaque chapitre, avec une correction rédigée étape par étape.</p>
+                    <p>
+                        Bientôt : un contrôle type pour chaque chapitre, avec une correction rédigée
+                        étape par étape.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <h3>DS de synthèse</h3>
-                    <p>Des devoirs surveillés mélangeant plusieurs chapitres, pour se préparer au bac et aux évaluations communes.</p>
+                    <p>
+                        Des devoirs surveillés mélangeant plusieurs chapitres, pour se préparer au bac
+                        et aux évaluations.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <h3>Conseils de méthode</h3>
-                    <p>Comment analyser un énoncé, organiser sa copie, vérifier ses résultats, gérer le temps pendant un contrôle.</p>
+                    <p>
+                        Comment analyser un énoncé, organiser sa copie, vérifier ses résultats
+                        et gérer le temps pendant un contrôle.
+                    </p>
                 </div>
             </div>
         </section>

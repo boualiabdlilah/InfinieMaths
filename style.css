@@ -149,28 +149,27 @@ body {
     cursor: pointer;
 }
 
-/* Variation de style pour les boutons */
-.btn.primary {
+.btn.btn-primary {
     background: #f97316;
     color: #111827;
     border-color: #ea580c;
 }
 
-.btn.primary:hover {
+.btn.btn-primary:hover {
     background: #ea580c;
 }
 
-.btn.secondary {
+.btn.btn-secondary {
     background: #111827;
     color: #e5e7eb;
     border-color: #111827;
 }
 
-.btn.secondary:hover {
+.btn.btn-secondary:hover {
     background: #020617;
 }
 
-/* Colonne droite du hero : carte */
+/* Colonne droite du hero */
 .hero-side {
     flex: 1;
     display: flex;
@@ -178,7 +177,7 @@ body {
     align-items: center;
 }
 
-/* Carte Objectifs en Terminale */
+/* Carte "Objectifs en Terminale" */
 .hero-card {
     max-width: 340px;
     width: 100%;
@@ -334,6 +333,7 @@ body {
         margin-left: 0;
     }
 }
+
 
 
 

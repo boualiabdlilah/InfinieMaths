@@ -1,335 +1,102 @@
 
-/* Style global */
-* {
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminale - InfinieMaths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés de mathématiques pour la classe de Terminale.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0f172a;
-    color: #e5e7eb;
-}
+    <!-- 1) HEADER -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">∞</span>
+            <span class="logo-text">InfinieMaths</span>
+            <span class="logo-subtitle">les maths du lycée, simplement.</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html">Seconde</a>
+            <a href="premiere.html">Première</a>
+            <a href="terminale.html" class="active">Terminale</a>
+            <a href="#">Cours</a>
+            <a href="#">Exercices</a>
+            <a href="#">À propos</a>
+        </nav>
+    </header>
 
-/* Header / topbar */
-.site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* logo gauche / nav droite */
-    gap: 2rem;
-    padding: 1rem 2rem;
-}
+    <!-- 2) HERO TERMINALE -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Terminale – Maths</h1>
+            <p class="hero-subtitle">
+                En Terminale, on consolide ses bases et on se prépare efficacement
+                à l’épreuve de mathématiques du bac.
+            </p>
+            <div class="hero-buttons">
+                <a href="#chapitres" class="btn btn-primary">Voir les chapitres</a>
+                <a href="#chapitre-1" class="btn btn-secondary">Commencer maintenant</a>
+            </div>
+        </div>
+        <div class="hero-side">
+            <div class="hero-card">
+                <h2>Objectifs en Terminale</h2>
+                <p class="hero-card-intro">
+                    Maîtriser les notions du programme et être à l’aise le jour du bac.
+                </p>
+                <ul>
+                    <li>Revoir les bases de Première et les consolider.</li>
+                    <li>Comprendre les notions clés (suites, dérivation, probabilités...).</li>
+                    <li>S’entraîner avec des exercices types et sujets de bac.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-/* Topbar (en-tête) */
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
-    background: #020617;
-    color: #e5e7eb;
-    border-bottom: 1px solid #1f2937;
-}
+    <!-- 3) CONTENU PRINCIPAL -->
+    <main class="container">
+        <section id="chapitres" class="levels">
+            <h2>Chapitres de Terminale</h2>
+            <div class="level-grid">
+                <div class="level-card">
+                    <h3>Analyse de fonctions</h3>
+                    <p>Étude de fonctions, dérivation, variations et limites.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Suites</h3>
+                    <p>Suites arithmétiques et géométriques, convergence, récurrence.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Probabilités et lois</h3>
+                    <p>Variables aléatoires, lois usuelles, espérance et variance.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Géométrie / produit scalaire</h3>
+                    <p>Vecteurs, produit scalaire, angles et distances.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Intégrales (si au programme)</h3>
+                    <p>Notion d’intégrale et aire sous une courbe.</p>
+                </div>
+                <div class="level-card">
+                    <h3>Méthodes pour le supérieur</h3>
+                    <p>Organisation, rédaction et méthodes pour après le bac.</p>
+                </div>
+            </div>
+        </section>
 
-/* Logo */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: nowrap;
-}
+        <section class="section-block" id="chapitre-1">
+            <h2>Chapitre 1 – Récurrence et limites de suites</h2>
+            <ul class="link-list">
+                <li><a href="terminale_chap1_recurrence_suites_cours.pdf" target="_blank">Cours</a></li>
+                <li><a href="terminale_chap1_recurrence_suites_exos.pdf" target="_blank">Exercices</a></li>
+                <li><a href="terminale_chap1_recurrence_suites_eval.pdf" target="_blank">Sujet type bac / contrôle</a></li>
+            </ul>
+        </section>
+    </main>
 
-.logo-mark {
-    background: #f97316;
-    color: #111827;
-    padding: 0.1rem 0.45rem;
-    border-radius: 999px;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.logo-text {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #e5e7eb;
-}
-
-.logo-subtitle {
-    margin-left: 0.6rem;
-    font-size: 0.8rem;
-    color: #9ca3af;
-    white-space: nowrap;
-}
-
-/* Navigation principale */
-.main-nav {
-    display: flex;
-    gap: 1.5rem;
-    margin-left: auto;            /* pousse la nav à droite */
-}
-
-.main-nav a {
-    color: #e5e7eb;
-    text-decoration: none;
-    margin-left: 0.75rem;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-weight: 500;
-}
-
-.main-nav a:hover {
-    background: #111827;
-}
-
-.main-nav a.active {
-    border-color: #f97316;
-    color: #f97316;
-}
-
-/* Conteneur principal générique */
-.container {
-    max-width: 1100px;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
-}
-
-/* ===== HERO : texte à gauche + carte à droite ===== */
-
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 1.5rem auto 3rem auto;
-    padding: 2.5rem 1.5rem;
-    box-sizing: border-box;
-}
-
-.hero-content {
-    flex: 1.2;
-    min-width: 0;
-}
-
-.hero-content h1 {
-    font-size: 2.1rem;
-    margin: 0 0 0.5rem 0;
-    color: #f9fafb;
-}
-
-.hero-subtitle {
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 520px;
-    color: #d1d5db;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-/* Boutons génériques */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-
-.btn.btn-primary {
-    background: #f97316;
-    color: #111827;
-    border-color: #ea580c;
-}
-
-.btn.btn-primary:hover {
-    background: #ea580c;
-}
-
-.btn.btn-secondary {
-    background: #111827;
-    color: #e5e7eb;
-    border-color: #111827;
-}
-
-.btn.btn-secondary:hover {
-    background: #020617;
-}
-
-/* Colonne droite du hero */
-.hero-side {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Carte "Objectifs en Terminale" */
-.hero-card {
-    max-width: 340px;
-    width: 100%;
-    background: #020617;
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    box-sizing: border-box;
-    border: 1px solid #1f2937;
-}
-
-.hero-card h2 {
-    font-size: 1.1rem;
-    margin: 0 0 0.5rem 0;
-    color: #f9fafb;
-}
-
-.hero-card-intro {
-    margin: 0 0 0.75rem 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #e5e7eb;
-}
-
-.hero-card ul {
-    margin: 0;
-    padding-left: 1.1rem;
-}
-
-.hero-card li {
-    font-size: 0.9rem;
-    line-height: 1.35;
-    margin-bottom: 0.3rem;
-    color: #d1d5db;
-}
-
-/* ===== Niveaux (Seconde / Première / Terminale) ===== */
-
-.levels {
-    margin-top: 2.5rem;
-}
-
-.levels h2 {
-    margin-bottom: 1rem;
-}
-
-.level-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.level-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 1rem;
-    text-decoration: none;
-    color: #111827;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-    border: 1px solid #e5e7eb;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-.level-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.4rem;
-}
-
-.level-card p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #4b5563;
-}
-
-.level-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-}
-
-/* ===== Features (si tu en as) ===== */
-
-.features {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-}
-
-.features h2 {
-    margin-bottom: 1rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.feature-card {
-    background: #0b1120;
-    border-radius: 10px;
-    padding: 1rem;
-    border: 1px solid #1f2937;
-}
-
-.feature-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.4rem;
-}
-
-.feature-card p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #e5e7eb;
-}
-
-/* ===== Responsive ===== */
-
-@media (max-width: 900px) {
-    .level-grid,
-    .feature-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 1.25rem;
-    }
-
-    .hero-side {
-        width: 100%;
-        justify-content: center;
-        margin-top: 1.5rem;
-    }
-
-    .hero-card {
-        max-width: 100%;
-    }
-
-    .level-grid,
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-    }
-
-    .main-nav {
-        margin-left: 0;
-    }
-}
+</body>
+</html>

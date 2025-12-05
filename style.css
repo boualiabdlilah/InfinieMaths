@@ -166,36 +166,59 @@ body {
     background: #020617;
 }
 
-/* Carte côté droit du hero */
+/* Colonne de droite du hero */
 .hero-side {
     display: flex;
-    align-items: stretch;
+    justify-content: flex-end;
+    align-items: center;
 }
 
+/* Carte "Objectifs en Terminale" */
 .hero-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 1.2rem;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-    border: 1px solid #e5e7eb;
+    max-width: 360px;             /* empêche la carte d'être trop large */
     width: 100%;
-    color: #111827;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
 }
 
+/* Titre de la carte */
 .hero-card h2 {
-    margin-top: 0;
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    margin: 0 0 0.5rem 0;
 }
 
+/* Phrase d'intro courte */
+.hero-card-intro {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Liste dans la carte */
 .hero-card ul {
-    padding-left: 1.1rem;
     margin: 0;
+    padding-left: 1.1rem;
 }
 
 .hero-card li {
-    margin-bottom: 0.4rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    margin-bottom: 0.3rem;
+}
+
+/* Option : réduire un peu la taille sur mobile */
+@media (max-width: 768px) {
+    .hero-side {
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .hero-card {
+        max-width: 100%;
+    }
 }
 
 /* Sections niveaux & features */
@@ -355,6 +378,7 @@ h1, h2, h3 {
 .link-list a:hover {
   text-decoration: underline;
 }
+
 
 
 

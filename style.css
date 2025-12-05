@@ -1,3 +1,4 @@
+
 /* Style global */
 * {
     box-sizing: border-box;
@@ -9,6 +10,8 @@ body {
     background: #0f172a;
     color: #e5e7eb;
 }
+
+/* Header / topbar */
 .site-header {
     display: flex;
     align-items: center;
@@ -17,29 +20,6 @@ body {
     padding: 1rem 2rem;
 }
 
-.main-nav {
-    display: flex;
-    gap: 1.5rem;
-    margin-left: auto;            /* pousse encore plus la nav à droite */
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-}header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;  /* logo à gauche, nav à droite */
-    gap: 2rem;
-    padding: 1rem 2rem;
-}header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;  /* logo à gauche, nav à droite */
-    gap: 2rem;
-    padding: 1rem 2rem;
-}
 /* Topbar (en-tête) */
 .topbar {
     display: flex;
@@ -51,6 +31,7 @@ body {
     border-bottom: 1px solid #1f2937;
 }
 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -80,6 +61,13 @@ body {
     white-space: nowrap;
 }
 
+/* Navigation principale */
+.main-nav {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;            /* pousse la nav à droite */
+}
+
 .main-nav a {
     color: #e5e7eb;
     text-decoration: none;
@@ -88,6 +76,7 @@ body {
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
     border: 1px solid transparent;
+    font-weight: 500;
 }
 
 .main-nav a:hover {
@@ -99,40 +88,54 @@ body {
     color: #f97316;
 }
 
-/* Conteneur principal */
+/* Conteneur principal générique */
 .container {
     max-width: 1100px;
     margin: 1.5rem auto;
     padding: 0 1rem;
 }
 
-/* Section hero */
+/* ===== HERO : texte à gauche + carte à droite ===== */
+
 .hero {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 1.5rem;
-    align-items: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 1.5rem auto 3rem auto;
+    padding: 2.5rem 1.5rem;
+    box-sizing: border-box;
 }
 
-.hero-text h1 {
+.hero-content {
+    flex: 1.2;
+    min-width: 0;
+}
+
+.hero-content h1 {
     font-size: 2.1rem;
     margin: 0 0 0.5rem 0;
     color: #f9fafb;
 }
 
 .hero-subtitle {
-    font-size: 0.98rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 520px;
     color: #d1d5db;
-    margin-bottom: 1rem;
 }
 
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-bottom: 0.8rem;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
 }
 
+/* Boutons génériques */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -146,6 +149,7 @@ body {
     cursor: pointer;
 }
 
+/* Variation de style pour les boutons */
 .btn.primary {
     background: #f97316;
     color: #111827;
@@ -166,72 +170,37 @@ body {
     background: #020617;
 }
 
-/* Colonne de droite du hero */
+/* Colonne droite du hero : carte */
 .hero-side {
+    flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-/* HERO TERMINALE : texte à gauche + carte à droite */
-.hero {
-    display: flex;
-    align-items: center;              /* aligne verticalement texte et carte */
-    justify-content: space-between;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto 3rem auto;
-    padding: 2.5rem 1.5rem;
-    box-sizing: border-box;
-}
-
-.hero-content {
-    flex: 1.2;                        /* colonne gauche un peu plus large */
-    min-width: 0;
-}
-
-.hero-subtitle {
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 520px;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-/* Colonne droite qui contient la carte */
-.hero-side {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* Carte "Objectifs en Terminale" */
+/* Carte Objectifs en Terminale */
 .hero-card {
-    max-width: 340px;                 /* évite un gros pavé trop large */
+    max-width: 340px;
     width: 100%;
-    background: #ffffff;
+    background: #020617;
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     box-sizing: border-box;
+    border: 1px solid #1f2937;
 }
 
 .hero-card h2 {
     font-size: 1.1rem;
     margin: 0 0 0.5rem 0;
+    color: #f9fafb;
 }
 
 .hero-card-intro {
     margin: 0 0 0.75rem 0;
     font-size: 0.95rem;
     line-height: 1.4;
+    color: #e5e7eb;
 }
 
 .hero-card ul {
@@ -243,40 +212,11 @@ body {
     font-size: 0.9rem;
     line-height: 1.35;
     margin-bottom: 0.3rem;
+    color: #d1d5db;
 }
 
-/* Version mobile : tout en colonne, carte en dessous du texte */
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 1.25rem;
-    }
+/* ===== Niveaux (Seconde / Première / Terminale) ===== */
 
-    .hero-side {
-        width: 100%;
-        justify-content: center;
-        margin-top: 1.5rem;
-    }
-
-    .hero-card {
-        max-width: 100%;
-    }
-}
-
-/* Option : réduire un peu la taille sur mobile */
-@media (max-width: 768px) {
-    .hero-side {
-        justify-content: center;
-        margin-top: 1.5rem;
-    }
-
-    .hero-card {
-        max-width: 100%;
-    }
-}
-
-/* Sections niveaux & features */
 .levels {
     margin-top: 2.5rem;
 }
@@ -318,6 +258,8 @@ body {
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
 }
 
+/* ===== Features (si tu en as) ===== */
+
 .features {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
@@ -334,12 +276,10 @@ body {
 }
 
 .feature-card {
-    background: #ffffff;
+    background: #0b1120;
     border-radius: 10px;
     padding: 1rem;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-    color: #111827;
+    border: 1px solid #1f2937;
 }
 
 .feature-card h3 {
@@ -350,28 +290,33 @@ body {
 .feature-card p {
     margin: 0;
     font-size: 0.95rem;
-    color: #4b5563;
+    color: #e5e7eb;
 }
 
-/* Titres */
-h1, h2, h3 {
-    color: #f9fafb;
-}
+/* ===== Responsive ===== */
 
-/* Pied de page */
-.site-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #111827;
-    color: #9ca3af;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-}
-
-/* Responsive */
 @media (max-width: 900px) {
+    .level-grid,
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
     .hero {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.25rem;
+    }
+
+    .hero-side {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .hero-card {
+        max-width: 100%;
     }
 
     .level-grid,
@@ -379,59 +324,15 @@ h1, h2, h3 {
         grid-template-columns: 1fr;
     }
 
-    .topbar {
+    .site-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.4rem;
+        gap: 0.75rem;
     }
 
-    .main-nav a {
-        margin-left: 0.4rem;
+    .main-nav {
+        margin-left: 0;
     }
-}
-
-.main-content {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.page-title {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.page-intro {
-  color: #d1d5db;
-  margin-bottom: 2rem;
-}
-
-.section-block {
-  margin-bottom: 2rem;
-}
-
-.section-block h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
-
-.link-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.link-list li + li {
-  margin-top: 0.3rem;
-}
-
-.link-list a {
-  color: #93c5fd;
-  text-decoration: none;
-}
-
-.link-list a:hover {
-  text-decoration: underline;
 }
 
 

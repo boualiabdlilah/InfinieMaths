@@ -366,3 +366,12 @@ body {
     text-decoration: underline;
 }
 
+.site-footer {
+    margin-top: 3rem;
+    padding: 1.5rem 1rem;
+    text-align: center;      /* centre le texte sur la ligne */
+    font-size: 0.85rem;
+    color: #9ca3af;
+    border-top: 1px solid #1f2937;
+    background: #020617;
+}

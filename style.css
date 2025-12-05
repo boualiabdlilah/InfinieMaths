@@ -346,4 +346,23 @@ body {
         padding: 1.25rem 1rem;
     }
 }
+.level-card .card-links {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.6rem 0 0 0;
+}
+
+.level-card .card-links li {
+    margin-bottom: 0.25rem;
+}
+
+.level-card .card-links a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.level-card .card-links a:hover {
+    text-decoration: underline;
+}
 

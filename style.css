@@ -173,31 +173,67 @@ body {
     align-items: center;
 }
 
-/* Carte "Objectifs en Terminale" */
-.hero-card {
-    max-width: 360px;             /* empêche la carte d'être trop large */
-    width: 100%;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+/* HERO TERMINALE : texte à gauche + carte à droite */
+.hero {
+    display: flex;
+    align-items: center;              /* aligne verticalement texte et carte */
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem auto;
+    padding: 2.5rem 1.5rem;
     box-sizing: border-box;
 }
 
-/* Titre de la carte */
+.hero-content {
+    flex: 1.2;                        /* colonne gauche un peu plus large */
+    min-width: 0;
+}
+
+.hero-subtitle {
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 520px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Colonne droite qui contient la carte */
+.hero-side {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Carte "Objectifs en Terminale" */
+.hero-card {
+    max-width: 340px;                 /* évite un gros pavé trop large */
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+}
+
 .hero-card h2 {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     margin: 0 0 0.5rem 0;
 }
 
-/* Phrase d'intro courte */
 .hero-card-intro {
     margin: 0 0 0.75rem 0;
     font-size: 0.95rem;
     line-height: 1.4;
 }
 
-/* Liste dans la carte */
 .hero-card ul {
     margin: 0;
     padding-left: 1.1rem;
@@ -207,6 +243,25 @@ body {
     font-size: 0.9rem;
     line-height: 1.35;
     margin-bottom: 0.3rem;
+}
+
+/* Version mobile : tout en colonne, carte en dessous du texte */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.25rem;
+    }
+
+    .hero-side {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .hero-card {
+        max-width: 100%;
+    }
 }
 
 /* Option : réduire un peu la taille sur mobile */
@@ -378,6 +433,7 @@ h1, h2, h3 {
 .link-list a:hover {
   text-decoration: underline;
 }
+
 
 
 

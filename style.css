@@ -832,3 +832,8 @@ body {
 .hero .hero-subtitle {
     color: #111827 !important;
 }
+
+/* Forcer un titre bien visible dans le hero */
+.hero h1 {
+    color: #111827 !important;   /* texte très foncé, super lisible */
+}

@@ -1,102 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>InfinieMaths - Les maths du lycée, simplement</title>
+    <title>InfinieMaths - Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles corrigés pour les élèves de lycée (Seconde, Première, Terminale).">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles de mathématiques pour le lycée.">
     <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <header class="topbar">
+    <!-- HEADER -->
+    <header class="site-header">
         <div class="logo">
-           <span class="logo-mark">∞</span>
-        <span class="logo-text">InfinieMaths</span>
-        <span class="logo-subtitle">Les maths du lycée, simplement.</span>
+            <span class="logo-mark">∞</span>
+            <span class="logo-text">InfinieMaths</span>
+            <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
         <nav class="main-nav">
             <a href="index.html" class="active">Accueil</a>
             <a href="seconde.html">Seconde</a>
-            <a href="#">Première</a>
-            <a href="#">Terminale</a>
-            <a href="#">Cours</a>
-            <a href="#">Exercices</a>
-            <a href="#">À propos</a>
+            <a href="premiere.html">Première</a>
+            <a href="terminale.html">Terminale</a>
+            <a href="https://github.com/boualiabdlilah" target="_blank">GitHub</a>
         </nav>
     </header>
 
     <main class="container">
+        <!-- HERO D'ACCUEIL -->
         <section class="hero">
             <div class="hero-text">
-                <h1>Réussir les maths du lycée sans se perdre.</h1>
+                <h1>InfinieMaths, ton espace de maths pour le lycée.</h1>
                 <p class="hero-subtitle">
-                    Cours clairs, exercices progressifs et contrôles corrigés pour la Seconde, la Première et la Terminale.
-                    Pensé pour les élèves, utile pour les profs.
+                    Cours, exercices, contrôles type bac et corrections, niveau par niveau.
+                    Tout est organisé pour t’aider à comprendre, réviser et progresser.
                 </p>
                 <div class="hero-buttons">
-                    <a href="seconde.html" class="btn primary">Commencer en Seconde</a>
-                    <a href="#" class="btn secondary">Voir tous les cours</a>
+                    <a href="seconde.html" class="btn primary">Commencer par la Seconde</a>
+                    <a href="premiere.html" class="btn primary">Aller en Première</a>
                 </div>
             </div>
+
             <div class="hero-side">
                 <div class="hero-card">
-                    <h2>Ce que tu trouveras sur InfinieMaths</h2>
+                    <h2>Ce que tu trouves ici</h2>
                     <ul>
-                        <li>Des cours résumés pour aller à l’essentiel.</li>
-                        <li>Des exercices progressifs, avec corrigés détaillés.</li>
-                        <li>Des sujets de contrôles et d’évaluations avec solutions.</li>
+                        <li>Des cours clairs, axés sur l’essentiel.</li>
+                        <li>Des exercices ciblés, avec corrections en PDF.</li>
+                        <li>Des contrôles type bac pour t’entraîner.</li>
+                        <li>Une progression structurée comme au lycée.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-     <section class="levels">
-    <h2>Choisis ton niveau</h2>
-    <div class="level-grid">
-        <a href="seconde.html" class="level-card">
-            <h3>Seconde</h3>
-            <p>Reprendre les bases du collège, découvrir les fonctions, les statistiques et la géométrie analytique.</p>
-        </a>
-        <a href="premiere.html" class="level-card">
-            <h3>Première</h3>
-            <p>Consolider les bases, approfondir l’analyse, les suites et les probabilités, préparer la Terminale.</p>
-        </a>
-        <a href="terminale.html" class="level-card">
-            <h3>Terminale</h3>
-            <p>Préparer le bac, maîtriser les notions clés et s’entraîner avec des sujets type bac.</p>
-        </a>
-    </div>
-</section>
+        <!-- NIVEAUX -->
+        <section class="levels" aria-label="Niveaux">
+            <h2 class="chapitres-titre">Choisis ton niveau</h2>
 
-        <section class="features">
-            <h2>La méthode InfinieMaths</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Cours structurés</h3>
-                    <p>Des cours courts et organisés, pour revoir l’essentiel avant un contrôle ou un DS.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Exercices progressifs</h3>
-                    <p>On commence par des questions simples, puis on augmente petit à petit la difficulté.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Contrôles corrigés</h3>
-                    <p>Des sujets complets avec correction détaillée, pour s’entraîner dans les conditions réelles.</p>
-                </div>
+            <div class="level-grid">
+                <!-- Seconde -->
+                <article class="level-card">
+                    <h3>Seconde</h3>
+                    <p>
+                        Revoir les bases et poser de bons fondations : nombres, calcul littéral,
+                        géométrie dans le plan, fonctions, statistiques et probabilités.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <a href="seconde.html" class="btn primary">Accéder à la Seconde</a>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Première -->
+                <article class="level-card">
+                    <h3>Première</h3>
+                    <p>
+                        Approfondir les notions clés : fonctions, dérivation, suites, statistiques,
+                        probabilités, et raisonnement plus avancé.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <a href="premiere.html" class="btn primary">Accéder à la Première</a>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Terminale -->
+                <article class="level-card">
+                    <h3>Terminale</h3>
+                    <p>
+                        Préparer le bac et l’après-bac : limites, dérivation avancée,
+                        probabilités, variables aléatoires, et méthodes de résolution.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <a href="terminale.html" class="btn primary">Accéder à la Terminale</a>
+                        </li>
+                    </ul>
+                </article>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>© <span id="year"></span> InfinieMaths. Tous droits réservés.</p>
+        <p>© <span id="year-home"></span> InfinieMaths. Tous droits réservés.</p>
     </footer>
 
     <script>
-        // Met l'année actuelle automatiquement
-        document.getElementById("year").textContent = new Date().getFullYear();
+        // Année dynamiquement dans le footer
+        document.getElementById("year-home").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
-
 
 
 

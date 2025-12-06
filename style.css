@@ -819,3 +819,11 @@ body {
     background: #020617;
 }
 
+.hero .hero-subtitle {
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 520px;
+    color: #111827 !important;
+}

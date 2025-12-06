@@ -1,250 +1,413 @@
-
-<!-- CHAPITRES SECONDE -->
-<section id="chapitres" class="levels">
-    <h2 class="chapitres-titre">Chapitres de mathématiques en Seconde</h2>
-
-    <div class="level-grid">
-        <!-- Chapitre 1 -->
-        <div class="level-card">
-            <h3>Chapitre 1 – Calculs numériques et littéraux</h3>
-            <p>
-                Priorités de calcul, développement, factorisation, fractions, puissances.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap1_calculs_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap1_calculs_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Seconde - InfinieMaths</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfinieMaths - Cours, exercices et contrôles de mathématiques pour la classe de Seconde.">
+    <!-- Assure-toi que style.css est bien dans le même dossier -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">∞</span>
+            <span class="logo-text">InfinieMaths</span>
+            <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html" class="active">Seconde</a>
+            <a href="premiere.html">Première</a>
+            <a href="terminale.html">Terminale</a>
+            <a href="concours.html">Préparations aux concours</a>
+            <a href="https://github.com/boualiabdlilah" target="_blank">GitHub</a>
+        </nav>
+    </header>
 
-        <!-- Chapitre 2 -->
-        <div class="level-card">
-            <h3>Chapitre 2 – Équations et inéquations</h3>
-            <p>
-                Résolution d’équations, inéquations, problèmes simples traduits en langage algébrique.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap2_equations_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap2_equations_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+    <main class="container">
 
-        <!-- Chapitre 3 -->
-        <div class="level-card">
-            <h3>Chapitre 3 – Fonctions et graphiques</h3>
-            <p>
-                Notion de fonction, lecture et tracé de courbes, tableaux de valeurs, images et antécédents.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap3_fonctions_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap3_fonctions_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+        <!-- HERO / INTRO SECONDE -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>La Seconde : poser des bases solides.</h1>
+                <p class="hero-subtitle">
+                    En Seconde, on revoit les fondamentaux et on découvre les outils qui serviront
+                    en Première et Terminale : nombres réels, géométrie, calcul littéral, fonctions,
+                    statistiques, probabilités…
+                </p>
+                <div class="hero-buttons">
+                    <a href="#controles" class="btn primary">Contrôles type bac</a>
+                    <a href="#chapitres" class="btn primary">Voir les chapitres</a>
+                </div>
+            </div>
 
-        <!-- Chapitre 4 -->
-        <div class="level-card">
-            <h3>Chapitre 4 – Statistiques descriptives</h3>
-            <p>
-                Séries statistiques, moyenne, médiane, quartiles, diagrammes et interprétation.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap4_statistiques_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap4_statistiques_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+            <div class="hero-side">
+                <div class="hero-card">
+                    <h2>Objectifs en Seconde</h2>
+                    <ul>
+                        <li>Reprendre confiance en calcul et en raisonnement.</li>
+                        <li>Maîtriser les bases de la géométrie dans le plan.</li>
+                        <li>Comprendre les notions clés sur les fonctions.</li>
+                        <li>Être à l’aise avec les statistiques et probabilités simples.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <!-- Chapitre 5 -->
-        <div class="level-card">
-            <h3>Chapitre 5 – Géométrie dans le plan</h3>
-            <p>
-                Droites parallèles et perpendiculaires, angles, constructions géométriques.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap5_geometrie_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap5_geometrie_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+        <!-- CHAPITRES SECONDE (SUIVANT TA PROGRESSION) -->
+        <section id="chapitres" class="levels">
+            <h2 class="chapitres-titre">Chapitres de mathématiques en Seconde</h2>
 
-        <!-- Chapitre 6 -->
-        <div class="level-card">
-            <h3>Chapitre 6 – Vecteurs</h3>
-            <p>
-                Notion de vecteur, translation, addition de vecteurs, relation de Chasles.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap6_vecteurs_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap6_vecteurs_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+            <div class="level-grid">
+                <!-- Chapitre 1 -->
+                <div class="level-card">
+                    <h3>Chapitre 1 – Les nombres réels</h3>
+                    <p>
+                        Droite graduée, intervalles, encadrements, comparaisons et calculs avec les nombres réels.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap1_nombres_reels_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap1_nombres_reels_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 7 -->
-        <div class="level-card">
-            <h3>Chapitre 7 – Géométrie analytique</h3>
-            <p>
-                Repère du plan, coordonnées de points, équations de droites, milieu d’un segment.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap7_geo_analytique_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap7_geo_analytique_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+                <!-- Chapitre 2 -->
+                <div class="level-card">
+                    <h3>Chapitre 2 – Géométrie et configuration dans le plan</h3>
+                    <p>
+                        Configurations classiques, parallèles, perpendiculaires, angles, triangles et propriétés géométriques.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap2_geometrie_plan_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap2_geometrie_plan_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 8 -->
-        <div class="level-card">
-            <h3>Chapitre 8 – Théorème de Pythagore et trigonométrie</h3>
-            <p>
-                Rappels sur Pythagore, cosinus, sinus, tangente dans un triangle rectangle.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap8_trigo_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap8_trigo_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+                <!-- Chapitre 3 -->
+                <div class="level-card">
+                    <h3>Chapitre 3 – Calcul littéral</h3>
+                    <p>
+                        Simplification d’expressions, développement, factorisation, identités remarquables.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap3_calcul_litteral_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap3_calcul_litteral_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 9 -->
-        <div class="level-card">
-            <h3>Chapitre 9 – Probabilités</h3>
-            <p>
-                Expériences aléatoires simples, événements, notation des probabilités, arbres.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap9_probabilites_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap9_probabilites_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+                <!-- Chapitre 4 -->
+                <div class="level-card">
+                    <h3>Chapitre 4 – Informations chiffrées</h3>
+                    <p>
+                        Pourcentages, indices, évolutions, lecture et interprétation de tableaux et graphiques.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap4_informations_chiffrees_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap4_informations_chiffrees_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 10 -->
-        <div class="level-card">
-            <h3>Chapitre 10 – Nombres réels et intervalles</h3>
-            <p>
-                Droite graduée, intervalles, encadrements, valeur absolue, notation ensembliste.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap10_reels_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap10_reels_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+                <!-- Chapitre 5 -->
+                <div class="level-card">
+                    <h3>Chapitre 5 – Vecteurs et repérage dans le plan</h3>
+                    <p>
+                        Vecteurs, translation, coordonnées de points, repère du plan et opérations sur les vecteurs.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap5_vecteurs_reperage_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap5_vecteurs_reperage_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 11 -->
-        <div class="level-card">
-            <h3>Chapitre 11 – Proportionnalité et pourcentages</h3>
-            <p>
-                Tableaux de proportionnalité, pourcentages simples et successifs, échelles.
-            </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap11_proportionnalite_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap11_proportionnalite_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
+                <!-- Chapitre 6 -->
+                <div class="level-card">
+                    <h3>Chapitre 6 – Équations et inéquations</h3>
+                    <p>
+                        Résolution d’équations et d’inéquations, interprétation graphique et problèmes du premier degré.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap6_equations_inequations_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap6_equations_inequations_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Chapitre 12 -->
-        <div class="level-card">
-            <h3>Chapitre 12 – Logique et raisonnement</h3>
-            <p>
-                Implication, contre-exemple, raisonnement par analyse et par disjonction de cas.
+                <!-- Chapitre 7 -->
+                <div class="level-card">
+                    <h3>Chapitre 7 – Généralités sur les fonctions</h3>
+                    <p>
+                        Notion de fonction, image et antécédent, tableaux de valeurs, lecture de graphiques.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap7_generalites_fonctions_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap7_generalites_fonctions_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 8 -->
+                <div class="level-card">
+                    <h3>Chapitre 8 – Fonctions de référence</h3>
+                    <p>
+                        Fonctions affines, carrée, inverse, racine carrée : propriétés et représentations graphiques.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap8_fonctions_reference_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap8_fonctions_reference_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 9 -->
+                <div class="level-card">
+                    <h3>Chapitre 9 – Équations cartésiennes de droites</h3>
+                    <p>
+                        Droites du plan, coefficient directeur, équations cartésiennes et interprétation graphique.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap9_droites_cartesiennes_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap9_droites_cartesiennes_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 10 -->
+                <div class="level-card">
+                    <h3>Chapitre 10 – Statistique descriptive</h3>
+                    <p>
+                        Séries statistiques, moyennes, médianes, étendue, diagrammes et interprétation de données.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap10_statistique_descriptive_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap10_statistique_descriptive_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 11 -->
+                <div class="level-card">
+                    <h3>Chapitre 11 – Probabilités</h3>
+                    <p>
+                        Expériences aléatoires, issues, événements, probabilité d’un événement, schémas simples.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap11_probabilites_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap11_probabilites_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Chapitre 12 -->
+                <div class="level-card">
+                    <h3>Chapitre 12 – Multiples, diviseurs et nombres premiers</h3>
+                    <p>
+                        Divisibilité, PGCD, décomposition en facteurs premiers, applications à des problèmes arithmétiques simples.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap12_arithmetique_cours.pdf">
+                                Cours du chapitre (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_chap12_arithmetique_exos.pdf">
+                                Exercices du chapitre (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTROLES TYPE BAC SECONDE -->
+        <section id="controles" class="levels">
+            <h2 class="chapitres-titre">Contrôles type bac – Seconde</h2>
+            <p class="chapitres-intro">
+                Entraîne-toi sur des contrôles type bac adaptés à la Seconde, avec sujets et corrections en mode lecture.
             </p>
-            <ul class="card-links">
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap12_raisonnement_cours.pdf">
-                        Cours du chapitre (lecture)
-                    </button>
-                </li>
-                <li>
-                    <button class="pdf-btn" data-pdf="seconde_chap12_raisonnement_exos.pdf">
-                        Exercices du chapitre (lecture)
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
+
+            <div class="level-grid">
+                <!-- Contrôle 1 -->
+                <div class="level-card">
+                    <h3>Contrôle 1 – Nombres réels et calcul littéral</h3>
+                    <p>
+                        Contrôle regroupant calculs sur les nombres réels et techniques de calcul littéral.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle1_sujet.pdf">
+                                Sujet (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle1_correction.pdf">
+                                Correction (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contrôle 2 -->
+                <div class="level-card">
+                    <h3>Contrôle 2 – Fonctions et statistiques</h3>
+                    <p>
+                        Contrôle mêlant généralités sur les fonctions, fonctions de référence et statistique descriptive.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle2_sujet.pdf">
+                                Sujet (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle2_correction.pdf">
+                                Correction (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contrôle 3 -->
+                <div class="level-card">
+                    <h3>Contrôle 3 – Géométrie, vecteurs et droites</h3>
+                    <p>
+                        Contrôle sur la géométrie dans le plan, les vecteurs, le repérage et les équations de droites.
+                    </p>
+                    <ul class="card-links">
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle3_sujet.pdf">
+                                Sujet (lecture)
+                            </button>
+                        </li>
+                        <li>
+                            <button class="pdf-btn" data-pdf="seconde_controle3_correction.pdf">
+                                Correction (lecture)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LECTEUR PDF -->
+        <section id="lecteur" class="pdf-viewer-section">
+            <h2>Lecture des cours, exercices et contrôles – Seconde</h2>
+            <p>Sélectionne un document pour l’ouvrir en mode lecture intégrée.</p>
+            <iframe id="pdf-frame" src="" class="pdf-frame" title="Document PDF"></iframe>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year-seconde"></span> InfinieMaths. Tous droits réservés.</p>
+    </footer>
+
+    <!-- SCRIPT JS POUR LE LECTEUR PDF -->
+    <script>
+        // Année dans le footer
+        document.getElementById("year-seconde").textContent = new Date().getFullYear();
+
+        // Gestion du lecteur PDF
+        const pdfButtons = document.querySelectorAll(".pdf-btn");
+        const pdfFrame = document.getElementById("pdf-frame");
+
+        pdfButtons.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                const pdfUrl = this.getAttribute("data-pdf");
+                if (pdfUrl) {
+                    pdfFrame.src = pdfUrl + "#toolbar=0&navpanes=0";
+                    pdfFrame.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+            
+
 
 
 

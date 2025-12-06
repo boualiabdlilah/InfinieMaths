@@ -827,3 +827,8 @@ body {
     max-width: 520px;
     color: #111827 !important;
 }
+
+.hero p,
+.hero .hero-subtitle {
+    color: #111827 !important;
+}

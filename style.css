@@ -838,19 +838,6 @@ body {
     color: #111827 !important;   /* texte très foncé, super lisible */
 }
 
-.site-footer {
-    padding: 1.2rem 1.5rem 2.5rem !important; /* plus d'espace en bas */
-}
-.site-footer {
-    color: #111827 !important;          /* texte bien foncé */
-    background-color: #f9fafb !important;
-}
 
-.site-footer a {
-    color: #111827 !important;
-    text-decoration: none;
-}
 
-.site-footer a:hover {
-    text-decoration: underline;
-}
+

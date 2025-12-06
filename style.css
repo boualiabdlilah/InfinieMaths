@@ -118,7 +118,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     max-width: 520px;
-    color: #374151;
+    color: #374151;  /* gris foncé, bien lisible sur fond clair */
 }
 
 .hero-signature {
@@ -818,3 +818,4 @@ body {
 .btn.secondary:hover {
     background: #020617;
 }
+

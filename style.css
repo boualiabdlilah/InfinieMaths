@@ -311,13 +311,13 @@ body {
     color: #9ca3af;
 }
 
-.site-footer a {
+.site-footer {
+    margin-top: 3rem;
+    padding: 1rem 0 2rem;
+    border-top: 1px solid #4b5563;   /* plus clair et plus visible */
+    font-size: 0.85rem;
     color: #9ca3af;
-    text-decoration: none;
-}
-
-.site-footer a:hover {
-    color: #e5e7eb;
+    text-align: center;
 }
 
 /* ===== Responsive ===== */
@@ -364,6 +364,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

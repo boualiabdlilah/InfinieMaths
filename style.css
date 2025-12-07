@@ -102,6 +102,12 @@ body {
     border: 1px solid #e5e7eb;      /* fine bordure gris très clair */
     color: #0f172a;                 /* texte du hero en foncé sur fond clair */
 }
+.hero-text h1 {
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
+    font-weight: 800;
+    color: #0f172a;   /* bien foncé = super lisible sur fond clair */
+}
 
 .hero-content {
     flex: 1.2;
@@ -356,6 +362,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

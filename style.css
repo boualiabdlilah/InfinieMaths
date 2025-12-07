@@ -1,5 +1,6 @@
 
 
+
 /* Style global */
 * {
     box-sizing: border-box;
@@ -349,9 +350,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
-
-
 
 
 

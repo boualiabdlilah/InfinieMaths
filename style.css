@@ -180,7 +180,7 @@ body {
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-    border: 1px solid #1f2937;    /* bord discret mais visible */
+    border: none;                  /* plus de cadre séparé autour de la carte */
     color: #e5e7eb;
 }
 .hero-card h2 {
@@ -456,6 +456,7 @@ body {
 .hero-card h2 {
     color: #f9fafb;
 }
+
 
 
 

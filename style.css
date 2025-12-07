@@ -7,9 +7,9 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-    /* Fond global plus clair */
-    background: #1f2937;  /* gris-bleu : beaucoup plus léger que ton ancien bleu très foncé */
-    color: #e5e7eb;       /* texte clair par défaut */
+    /* Bleu clair/grisé, loin du noir */
+    background: #e5f0ff;  /* tu peux retenir : bleu très clair */
+    color: #111827;       /* texte foncé, bien lisible */
 }
 
 /* Header / topbar */
@@ -367,6 +367,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

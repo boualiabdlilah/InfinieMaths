@@ -16,9 +16,8 @@ body {
     justify-content: space-between;
     gap: 2rem;
     padding: 1rem 2rem;
-    background: #2563eb;      /* bleu moyen */
-    border-bottom: 1px solid #1d4ed8;
-    color: #f9fafb;
+    background: #020617;          /* bleu très foncé / presque noir */
+    border-bottom: 1px solid #1f2937;
 }
 
 /* Logo */
@@ -365,6 +364,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

@@ -359,11 +359,13 @@ body {
 
 .chapitres-titre {
     text-align: center;
-    margin-top: 1.05rem;
-    margin-bottom: 2.5rem;  /* espace en dessous vers les chapitres */
-    font-size: 1.4rem;
+    margin-top: 1rem;       /* petit espace au-dessus → il monte vers le cadre blanc */
+    margin-bottom: 2.5rem;  /* plus d'espace vers les chapitres en bas */
+    font-size: 1.6rem;
+    font-weight: 700;
     color: #f9fafb;
 }
+
 /* Cadre bleu pour Cours du chapitre (lecture), Exercices du chapitre (lecture), etc. */
 .chapter-pill--blue {
     background: #3b82f6;          /* bleu principal du cadre */
@@ -389,6 +391,7 @@ body {
     font-size: 0.8rem;
     text-decoration: none;
 }
+
 
 
 

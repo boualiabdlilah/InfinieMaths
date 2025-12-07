@@ -96,10 +96,10 @@ body {
     margin: 1.5rem auto 3rem auto;
     padding: 2.5rem 1.5rem;
 
-    /* Nouveau : cadre visible autour de tout le hero */
-    background: #020617;          /* fond sombre pour le bloc hero */
+    /* Grand cadre autour du hero + carte */
+    background: #020617;          /* fond du bloc hero */
     border-radius: 0.75rem;       /* coins arrondis */
-    border: 1px solid #111827;    /* cadre autour de l'ensemble hero + carte */
+    border: 1px solid #1f2937;    /* bord visible */
 }
 
 .hero-content {
@@ -110,7 +110,7 @@ body {
 .hero-content h1 {
     font-size: 2.1rem;
     margin: 0 0 0.5rem 0;
-    color: #f9fafb;
+    color: #f9fafb;     /* blanc cassé, bien lisible */
 }
 
 .hero-subtitle {
@@ -119,7 +119,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     max-width: 520px;
-    color: #d1d5db;
+    color: #e5e7eb;     /* texte clair pour “ton espace de maths…” */
 }
 
 .hero-buttons {
@@ -172,20 +172,21 @@ body {
 }
 
 /* Carte Objectifs */
+
 .hero-card {
     max-width: 340px;
     width: 100%;
-    background: #020617;
+    background: #0b1120;          /* légèrement plus clair que le hero */
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    border: 1px solid #1f2937;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    border: 1px solid #1f2937;    /* bord discret mais visible */
+    color: #e5e7eb;
 }
-
 .hero-card h2 {
     font-size: 1.1rem;
     margin: 0 0 0.5rem 0;
-    color: #f9fafb;
+    color: #f9fafb;               /* titre “Ce que tu trouves ici” */
 }
 
 .hero-card-intro {
@@ -414,5 +415,6 @@ body {
 .btn.secondary:hover {
     background: #020617;
 }
+
 
 

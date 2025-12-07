@@ -1,9 +1,3 @@
-background: #e5e7eb;      /* fond un peu plus sombre */body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #f3f4f6;      /* fond clair */
-    color: #111827;           /* texte foncé */
-}
 /* Style global */
 * {
     box-sizing: border-box;
@@ -12,7 +6,7 @@ background: #e5e7eb;      /* fond un peu plus sombre */body {
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #e5e7eb;      /* fond un peu plus sombre */
+    background: #e5e7eb;      /* fond un peu plus sombre que #f3f4f6 */
     color: #111827;           /* texte foncé */
 }
 
@@ -23,7 +17,7 @@ body {
     justify-content: space-between;
     gap: 2rem;
     padding: 1rem 2rem;
-    background: #0f172a;      /* bande sombre en haut */
+    background: #020617;      /* bleu-nuit très sombre */
     border-bottom: 1px solid #1f2937;
 }
 
@@ -55,6 +49,7 @@ body {
     font-size: 0.8rem;
     color: #9ca3af;
     white-space: nowrap;
+    font-weight: 500;         /* un peu plus visible */
 }
 
 /* Navigation principale */
@@ -101,11 +96,12 @@ body {
     max-width: 1100px;
     margin: 1.5rem auto 3rem auto;
     padding: 2.5rem 1.5rem;
-    background: #e5e7eb;      /* bloc hero légèrement grisé */
+    background: #f9fafb;      /* bloc hero plus clair que le fond */
     border-radius: 0.75rem;
 }
 
-.hero-text, .hero-content {
+.hero-text,
+.hero-content {
     flex: 1.2;
     min-width: 0;
 }
@@ -117,13 +113,19 @@ body {
     color: #111827;
 }
 
+/* Slogan "Les maths du lycée simplement." plus visible */
 .hero-subtitle {
-    margin-top: 0.5rem;
+    display: inline-block;
+    margin-top: 0.6rem;
     margin-bottom: 1.25rem;
+    padding: 0.25rem 0.7rem;
     font-size: 1rem;
     line-height: 1.5;
     max-width: 520px;
-    color: #374151;  /* gris foncé, bien lisible sur fond clair */
+    font-weight: 600;
+    color: #111827;           /* texte bien foncé */
+    background-color: #fde68a;/* jaune doux, très visible */
+    border-radius: 999px;
 }
 
 .hero-signature {
@@ -155,14 +157,14 @@ body {
 
 .btn.primary,
 .btn-primary {
-    background: #2563eb;      /* bleu moderne */
-    color: #ffffff;
-    border-color: #1d4ed8;
+    background: #f97316;      /* on uniformise: bouton principal orange */
+    color: #111827;
+    border-color: #ea580c;
 }
 
 .btn.primary:hover,
 .btn-primary:hover {
-    background: #1d4ed8;
+    background: #ea580c;
 }
 
 .btn-secondary {
@@ -233,100 +235,55 @@ body {
 
 .level-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
 }
 
+/* Carte de niveau / chapitre */
 .level-card {
     background: #ffffff;
     border-radius: 12px;
-    padding: 1rem 1.1rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
     border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
 }
 
 .level-card h3 {
-    margin: 0 0 0.3rem 0;
-    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
     color: #111827;
 }
 
 .level-card p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #4b5563;
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #374151;
 }
 
-.level-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-    border-color: #f97316;
+/* Meta infos (niveau, format, etc.) */
+.level-meta {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.85rem;
+    color: #6b7280;
 }
 
-/* ===== Sections chapitres détaillés ===== */
-
-.section-block {
-    margin-top: 2rem;
-    padding: 1.5rem 1.25rem;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-}
-
-.section-block h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.15rem;
+/* Prix dans la carte Premium */
+.level-price {
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
     color: #111827;
 }
 
-/* Liens Cours / Exos / Contrôles */
-.link-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.link-list li {
-    margin-bottom: 0.4rem;
-}
-
-.link-list a {
-    color: #2563eb;
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-.link-list a:hover {
-    text-decoration: underline;
-}
-
-/* ===== Cartes: liens internes ===== */
-.level-card .card-links {
-    list-style: none;
-    padding-left: 0;
-    margin: 0.6rem 0 0 0;
-}
-
-.level-card .card-links li {
-    margin-bottom: 0.25rem;
-}
-
-.level-card .card-links a,
-.level-card .card-links button {
-    color: #2563eb;
-    text-decoration: none;
+/* Lien d'accès (ex : "Accéder à la Seconde") */
+.level-link {
     font-size: 0.9rem;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
 }
 
-.level-card .card-links a:hover,
-.level-card .card-links button:hover {
+.level-link:hover {
     text-decoration: underline;
 }
 
@@ -334,571 +291,12 @@ body {
 
 .site-footer {
     margin-top: 3rem;
-    padding: 1rem 1.2rem;
-    border-top: 1px solid #d1d5db;
-    font-size: 0.85rem;
-    color: #6b7280;
-    text-align: center;
-    background-color: #f9fafb;
-}
-
-.site-footer .signature {
-    margin-left: 0.5rem;
-    color: #6b7280;
-    font-style: italic;
-}
-
-/* ===== Responsive ===== */
-
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 1.25rem;
-    }
-
-    .hero-side {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .hero-card {
-        max-width: 100%;
-    }
-
-    .level-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.75rem 1rem;
-        gap: 0.75rem;
-    }
-
-    .logo-subtitle {
-        display: none;
-    }
-
-    .main-nav {
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-left: 0;
-    }
-
-    .main-nav a {
-        margin-left: 0;
-        padding: 0.25rem 0.7rem;
-    }
-
-    .hero {
-        margin-top: 1rem;
-        padding: 1.75rem 1rem;
-    }
-
-    .hero-text h1,
-    .hero-content h1 {
-        font-size: 1.7rem;
-    }
-
-    .level-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-block {
-        padding: 1.25rem 1rem;
-    }
-}
-/* Style global */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0f172a;
-    color: #e5e7eb;
-}
-
-/* Header / topbar */
-.site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1rem 2rem;
-    background: #020617;
-    border-bottom: 1px solid #1f2937;
-}
-
-/* Logo */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: nowrap;
-}
-
-.logo-mark {
-    background: #f97316;
-    color: #111827;
-    padding: 0.1rem 0.45rem;
-    border-radius: 999px;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.logo-text {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #e5e7eb;
-}
-
-.logo-subtitle {
-    margin-left: 0.6rem;
-    font-size: 0.8rem;
-    color: #9ca3af;
-    white-space: nowrap;
-}
-
-/* Navigation principale */
-.main-nav {
-    display: flex;
-    gap: 1.5rem;
-    margin-left: auto;
-}
-
-.main-nav a {
-    color: #e5e7eb;
-    text-decoration: none;
-    margin-left: 0.75rem;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-weight: 500;
-}
-
-.main-nav a:hover {
-    background: #111827;
-}
-
-.main-nav a.active {
-    border-color: #f97316;
-    color: #f97316;
-}
-
-/* Conteneur principal */
-.container {
-    max-width: 1100px;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
-}
-
-/* ===== HERO ===== */
-
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 1.5rem auto 3rem auto;
-    padding: 2.5rem 1.5rem;
-}
-
-.hero-content {
-    flex: 1.2;
-    min-width: 0;
-}
-
-.hero-content h1 {
-    font-size: 2.1rem;
-    margin: 0 0 0.5rem 0;
-    color: #f9fafb;
-}
-
-.hero-subtitle {
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 520px;
-    color: #d1d5db;
-}
-
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-/* Boutons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: #f97316;
-    color: #111827;
-    border-color: #ea580c;
-}
-
-.btn-primary:hover {
-    background: #ea580c;
-}
-
-.btn-secondary {
-    background: #111827;
-    color: #e5e7eb;
-    border-color: #111827;
-}
-
-.btn-secondary:hover {
-    background: #020617;
-}
-
-/* Colonne droite du hero */
-.hero-side {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Carte Objectifs */
-.hero-card {
-    max-width: 340px;
-    width: 100%;
-    background: #020617;
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    border: 1px solid #1f2937;
-}
-
-.hero-card h2 {
-    font-size: 1.1rem;
-    margin: 0 0 0.5rem 0;
-    color: #f9fafb;
-}
-
-.hero-card-intro {
-    margin: 0 0 0.75rem 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #e5e7eb;
-}
-
-.hero-card ul {
-    margin: 0;
-    padding-left: 1.1rem;
-}
-
-.hero-card li {
-    font-size: 0.9rem;
-    line-height: 1.35;
-    margin-bottom: 0.3rem;
-    color: #d1d5db;
-}
-
-/* ===== Grille des chapitres ===== */
-
-.levels {
-    margin-top: 2.5rem;
-}
-
-.levels h2 {
-    margin-bottom: 1rem;
-}
-
-.level-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.level-card {
-    background: #020617;
-    border-radius: 12px;
-    padding: 1rem 1.1rem;
-    border: 1px solid #1f2937;
-    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-}
-
-.level-card h3 {
-    margin: 0 0 0.3rem 0;
-    font-size: 1rem;
-    color: #f9fafb;
-}
-
-.level-card p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #d1d5db;
-}
-
-.level-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    border-color: #f97316;
-}
-
-/* ===== Sections chapitres détaillés ===== */
-
-.section-block {
-    margin-top: 2rem;
-    padding: 1.5rem 1.25rem;
-    background: #020617;
-    border-radius: 12px;
-    border: 1px solid #1f2937;
-}
-
-.section-block h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.15rem;
-    color: #f9fafb;
-}
-
-/* Liens Cours / Exos / Contrôles */
-.link-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.link-list li {
-    margin-bottom: 0.4rem;
-}
-
-.link-list a {
-    color: #93c5fd;
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-.link-list a:hover {
-    text-decoration: underline;
-}
-
-/* ===== Responsive ===== */
-
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 1.25rem;
-    }
-
-    .hero-side {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .hero-card {
-        max-width: 100%;
-    }
-
-    .level-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.75rem 1rem;
-        gap: 0.75rem;
-    }
-
-    .logo-subtitle {
-        display: none;
-    }
-
-    .main-nav {
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-left: 0;
-    }
-
-    .main-nav a {
-        margin-left: 0;
-        padding: 0.25rem 0.7rem;
-    }
-
-    .hero {
-        margin-top: 1rem;
-        padding: 1.75rem 1rem;
-    }
-
-    .hero-content h1 {
-        font-size: 1.7rem;
-    }
-
-    .level-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-block {
-        padding: 1.25rem 1rem;
-    }
-}
-.level-card .card-links {
-    list-style: none;
-    padding-left: 0;
-    margin: 0.6rem 0 0 0;
-}
-
-.level-card .card-links li {
-    margin-bottom: 0.25rem;
-}
-
-.level-card .card-links a {
-    color: #93c5fd;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-.level-card .card-links a:hover {
-    text-decoration: underline;
-}
-
-.site-footer {
-    margin-top: 3rem;
-    padding: 1.5rem 1rem;
-    text-align: center;      /* centre le texte sur la ligne */
-    font-size: 0.85rem;
-    color: #9ca3af;
-    border-top: 1px solid #1f2937;
-    background: #020617;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1.2rem;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: 1px solid transparent;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
-                transform 0.08s ease, box-shadow 0.08s ease;
-}
-
-.btn.primary {
-    background: #f97316;   /* même orange que “Voir les chapitres” */
-    color: #111827;
-    border-color: #ea580c;
-}
-
-.btn.primary:hover {
-    background: #ea580c;
-}
-
-.btn.secondary {
-    background: #111827;
-    color: #e5e7eb;
-    border-color: #1f2937;
-}
-
-.btn.secondary:hover {
-    background: #020617;
-}
-
-.hero .hero-subtitle {
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 520px;
-    color: #111827 !important;
-}
-
-.hero p,
-.hero .hero-subtitle {
-    color: #111827 !important;
-}
-
-/* Forcer un titre bien visible dans le hero */
-.hero h1 {
-    color: #111827 !important;   /* texte très foncé, super lisible */
-}
-
-.level-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.level-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-    border: 1px solid #e5e7eb;
-}
-
-.level-card h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-    color: #111827;
-}
-
-.level-intro {
-    margin: 0 0 0.75rem 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #374151;
-}
-
-.level-meta {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.85rem;
-    color: #6b7280;
-}
-
-.level-price {
-    margin: 0 0 0.75rem 0;
-    font-weight: 600;
-    color: #111827;
-}
-
-.chapitres-titre {
-    font-size: 1.4rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    color: #111827;
-}
-
-/* Footer bien visible partout */
-.site-footer {
-    margin-top: 3rem;
     padding: 1rem 1.2rem 2.5rem;
-    border-top: 1px solid #d1d5db;
+    border-top: 1px solid #1f2937;
     font-size: 0.85rem;
     text-align: center;
-    background-color: #111827 !important;  /* fond foncé */
-    color: #ffffff !important;             /* texte blanc */
+    background-color: #020617;  /* sombre */
+    color: #e5e7eb;             /* texte clair */
 }
 
 .site-footer .signature {
@@ -906,34 +304,29 @@ body {
     font-style: italic;
 }
 
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #d1d5db;
-    color: #111827;           /* texte foncé */
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+    .site-header {
+        flex-wrap: wrap;
+        padding: 0.8rem 1rem;
+    }
+
+    .main-nav {
+        margin-left: 0;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 1.8rem 1.3rem;
+    }
+
+    .hero-side {
+        justify-content: center;
+    }
+
+    .hero-card {
+        max-width: 100%;
+    }
 }
-/* Sécurité : forcer une bonne lisibilité du texte global */
-
-
-/* Les paragraphes et titres dans le contenu principal */
-.container,
-.container p,
-.container h1,
-.container h2,
-.container h3,
-.container h4,
-.hero,
-.hero p,
-.hero h1,
-.hero h2,
-.hero h3 {
-    color: #111827 !important;
-}
-
-
-
-
-
-
-
-

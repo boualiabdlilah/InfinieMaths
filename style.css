@@ -415,6 +415,47 @@ body {
 .btn.secondary:hover {
     background: #020617;
 }
+/* === FORCE LE CADRE AUTOUR DU HERO + CARTE === */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 1.5rem auto 3rem auto;
+    padding: 2.5rem 1.5rem;
+
+    background: #020617;             /* fond sombre */
+    border-radius: 12px;             /* coins bien arrondis (visible) */
+    border: 2px solid #f97316;       /* GROS CADRE ORANGE POUR TESTER */
+}
+
+/* Texte du hero bien lisible */
+.hero-content h1 {
+    color: #f9fafb !important;
+}
+
+.hero-subtitle {
+    color: #e5e7eb !important;
+}
+
+/* === CARTE "CE QUE TU TROUVES ICI" BIEN VISIBLE === */
+
+.hero-card {
+    max-width: 340px;
+    width: 100%;
+    background: #0b1120;             /* un peu plus clair que le hero */
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    border: 2px solid #f97316;       /* bord orange visible pour test */
+    color: #e5e7eb;
+}
+
+.hero-card h2 {
+    color: #f9fafb;
+}
 
 
 

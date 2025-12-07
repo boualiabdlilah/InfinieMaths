@@ -295,6 +295,7 @@ body {
 /* ===== Pied de page ===== */
 .site-footer {
     margin-top: 3rem;
+    text-align: center;
     padding: 1rem 2rem 2rem;
     border-top: 1px solid #1f2937;
     font-size: 0.85rem;
@@ -354,6 +355,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

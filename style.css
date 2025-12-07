@@ -359,7 +359,7 @@ body {
 
 .chapitres-titre {
     text-align: center;
-    margin-top: 1rem;       /* petit espace au-dessus → il monte vers le cadre blanc */
+    margin-top: 0.5rem;       /* petit espace au-dessus → il monte vers le cadre blanc */
     margin-bottom: 2.5rem;  /* plus d'espace vers les chapitres en bas */
     font-size: 1.6rem;
     font-weight: 700;
@@ -391,6 +391,7 @@ body {
     font-size: 0.8rem;
     text-decoration: none;
 }
+
 
 
 

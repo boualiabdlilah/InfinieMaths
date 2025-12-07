@@ -838,6 +838,52 @@ body {
     color: #111827 !important;   /* texte très foncé, super lisible */
 }
 
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.level-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.level-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #111827;
+}
+
+.level-intro {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #374151;
+}
+
+.level-meta {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.level-price {
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+    color: #111827;
+}
+
+.chapitres-titre {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
 
 
 

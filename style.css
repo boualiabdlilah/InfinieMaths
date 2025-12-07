@@ -366,12 +366,17 @@ body {
 }
 /* Cadre bleu pour Cours du chapitre (lecture), Exercices du chapitre (lecture), etc. */
 .chapter-pill--blue {
-    background: #f9fafb;         /* fond bleu */
-    border: 1px solid #1f2937;     /* bordure sombre, cohérente avec le reste du site */
-    border-radius: 12px;           /* même forme arrondie que tes autres cadres */
-    padding: 0.75rem 1rem;         /* espace intérieur */
-    font-size: 0.9rem;             /* taille de texte cohérente */
-    color: #e5e7eb;                /* texte clair lisible sur bleu */
+    background: #3b82f6;          /* bleu principal du cadre */
+    border: 1px solid #93c5fd;    /* bordure plus claire, bien visible */
+    color: #0f172a;               /* texte foncé pour bonne lisibilité */
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.chapter-pill--blue:hover {
+    background: #2563eb;
 }
 
 

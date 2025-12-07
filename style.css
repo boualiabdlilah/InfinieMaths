@@ -359,7 +359,8 @@ body {
 
 .chapitres-titre {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-top: 2.5rem;      /* espace au-dessus vers le rectangle blanc */
+    margin-bottom: 2.5rem;   /* espace en dessous vers les chapitres */
     font-size: 1.4rem;
     color: #f9fafb;
 }
@@ -388,6 +389,7 @@ body {
     font-size: 0.8rem;
     text-decoration: none;
 }
+
 
 
 

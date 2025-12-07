@@ -97,9 +97,9 @@ body {
     padding: 2.5rem 1.5rem;
 
     /* Grand cadre autour du hero + carte */
-    background: #020617;          /* fond du bloc hero */
-    border-radius: 0.75rem;       /* coins arrondis */
-    border: 1px solid #1f2937;    /* bord visible */
+    background: #111827;          /* un peu moins sombre que #020617 */
+    border-radius: 0.75rem;
+    border: 1px solid #1f2937;
 }
 
 .hero-content {
@@ -355,6 +355,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

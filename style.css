@@ -96,10 +96,11 @@ body {
     margin: 1.5rem auto 3rem auto;
     padding: 2.5rem 1.5rem;
 
-    /* Fond un peu moins sombre + cadre bien visible */
-    background: #111827;              /* plus clair que #020617 */
+    /* Cadre clair autour du hero + carte */
+    background: #f9fafb;            /* presque blanc */
     border-radius: 0.75rem;
-    border: 1px solid #4b5563;        /* gris plus clair, donc cadre visible */
+    border: 1px solid #e5e7eb;      /* fine bordure gris très clair */
+    color: #0f172a;                 /* texte du hero en foncé sur fond clair */
 }
 
 .hero-content {
@@ -355,6 +356,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

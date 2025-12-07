@@ -97,16 +97,12 @@ body {
     padding: 2.5rem 1.5rem;
 
     /* Cadre clair autour du hero + carte */
-    background: #f9fafb;            /* presque blanc */
+    background: #f9fafb;          /* clair (presque blanc) */
     border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;      /* fine bordure gris très clair */
-    color: #0f172a;                 /* texte du hero en foncé sur fond clair */
-}
-.hero-text h1 {
-    font-size: 2rem;
-    margin: 0 0 0.75rem 0;
-    font-weight: 800;
-    color: #0f172a;   /* bien foncé = super lisible sur fond clair */
+    border: 1px solid #e5e7eb;
+
+    /* IMPORTANT : texte foncé dans tout le hero */
+    color: #0f172a;
 }
 
 .hero-content {
@@ -362,6 +358,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

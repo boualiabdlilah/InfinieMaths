@@ -99,7 +99,7 @@ body {
     /* Grand cadre autour du hero + carte */
     background: #020617;          /* fond du bloc hero */
     border-radius: 0.75rem;       /* coins arrondis */
-    border: 2px solid #4b5563;    /* bord plus clair = bien visible */
+    border: 1px solid #1f2937;    /* bord visible */
 }
 
 .hero-content {
@@ -180,7 +180,7 @@ body {
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-    border: none;                  /* plus de cadre séparé autour de la carte */
+    border: 1px solid #1f2937;    /* ← C’EST CETTE LIGNE LA BORDURE */
     color: #e5e7eb;
 }
 .hero-card h2 {
@@ -456,6 +456,7 @@ body {
 .hero-card h2 {
     color: #f9fafb;
 }
+
 
 
 

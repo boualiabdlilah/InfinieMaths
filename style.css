@@ -378,6 +378,17 @@ body {
 .chapter-pill--blue:hover {
     background: #2563eb;
 }
+/* Forcer le style des petits cadres de lecture */
+.chapter-pill--blue,
+.chapter-course {
+    background: #3b82f6 !important;      /* fond bleu lisible */
+    border: 1px solid #93c5fd !important;/* bordure plus claire, bien visible */
+    color: #0f172a !important;           /* texte foncé pour bien lire */
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
 
 
 

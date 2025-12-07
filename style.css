@@ -913,10 +913,7 @@ body {
     color: #111827;           /* texte foncé */
 }
 /* Sécurité : forcer une bonne lisibilité du texte global */
-body {
-    background: #f3f4f6 !important;
-    color: #111827 !important;
-}
+
 
 /* Les paragraphes et titres dans le contenu principal */
 .container,
@@ -932,6 +929,7 @@ body {
 .hero h3 {
     color: #111827 !important;
 }
+
 
 
 

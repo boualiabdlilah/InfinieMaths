@@ -99,7 +99,7 @@ body {
     /* Grand cadre autour du hero + carte */
     background: #020617;          /* fond du bloc hero */
     border-radius: 0.75rem;       /* coins arrondis */
-    border: 1px solid #1f2937;    /* bord visible */
+    border: 2px solid #4b5563;    /* bord plus clair = bien visible */
 }
 
 .hero-content {
@@ -456,6 +456,7 @@ body {
 .hero-card h2 {
     color: #f9fafb;
 }
+
 
 
 

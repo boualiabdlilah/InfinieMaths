@@ -45,8 +45,8 @@ body {
 
 .logo-subtitle {
     margin-left: 0.6rem;
-    font-size: 0.8rem;
-    color: #9ca3af;
+    font-size: 0.95rem;   /* avant: 0.8rem → on augmente */
+    color: #e5e7eb;       /* plus clair et lisible sur fond sombre */
     white-space: nowrap;
 }
 
@@ -364,6 +364,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

@@ -885,5 +885,20 @@ body {
     color: #111827;
 }
 
+/* Footer bien visible partout */
+.site-footer {
+    margin-top: 3rem;
+    padding: 1rem 1.2rem 2.5rem;
+    border-top: 1px solid #d1d5db;
+    font-size: 0.85rem;
+    text-align: center;
+    background-color: #111827 !important;  /* fond foncé */
+    color: #ffffff !important;             /* texte blanc */
+}
+
+.site-footer .signature {
+    margin-left: 0.5rem;
+    font-style: italic;
+}
 
 

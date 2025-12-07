@@ -364,6 +364,15 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+/* Cadre bleu pour Cours du chapitre (lecture), Exercices du chapitre (lecture), etc. */
+.chapter-course {
+    background: #3b82f6;           /* fond bleu */
+    border: 1px solid #1f2937;     /* bordure sombre, cohérente avec le reste du site */
+    border-radius: 12px;           /* même forme arrondie que tes autres cadres */
+    padding: 0.75rem 1rem;         /* espace intérieur */
+    font-size: 0.9rem;             /* taille de texte cohérente */
+    color: #e5e7eb;                /* texte clair lisible sur bleu */
+}
 
 
 

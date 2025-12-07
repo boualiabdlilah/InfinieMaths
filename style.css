@@ -6,8 +6,8 @@
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0f172a;
-    color: #e5e7eb;
+    background: #111827;    /* plus clair que #0f172a */
+    color: #e5e7eb;         /* texte clair, reste lisible */
 }
 
 /* Header / topbar */
@@ -365,6 +365,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

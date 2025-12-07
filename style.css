@@ -92,7 +92,7 @@ body {
     gap: 2rem;
     max-width: 1100px;
     margin: 1.5rem auto 3rem auto;
-    padding: 1.5rem 1.5rem;
+    padding: 1.25rem 1.5rem;
 
     /* Cadre clair autour du hero + carte */
     background: #f9fafb;          /* clair (presque blanc) */
@@ -388,6 +388,7 @@ body {
     font-size: 0.8rem;
     text-decoration: none;
 }
+
 
 
 

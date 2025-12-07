@@ -95,6 +95,11 @@ body {
     max-width: 1100px;
     margin: 1.5rem auto 3rem auto;
     padding: 2.5rem 1.5rem;
+
+    /* Nouveau : cadre visible autour de tout le hero */
+    background: #020617;          /* fond sombre pour le bloc hero */
+    border-radius: 0.75rem;       /* coins arrondis */
+    border: 1px solid #111827;    /* cadre autour de l'ensemble hero + carte */
 }
 
 .hero-content {
@@ -409,4 +414,5 @@ body {
 .btn.secondary:hover {
     background: #020617;
 }
+
 

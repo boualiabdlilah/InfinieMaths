@@ -116,13 +116,20 @@ body {
     color: #f9fafb;     /* blanc cassé, bien lisible */
 }
 
+.hero-text h1 {
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
+    font-weight: 800;
+    color: #0f172a;   /* bien foncé */
+}
+
 .hero-subtitle {
     margin-top: 0.5rem;
     margin-bottom: 1.25rem;
     font-size: 1rem;
     line-height: 1.5;
     max-width: 520px;
-    color: #e5e7eb;     /* texte clair pour “ton espace de maths…” */
+    color: #4b5563;   /* gris foncé, très lisible sur fond clair */
 }
 
 .hero-buttons {
@@ -358,6 +365,7 @@ body {
     font-size: 1.4rem;
     color: #f9fafb;
 }
+
 
 
 

@@ -1,4 +1,9 @@
-
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f3f4f6;      /* fond clair */
+    color: #111827;           /* texte foncé */
+}
 /* Style global */
 * {
     box-sizing: border-box;
@@ -901,4 +906,30 @@ body {
     font-style: italic;
 }
 
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f3f4f6;      /* fond clair */
+    color: #111827;           /* texte foncé */
+}
+/* Sécurité : forcer une bonne lisibilité du texte global */
+body {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+}
+
+/* Les paragraphes et titres dans le contenu principal */
+.container,
+.container p,
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.hero,
+.hero p,
+.hero h1,
+.hero h2,
+.hero h3 {
+    color: #111827 !important;
+}
 

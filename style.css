@@ -496,6 +496,10 @@ body {
 .nav-links a:hover {
     color: #f97316;
 }
+.hero-subline-indent {
+    display: inline-block;
+    margin-left: 1.5rem; /* augmente ou diminue pour régler le décalage */
+}
 
 
 

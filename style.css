@@ -455,6 +455,51 @@ body {
     letter-spacing: 0.06em;
     margin-bottom: 0.5rem;
 }
+/* Mise en page 2 colonnes dans le rectangle blanc de la page Premium */
+.hero-premium-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Sur mobile / tablette étroite : on revient à une colonne (rien ne casse) */
+@media (max-width: 768px) {
+    .hero-premium-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Colonne de droite : points forts Premium */
+.hero-premium-points h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+}
+
+.hero-premium-points ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-premium-points li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.hero-premium-points li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #f97316; /* proche de la couleur de ton logo / boutons */
+    font-size: 1.1rem;
+    line-height: 1;
+}
 
 
 

@@ -498,8 +498,9 @@ body {
 }
 .hero-subline-indent {
     display: inline-block;
-    margin-left: 1.5rem; /* augmente ou diminue pour régler le décalage */
+    margin-left: 2.5rem; /* augmente ou diminue pour régler le décalage */
 }
+
 
 
 

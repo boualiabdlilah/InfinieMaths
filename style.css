@@ -428,6 +428,33 @@ body {
     font-weight: 600;
     color: #e5e7eb;
 }
+.level-card-soon {
+    border: 1px dashed rgba(250, 204, 21, 0.6);
+    background: rgba(15, 23, 42, 0.9);
+    position: relative;
+    overflow: hidden;
+}
+
+.level-card-soon::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.12), transparent 55%);
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+.level-badge-soon {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(250, 204, 21, 0.15);
+    color: #fde68a;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
 
 
 

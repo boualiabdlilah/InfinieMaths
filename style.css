@@ -498,10 +498,10 @@ body {
 }
 .section-subtitle-center {
   text-align: center;
+.levels .chapitres-subtitle {
+  text-align: center;
 }
-.chapitres-subtitre {
-    text-align: center;
-}
+
 
 
 

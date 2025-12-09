@@ -496,11 +496,10 @@ body {
 .nav-links a:hover {
     color: #f97316;
 }
-.section-subtitle-center {
-  text-align: center;
-.levels .chapitres-subtitle {
-  text-align: center;
+.chapitres-subtitle {
+  text-align: center !important;
 }
+
 
 
 

@@ -178,6 +178,16 @@ body {
     justify-content: flex-end;
     align-items: center;
 }
+/* Bouton non plein (secondaire) */
+.btn-outline {
+  background: transparent;
+  color: #f97316;
+  border: 1px solid #f97316;
+}
+
+.btn-outline:hover {
+  background: rgba(249, 115, 22, 0.1);
+}
 
 /* Carte Objectifs */
 
@@ -510,6 +520,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

@@ -313,7 +313,7 @@ body {
 /* ===== Pied de page ===== */
 
 .site-footer {
-  border-top: 2px solid #4b5563; /* plus épais (2px) et un gris un peu plus clair */
+  border-top: 1px solid #9ca3af;  /* gris encore plus clair */
   padding: 1.5rem 2rem;
   margin-top: 3rem;
   font-size: 0.9rem;
@@ -549,6 +549,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

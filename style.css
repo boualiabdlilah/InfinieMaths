@@ -311,13 +311,41 @@ body {
 }
 
 /* ===== Pied de page ===== */
+
 .site-footer {
-    margin-top: 3rem;
-    text-align: center;
-    padding: 1rem 2rem 2rem;
-    border-top: 1px solid #1f2937;
-    font-size: 0.85rem;
-    color: #9ca3af;
+  border-top: 1px solid #1f2937;
+  padding: 1.5rem 1rem;
+  margin-top: 3rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Conteneur des liens du footer, en ligne avec bon espacement */
+.footer-links {
+  display: inline-flex;
+  gap: 1.5rem;          /* espace régulier entre Concours, Python, etc. */
+  flex-wrap: wrap;      /* passe à la ligne si l'écran est petit */
+  margin-bottom: 0.75rem;
+}
+
+/* Liens en bleu, même au survol */
+.footer-links a {
+  color: #3b82f6;       /* bleu pour tous les liens */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: #2563eb;       /* bleu un peu plus foncé au survol */
+}
+
+.signature {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #6b7280;
 }
 
 .site-footer {
@@ -520,6 +548,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

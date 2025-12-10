@@ -351,10 +351,12 @@ body {
 /* ===== Responsive ===== */
 
 @media (max-width: 800px) {
-    .site-header {
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
+    /* Header du site (ancienne version simple) */
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+}
     .logo {
         margin-bottom: 0.5rem;
     }
@@ -539,6 +541,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

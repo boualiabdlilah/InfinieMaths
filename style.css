@@ -54,14 +54,14 @@ body {
 /* Navigation principale */
 .main-nav {
     display: flex;
-    gap: 0.5rem;          /* avant 1.5rem : on réduit beaucoup l'espace entre les items */
+    gap: 1.5rem;
     margin-left: auto;
 }
 
 .main-nav a {
     color: #e5e7eb;
     text-decoration: none;
-    margin-left: 0;       /* avant 0.75rem : on enlève ce margin qui ajoutait du vide */
+    margin-left: 0.75rem;
     font-size: 0.9rem;
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
@@ -76,12 +76,6 @@ body {
 .main-nav a.active {
     border-color: #f97316;
     color: #f97316;
-}
-/* Conteneur principal */
-.container {
-    max-width: 1100px;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
 }
 
 /* ===== HERO ===== */
@@ -550,6 +544,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

@@ -313,7 +313,7 @@ body {
 /* ===== Pied de page ===== */
 
 .site-footer {
-  border-top: 1px solid #9ca3af;  /* gris encore plus clair */
+  border-top: 1px solid #9ca3af;  /* trait fin et visible */
   padding: 1.5rem 2rem;
   margin-top: 3rem;
   font-size: 0.9rem;
@@ -335,16 +335,17 @@ body {
 }
 
 /* "docteur..." collé au texte */
+
+
 .signature {
   margin-left: 0.35rem;
   font-size: 0.85rem;
   color: #6b7280;
 }
 
-/* Liens à droite, en bleu, espacés entre eux */
 .footer-links {
   display: inline-flex;
-  gap: 1.5rem;                     /* espace entre Concours, Python, etc. */
+  gap: 1.5rem;
 }
 
 .footer-links a {
@@ -549,6 +550,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

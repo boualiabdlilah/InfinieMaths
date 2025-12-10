@@ -314,48 +314,47 @@ body {
 
 .site-footer {
   border-top: 1px solid #1f2937;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 2rem;
   margin-top: 3rem;
   font-size: 0.9rem;
   color: #6b7280;
 }
 
-/* Met TOUT sur une seule ligne (texte + liens) */
+/* Texte à gauche, liens à droite, espace MAX entre les deux */
 .footer-inner {
   display: flex;
-  justify-content: center;   /* centre horizontalement */
-  align-items: center;       /* aligne verticalement */
-  gap: 2rem;                 /* espace entre texte et liens */
-  white-space: nowrap;       /* empêche les retours à la ligne */
+  justify-content: space-between;  /* met le plus grand espace possible entre texte et liens */
+  align-items: center;
+  white-space: nowrap;             /* tout sur une seule ligne tant que possible */
 }
 
-/* Texte à gauche */
+/* Bloc texte à gauche */
 .footer-text {
   display: inline-flex;
   align-items: center;
 }
 
-/* "docteur..." juste à côté du texte, pas en dessous */
+/* "docteur..." collé au texte */
 .signature {
   margin-left: 0.35rem;
   font-size: 0.85rem;
   color: #6b7280;
 }
 
-/* Liens à droite, en bleu, bien espacés */
+/* Liens à droite, en bleu, espacés entre eux */
 .footer-links {
   display: inline-flex;
-  gap: 1.5rem;
+  gap: 1.5rem;                     /* espace entre Concours, Python, etc. */
 }
 
 .footer-links a {
-  color: #3b82f6;       /* bleu pour tous les liens */
+  color: #3b82f6;
   text-decoration: none;
   font-weight: 500;
 }
 
 .footer-links a:hover {
-  color: #2563eb;       /* bleu plus foncé au survol */
+  color: #2563eb;
   text-decoration: underline;
 }
 
@@ -550,6 +549,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

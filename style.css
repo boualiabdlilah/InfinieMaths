@@ -13,7 +13,7 @@ body {
 .site-header {
     display: flex;
     align-items: center;
-    padding: 0.6rem 2rem;  /* au lieu de 1rem 2rem */
+    padding: 1rem 2rem;
 }
 
 /* Logo */
@@ -539,6 +539,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

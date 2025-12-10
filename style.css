@@ -306,7 +306,6 @@ body {
     padding: 1rem 2rem;
     font-size: 0.85rem;
     color: #9ca3af;
-    border-top: 1px solid #111827;
     background: #020617;
 }
 
@@ -554,6 +553,7 @@ body {
     margin: 0 auto;
     padding: 0 1.5rem;
 }
+
 
 
 

@@ -323,15 +323,15 @@ body {
 /* Texte à gauche, liens à droite, espace MAX entre les deux */
 .footer-inner {
   display: flex;
-  justify-content: space-between;  /* met le plus grand espace possible entre texte et liens */
   align-items: center;
-  white-space: nowrap;             /* tout sur une seule ligne tant que possible */
+  white-space: nowrap;
 }
 
-/* Bloc texte à gauche */
+/* Le texte prend la place à gauche, les liens sont poussés vers la droite */
 .footer-text {
   display: inline-flex;
   align-items: center;
+  margin-right: auto;   /* pousse les liens à droite, mais sans trou énorme */
 }
 
 /* "docteur..." collé au texte */
@@ -549,6 +549,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

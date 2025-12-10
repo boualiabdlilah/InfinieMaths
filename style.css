@@ -316,20 +316,38 @@ body {
   border-top: 1px solid #1f2937;
   padding: 1.5rem 1rem;
   margin-top: 3rem;
-  text-align: center;
-  color: #6b7280;
   font-size: 0.9rem;
+  color: #6b7280;
 }
 
-/* Conteneur des liens du footer, en ligne avec bon espacement */
+/* Met TOUT sur une seule ligne (texte + liens) */
+.footer-inner {
+  display: flex;
+  justify-content: center;   /* centre horizontalement */
+  align-items: center;       /* aligne verticalement */
+  gap: 2rem;                 /* espace entre texte et liens */
+  white-space: nowrap;       /* empêche les retours à la ligne */
+}
+
+/* Texte à gauche */
+.footer-text {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* "docteur..." juste à côté du texte, pas en dessous */
+.signature {
+  margin-left: 0.35rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Liens à droite, en bleu, bien espacés */
 .footer-links {
   display: inline-flex;
-  gap: 1.5rem;          /* espace régulier entre Concours, Python, etc. */
-  flex-wrap: wrap;      /* passe à la ligne si l'écran est petit */
-  margin-bottom: 0.75rem;
+  gap: 1.5rem;
 }
 
-/* Liens en bleu, même au survol */
 .footer-links a {
   color: #3b82f6;       /* bleu pour tous les liens */
   text-decoration: none;
@@ -337,24 +355,8 @@ body {
 }
 
 .footer-links a:hover {
+  color: #2563eb;       /* bleu plus foncé au survol */
   text-decoration: underline;
-  color: #2563eb;       /* bleu un peu plus foncé au survol */
-}
-
-.signature {
-  display: block;
-  margin-top: 0.25rem;
-  font-size: 0.85rem;
-  color: #6b7280;
-}
-
-.site-footer {
-    margin-top: 3rem;
-    padding: 1rem 0 2rem;
-    border-top: 1px solid #4b5563;   /* plus clair et plus visible */
-    font-size: 0.85rem;
-    color: #9ca3af;
-    text-align: center;
 }
 
 /* ===== Responsive ===== */
@@ -548,6 +550,7 @@ body {
 .hero-card {
   margin-left: 4.0rem;
 }
+
 
 
 

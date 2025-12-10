@@ -475,9 +475,13 @@ body {
 
 /* Sur petits écrans seulement : on repasse en dessous */
 @media (max-width: 768px) {
+    
     .hero-premium-layout {
-        grid-template-columns: 1fr;
-    }
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+  gap: 3rem;              /* au lieu de 2rem */
+  align-items: flex-start;
+}
 }
 .nav-links {
     display: flex;
@@ -503,6 +507,7 @@ body {
 .premium-right {
   margin-left: 3rem;
 }
+
 
 
 

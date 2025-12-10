@@ -430,7 +430,7 @@ body {
 }
 .premium-banner {
     max-width: 1100px;
-    margin: 3rem auto 0 auto;
+    margin: 3rem auto 2 auto;
     padding: 1.75rem 1.5rem;
     border-radius: 0.75rem;
     border: 1px solid #facc15; /* jaune */
@@ -553,6 +553,7 @@ body {
     margin: 0 auto;
     padding: 0 1.5rem;
 }
+
 
 
 

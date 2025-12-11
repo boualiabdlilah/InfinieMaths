@@ -318,16 +318,7 @@ body {
     align-items: center;
 }
 
-.footer-links a {
-    color: #9ca3af;
-    text-decoration: none;
-    font-size: 0.85rem;
-    margin-left: 0.75rem;
-}
 
-.footer-links a:hover {
-    color: #e5e7eb;
-}
 /* "docteur..." collé au texte */
 
 
@@ -569,6 +560,7 @@ body {
 main {
     flex: 1;
 }
+
 
 
 

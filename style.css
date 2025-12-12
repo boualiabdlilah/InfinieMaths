@@ -590,54 +590,6 @@ main {
     margin-right: auto;
   }
 }
-
-/* Mobile: empêcher tout débordement horizontal */
-@media (max-width: 768px){
-
-  html, body{
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  /* Assure que le padding ne fait pas dépasser */
-  *, *::before, *::after{
-    box-sizing: border-box;
-  }
-
-  /* La grille passe en 1 colonne et occupe tout */
-  .level-grid{
-    grid-template-columns: 1fr;
-    justify-items: stretch;
-  }
-
-  /* Les cartes ne dépassent jamais */
-  .level-card{
-    width: 100%;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Si ta carte Objectifs a une classe spécifique, on la “reset” */
-  .objectifs, .objectifs-card, .terminale-objectifs{
-    width: 100%;
-    max-width: 100%;
-    margin: 1rem auto 0 auto;
-    left: auto;
-    right: auto;
-    transform: none;
-    position: static;
-  }
-
-  /* Si du texte/longs mots poussent la largeur */
-  .level-card, .objectifs, .objectifs-card, .terminale-objectifs{
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-}
-
-
-
 /* Patch mobile: éviter le débordement de la carte Objectifs (.hero-card) */
 @media (max-width: 768px){
   .hero-card{
@@ -648,6 +600,7 @@ main {
     box-sizing: border-box;
   }
 }
+
 
 
 

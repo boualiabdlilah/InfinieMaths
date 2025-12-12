@@ -566,6 +566,30 @@ main {
 .pass-premium-page {
     padding-bottom: 1.5rem;
 }
+/* Mobile: cartes centrées + 1 colonne */
+@media (max-width: 768px){
+
+  /* le conteneur global */
+  .levels{
+    max-width: 100%;
+    padding: 0 1rem;
+    margin: 1.5rem auto 2rem auto;
+  }
+
+  /* la grille en 1 colonne */
+  .level-grid{
+    grid-template-columns: 1fr;
+    justify-items: center; /* centre les cartes dans la grille */
+  }
+
+  /* chaque carte prend toute la largeur utile */
+  .level-card{
+    width: 100%;
+    max-width: 520px;  /* tu peux monter/descendre (ex: 480, 600) */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 
 

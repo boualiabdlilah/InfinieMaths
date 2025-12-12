@@ -624,19 +624,19 @@ main {
     max-width: 100%;
   }
 }
-/* PASS PREMIUM : desktop layout stable */
+/* PASS PREMIUM : empêcher la carte noire d’être poussée/décalée */
 .pass-premium-page .hero-text.hero-premium-layout{
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
   gap: 2rem;
-  align-items: start;   /* colle les 2 blocs en haut */
+  align-items: start;
 }
 
-/* la carte ne doit pas être "poussée" */
 .pass-premium-page .hero-card{
-  margin: 0;
+  margin-left: 0 !important;  /* annule le margin-left: 4rem */
   align-self: start;
 }
+
 
 
 

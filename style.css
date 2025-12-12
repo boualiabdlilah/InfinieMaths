@@ -839,6 +839,55 @@ main {
     max-width: 100% !important;
   }
 }
+/* ===== PASS PREMIUM: FIX MOBILE CONTRE LES DEBORDEMENTS ===== */
+@media (max-width: 768px){
+
+  /* 1) Le hero ne doit JAMAIS garder une largeur desktop sur téléphone */
+  body.pass-premium-page .hero,
+  body.pass-premium-page .hero-text,
+  body.pass-premium-page .hero-content,
+  body.pass-premium-page .hero-side{
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* 2) Empêche les enfants (titres, boutons, etc.) de forcer une largeur trop grande */
+  body.pass-premium-page .hero *{
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* 3) Layout Premium: 1 colonne propre */
+  body.pass-premium-page .hero-text.hero-premium-layout,
+  body.pass-premium-page .hero-premium-layout{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    align-items: start !important;
+  }
+
+  /* 4) Carte noire: centrée, pas de margins auto qui la déplacent */
+  body.pass-premium-page .hero-text.hero-premium-layout .hero-card,
+  body.pass-premium-page .hero-premium-layout .hero-card{
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    justify-self: center !important;
+  }
+
+  /* 5) Si un texte/bouton fait dépasser: on autorise le retour à la ligne */
+  body.pass-premium-page h1,
+  body.pass-premium-page h2,
+  body.pass-premium-page p,
+  body.pass-premium-page a,
+  body.pass-premium-page button{
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+}
 
 
 

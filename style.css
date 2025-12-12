@@ -14,6 +14,9 @@ body {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
+    background: #020617;
+    background: #0f172a;
+    border-top: 12px solid #020617;
 }
 
 /* Logo */
@@ -564,6 +567,7 @@ main {
 .pass-premium-page {
     padding-bottom: 1.5rem;
 }
+
 
 
 

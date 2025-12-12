@@ -741,6 +741,74 @@ main {
     gap: 1rem;
   }
 }
+/* ===== LAST RESORT: PASS PREMIUM FORCE LAYOUT (colle tout en bas) ===== */
+
+/* 1) Empêche tout débordement qui force la carte à passer dessous */
+.hero-premium-layout,
+.hero-text.hero-premium-layout,
+.pass-premium-page .hero-premium-layout,
+.pass-premium-page .hero-text.hero-premium-layout{
+  min-width: 0 !important;
+}
+
+.hero-premium-layout > *,
+.hero-text.hero-premium-layout > *{
+  min-width: 0 !important;
+}
+
+/* 2) Desktop: deux colonnes fixes et alignées en haut */
+@media (min-width: 769px){
+  .hero-text.hero-premium-layout,
+  .pass-premium-page .hero-text.hero-premium-layout,
+  .hero-premium-layout,
+  .pass-premium-page .hero-premium-layout{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px) !important;
+    gap: 2rem !important;
+    align-items: start !important;
+  }
+
+  .hero-text.hero-premium-layout .hero-card,
+  .pass-premium-page .hero-text.hero-premium-layout .hero-card,
+  .hero-premium-layout .hero-card,
+  .pass-premium-page .hero-premium-layout .hero-card{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-self: end;
+    width: 100% !important;
+    max-width: 420px !important;
+  }
+
+  .hero-text.hero-premium-layout .premium-right,
+  .pass-premium-page .hero-text.hero-premium-layout .premium-right,
+  .hero-premium-layout .premium-right,
+  .pass-premium-page .hero-premium-layout .premium-right{
+    margin-left: 0 !important;
+  }
+}
+
+/* 3) Mobile: une colonne */
+@media (max-width: 768px){
+  .hero-text.hero-premium-layout,
+  .pass-premium-page .hero-text.hero-premium-layout,
+  .hero-premium-layout,
+  .pass-premium-page .hero-premium-layout{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .hero-text.hero-premium-layout .hero-card,
+  .pass-premium-page .hero-text.hero-premium-layout .hero-card,
+  .hero-premium-layout .hero-card,
+  .pass-premium-page .hero-premium-layout .hero-card{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    justify-self: center;
+  }
+}
 
 
 

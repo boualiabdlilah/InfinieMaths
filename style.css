@@ -670,6 +670,31 @@ main {
 }
 
 
+/* ===== PASS PREMIUM FIX (fallback sans body class) ===== */
+/* Ce patch marche même si tu as oublié body.pass-premium-page */
+.hero-text.hero-premium-layout{
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  align-items: start;
+}
+.hero-text.hero-premium-layout .hero-card{
+  margin-left: 0 !important;
+  align-self: start;
+}
+
+@media (max-width: 768px){
+  .hero-text.hero-premium-layout{
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .hero-text.hero-premium-layout .hero-card{
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 
 
 

@@ -600,22 +600,31 @@ main {
     box-sizing: border-box;
   }
 }
-/* Pass Premium: version mobile (corrige la mise en page "ordi" sur téléphone) */
-@media (max-width: 768px){
-
+ /* Le bloc premium en 1 colonne */
   .hero-premium-layout{
-    grid-template-columns: 1fr;   /* 1 colonne sur mobile */
+    grid-template-columns: 1fr !important;
     gap: 1rem;
   }
 
+  /* La colonne de droite ne doit pas être poussée */
   .premium-right{
-    margin-left: 0;              /* enlève le décalage à droite */
+    margin-left: 0 !important;
   }
 
-  .premium-banner{
-    padding: 1.25rem 1rem;       /* un peu moins large sur mobile */
+  /* Le hero (rectangle blanc) doit rester dans l'écran */
+  .hero{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Evite les petits débordements à cause du padding */
+  .premium-banner,
+  .hero-premium-texte,
+  .hero-premium-points{
+    max-width: 100%;
   }
 }
+
 
 
 

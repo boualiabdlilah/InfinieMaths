@@ -809,6 +809,36 @@ main {
     justify-self: center;
   }
 }
+/* ===== PASS PREMIUM: FIX MOBILE UNIQUEMENT ===== */
+@media (max-width: 768px){
+
+  /* Le conteneur premium doit être en colonne */
+  body.pass-premium-page .hero-text.hero-premium-layout,
+  body.pass-premium-page .hero-premium-layout{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    align-items: start !important;
+  }
+
+  /* On annule les règles globales mobile qui touchent .hero-card */
+  body.pass-premium-page .hero-text.hero-premium-layout .hero-card,
+  body.pass-premium-page .hero-premium-layout .hero-card{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    box-sizing: border-box !important;
+    justify-self: center !important;
+  }
+
+  /* Empêche les textes/blocs à gauche de forcer une largeur trop grande */
+  body.pass-premium-page .hero-text.hero-premium-layout > *,
+  body.pass-premium-page .hero-premium-layout > *{
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+}
 
 
 

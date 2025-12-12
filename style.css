@@ -624,6 +624,19 @@ main {
     max-width: 100%;
   }
 }
+/* PASS PREMIUM : desktop layout stable */
+.pass-premium-page .hero-text.hero-premium-layout{
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 2rem;
+  align-items: start;   /* colle les 2 blocs en haut */
+}
+
+/* la carte ne doit pas être "poussée" */
+.pass-premium-page .hero-card{
+  margin: 0;
+  align-self: start;
+}
 
 
 

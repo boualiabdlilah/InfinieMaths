@@ -722,6 +722,25 @@ main {
     margin-right: auto !important;
   }
 }
+/* ===== PATCH: Terminale fix ne doit pas casser Premium ===== */
+/* L'idée: ton @media mobile touche .hero-card globalement.
+   On remet Premium au bon comportement via un sélecteur plus spécifique. */
+
+@media (max-width: 768px){
+  /* Sur Pass Premium, on ne veut pas que les règles globales mobile déplacent la carte */
+  .hero-text.hero-premium-layout .hero-card{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  /* Et on force le conteneur Premium en 1 colonne propre */
+  .hero-text.hero-premium-layout{
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+}
 
 
 

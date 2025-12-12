@@ -600,8 +600,22 @@ main {
     box-sizing: border-box;
   }
 }
+/* Pass Premium: version mobile (corrige la mise en page "ordi" sur téléphone) */
+@media (max-width: 768px){
 
+  .hero-premium-layout{
+    grid-template-columns: 1fr;   /* 1 colonne sur mobile */
+    gap: 1rem;
+  }
 
+  .premium-right{
+    margin-left: 0;              /* enlève le décalage à droite */
+  }
+
+  .premium-banner{
+    padding: 1.25rem 1rem;       /* un peu moins large sur mobile */
+  }
+}
 
 
 

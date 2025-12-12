@@ -624,7 +624,16 @@ main {
     max-width: 100%;
   }
 }
-/* PASS PREMIUM : empêcher la carte noire d’être poussée/décalée */
+/* ===============================
+   FIX PASS PREMIUM (desktop + mobile)
+   A COLLER TOUT EN BAS DE style.css
+   =============================== */
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+/* Pass Premium: ton conteneur = hero-text + hero-premium-layout */
 .pass-premium-page .hero-text.hero-premium-layout{
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
@@ -632,10 +641,34 @@ main {
   align-items: start;
 }
 
+/* Annule les décalages qui font "descendre/partir" la carte noire */
 .pass-premium-page .hero-card{
-  margin-left: 0 !important;  /* annule le margin-left: 4rem */
+  margin-left: 0 !important;
+  margin-right: 0;
   align-self: start;
 }
+
+/* Téléphone: 1 colonne + carte centrée */
+@media (max-width: 768px){
+  .pass-premium-page .hero-text.hero-premium-layout{
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .pass-premium-page .hero-card{
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* (optionnel mais utile) évite que le hero touche les bords */
+  .pass-premium-page .hero{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 
 
 

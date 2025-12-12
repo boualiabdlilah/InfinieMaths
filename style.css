@@ -14,6 +14,8 @@ body {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
+     background: #020617;               /* même fond que le footer */
+    border-bottom: 1px solid #9ca3af;  /* trait fin comme le footer (mais en bas) */
 }
 
 /* Logo */
@@ -564,6 +566,7 @@ main {
 .pass-premium-page {
     padding-bottom: 1.5rem;
 }
+
 
 
 

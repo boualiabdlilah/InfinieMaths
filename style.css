@@ -538,7 +538,7 @@ body {
   margin-left: 3rem;
 }
 .hero-card {
-  margin-left: 4.0rem;
+  /* margin-left: 4.0rem; */
 }
 
 .container {
@@ -668,6 +668,7 @@ main {
     padding-right: 1rem;
   }
 }
+
 
 
 

@@ -946,6 +946,40 @@ main {
     white-space: normal !important;
   }
 }
+/* Téléphone en paysage:
+   - ligne 1: ∞ + InfinieMaths
+   - ligne 2: sous-titre
+*/
+@media (orientation: landscape) and (max-height: 500px){
+  .site-header .logo{
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 8px;
+    row-gap: 2px;
+    align-items: baseline;
+  }
+
+  /* ∞ à gauche, ligne 1 */
+  .site-header .logo-mark{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* InfinieMaths à droite du symbole, ligne 1 */
+  .site-header .logo-text{
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+  }
+
+  /* Sous-titre en dessous, prend toute la largeur */
+  .site-header .logo-subtitle{
+    grid-column: 1 / -1;
+    grid-row: 2;
+    white-space: normal !important;
+  }
+}
 
 
 

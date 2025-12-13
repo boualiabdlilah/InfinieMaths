@@ -929,6 +929,24 @@ main {
     white-space: normal !important;
   }
 }
+/* FIX paysage téléphone: forcer le logo en colonne même si une page (ex: Terminale) a des styles qui écrasent */
+@media (orientation: landscape) and (max-height: 500px){
+  .site-header .logo{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+  }
+  .site-header .logo-mark,
+  .site-header .logo-text,
+  .site-header .logo-subtitle{
+    display: block !important;
+  }
+  .site-header .logo-subtitle{
+    white-space: normal !important;
+  }
+}
+
 
 
 

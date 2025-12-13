@@ -976,23 +976,8 @@ main {
     white-space: normal !important;
   }
 }
-/* Footer sur mobile : permettre des retours à la ligne propres */
-@media (max-width: 600px) {
-  .site-footer-nav,          /* adapte au nom réel de ta nav de footer */
-  .footer-links {
-    display: flex;
-    flex-wrap: wrap;        /* les liens peuvent passer à la ligne */
-    justify-content: space-between;
-    row-gap: 4px;
-  }
 
-  .site-footer-nav a,
-  .footer-links a {
-    white-space: normal;    /* autorise la coupure entre les mots */
-    flex: 1 1 45%;          /* ~2 liens par ligne max */
-    text-align: center;
-  }
-}
+
 
 
 

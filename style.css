@@ -888,6 +888,33 @@ main {
     word-break: break-word !important;
   }
 }
+/* ===== FIX: téléphone en paysage (accueil / seconde / terminale) ===== */
+/* En paysage, la largeur devient grande, donc les règles 'desktop/tablette' peuvent s'appliquer
+   et étirer la carte noire. On force une forme plus 'carrée'. */
+
+@media (orientation: landscape) and (max-height: 500px){
+  /* cible les pages non-premium: accueil, seconde, terminale (à adapter si tu as des classes body) */
+  body.home-page .hero-card,
+  body.seconde-page .hero-card,
+  body.terminale-page .hero-card,
+  /* fallback si tu n'as pas les classes body */
+  .hero--home .hero-card,
+  .hero--seconde .hero-card,
+  .hero--terminale .hero-card{
+    max-width: 340px !important;
+    width: min(340px, 90vw) !important;
+    /* donne un rendu plus carré sans casser le contenu */
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
+
+  /* si le contenu est trop grand, on autorise le scroll interne plutôt que d'étirer */
+  body.home-page .hero-card,
+  body.seconde-page .hero-card,
+  body.terminale-page .hero-card{
+    overflow: auto;
+  }
+}
 
 
 

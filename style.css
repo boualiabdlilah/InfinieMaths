@@ -915,6 +915,20 @@ main {
     overflow: auto;
   }
 }
+/* Téléphone en paysage: mettre "Les maths du lycée..." sous "InfinieMaths" */
+@media (orientation: landscape) and (max-height: 500px) {
+  body.home-page .site-header .logo{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px;
+  }
+
+  body.home-page .site-header .logo-subtitle{
+    display: block !important;
+    white-space: normal !important;
+  }
+}
 
 
 

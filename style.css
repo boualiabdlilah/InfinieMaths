@@ -1010,6 +1010,26 @@ main {
     letter-spacing: -0.1px;
   }
 }
+/* Page Pass Premium - aérer le bloc titre */
+.pass-premium h1,
+.pass-premium .title,
+.pass-premium .hero-title {
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+
+.pass-premium .subtitle,
+.pass-premium .hero-subtitle,
+.pass-premium p {
+  margin-top: 10px;
+  line-height: 1.35;
+}
+
+/* Force les éléments inline à passer en bloc si besoin */
+.pass-premium .premium,
+.pass-premium .slogan {
+  display: block;
+}
 
 
 

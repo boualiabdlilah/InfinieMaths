@@ -1030,6 +1030,22 @@ main {
 .pass-premium .slogan {
   display: block;
 }
+/* Page Pass Premium: mettre "Les ..." sous "InfiniteMaths" */
+.pass-premium .subtitle,
+.pass-premium .tagline,
+.pass-premium .hero-subtitle{
+  display: block;
+  margin-top: 10px;     /* espace sous InfiniteMaths */
+  line-height: 1.35;    /* moins serré */
+}
+
+/* Si "Les maths simplement" est dans un span (souvent inline), on force le retour ligne */
+.pass-premium .subtitle span,
+.pass-premium .tagline span,
+.pass-premium .hero-subtitle span{
+  display: block;
+  width: 100%;
+}
 
 
 

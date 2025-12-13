@@ -976,6 +976,12 @@ main {
     white-space: normal !important;
   }
 }
+/* Pass Premium: empêcher le sous-titre de se couper en 2 lignes (paysage mobile) */
+@media (orientation: landscape) and (max-height: 500px){
+  body.pass-premium-page header.site-header .logo .logo-subtitle{
+    white-space: nowrap !important;
+  }
+}
 
 
 

@@ -929,57 +929,55 @@ main {
     white-space: normal !important;
   }
 }
-/* FIX paysage téléphone: forcer le logo en colonne même si une page (ex: Terminale) a des styles qui écrasent */
+/* ULTRA FIX: logo en 2 lignes en paysage (∞ + InfinieMaths sur la même ligne) */
 @media (orientation: landscape) and (max-height: 500px){
-  .site-header .logo{
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 2px !important;
-  }
-  .site-header .logo-mark,
-  .site-header .logo-text,
-  .site-header .logo-subtitle{
-    display: block !important;
-  }
-  .site-header .logo-subtitle{
-    white-space: normal !important;
-  }
-}
-/* Téléphone en paysage:
-   - ligne 1: ∞ + InfinieMaths
-   - ligne 2: sous-titre
-*/
-@media (orientation: landscape) and (max-height: 500px){
-  .site-header .logo{
+  body.home-page header.site-header .logo,
+  body.seconde-page header.site-header .logo,
+  body.premiere-page header.site-header .logo,
+  body.terminale-page header.site-header .logo,
+  body.pass-premium-page header.site-header .logo{
     display: grid !important;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 8px;
-    row-gap: 2px;
-    align-items: baseline;
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 8px !important;
+    row-gap: 2px !important;
+    align-items: baseline !important;
   }
 
-  /* ∞ à gauche, ligne 1 */
-  .site-header .logo-mark{
-    grid-column: 1;
-    grid-row: 1;
+  body.home-page header.site-header .logo .logo-mark,
+  body.seconde-page header.site-header .logo .logo-mark,
+  body.premiere-page header.site-header .logo .logo-mark,
+  body.terminale-page header.site-header .logo .logo-mark,
+  body.pass-premium-page header.site-header .logo .logo-mark{
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: inline-block !important;
   }
 
-  /* InfinieMaths à droite du symbole, ligne 1 */
-  .site-header .logo-text{
-    grid-column: 2;
-    grid-row: 1;
-    white-space: nowrap;
+  body.home-page header.site-header .logo .logo-text,
+  body.seconde-page header.site-header .logo .logo-text,
+  body.premiere-page header.site-header .logo .logo-text,
+  body.terminale-page header.site-header .logo .logo-text,
+  body.pass-premium-page header.site-header .logo .logo-text{
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
   }
 
-  /* Sous-titre en dessous, prend toute la largeur */
-  .site-header .logo-subtitle{
-    grid-column: 1 / -1;
-    grid-row: 2;
+  body.home-page header.site-header .logo .logo-subtitle,
+  body.seconde-page header.site-header .logo .logo-subtitle,
+  body.premiere-page header.site-header .logo .logo-subtitle,
+  body.terminale-page header.site-header .logo .logo-subtitle,
+  body.pass-premium-page header.site-header .logo .logo-subtitle{
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    display: block !important;
     white-space: normal !important;
   }
 }
+
+
 
 
 

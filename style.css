@@ -993,6 +993,13 @@ body.terminale-page .hero{
 body.terminale-page #chapitres.levels{
   margin-top: 1.25rem !important;
 }
+/* Boutons des chapitres : texte plus gros et plus lisible */
+.card-links a,
+.chapter-course {
+  font-size: 0.95rem;       /* avant: très petit (proche de 0.8rem) */
+  font-weight: 600;         /* texte un peu plus épais */
+  line-height: 1.2;
+}
 
 
 

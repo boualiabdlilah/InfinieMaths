@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapitre 1 — Cours et exercices</title>
+  <style>
+    :root { --border:#e5e7eb; --text:#0f172a; --muted:#475569; }
+    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; margin:0; color:var(--text); }
+    header { padding:16px 20px; border-bottom:1px solid var(--border); }
+    header h1 { margin:0 0 8px 0; font-size:20px; }
+    header p { margin:0; color:var(--muted); }
+    main { padding:16px 20px; }
+    .actions { margin-top:10px; }
+    .actions a { display:inline-block; margin-right:10px; text-decoration:none; padding:8px 12px; border:1px solid #cbd5e1; border-radius:999px; color:var(--text); }
+    .pdf { width:100%; height:85vh; border:1px solid var(--border); border-radius:10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chapitre 1 — Cours et exercices</h1>
+    <p>Lecture du cours en PDF directement dans la page.</p>
+    <div class="actions">
+      <a href="/terminale/#chapitres">Retour aux chapitres</a>
+      <a href="./chapitre-1-cours.pdf" target="_blank" rel="noopener">Ouvrir le PDF</a>
+      <a href="./chapitre-1-cours.pdf" download>Télécharger le PDF</a>
+    </div>
+  </header>
+
+  <main>
+    <object class="pdf" data="./chapitre-1-cours.pdf" type="application/pdf">
+      <p>Le PDF ne s’affiche pas. <a href="./chapitre-1-cours.pdf">Clique ici pour l’ouvrir</a>.</p>
+    </object>
+  </main>
+</body>
+</html>

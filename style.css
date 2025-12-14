@@ -985,14 +985,15 @@ main {
   margin: 10px 0 0;
   list-style: none;
 }
-/* Terminale uniquement - spacing plus serré */
-.page-terminale .hero{
-  margin-bottom: 0.75rem; /* encore plus petit */
+/* Terminale uniquement: réduire l'espace entre le hero et la section chapitres */
+body.terminale-page .hero{
+  margin-bottom: 0.5rem !important;
 }
 
-.page-terminale .levels{
-  margin-top: 0.5rem; /* encore plus petit */
+body.terminale-page #chapitres.levels{
+  margin-top: 0.25rem !important;
 }
+
 
 
 

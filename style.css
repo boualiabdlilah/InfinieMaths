@@ -976,6 +976,15 @@ main {
     white-space: normal !important;
   }
 }
+/* Espacement entre les boutons de chapitres (sans changer le design) */
+.card-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 0;
+  margin: 10px 0 0;
+  list-style: none;
+}
 
 
 

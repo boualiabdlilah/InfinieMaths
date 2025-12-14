@@ -6,7 +6,8 @@
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #111827;
+    /*background: #111827;*/
+    background: #1f2937;
     color: #e5e7eb;
 }
 
@@ -1000,6 +1001,7 @@ body.terminale-page #chapitres.levels{
   font-weight: 600;         /* texte un peu plus épais */
   line-height: 1.2;
 }
+
 
 
 

@@ -1005,6 +1005,12 @@ body.terminale-page #chapitres.levels{
   justify-content: center;
   white-space: nowrap;
 }
+.card-links a.chapter-course,
+  .card-links a.btn{
+    font-size:0.9rem;
+    padding:0.18rem 0.5rem;
+    line-height:1.1;
+  }
 
 
 

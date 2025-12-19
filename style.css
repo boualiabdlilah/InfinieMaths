@@ -1271,6 +1271,22 @@ section.axes > .axes-grid > .axe{
   width: 100% !important;
   justify-self: stretch !important;
 }
+/* Grille pour les 3 AXES : 2 colonnes, cartes l'une sous l'autre comme les chapitres */
+
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* 2 colonnes */
+  column-gap: 24px !important;   /* espace horizontal entre AXE1 et AXE2 */
+  row-gap: 6px !important;       /* petit espace vertical (AXE2 / AXE3) */
+  align-items: start !important;
+}
+
+/* Les cartes ne doivent pas avoir de marge ni de max-width qui casse la grille */
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
 
 
 

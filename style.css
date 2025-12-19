@@ -1317,6 +1317,19 @@ section.axes > .axes-grid > .axe{
     row-gap: 12px !important;
   }
 }
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 24px !important;
+  row-gap: 6px !important;   /* mets 0px si tu veux encore plus collé */
+  align-items: start !important;
+}
+
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
 
 
 

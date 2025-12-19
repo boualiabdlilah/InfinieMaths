@@ -1017,6 +1017,20 @@ body.terminale-page #chapitres.levels{
 .axe-body .chap{display:block;padding:.45rem .6rem;border-radius:10px;text-decoration:none;color:#e5e7eb;border:1px solid transparent;background:#111827;}
 .axe-body .chap:hover{border-color:#f97316;} 
 
+.axe {
+    margin: 2rem auto;
+    max-width: 1000px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.axe h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
 
 
 

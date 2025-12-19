@@ -1243,6 +1243,34 @@ section.axes > .axes-grid > article.axe h2{ margin-bottom: 10px !important; }
       "axe3" !important;
   }
 }
+/* === FIX FINAL: AXE3 sous AXE2, même largeur, petit espace vertical === */
+
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  column-gap: 24px !important;  /* espace horizontal */
+  row-gap: 6px !important;      /* espace vertical (réduit) */
+
+  align-items: start !important;
+
+  grid-template-areas:
+    "axe1 axe2"
+    ".    axe3" !important;
+}
+
+/* Si tes cartes ne sont pas des <article>, remplace article.axe par .axe */
+section.axes > .axes-grid > .axe:nth-child(1){ grid-area: axe1; }
+section.axes > .axes-grid > .axe:nth-child(2){ grid-area: axe2; }
+section.axes > .axes-grid > .axe:nth-child(3){ grid-area: axe3; }
+
+/* Neutralise les règles qui rajoutent de l'espace (margin auto / max-width) */
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
 
 
 

@@ -1058,6 +1058,31 @@ body.terminale-page #chapitres.levels{
   width: 100% !important;
   margin: 0 !important;
 }
+/* FORCE l'alignement des 3 cartes AXE */
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+
+  max-width: 1200px !important;
+  margin: 40px auto 0 !important;
+  padding: 0 16px !important;
+}
+
+/* FORCE chaque carte à occuper sa colonne */
+section.axes > .axes-grid > article.axe{
+  width: 100% !important;
+  margin: 0 !important;
+  justify-self: stretch !important;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  section.axes > .axes-grid{
+    grid-template-columns: 1fr !important;
+  }
+}
 
 
 

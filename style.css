@@ -1032,6 +1032,28 @@ body.terminale-page #chapitres.levels{
     font-size: 1.3rem;
 }
 
+/* Aligner AXE 1 / AXE 2 / AXE 3 sur une même ligne */
+.axes-grid{
+  max-width: 1200px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Les cartes prennent toute la colonne */
+.axes-grid .axe{
+  width: 100%;
+  margin: 0;
+}
+
+/* Responsive: sur petit écran, 1 colonne */
+@media (max-width: 900px){
+  .axes-grid{
+    grid-template-columns: 1fr;
+  }
+}
 
 
 

@@ -1287,6 +1287,36 @@ section.axes > .axes-grid > .axe{
   max-width: none !important;
   width: 100% !important;
 }
+/* === AXES: comme les cartes chapitres, mais en 2 colonnes === */
+/* Ordre HTML attendu: AXE1, AXE2, AXE3 dans .axes-grid */
+
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 24px !important;  /* espace entre colonne gauche et droite */
+  row-gap: 6px !important;      /* espace vertical AXE2 -> AXE3 (réduit) */
+  align-items: start !important;
+
+  max-width: 1200px !important;
+  margin: 40px auto 0 !important;
+  padding: 0 16px !important;
+}
+
+/* Très important: neutralise tes anciens .axe (margin auto / max-width) */
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+/* Mobile: 1 colonne comme les chapitres */
+@media (max-width: 900px){
+  section.axes > .axes-grid{
+    grid-template-columns: 1fr !important;
+    row-gap: 12px !important;
+  }
+}
 
 
 

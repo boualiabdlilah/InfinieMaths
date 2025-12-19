@@ -1006,7 +1006,8 @@ body.terminale-page #chapitres.levels{
   white-space: nowrap;
 }
 /* === AXES (3 BLOCS) : à coller en bas de ton CSS === */
-.axes{padding:0 1.5rem;}
+.axes{max-width:1100px;margin:0 auto 2.5rem auto;padding:0 1.5rem;}
+
 .axes-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
 @media(min-width:900px){.axes-grid{grid-template-columns:repeat(3,1fr);}}
 
@@ -1018,7 +1019,8 @@ body.terminale-page #chapitres.levels{
 .axe-body .chap:hover{border-color:#f97316;} 
 
 .axe {
-   
+    margin: 2rem auto;
+    max-width: 1000px;
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
     border: 1px solid #e5e7eb;
@@ -1088,6 +1090,7 @@ section.axes > .axes-grid > article.axe{
   max-width: none !important;
   width: 100% !important;
 }
+
 
 
 

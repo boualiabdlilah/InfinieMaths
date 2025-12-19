@@ -1131,6 +1131,41 @@ section.axes > .axes-grid > .axe{
       "axe3" !important;
   }
 }
+/* AXE 1 à gauche, AXE 2 à droite, AXE 3 sous AXE 2 */
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+
+  grid-template-areas:
+    "axe1 axe2"
+    ".    axe3" !important;
+}
+
+/* On place les cartes (selon leur ordre dans le HTML) */
+section.axes > .axes-grid > article.axe:nth-child(1){ grid-area: axe1; }
+section.axes > .axes-grid > article.axe:nth-child(2){ grid-area: axe2; }
+section.axes > .axes-grid > article.axe:nth-child(3){ grid-area: axe3; }
+
+/* Important: empêche les cartes de se centrer / rétrécir */
+section.axes > .axes-grid > article.axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+/* Mobile: tout en colonne */
+@media (max-width: 900px){
+  section.axes > .axes-grid{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "axe1"
+      "axe2"
+      "axe3" !important;
+  }
+}
 
 
 

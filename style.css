@@ -1301,6 +1301,44 @@ section.axes > .axes-grid{
   margin: 40px auto 0 !important;
   padding: 0 16px !important;
 }
+/* === FIX AXES: AXE1 à gauche, AXE2+AXE3 empilés à droite === */
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+
+  grid-template-areas:
+    "axe1 axe2"
+    "axe1 axe3" !important;
+
+  column-gap: 24px !important;
+  row-gap: 6px !important;      /* mets 0px si tu veux collé */
+  align-items: start !important;
+}
+
+/* placement */
+section.axes > .axes-grid > .axe:nth-child(1){ grid-area: axe1; }
+section.axes > .axes-grid > .axe:nth-child(2){ grid-area: axe2; }
+section.axes > .axes-grid > .axe:nth-child(3){ grid-area: axe3; }
+
+/* enlève les grosses marges/max-width qui créent des trous */
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+/* mobile */
+@media (max-width: 900px){
+  section.axes > .axes-grid{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "axe1"
+      "axe2"
+      "axe3" !important;
+    row-gap: 12px !important;
+  }
+}
 
 
 

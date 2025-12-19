@@ -1090,6 +1090,47 @@ section.axes > .axes-grid > article.axe{
   max-width: none !important;
   width: 100% !important;
 }
+/* Layout 2 colonnes:
+   - AXE 1 à gauche (colonne 1)
+   - AXE 2 à droite (colonne 2)
+   - AXE 3 sous AXE 2 (colonne 2)
+*/
+section.axes > .axes-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+/* Place les 3 cartes dans des "zones" */
+section.axes > .axes-grid > .axe:nth-child(1){ grid-area: axe1; }
+section.axes > .axes-grid > .axe:nth-child(2){ grid-area: axe2; }
+section.axes > .axes-grid > .axe:nth-child(3){ grid-area: axe3; }
+
+section.axes > .axes-grid{
+  grid-template-areas:
+    "axe1 axe2"
+    ".    axe3" !important;
+}
+
+/* Important: empêche chaque carte de se centrer / rétrécir */
+section.axes > .axes-grid > .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+/* Mobile: tout en colonne */
+@media (max-width: 900px){
+  section.axes > .axes-grid{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "axe1"
+      "axe2"
+      "axe3" !important;
+  }
+}
 
 
 

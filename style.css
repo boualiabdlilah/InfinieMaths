@@ -1006,7 +1006,7 @@ body.terminale-page #chapitres.levels{
   white-space: nowrap;
 }
 /* === AXES (3 BLOCS) : à coller en bas de ton CSS === */
-.axes{max-width:1100px;margin:0 auto 2.5rem auto;padding:0 1.5rem;}
+.axes{padding:0 1.5rem;}
 .axes-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
 @media(min-width:900px){.axes-grid{grid-template-columns:repeat(3,1fr);}}
 
@@ -1089,6 +1089,7 @@ section.axes > .axes-grid > article.axe{
   max-width: none !important;
   width: 100% !important;
 }
+
 
 
 

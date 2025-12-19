@@ -1083,6 +1083,12 @@ section.axes > .axes-grid > article.axe{
     grid-template-columns: 1fr !important;
   }
 }
+/* FIX: ne pas centrer/limiter chaque carte dans la grille */
+.axes-grid .axe{
+  margin: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
 
 
 

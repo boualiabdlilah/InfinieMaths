@@ -1339,6 +1339,20 @@ section.axes > .axes-grid > .axe{
     row-gap: 12px !important;
   }
 }
+/* Lisibilité des titres AXE */
+section.axes .axe h2{
+  color: #0f172a !important;      /* très foncé */
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 12px 0 !important;
+}
+
+/* Optionnel: un séparateur discret sous le titre */
+section.axes .axe h2{
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12) !important;
+}
 
 
 

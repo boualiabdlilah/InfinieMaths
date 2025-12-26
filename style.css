@@ -234,12 +234,13 @@ body {
 }
 
 /* Cartes de niveau (Seconde, Première, etc.) */
+
 .level-card {
-    background: #020617;
-    border-radius: 12px;
-    padding: 1rem 1.2rem;
-    border: 1px solid #1f2937;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
+  background: #020617;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.55);
 }
 
 .level-header {
@@ -1359,6 +1360,7 @@ section.axes .axe h2{
   background-clip: text;
   color: transparent;
 }
+
 
 
 

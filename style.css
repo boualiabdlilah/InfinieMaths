@@ -1367,6 +1367,10 @@ section.axes .axe h2{
     inset 0 0 0 1px rgba(2, 6, 23, 0.55),
     0 12px 30px rgba(2, 6, 23, 0.55);
 }
+/* Marque: InfinieMaths en orange (premium, pas trop agressif) */
+.highlight{
+  color: #ea580c;
+}
 
 
 

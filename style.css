@@ -1360,6 +1360,13 @@ section.axes .axe h2{
   background-clip: text;
   color: transparent;
 }
+/* Contour premium seulement dans la section Niveaux */
+.levels .level-card {
+  border-color: rgba(148, 163, 184, 0.28);
+  box-shadow:
+    inset 0 0 0 1px rgba(2, 6, 23, 0.55),
+    0 12px 30px rgba(2, 6, 23, 0.55);
+}
 
 
 

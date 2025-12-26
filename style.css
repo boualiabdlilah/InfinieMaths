@@ -1371,6 +1371,17 @@ section.axes .axe h2{
 .logo .highlight{
   color: #ea580c;
 }
+/* Uniquement les 3 boutons des cartes de niveaux (home) */
+body.home-page .levels .level-card .btn {
+  background: #3b82f6;
+  color: #0f172a;
+  border: 1px solid #93c5fd;
+}
+
+/* Optionnel: hover un peu plus premium */
+body.home-page .levels .level-card .btn:hover {
+  filter: brightness(0.95);
+}
 
 
 

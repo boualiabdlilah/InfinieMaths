@@ -6,7 +6,7 @@
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #1f2937;
+    background:#263244;
     color: #e5e7eb;
 }
 
@@ -1359,6 +1359,7 @@ section.axes .axe h2{
   background-clip: text;
   color: transparent;
 }
+
 
 
 

@@ -1353,11 +1353,13 @@ section.axes .axe h2{
   padding-bottom: 8px !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.12) !important;
 }
-.logo-text{
+.gradient{
   background: linear-gradient(90deg, #2563eb, #06b6d4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
 
 
 

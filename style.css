@@ -1382,7 +1382,7 @@ body.home-page .levels .level-card .btn {
 body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
-/* Filigrane (overlay) */
+/* Filigrane (overlay) - A. Bouali */
 .watermark{
   position: fixed;
   inset: 0;
@@ -1390,18 +1390,22 @@ body.home-page .levels .level-card .btn:hover {
   z-index: 999999;
   display: grid;
   place-items: center;
-  opacity: 0.22;              /* un peu plus visible */
+  opacity: 0.30;               /* force globale du filigrane */
 }
+
 .watermark span{
-  font-size: 110px;           /* plus grand (change si tu veux) */
+  font-size: 160px;            /* taille (augmente si tu veux encore + grand) */
   font-weight: 900;
-  letter-spacing: 8px;
+  letter-spacing: 10px;
   transform: rotate(-25deg);
-  color: rgba(0, 170, 255, 0.85);   /* bleu (pas blanc) */
-  text-shadow: 0 2px 26px rgba(0,0,0,0.65);
+
+  color: rgba(0, 0, 252, 0.75); /* bleu extrait de ton image */
+  text-shadow: 0 2px 30px rgba(0,0,0,0.65);
+
   user-select: none;
   white-space: nowrap;
 }
+
 
 
 

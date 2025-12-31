@@ -10,49 +10,30 @@
     header .wrap{max-width:1100px;margin:0 auto;padding:10px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .wrap{max-width:1100px;margin:0 auto;padding:12px}
     .page{display:block;width:100%;margin:14px auto;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-    .note{opacity:.85;font-size:13px}
-    input{width:90px;padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:#0b0f19;color:#e8eefc}
-    button{padding:7px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:#15213d;color:#e8eefc;cursor:pointer}
-    button:hover{background:#1b2a4d}
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <strong>Chapitre 1</strong>
-      <span class="note">Lecture en ligne (images)</span>
-      <span style="flex:1"></span>
-      <span class="note">Aller à la page</span>
-      <input id="pnum" type="number" min="1" max="13" value="1">
-      <button onclick="jump()">OK</button>
+      <span style="opacity:.85;font-size:13px">Lecture en ligne</span>
     </div>
   </header>
 
   <div class="wrap">
-    <img class="page" id="p1"  src="pages/page_001.png" alt="Page 1"  loading="lazy">
-    <img class="page" id="p2"  src="pages/page_002.png" alt="Page 2"  loading="lazy">
-    <img class="page" id="p3"  src="pages/page_003.png" alt="Page 3"  loading="lazy">
-    <img class="page" id="p4"  src="pages/page_004.png" alt="Page 4"  loading="lazy">
-    <img class="page" id="p5"  src="pages/page_005.png" alt="Page 5"  loading="lazy">
-    <img class="page" id="p6"  src="pages/page_006.png" alt="Page 6"  loading="lazy">
-    <img class="page" id="p7"  src="pages/page_007.png" alt="Page 7"  loading="lazy">
-    <img class="page" id="p8"  src="pages/page_008.png" alt="Page 8"  loading="lazy">
-    <img class="page" id="p9"  src="pages/page_009.png" alt="Page 9"  loading="lazy">
-    <img class="page" id="p10" src="pages/page_010.png" alt="Page 10" loading="lazy">
-    <img class="page" id="p11" src="pages/page_011.png" alt="Page 11" loading="lazy">
-    <img class="page" id="p12" src="pages/page_012.png" alt="Page 12" loading="lazy">
-    <img class="page" id="p13" src="pages/page_013.png" alt="Page 13" loading="lazy">
+    <img class="page" src="pages/page_001.png" alt="Page 1"  loading="lazy">
+    <img class="page" src="pages/page_002.png" alt="Page 2"  loading="lazy">
+    <img class="page" src="pages/page_003.png" alt="Page 3"  loading="lazy">
+    <img class="page" src="pages/page_004.png" alt="Page 4"  loading="lazy">
+    <img class="page" src="pages/page_005.png" alt="Page 5"  loading="lazy">
+    <img class="page" src="pages/page_006.png" alt="Page 6"  loading="lazy">
+    <img class="page" src="pages/page_007.png" alt="Page 7"  loading="lazy">
+    <img class="page" src="pages/page_008.png" alt="Page 8"  loading="lazy">
+    <img class="page" src="pages/page_009.png" alt="Page 9"  loading="lazy">
+    <img class="page" src="pages/page_010.png" alt="Page 10" loading="lazy">
+    <img class="page" src="pages/page_011.png" alt="Page 11" loading="lazy">
+    <img class="page" src="pages/page_012.png" alt="Page 12" loading="lazy">
+    <img class="page" src="pages/page_013.png" alt="Page 13" loading="lazy">
   </div>
-
-  <script>
-    function jump(){
-      var v = parseInt(document.getElementById('pnum').value || '1');
-      if (isNaN(v)) v = 1;
-      if (v < 1) v = 1;
-      if (v > 13) v = 13;
-      var el = document.getElementById('p' + v);
-      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  </script>
 </body>
 </html>

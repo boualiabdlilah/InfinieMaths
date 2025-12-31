@@ -1404,7 +1404,9 @@ body.home-page .levels .level-card .btn:hover {
 
   user-select: none;
   white-space: nowrap;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.25);
 }
+
 
 
 

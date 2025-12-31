@@ -1382,6 +1382,27 @@ body.home-page .levels .level-card .btn {
 body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
+/* Filigrane (overlay) */
+.watermark{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+.watermark span{
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  transform: rotate(-25deg);
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.55);
+  user-select: none;
+  white-space: nowrap;
+}
 
 
 

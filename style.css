@@ -1387,22 +1387,22 @@ body.home-page .levels .level-card .btn:hover {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999999;
   display: grid;
   place-items: center;
-  opacity: 0.14;
-  mix-blend-mode: screen;
+  opacity: 0.22;              /* un peu plus visible */
 }
 .watermark span{
-  font-size: 64px;
-  font-weight: 700;
-  letter-spacing: 6px;
+  font-size: 110px;           /* plus grand (change si tu veux) */
+  font-weight: 900;
+  letter-spacing: 8px;
   transform: rotate(-25deg);
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 2px 20px rgba(0,0,0,0.55);
+  color: rgba(0, 170, 255, 0.85);   /* bleu (pas blanc) */
+  text-shadow: 0 2px 26px rgba(0,0,0,0.65);
   user-select: none;
   white-space: nowrap;
 }
+
 
 
 

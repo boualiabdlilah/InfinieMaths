@@ -1408,6 +1408,34 @@ body.home-page .levels .level-card .btn:hover {
   transform: rotate(-27deg) !important;
   user-select: none;
 }
+/* FORCE watermark: à coller tout en bas du CSS */
+#wm{
+  position: fixed !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+#wm span{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-weight: 900 !important;
+
+  font-size: 45px !important;           /* <<< change ici, tu verras direct */
+  letter-spacing: 1px !important;
+  white-space: nowrap !important;
+
+  color: rgba(150,150,150,0.22) !important;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.08) !important;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.25) !important;
+
+  transform: rotate(-27deg) !important;
+  transform-origin: center !important;
+  user-select: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
 
 
 

@@ -4,32 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapitre 1</title>
+  <link rel="stylesheet" href="style.css?v=1">
   <style>
     body{margin:0;background:#0b0f19;color:#e8eefc;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     .wrap{max-width:1100px;margin:0 auto;padding:12px}
     .page{display:block;width:100%;margin:14px auto;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.45);position:relative;z-index:1}
 
-    /* Filigrane unique, toujours au-dessus */
-    .watermark{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2147483647;
-      display: grid;
-      place-items: center;
-      isolation: isolate;
-    }
-    .watermark span{
-      font-size: 180px;              /* ajuste si besoin */
-      font-weight: 900;
-      letter-spacing: 12px;
-      transform: rotate(-25deg);
-      color: rgba(140,140,140,0.30); /* gris */
-      text-shadow: 0 2px 35px rgba(0,0,0,0.35);
-      user-select: none;
-      white-space: nowrap;
-      -webkit-text-stroke: 2px rgba(0,0,0,0.15);
-    }
+    
   </style>
 </head>
 <body>

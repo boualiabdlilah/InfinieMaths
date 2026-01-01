@@ -1385,23 +1385,29 @@ body.home-page .levels .level-card .btn:hover {
 /* Filigrane diagonal répété (gris) */
 .watermark{
   position: fixed;
-  inset: -50%;                 /* couvre toute la page même après rotation */
+  top: -100vh;
+  right: -100vw;
+  bottom: -100vh;
+  left: -100vw;              /* énorme surface => rotation sans “trous” */
   pointer-events: none;
   z-index: 2147483647;
 
-  isolation: isolate;
-  transform-origin: center;
-  transform: rotate(-25deg) translateZ(0);
+  isolation: isolate;        /* évite qu'il passe sous des éléments transformés */
+  will-change: transform;
 
-  /* Motif texte répété */
+  /* motif répété */
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='520' height='260'>\
   <style>text{font-family:system-ui,Segoe UI,Roboto,Arial; font-weight:900; letter-spacing:8px;}</style>\
-  <text x='0' y='175' font-size='80' fill='rgba(120,120,120,0.28)'>A. Bouali</text>\
+  <text x='0' y='175' font-size='80' fill='rgba(120,120,120,0.35)'>A. Bouali</text>\
 </svg>");
   background-repeat: repeat;
   background-size: 520px 260px;
+
+  transform: rotate(-25deg);
+  transform-origin: center;
 }
+
 
 
 

@@ -1389,23 +1389,24 @@ body.home-page .levels .level-card .btn:hover {
   inset: 0;
   pointer-events: none;
   z-index: 2147483647;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
 }
 
 .watermark span{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 900;
-  font-size: 140px;           /* ajuste ici pour avoir la même taille que LaTeX */
-  letter-spacing: 10px;
-  color: rgba(150,150,150,0.30);  /* gris clair semi-transparent */
-  transform: rotate(-30deg);     /* angle proche de ton exemple */
-  transform-origin: center;
-  white-space: nowrap;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  font-size: 120px;              /* URL plus longue => taille un peu plus petite */
+  letter-spacing: 6px;
+  transform: rotate(-25deg);
+  color: rgba(140,140,140,0.30);
+  text-shadow: 0 2px 35px rgba(0,0,0,0.35);
   user-select: none;
+  white-space: nowrap;
+  -webkit-text-stroke: 2px rgba(0,0,0,0.15);
 }
+
 
 
 

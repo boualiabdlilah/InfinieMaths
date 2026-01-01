@@ -1,39 +1,76 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapitre 1</title>
+
   <style>
     body{margin:0;background:#0b0f19;color:#e8eefc;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     .wrap{max-width:1100px;margin:0 auto;padding:12px}
     .page{display:block;width:100%;margin:14px auto;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 
-    /* Filigrane (overlay) */
+    /* FILIGRANE diagonal répété (A. Bouali reste dans le HTML) */
     .watermark{
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 999999;
-      display: grid;
-      place-items: center;
-      opacity: 0.22; /* un peu plus visible */
+      z-index: 2147483647;
+      isolation: isolate;
+      overflow: hidden;
     }
+
     .watermark span{
-      font-size: 64px;
-      font-weight: 800;
-      letter-spacing: 6px;
-      transform: rotate(-25deg);
-      color: rgba(255,255,255,0.95);
-      text-shadow: 0 2px 20px rgba(0,0,0,0.65);
-      user-select: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) rotate(-25deg);
+      transform-origin: center;
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: rgba(140,140,140,0.38);
       white-space: nowrap;
+      user-select: none;
+
+      /* Répétition “en grille” via text-shadow */
+      text-shadow:
+        -900px -520px rgba(140,140,140,0.38),
+        -450px -520px rgba(140,140,140,0.38),
+          0px -520px rgba(140,140,140,0.38),
+         450px -520px rgba(140,140,140,0.38),
+         900px -520px rgba(140,140,140,0.38),
+
+        -900px -260px rgba(140,140,140,0.38),
+        -450px -260px rgba(140,140,140,0.38),
+          0px -260px rgba(140,140,140,0.38),
+         450px -260px rgba(140,140,140,0.38),
+         900px -260px rgba(140,140,140,0.38),
+
+        -900px    0px rgba(140,140,140,0.38),
+        -450px    0px rgba(140,140,140,0.38),
+          0px    0px rgba(140,140,140,0.38),
+         450px    0px rgba(140,140,140,0.38),
+         900px    0px rgba(140,140,140,0.38),
+
+        -900px  260px rgba(140,140,140,0.38),
+        -450px  260px rgba(140,140,140,0.38),
+          0px  260px rgba(140,140,140,0.38),
+         450px  260px rgba(140,140,140,0.38),
+         900px  260px rgba(140,140,140,0.38),
+
+        -900px  520px rgba(140,140,140,0.38),
+        -450px  520px rgba(140,140,140,0.38),
+          0px  520px rgba(140,140,140,0.38),
+         450px  520px rgba(140,140,140,0.38),
+         900px  520px rgba(140,140,140,0.38);
     }
   </style>
 </head>
+
 <body>
- <div class="watermark" aria-hidden="true"><span>A. Bouali</span></div>
+  <div class="watermark" aria-hidden="true"><span>A. Bouali</span></div>
+
   <div class="wrap">
     <img class="page" src="page_001.png" alt="page 1">
     <img class="page" src="page_002.png" alt="page 2">
@@ -51,5 +88,3 @@
   </div>
 </body>
 </html>
-  
-

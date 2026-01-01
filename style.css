@@ -1410,6 +1410,11 @@ body.home-page .levels .level-card .btn:hover {
   transform: rotate(-25deg);
   transform-origin: center;
 }
+#wm span{
+  font-size: 20px !important;
+  color: red !important;
+  background: yellow !important;
+}
 
 
 

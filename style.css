@@ -1397,15 +1397,22 @@ body.home-page .levels .level-card .btn:hover {
 .watermark span{
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 900;
-  font-size: 120px;              /* URL plus longue => taille un peu plus petite */
-  letter-spacing: 6px;
-  transform: rotate(-25deg);
-  color: rgba(140,140,140,0.30);
-  text-shadow: 0 2px 35px rgba(0,0,0,0.35);
-  user-select: none;
+
+  /* Taille grande mais safe pour une URL longue */
+  font-size: 140px;
+
+  letter-spacing: 8px;
   white-space: nowrap;
-  -webkit-text-stroke: 2px rgba(0,0,0,0.15);
+  user-select: none;
+
+  color: rgba(140,140,140,0.28);
+  -webkit-text-stroke: 2px rgba(0,0,0,0.12);
+  text-shadow: 0 2px 35px rgba(0,0,0,0.35);
+
+  transform: rotate(-25deg);
+  transform-origin: center;
 }
+
 
 
 

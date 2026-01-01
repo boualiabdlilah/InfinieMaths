@@ -10,26 +10,31 @@
     .wrap{max-width:1100px;margin:0 auto;padding:12px}
     .page{display:block;width:100%;margin:14px auto;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.45);position:relative;z-index:1}
 
-    .watermark{
+   .watermark{
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 2147483647;
   display: grid;
   place-items: center;
-  isolation: isolate;
 }
 
+/* Style diagonale “LaTeX-ish” + lettres espacées */
 .watermark span{
-  font-size: 65px;              /* <<< change ici: 40px / 45px / 55px */
+  font-family: "Times New Roman", Georgia, "Times", serif; /* rendu proche LaTeX */
   font-weight: 900;
-  letter-spacing: 1px;          /* beaucoup plus adapté pour une URL */
-  transform: rotate(-25deg);
-  color: rgba(140,140,140,0.26);
-  text-shadow: 0 2px 18px rgba(0,0,0,0.25);
-  user-select: none;
+
+  font-size: 110px;          /* taille du filigrane */
+  letter-spacing: 10px;      /* “plus large” entre les lettres */
   white-space: nowrap;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.10);
+  user-select: none;
+
+  color: rgba(120,120,120,0.22);
+  -webkit-text-stroke: 1.3px rgba(0,0,0,0.12);
+  text-shadow: 0 2px 22px rgba(0,0,0,0.28);
+
+  transform: rotate(-45deg); /* diagonale */
+  transform-origin: center;
 }
   </style>
 </head>

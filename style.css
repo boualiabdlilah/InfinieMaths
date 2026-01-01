@@ -1385,28 +1385,49 @@ body.home-page .levels .level-card .btn:hover {
 /* Filigrane diagonal répété (gris) */
 .watermark{
   position: fixed;
-  top: -100vh;
-  right: -100vw;
-  bottom: -100vh;
-  left: -100vw;              /* énorme surface => rotation sans “trous” */
+  inset: 0;
   pointer-events: none;
   z-index: 2147483647;
+  overflow: hidden;
+}
 
-  isolation: isolate;        /* évite qu'il passe sous des éléments transformés */
-  will-change: transform;
-
-  /* motif répété */
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='520' height='260'>\
-  <style>text{font-family:system-ui,Segoe UI,Roboto,Arial; font-weight:900; letter-spacing:8px;}</style>\
-  <text x='0' y='175' font-size='80' fill='rgba(120,120,120,0.35)'>A. Bouali</text>\
-</svg>");
-  background-repeat: repeat;
-  background-size: 520px 260px;
-
+.watermark span{
+  position: absolute;
+  inset: -50%;
   transform: rotate(-25deg);
   transform-origin: center;
+  display: block;
+
+  /* On répète le texte partout */
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 80px
+  );
+
+  /* On “fake” une répétition avec text via multiple shadows (simple mais efficace) */
+  color: rgba(140,140,140,0.35);
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  white-space: nowrap;
+
+  /* Le vrai trick: on duplique avec text-shadow */
+  text-shadow:
+    0 0 0 rgba(140,140,140,0.35),
+    300px 0 rgba(140,140,140,0.35),
+    600px 0 rgba(140,140,140,0.35),
+    900px 0 rgba(140,140,140,0.35),
+    0 180px rgba(140,140,140,0.35),
+    300px 180px rgba(140,140,140,0.35),
+    600px 180px rgba(140,140,140,0.35),
+    900px 180px rgba(140,140,140,0.35),
+    0 360px rgba(140,140,140,0.35),
+    300px 360px rgba(140,140,140,0.35),
+    600px 360px rgba(140,140,140,0.35),
+    900px 360px rgba(140,140,140,0.35);
 }
+
 
 
 

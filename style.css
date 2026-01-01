@@ -1383,50 +1383,30 @@ body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
 /* Filigrane diagonal répété (gris) */
+/* FILIGRANE unique, centré, en diagonale comme sur le PDF LaTeX */
 .watermark{
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 2147483647;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .watermark span{
-  position: absolute;
-  inset: -50%;
-  transform: rotate(-25deg);
-  transform-origin: center;
-  display: block;
-
-  /* On répète le texte partout */
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(0,0,0,0) 0px,
-    rgba(0,0,0,0) 80px
-  );
-
-  /* On “fake” une répétition avec text via multiple shadows (simple mais efficace) */
-  color: rgba(140,140,140,0.35);
-  font-size: 80px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 900;
-  letter-spacing: 8px;
+  font-size: 140px;           /* ajuste ici pour avoir la même taille que LaTeX */
+  letter-spacing: 10px;
+  color: rgba(150,150,150,0.30);  /* gris clair semi-transparent */
+  transform: rotate(-30deg);     /* angle proche de ton exemple */
+  transform-origin: center;
   white-space: nowrap;
-
-  /* Le vrai trick: on duplique avec text-shadow */
-  text-shadow:
-    0 0 0 rgba(140,140,140,0.35),
-    300px 0 rgba(140,140,140,0.35),
-    600px 0 rgba(140,140,140,0.35),
-    900px 0 rgba(140,140,140,0.35),
-    0 180px rgba(140,140,140,0.35),
-    300px 180px rgba(140,140,140,0.35),
-    600px 180px rgba(140,140,140,0.35),
-    900px 180px rgba(140,140,140,0.35),
-    0 360px rgba(140,140,140,0.35),
-    300px 360px rgba(140,140,140,0.35),
-    600px 360px rgba(140,140,140,0.35),
-    900px 360px rgba(140,140,140,0.35);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  user-select: none;
 }
+
 
 
 

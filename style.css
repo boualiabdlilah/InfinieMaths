@@ -1410,6 +1410,13 @@ body.home-page .levels .level-card .btn:hover {
   transform: rotate(-27deg);
   transform-origin: center;
 }
+.watermark span{
+  font-size: 20px !important;
+  color: red !important;
+  transform: rotate(0deg) !important;
+  background: yellow !important;
+  padding: 10px 16px !important;
+}
 
 
 

@@ -1382,30 +1382,27 @@ body.home-page .levels .level-card .btn {
 body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
-/* FILIGRANE - version robuste (toujours visible) */
+/* Filigrane diagonal répété (gris) */
 .watermark{
   position: fixed;
-  inset: 0;
+  inset: -40%;                 /* déborde volontairement pour couvrir même après rotation */
   pointer-events: none;
-  z-index: 9999999;     /* au-dessus de tout */
-  display: grid;
-  place-items: center;
-  opacity: 1;           /* on gère la transparence dans la couleur */
-}
+  z-index: 2147483647;
+  opacity: 1;
 
-.watermark span{
-  font-size: 180px;                 /* plus grand */
-  font-weight: 900;
-  letter-spacing: 12px;
+  isolation: isolate;          /* évite qu'il passe derrière certains éléments */
+  transform-origin: center;
   transform: rotate(-25deg);
 
-  color: rgba(0, 0, 252, 0.32);     /* bleu de ton image, translucide */
-  text-shadow: 0 2px 35px rgba(0,0,0,0.45);
-
-  user-select: none;
-  white-space: nowrap;
-  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.25);
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='520' height='260'>\
+  <style>text{font-family:system-ui,Segoe UI,Roboto,Arial; font-weight:900; letter-spacing:6px;}</style>\
+  <text x='0' y='170' font-size='72' fill='rgba(180,180,180,0.22)'>A. Bouali</text>\
+</svg>");
+  background-repeat: repeat;
+  background-size: 520px 260px;  /* DENSITÉ par défaut */
 }
+
 
 
 

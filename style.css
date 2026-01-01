@@ -1382,8 +1382,6 @@ body.home-page .levels .level-card .btn {
 body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
-/* Filigrane diagonal répété (gris) */
-/* FILIGRANE unique, centré, en diagonale comme sur le PDF LaTeX */
 /* Filigrane unique, toujours au-dessus */
 .watermark{
   position: fixed;
@@ -1412,6 +1410,7 @@ body.home-page .levels .level-card .btn:hover {
   transform: rotate(-25deg);
   transform-origin: center;
 }
+
 
 
 

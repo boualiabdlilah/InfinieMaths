@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -5,21 +6,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapitre 1 — Corrigés</title>
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 28px; line-height: 1.45; }
-    .wrap { max-width: 980px; margin: 0 auto; }
-    a.btn { display:inline-block; padding:10px 14px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; margin-right:10px; }
-    a.btn:hover { border-color:#111; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 28px;
+      background: #f9fafb;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    a.back-link {
+      font-size: 14px;
+    }
+
+    .card {
+      margin-top: 32px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      padding: 20px 22px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+      max-width: 420px;
+    }
+    .card h1 {
+      margin: 0 0 14px;
+      font-size: 22px;
+    }
+    .card p.subtitle {
+      margin: 0 0 18px;
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      border-color: #9ca3af;
+      background: #f3f4f6;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p><a href="/terminale/">← Retour Terminale</a></p>
-    <h1>Chapitre 1 — Corrigés</h1>
+    <p><a class="back-link" href="/terminale/">← Retour Terminale</a></p>
 
-    <p>
-      <a class="btn" href="./gratuit.html">Corrigés gratuits</a>
-      <a class="btn" href="./premium.html">Corrigés premium</a>
-    </p>
+    <div class="card">
+      <h1>Chapitre 1 — Corrigés</h1>
+      <p class="subtitle">Récurrence et limites de suites.</p>
+
+      <div class="btn-row">
+        <a class="btn" href="./gratuit.html">Corrigés gratuits</a>
+        <a class="btn" href="./premium.html">Corrigés premium</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>

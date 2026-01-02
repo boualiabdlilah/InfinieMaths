@@ -5,23 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapitre 1 — Corrigés premium</title>
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 28px; line-height: 1.45; }
-    .wrap { max-width: 980px; margin: 0 auto; }
-    .box { border:1px solid #eee; border-radius:12px; padding:14px; background:#fff; }
+    :root{
+      --bg:#f8fafc;
+      --card-bg:#fff7ed;
+      --card-border:#fed7aa;
+      --shadow:0 12px 28px rgba(15,23,42,0.12);
+
+      --title:#111827;
+      --muted:#4b5563;
+
+      --pill-bg: rgba(255,255,255,0.75);
+      --pill-border: rgba(0,0,0,0.08);
+    }
+
+    body{
+      margin:28px;
+      background:var(--bg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.45;
+    }
+    .wrap{ max-width:980px; margin:0 auto; }
+
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:18px 22px 22px;
+      margin:18px auto 0;
+      max-width:560px;
+    }
+
+    .top{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    a.back{
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      color:#9a3412;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--pill-border);
+      background:var(--pill-bg);
+    }
+
+    h1{ margin:0 0 8px; font-size:24px; color:var(--title); }
+    p{ margin:0 0 14px; color:var(--muted); }
+
+    .notice{
+      border:1px dashed rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.55);
+      border-radius:14px;
+      padding:12px 12px;
+      margin: 10px 0 16px;
+      color:#111827;
+      font-size:14.5px;
+    }
+
+    .box{
+      border:1px solid rgba(0,0,0,0.10);
+      background:#fff;
+      border-radius:14px;
+      padding:12px 12px;
+      color:#111827;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p><a href="./index.html">← Retour corrigés</a></p>
-    <h1>Chapitre 1 — Corrigés premium</h1>
+    <div class="card">
+      <div class="top">
+        <a class="back" href="./index.html">← Retour corrigés</a>
+        <a class="back" href="/terminale/">← Terminale</a>
+      </div>
 
-    <div class="box">
-      <p><strong>Réservé Premium.</strong></p>
-      <p>Connexion / paiement à ajouter (ou mets ici le contenu quand tu voudras).</p>
+      <h1>Chapitre 1 — Corrigés premium</h1>
+      <p>Accès réservé aux abonnés.</p>
+
+      <div class="notice">
+        <strong>Rappel :</strong> les exercices gratuits sont 1, 6, 10, 12 et 16.
+      </div>
+
+      <div class="box">
+        <p style="margin:0;">
+          Contenu premium à ajouter ici (ou message de connexion / paiement).
+        </p>
+      </div>
     </div>
-
-    <!-- Plus tard, tu pourras afficher des images ici aussi -->
-    <!-- <img src="./premium/page_01.png" alt="Corrigé premium page 1" /> -->
   </div>
 </body>
 </html>

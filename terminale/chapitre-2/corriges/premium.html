@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapitre 2 — Corrigés premium</title>
+  <style>
+    :root{
+      --page-bg: #fffaf5;
+
+      --card-bg: #fff7ed;
+      --card-border: #fed7aa;
+      --shadow: 0 12px 28px rgba(15,23,42,0.12);
+
+      --title: #111827;
+      --muted: #4b5563;
+
+      --pill-bg: rgba(255,255,255,0.75);
+      --pill-border: rgba(0,0,0,0.08);
+
+      --box-bg: #ffffff;
+
+      --btn-bg: #f97316;
+      --btn-bg-hover: #ea580c;
+      --btn-text: #ffffff;
+    }
+
+    body{
+      margin: 28px;
+      background: var(--page-bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; }
+
+    .card{
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px 22px 22px;
+      margin: 18px auto 0;
+      max-width: 560px;
+    }
+
+    .top{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    a.pill{
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #9a3412;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.75);
+    }
+    a.pill:hover{ background: rgba(255,255,255,0.92); }
+
+    h1{ margin: 0 0 8px; font-size: 24px; color: var(--title); }
+    p{ margin: 0 0 14px; color: var(--muted); }
+
+    .notice{
+      border: 1px dashed rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.55);
+      border-radius: 14px;
+      padding: 12px 12px;
+      margin: 10px 0 16px;
+      color: #111827;
+      font-size: 14.5px;
+    }
+
+    .box{
+      border: 1px solid rgba(0,0,0,0.10);
+      background: var(--box-bg);
+      border-radius: 14px;
+      padding: 12px 12px;
+      color: #111827;
+      font-size: 14.5px;
+    }
+
+    .btn{
+      display: inline-block;
+      margin-top: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      transition: 0.15s ease;
+    }
+    .btn:hover{ background: var(--btn-bg-hover); transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <a class="pill" href="./index.html">← Retour corrigés</a>
+        <a class="pill" href="/terminale/">→ Terminale</a>
+      </div>
+
+      <h1>Chapitre 2 — Corrigés premium</h1>
+      <p>Accès réservé aux abonnés.</p>
+
+      <div class="notice">
+        <strong>Rappel :</strong> les exercices gratuits sont 111, 6, 10, 12 et 16.
+      </div>
+
+      <div class="box">
+        Ajoute ici ton contenu premium (images), ou un message de connexion / paiement.
+      </div>
+
+      <!-- option: lien vers la page gratuite -->
+      <a class="btn" href="./gratuit.html">Voir les corrigés gratuits</a>
+    </div>
+  </div>
+</body>
+</html>

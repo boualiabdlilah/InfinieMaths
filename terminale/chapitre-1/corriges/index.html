@@ -2,14 +2,110 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=/premium" />
-    <link rel="canonical" href="/premium" />
-    <title>Redirection…</title>
-    <script>
-      window.location.replace("/premium");
-    </script>
+    <title>Corrigés - Chapitre 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, Arial, sans-serif; margin: 28px; line-height: 1.45; }
+      h1 { margin-bottom: 6px; }
+      h2 { margin-top: 26px; }
+      .sub { margin-top: 0; color: #555; }
+
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 12px; }
+      .card { border: 1px solid #e7e7e7; border-radius: 12px; padding: 12px; background: #fff; }
+      .card h3 { font-size: 16px; margin: 0 0 10px; }
+      img { width: 100%; height: auto; border-radius: 10px; border: 1px solid #eee; }
+
+      .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; margin-left: 8px; }
+      .free { background: #e8fff0; color: #156b2b; border: 1px solid #bdeccb; }
+      .pay { background: #fff3e6; color: #7a3d00; border: 1px solid #ffd2a6; }
+
+      .locked img { filter: blur(6px); }
+      .locked .overlay { margin-top: 10px; padding: 10px; border-radius: 10px; background: #fafafa; border: 1px dashed #ddd; }
+      .btn { display: inline-block; padding: 8px 12px; border-radius: 10px; text-decoration: none; border: 1px solid #111; }
+      .btn:hover { background: #111; color: #fff; }
+    </style>
   </head>
+
   <body>
-    <p>Redirection vers <a href="/premium">Premium</a>…</p>
+    <p><a href="../">← Retour</a></p>
+    <h1>Chapitre 1 — Corrigés</h1>
+    <p class="sub">Les exercices 1, 6, 10, 12 et 16 sont gratuits. Les autres corrigés sont Premium.</p>
+
+    <h2>Corrigés gratuits</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Exercice 1 <span class="tag free">gratuit</span></h3>
+        <img src="./exo1.png" alt="Corrigé Exercice 1">
+      </div>
+
+      <div class="card">
+        <h3>Exercice 6 <span class="tag free">gratuit</span></h3>
+        <img src="./exo6.png" alt="Corrigé Exercice 6">
+      </div>
+
+      <div class="card">
+        <h3>Exercice 10 <span class="tag free">gratuit</span></h3>
+        <img src="./exo10.png" alt="Corrigé Exercice 10">
+      </div>
+
+      <div class="card">
+        <h3>Exercice 12 <span class="tag free">gratuit</span></h3>
+        <img src="./exo12.png" alt="Corrigé Exercice 12">
+      </div>
+
+      <div class="card">
+        <h3>Exercice 16 <span class="tag free">gratuit</span></h3>
+        <img src="./exo16.png" alt="Corrigé Exercice 16">
+      </div>
+    </div>
+
+    <h2>Corrigés Premium</h2>
+    <div class="grid">
+      <div class="card locked">
+        <h3>Exercice 2 <span class="tag pay">premium</span></h3>
+        <img src="./exo2.png" alt="Corrigé Exercice 2 (Premium)">
+        <div class="overlay">
+          Réservé aux membres Premium.
+          <div style="margin-top:10px;">
+            <a class="btn" href="/premium">Débloquer Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card locked">
+        <h3>Exercice 3 <span class="tag pay">premium</span></h3>
+        <img src="./exo3.png" alt="Corrigé Exercice 3 (Premium)">
+        <div class="overlay">
+          Réservé aux membres Premium.
+          <div style="margin-top:10px;">
+            <a class="btn" href="/premium">Débloquer Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card locked">
+        <h3>Exercice 4 <span class="tag pay">premium</span></h3>
+        <img src="./exo4.png" alt="Corrigé Exercice 4 (Premium)">
+        <div class="overlay">
+          Réservé aux membres Premium.
+          <div style="margin-top:10px;">
+            <a class="btn" href="/premium">Débloquer Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card locked">
+        <h3>Exercice 5 <span class="tag pay">premium</span></h3>
+        <img src="./exo5.png" alt="Corrigé Exercice 5 (Premium)">
+        <div class="overlay">
+          Réservé aux membres Premium.
+          <div style="margin-top:10px;">
+            <a class="btn" href="/premium">Débloquer Premium</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duplique ce bloc locked pour exo7, exo8, exo9, exo11, exo13, ... -->
+    </div>
   </body>
 </html>

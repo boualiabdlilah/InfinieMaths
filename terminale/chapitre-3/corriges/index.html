@@ -1,1 +1,123 @@
 
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapitre 3 — Corrigés</title>
+  <style>
+    :root{
+      --bg: #f8fafc;
+
+      --card-bg: #fff7ed;
+      --card-border: #fed7aa;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+
+      --title: #111827;
+      --muted: #4b5563;
+
+      --btn-bg: #f97316;
+      --btn-bg-hover: #ea580c;
+      --btn-text: #ffffff;
+
+      --btn2-bg: transparent;
+      --btn2-border: #fb923c;
+      --btn2-text: #9a3412;
+      --btn2-hover: rgba(249,115,22,0.12);
+
+      --link: #9a3412;
+      --link-hover: #7c2d12;
+    }
+
+    body{
+      margin: 28px;
+      background: #fffaf5;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; }
+
+    .card{
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px 22px 22px;
+      margin: 18px auto 0;
+      max-width: 560px;
+    }
+
+    .card-top{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .back-in-card{
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--link);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.55);
+    }
+    .back-in-card:hover{
+      color: var(--link-hover);
+      background: rgba(255,255,255,0.85);
+    }
+
+    h1{ margin: 0 0 8px; font-size: 24px; color: var(--title); }
+    p{ margin: 0 0 18px; color: var(--muted); }
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 750;
+      font-size: 14.5px;
+      transition: 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary{ background: var(--btn-bg); color: var(--btn-text); }
+    .btn-primary:hover{ background: var(--btn-bg-hover); transform: translateY(-1px); }
+
+    .btn-secondary{
+      background: var(--btn2-bg);
+      border-color: var(--btn2-border);
+      color: var(--btn2-text);
+    }
+    .btn-secondary:hover{ background: var(--btn2-hover); transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="card-top">
+        <a class="back-in-card" href="/terminale/">← Retour Terminale</a>
+      </div>
+
+      <h1>Chapitre 3 — Corrigés</h1>
+      <p>Choisis la version gratuite ou premium.</p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="./gratuit.html">Corrigés gratuits</a>
+        <a class="btn btn-secondary" href="./premium.html">Corrigés premium</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

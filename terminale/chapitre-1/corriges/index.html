@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -6,72 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapitre 1 — Corrigés</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    :root{
+      --bg: #f8fafc;
+
+      --card-bg: #fff7ed;
+      --card-border: #fed7aa;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+
+      --title: #111827;
+      --muted: #4b5563;
+
+      --btn-bg: #f97316;
+      --btn-bg-hover: #ea580c;
+      --btn-text: #ffffff;
+
+      --btn2-bg: transparent;
+      --btn2-border: #fb923c;
+      --btn2-text: #9a3412;
+      --btn2-hover: rgba(249,115,22,0.12);
+    }
+
+    body{
       margin: 28px;
-      background: #f9fafb;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
     }
-    .wrap {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    a.back-link {
-      font-size: 14px;
+    .wrap{ max-width: 980px; margin: 0 auto; }
+
+    .card{
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 26px 28px;          /* carte plus grande */
+      margin-top: 18px;
+      max-width: 760px;            /* carte plus large */
     }
 
-    .card {
-      margin-top: 32px;
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid #e5e7eb;
-      padding: 20px 22px;
-      box-shadow: 0 8px 20px rgba(15,23,42,0.06);
-      max-width: 420px;
-    }
-    .card h1 {
-      margin: 0 0 14px;
-      font-size: 22px;
-    }
-    .card p.subtitle {
-      margin: 0 0 18px;
-      color: #4b5563;
-      font-size: 14px;
-    }
+    h1{ margin: 0 0 8px; font-size: 26px; color: var(--title); }
+    p{ margin: 0 0 18px; color: var(--muted); }
 
-    .btn-row {
-      display: flex;
-      gap: 10px;
+    .actions{
+      display:flex;
+      gap: 12px;
       flex-wrap: wrap;
+      align-items:center;
     }
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
+
+    .btn{
+      display:inline-block;
+      padding: 11px 18px;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      color: #111827;
-      font-size: 14px;
-      text-decoration: none;
-      cursor: pointer;
-      white-space: nowrap;
+      text-decoration:none;
+      font-weight: 750;
+      font-size: 14.5px;
+      transition: 0.15s ease;
+      border: 1px solid transparent;
     }
-    .btn:hover {
-      border-color: #9ca3af;
-      background: #f3f4f6;
+
+    .btn-primary{
+      background: var(--btn-bg);
+      color: var(--btn-text);
+    }
+    .btn-primary:hover{
+      background: var(--btn-bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary{
+      background: var(--btn2-bg);
+      border-color: var(--btn2-border);
+      color: var(--btn2-text);
+    }
+    .btn-secondary:hover{
+      background: var(--btn2-hover);
+      transform: translateY(-1px);
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p><a class="back-link" href="/terminale/">← Retour Terminale</a></p>
+    <p><a href="/terminale/">← Retour Terminale</a></p>
 
     <div class="card">
       <h1>Chapitre 1 — Corrigés</h1>
-      <p class="subtitle">Récurrence et limites de suites.</p>
+      <p>Choisis la version gratuite ou premium.</p>
 
-      <div class="btn-row">
-        <a class="btn" href="./gratuit.html">Corrigés gratuits</a>
-        <a class="btn" href="./premium.html">Corrigés premium</a>
+      <div class="actions">
+        <a class="btn btn-primary" href="./gratuit.html">Corrigés gratuits</a>
+        <a class="btn btn-secondary" href="./premium.html">Corrigés premium</a>
       </div>
     </div>
   </div>

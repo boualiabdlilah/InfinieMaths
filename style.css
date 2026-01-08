@@ -1509,6 +1509,30 @@ body.home-page .levels .level-card .btn:hover {
     font-size: 14px;
   }
 }
+/* Glow plus doux et plus premium */
+.premium-banner::after{
+  content:"";
+  position:absolute;
+  left:-25%;
+  right:-25%;
+  top:-70%;
+  height:140%;
+  background: radial-gradient(circle at 50% 60%, rgba(245,158,11,0.38), rgba(245,158,11,0) 62%);
+  filter: blur(22px);
+  opacity: 0.9;
+  pointer-events:none;
+}
+
+/* Grille plus discrète */
+.premium-banner::before{
+  opacity: 0.18;
+  background-size: 18px 18px;
+}
+
+/* Un peu plus d'air */
+.btn-premium{
+  margin-top: 6px;
+}
 
 
 

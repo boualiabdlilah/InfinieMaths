@@ -1659,6 +1659,120 @@ body.home-page .levels .level-card .btn:hover {
   .chapters-layout{ flex-direction:column; }
   .chapters-sidebar{ width:auto; height:auto; position:static; }
 }
+.chapters-layout{
+  display:flex;
+  gap:18px;
+  max-width:1200px;
+  margin:28px auto;
+  padding:0 12px;
+}
+
+.chapters-sidebar{
+  width:280px;
+  background:#050b1a;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:14px;
+  height: calc(100vh - 120px);
+  position: sticky;
+  top: 90px;
+  overflow:auto;
+}
+
+.sidebar-title{
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+  margin:6px 6px 10px;
+}
+
+.chapter-link{
+  display:block;
+  padding:10px 12px;
+  border-radius:12px;
+  text-decoration:none;
+  color:rgba(255,255,255,0.85);
+  font-size:14px;
+  margin-bottom:6px;
+}
+.chapter-link:hover{ background:rgba(255,255,255,0.05); }
+.chapter-link.active{
+  background:rgba(250,204,21,0.14);
+  border:1px solid rgba(250,204,21,0.25);
+  color:#fff;
+}
+
+.chapter-main{
+  flex:1;
+  background:#050b1a;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:18px;
+  color:#fff;
+}
+
+.back-link{
+  display:inline-block;
+  margin-bottom:10px;
+  text-decoration:none;
+  color:rgba(255,255,255,0.65);
+}
+.back-link:hover{ color:#fff; }
+
+.tabs{
+  display:flex;
+  gap:18px;
+  border-bottom:1px solid rgba(255,255,255,0.10);
+  margin-bottom:14px;
+}
+
+.tab{
+  background:none;
+  border:none;
+  padding:10px 0;
+  color:rgba(255,255,255,0.60);
+  cursor:pointer;
+  font-size:15px;
+}
+.tab.active{
+  color:#facc15;
+  border-bottom:2px solid #facc15;
+  margin-bottom:-1px;
+}
+
+.tab-panel{ display:none; }
+.tab-panel.active{ display:block; }
+
+.course-pages{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.course-pages img{
+  width:100%;
+  max-width: 920px;
+  margin: 0 auto;
+  display:block;
+  border-radius: 12px;
+  background:#ffffff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.corriges-panel, .videos-panel{
+  padding:16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+}
+.corriges-title, .videos-title{ font-weight:800; margin-bottom:6px; }
+.corriges-subtitle, .videos-subtitle{ color: rgba(255,255,255,0.70); margin-bottom:12px; }
+
+@media (max-width: 900px){
+  .chapters-layout{ flex-direction:column; }
+  .chapters-sidebar{ width:auto; height:auto; position:static; }
+}
 
 
 

@@ -1415,6 +1415,100 @@ body.home-page .levels .level-card .btn:hover {
   color: red !important;
   background: yellow !important;
 }
+.premium-banner{
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 34px 28px;
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+
+  /* fond sombre + halo doré */
+  background:
+    radial-gradient(80% 120% at 50% 0%, rgba(245, 158, 11, 0.35), rgba(2, 6, 23, 0) 55%),
+    linear-gradient(180deg, #111827, #020617);
+
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.60);
+  text-align: center;
+}
+
+/* motif “grille” dorée en bas */
+.premium-banner::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -52px;
+  top: 45%;
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
+
+  /* fondu vers le haut */
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+/* garder le texte au-dessus des effets */
+.premium-banner h2,
+.premium-banner p,
+.premium-banner .btn-premium{
+  position: relative;
+  z-index: 1;
+}
+
+.premium-banner h2{
+  margin: 0 0 14px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #f9fafb;
+}
+
+.premium-banner p{
+  margin: 0 auto 22px;
+  max-width: 860px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+}
+
+.btn-premium{
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #111827;
+  font-weight: 800;
+
+  box-shadow: 0 14px 30px rgba(0,0,0,0.45);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-premium:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.60);
+}
+
+/* responsive */
+@media (max-width: 768px){
+  .premium-banner{
+    margin: 22px 12px;
+    padding: 24px 16px;
+  }
+  .premium-banner h2{
+    font-size: 24px;
+  }
+  .premium-banner p{
+    font-size: 14px;
+  }
+}
 
 
 

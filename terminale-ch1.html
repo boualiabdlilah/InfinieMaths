@@ -1,0 +1,100 @@
+<div class="chapters-layout">
+
+  <aside class="chapters-sidebar">
+    <div class="sidebar-title">Chapitres de Terminale</div>
+
+    <a class="chapter-link active" href="terminale-ch1.html">Chapitre 1 – Récurrence et limites de suites</a>
+    <a class="chapter-link" href="terminale-ch2.html">Chapitre 2 – Limites de fonctions</a>
+    <a class="chapter-link" href="terminale-ch3.html">Chapitre 3 – Continuité des fonctions</a>
+    <a class="chapter-link" href="terminale-ch4.html">Chapitre 4 – Dérivation et convexité</a>
+    <a class="chapter-link" href="terminale-ch5.html">Chapitre 5 – Géométrie dans l’espace</a>
+    <a class="chapter-link" href="terminale-ch6.html">Chapitre 6 – Loi binomiale</a>
+    <a class="chapter-link" href="terminale-ch7.html">Chapitre 7 – Fonctions trigonométriques</a>
+    <a class="chapter-link" href="terminale-ch8.html">Chapitre 8 – Fonction logarithme</a>
+    <a class="chapter-link" href="terminale-ch9.html">Chapitre 9 – Combinatoire et dénombrement</a>
+    <a class="chapter-link" href="terminale-ch10.html">Chapitre 10 – Primitives et équations différentielles</a>
+    <a class="chapter-link" href="terminale-ch11.html">Chapitre 11 – Intégration</a>
+    <a class="chapter-link" href="terminale-ch12.html">Chapitre 12 – Somme de variables aléatoires et loi des grands nombres</a>
+  </aside>
+
+  <main class="chapter-main">
+    <a class="back-link" href="terminale.html">← Retour Terminale</a>
+
+    <h1 class="chapter-title">Chapitre 1 – Récurrence et limites de suites</h1>
+    <div class="chapter-subtitle">Suites, récurrence, convergence, limites.</div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="cours">Cours</button>
+      <button class="tab" data-tab="corriges">Corrigés</button>
+      <button class="tab" data-tab="videos">Vidéos</button>
+    </div>
+
+    <!-- ONGLET COURS : cours en images -->
+    <section id="tab-cours" class="tab-panel active">
+      <div class="course-pages">
+
+        <!-- Remplace .webp par .png si tu n'as pas encore converti -->
+        <img src="cours/terminale/ch1/page-01.webp" alt="Cours Ch1 page 1" loading="lazy">
+        <img src="cours/terminale/ch1/page-02.webp" alt="Cours Ch1 page 2" loading="lazy">
+        <img src="cours/terminale/ch1/page-03.webp" alt="Cours Ch1 page 3" loading="lazy">
+        <img src="cours/terminale/ch1/page-04.webp" alt="Cours Ch1 page 4" loading="lazy">
+        <img src="cours/terminale/ch1/page-05.webp" alt="Cours Ch1 page 5" loading="lazy">
+        <img src="cours/terminale/ch1/page-06.webp" alt="Cours Ch1 page 6" loading="lazy">
+        <img src="cours/terminale/ch1/page-07.webp" alt="Cours Ch1 page 7" loading="lazy">
+        <img src="cours/terminale/ch1/page-08.webp" alt="Cours Ch1 page 8" loading="lazy">
+        <img src="cours/terminale/ch1/page-09.webp" alt="Cours Ch1 page 9" loading="lazy">
+        <img src="cours/terminale/ch1/page-10.webp" alt="Cours Ch1 page 10" loading="lazy">
+        <img src="cours/terminale/ch1/page-11.webp" alt="Cours Ch1 page 11" loading="lazy">
+        <img src="cours/terminale/ch1/page-12.webp" alt="Cours Ch1 page 12" loading="lazy">
+        <img src="cours/terminale/ch1/page-13.webp" alt="Cours Ch1 page 13" loading="lazy">
+        <img src="cours/terminale/ch1/page-14.webp" alt="Cours Ch1 page 14" loading="lazy">
+
+      </div>
+    </section>
+
+    <!-- ONGLET CORRIGÉS : on garde ta page actuelle -->
+    <section id="tab-corriges" class="tab-panel">
+      <div class="corriges-panel">
+        <div class="corriges-title">Chapitre 1 — Corrigés</div>
+        <div class="corriges-subtitle">Choisis la version gratuite ou premium.</div>
+
+        <!-- Mets ici le lien exact de TA page corrigés actuelle -->
+        <a class="btn-premium" href="terminale-ch1-corriges.html">Accéder aux corrigés</a>
+      </div>
+    </section>
+
+    <!-- ONGLET VIDÉOS -->
+    <section id="tab-videos" class="tab-panel">
+      <div class="videos-panel">
+        <div class="videos-title">Vidéos</div>
+        <div class="videos-subtitle">À ajouter</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  const tab_btns = document.querySelectorAll('.tab');
+  const tab_panels = document.querySelectorAll('.tab-panel');
+
+  tab_btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tab_btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const tab_name = btn.getAttribute('data-tab');
+      tab_panels.forEach(p => {
+        p.classList.toggle('active', p.id === 'tab-' + tab_name);
+      });
+
+      history.replaceState(null, '', '#' + tab_name);
+    });
+  });
+
+  const hash_val = (window.location.hash || '').replace('#','');
+  if(hash_val){
+    const btn = document.querySelector('.tab[data-tab="' + hash_val + '"]');
+    if(btn){ btn.click(); }
+  }
+</script>

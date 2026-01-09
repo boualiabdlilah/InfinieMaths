@@ -1382,15 +1382,9 @@ body.home-page .levels .level-card .btn {
 body.home-page .levels .level-card .btn:hover {
   filter: brightness(0.95);
 }
-/* Filigrane unique, toujours au-dessus */
+/* Filigrane global: DÉSACTIVÉ (sinon ça recouvre menu + header) */
 .watermark{
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2147483647;
-  display: grid;
-  place-items: center;
-  isolation: isolate;
+  display: none !important;
 }
 
 /* IMPORTANT: on cible l'id pour être sûr de gagner */
@@ -1828,6 +1822,7 @@ a.back-link:focus{
   color:#fb923c !important;
   text-decoration:none !important;
 }
+
 
 
 

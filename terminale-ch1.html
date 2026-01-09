@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -19,30 +19,31 @@ height:auto;
 margin:14px auto;
 border-radius:10px;
 }
- /* Filigrane (au-dessus des images) */
-.watermark{
-position: fixed;
+   /* Filigrane uniquement sur la page (clippé au cadre de la page) */
+.page-frame{ position: relative; display: inline-block; }
+.page-frame .watermark{
+position: absolute;
 inset: 0;
 pointer-events: none;
-z-index: 9999999;
+z-index: 5;
 display: grid;
 place-items: center;
+overflow: hidden;
 }
-.watermark span{
+.page-frame .watermark span{
 font-size: 90px;
 font-weight: 900;
 letter-spacing: 8px;
 transform: rotate(-25deg);
-color: rgba(0, 0, 252, 0.22);
-text-shadow: 0 1px 18px rgba(0,0,0,0.35);
+color: rgba(0, 0, 252, 0.22);text-shadow: 0 1px 18px rgba(0,0,0,0.35);
 -webkit-text-stroke: 1px rgba(0, 0, 0, 0.18);
 user-select: none;
-white-space: nowrap;}
+white-space: nowrap;
+}
 </style>
 </head>
  <body class="terminale-page">
-<div class="watermark"><span>www.infiniemaths.com</span></div>
-  <header class="site-header">
+<header class="site-header">
 <div class="logo">
 <span class="logo-mark">∞</span>
 <span class="logo-text">
@@ -72,8 +73,8 @@ fonctions</a>
 <a class="chapter-link" href="terminale-ch4.html">Chapitre 4 – Dérivation et
 convexité</a>
 <a class="chapter-link" href="terminale-ch5.html">Chapitre 5 – Géométrie dans
-l’espace</a>
-<a class="chapter-link" href="terminale-ch6.html">Chapitre 6 – Loi binomiale<a>
+l’espace</a><a class="chapter-link" href="terminale-ch6.html">Chapitre 6 – Loi binomiale<
+a>
 <a class="chapter-link" href="terminale-ch7.html">Chapitre 7 – Fonctions
 trigonométriques</a>
 <a class="chapter-link" href="terminale-ch8.html">Chapitre 8 – Fonction
@@ -98,33 +99,74 @@ variables aléatoires et loi des grands nombres</a>
 </div>
   <div id="tab-cours" class="tab-panel active">
 <div class="course-pages">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_001.png"
-alt="Cours Terminale Chapitre 1 page 1" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_002.png"
-alt="Cours Terminale Chapitre 1 page 2" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_003.png"
-alt="Cours Terminale Chapitre 1 page 3" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_004.png"
-alt="Cours Terminale Chapitre 1 page 4" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_005.png"
-alt="Cours Terminale Chapitre 1 page 5" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_006.png"
-alt="Cours Terminale Chapitre 1 page 6" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_007.png"
-alt="Cours Terminale Chapitre 1 page 7" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_008.png"alt="Cours Terminale Chapitre 1 page 8" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_009.png"
-alt="Cours Terminale Chapitre 1 page 9" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_010.png"
-alt="Cours Terminale Chapitre 1 page 10" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_011.png"
-alt="Cours Terminale Chapitre 1 page 11" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_012.png"
-alt="Cours Terminale Chapitre 1 page 12" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_013.png"
-alt="Cours Terminale Chapitre 1 page 13" loading="lazy">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_014.png"
-alt="Cours Terminale Chapitre 1 page 14" loading="lazy">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_001.png" alt="Cours
+Terminale Chapitre 1 page 1" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_002.png" alt="Cours
+Terminale Chapitre 1 page 2" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_003.png" alt="Cours
+Terminale Chapitre 1 page 3" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div></div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_004.png" alt="Cours
+Terminale Chapitre 1 page 4" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_005.png" alt="Cours
+Terminale Chapitre 1 page 5" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_006.png" alt="Cours
+Terminale Chapitre 1 page 6" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_007.png" alt="Cours
+Terminale Chapitre 1 page 7" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_008.png" alt="Cours
+Terminale Chapitre 1 page 8" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_009.png" alt="Cours
+Terminale Chapitre 1 page 9" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_010.png" alt="Cours
+Terminale Chapitre 1 page 10" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_011.png" alt="Cours
+Terminale Chapitre 1 page 11" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_012.png" alt="Cours
+Terminale Chapitre 1 page 12" loading="lazy"><div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_013.png" alt="Cours
+Terminale Chapitre 1 page 13" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_014.png" alt="Cours
+Terminale Chapitre 1 page 14" loading="lazy">
+<div class="watermark"><span>www.infiniemaths.com</span></div>
+</div>
 </div>
 </div>
   <div id="tab-corriges" class="tab-panel">
@@ -150,8 +192,8 @@ veux.</div>
 const tab_buttons = document.querySelectorAll('.tab');
 const tab_panels = document.querySelectorAll('.tab-panel');
   tab_buttons.forEach(btn => {
-btn.addEventListener('click', () => {const tab_id = btn.getAttribute('data-tab');
-  tab_buttons.forEach(b => b.classList.remove('active'));
+btn.addEventListener('click', () => {
+const tab_id = btn.getAttribute('data-tab');  tab_buttons.forEach(b => b.classList.remove('active'));
 tab_panels.forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
 const panel = document.getElementById('tab-' + tab_id);

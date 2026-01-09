@@ -1,68 +1,88 @@
 <!doctype html>
-<html lang="fr">
+<html lang=fr>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chapitre 1</title>
-  <style>
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      background:#0b0f19;
-      color:#e8eefc;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      overflow-y: auto;
-    }
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px;
-    }
-    .page{
-      display:block;
-      width:100%;
-      height:auto;
-      margin:14px auto;
-      border-radius:10px;
-      box-shadow:0 10px 30px rgba(0,0,0,.45);
-      background:#111;
-    }
-    .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11,15,25,0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 12px;
-    }
-    .topbar a{
-      color:#9fb7ff;
-      text-decoration:none;
-      font-weight:600;
-    }
-  </style>
+<meta charset=utf-8>
+<meta name=viewport content='width=device-width, initial-scale=1'>
+<title>Chapitre 1</title>
+<style>
+html, body { height: 100%; }
+body{
+margin:0;
+background:#0b0f19;
+color:#e8eefc;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+overflow-y: auto;
+}
+.wrap{
+max-width: 1100px;
+margin: 0 auto;
+padding: 12px;
+}
+.page{
+display:block;
+width:100%;
+height:auto;
+margin:14px auto;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,.45);
+background:#111;
+}
+.topbar{
+position: sticky;
+top: 0;
+z-index: 10;
+background: rgba(11,15,25,0.92);
+backdrop-filter: blur(6px);
+border-bottom: 1px solid rgba(255,255,255,0.08);
+padding: 10px 12px;
+}
+.topbar a{
+color:#9fb7ff;
+text-decoration:none;
+font-weight:600;
+}
+/* Filigrane (au-dessus des images) */
+.watermark{
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 9999999;
+display: grid;
+place-items: center;
+}
+.watermark span{
+font-size: 180px;
+font-weight: 900;
+letter-spacing: 12px;
+transform: rotate(-25deg);
+color: rgba(0, 0, 252, 0.40);
+text-shadow: 0 2px 35px rgba(0,0,0,0.45);
+-webkit-text-stroke: 2px rgba(0, 0, 0, 0.20);
+user-select: none;
+white-space: nowrap;
+}
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <a href="../">Retour</a>
-  </div>
-
-  <div class="wrap">
-    <img class="page" src="./page_001.png" alt="page 1" loading="lazy">
-    <img class="page" src="./page_002.png" alt="page 2" loading="lazy">
-    <img class="page" src="./page_003.png" alt="page 3" loading="lazy">
-    <img class="page" src="./page_004.png" alt="page 4" loading="lazy">
-    <img class="page" src="./page_005.png" alt="page 5" loading="lazy">
-    <img class="page" src="./page_006.png" alt="page 6" loading="lazy">
-    <img class="page" src="./page_007.png" alt="page 7" loading="lazy">
-    <img class="page" src="./page_008.png" alt="page 8" loading="lazy">
-    <img class="page" src="./page_009.png" alt="page 9" loading="lazy">
-    <img class="page" src="./page_010.png" alt="page 10" loading="lazy">
-    <img class="page" src="./page_011.png" alt="page 11" loading="lazy">
-    <img class="page" src="./page_012.png" alt="page 12" loading="lazy">
-    <img class="page" src="./page_013.png" alt="page 13" loading="lazy">
-    <img class="page" src="./page_014.png" alt="page 14" loading="lazy">
+<div class=watermark><span>www.infiniemaths.com</span></div>
+  <div class=topbar>
+<a href=../>Retour</a>
+</div>
+  <div class=wrap>
+<img class=page src=./page_001.png alt='page 1' loading=lazy>
+<img class=page src=./page_002.png alt='page 2' loading=lazy>
+<img class=page src=./page_003.png alt='page 3' loading=lazy>
+<img class=page src=./page_004.png alt='page 4' loading=lazy>
+<img class=page src=./page_005.png alt='page 5' loading=lazy>
+<img class=page src=./page_006.png alt='page 6' loading=lazy>
+<img class=page src=./page_007.png alt='page 7' loading=lazy>
+<img class=page src=./page_008.png alt='page 8' loading=lazy>
+<img class=page src=./page_009.png alt='page 9' loading=lazy>
+<img class=page src=./page_010.png alt='page 10' loading=lazy>
+<img class=page src=./page_011.png alt='page 11' loading=lazy>
+<img class=page src=./page_012.png alt='page 12' loading=lazy>
+<img class=page src=./page_013.png alt='page 13' loading=lazy>
+<img class=page src=./page_014.png alt='page 14' loading=lazy>
   </div>
 </body>
-</html>
+</htm>

@@ -1822,6 +1822,31 @@ a.back-link:focus{
   color:#fb923c !important;
   text-decoration:none !important;
 }
+/* Filigrane uniquement dans la page (autour de l'image de page) */
+.page-frame{ position: relative; display: inline-block; }
+
+.page-frame .page-watermark{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.page-frame .page-watermark span{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 55px;
+  letter-spacing: 6px;
+  transform: rotate(-25deg);
+  color: rgba(0, 0, 252, 0.18);
+  text-shadow: 0 1px 16px rgba(0,0,0,0.30);
+  -webkit-text-stroke: 1px rgba(0,0,0,0.15);
+  user-select: none;
+  white-space: nowrap;
+}
 
 
 

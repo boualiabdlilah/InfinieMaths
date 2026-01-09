@@ -5,38 +5,51 @@
   <title>Chapitre 1 - Récurrence et limites de suites</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- IMPORTANT: chemin absolu -->
+  <!-- CSS: si ton style.css est à la racine du site -->
   <link rel="stylesheet" href="/style.css">
 </head>
 
 <body class="terminale-page">
   <main class="container">
-
     <section class="chapter-hero">
-      
 
+      <!-- CARTE CLIQUABLE (ouvre le cours) -->
+      <div class="level-card level-card-clickable"
+           data-href="/terminale/chapitre-1/cours-et-exercices/">
+        <h3>Chapitre 1 – Récurrence et limites de suites</h3>
+        <p>Suites, récurrence, convergence, limites.</p>
+        <div class="card-links">
+          <span class="card-link-hint">Ouvrir le chapitre</span>
+        </div>
+      </div>
 
+      <!-- (Optionnel) mini liens sous la carte, si tu veux garder accès direct -->
+      <div class="chapter-mini-links" style="max-width: 980px; margin: 12px auto 0;">
+        <a class="chapter-pill" href="/terminale/chapitre-1/corriges/">Voir les corrigés</a>
+      </div>
 
-<a class="level-card level-card-link" href="./cours-et-exercices/">
-  <h3>Chapitre 1 – Récurrence et limites de suites</h3>
-  <p>Suites, récurrence, convergence, limites.</p>
+      <!-- RETOUR -->
+      <div style="max-width: 980px; width: 100%; margin: 14px auto 0;">
+        <a class="btn btn-secondary" href="/terminale/" style="display:inline-block;">
+          ← Retour Terminale
+        </a>
+      </div>
 
-  <div class="card-links">
-    <span class="card-link-hint">Ouvrir le chapitre</span>
-  </div>
-</a>
-
-<div style="max-width: 980px; width: 100%; margin: 14px auto 0;">
-  <a class="btn btn-secondary" href="/terminale/" style="display:inline-block;">
-    ← Retour Terminale
-  </a>
-</div>
-      
-      
     </section>
-
-    
-
   </main>
+
+  <script>
+    // Carte cliquable sans <a> wrapper = aucun souci de liens imbriqués
+    document.addEventListener("click", function(e){
+      var cardEl = e.target.closest(".level-card-clickable");
+      if(!cardEl) return;
+
+      // si on clique sur un lien/bouton à l'intérieur, on le laisse
+      if(e.target.closest("a, button")) return;
+
+      var targetHref = cardEl.getAttribute("data-href");
+      if(targetHref) window.location.href = targetHref;
+    });
+  </script>
 </body>
 </html>

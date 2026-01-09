@@ -1799,6 +1799,20 @@ body.home-page .levels .level-card .btn:hover {
 .back-btn:active{
   transform: translateY(0px);
 }
+/* Lien retour: pas de bouton, juste une couleur visible */
+a.back-link,
+a.back-link:link,
+a.back-link:visited{
+  color:#f97316;                 /* orange visible */
+  text-decoration:none !important;  /* jamais souligné */
+  font-weight:700;
+}
+
+a.back-link:hover,
+a.back-link:focus{
+  color:#fb923c;                 /* orange un peu plus clair au survol */
+  text-decoration:none !important;
+}
 
 
 

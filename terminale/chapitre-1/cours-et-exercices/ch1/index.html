@@ -4,78 +4,65 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapitre 1</title>
-  <link rel="stylesheet" href="style.css?v=1">
   <style>
+    html, body { height: 100%; }
     body{
       margin:0;
       background:#0b0f19;
       color:#e8eefc;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow-y: auto;
     }
     .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:12px
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px;
     }
     .page{
       display:block;
       width:100%;
+      height:auto;
       margin:14px auto;
       border-radius:10px;
       box-shadow:0 10px 30px rgba(0,0,0,.45);
-      position:relative;
-      z-index:1
+      background:#111;
     }
-    .watermark{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2147483647;
-      display: grid;
-      place-items: center;
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11,15,25,0.92);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 10px 12px;
     }
-    .watermark span{
-      font-family: "Times New Roman", Georgia, "Times", serif; /* proche LaTeX */
-      font-weight: 900;
-
-      /* Responsive: ne dépasse pas, même avec une URL longue */
-      font-size: clamp(32px, 6vw, 78px);
-      letter-spacing: clamp(1px, 0.7vw, 8px);
-
-      white-space: nowrap;
-      user-select: none;
-      color: rgba(120,120,120,0.16);
-      -webkit-text-stroke: 1.2px rgba(0,0,0,0.12);
-      text-shadow: 0 2px 22px rgba(0,0,0,0.28);
-
-      transform: rotate(-45deg); /* on garde 45° */
-      transform-origin: center;
+    .topbar a{
+      color:#9fb7ff;
+      text-decoration:none;
+      font-weight:600;
     }
   </style>
 </head>
-
 <body>
-  <div class="watermark" id="wm" aria-hidden="true">
-    <span>www.infiniemaths.com</span>
+  <div class="topbar">
+    <a href="../">Retour</a>
   </div>
 
   <div class="wrap">
-    <img class="page" src="page_001.png" alt="page 1">
-    <img class="page" src="page_002.png" alt="page 2">
-    <img class="page" src="page_003.png" alt="page 3">
-    <img class="page" src="page_004.png" alt="page 4">
-    <img class="page" src="page_005.png" alt="page 5">
-    <img class="page" src="page_006.png" alt="page 6">
-    <img class="page" src="page_007.png" alt="page 7">
-    <img class="page" src="page_008.png" alt="page 8">
-    <img class="page" src="page_009.png" alt="page 9">
-    <img class="page" src="page_010.png" alt="page 10">
-    <img class="page" src="page_011.png" alt="page 11">
-    <img class="page" src="page_012.png" alt="page 12">
-    <img class="page" src="page_013.png" alt="page 13">
-     <img class="page" src="page_014.png" alt="page 14">
+    <img class="page" src="./page_001.png" alt="page 1" loading="lazy">
+    <img class="page" src="./page_002.png" alt="page 2" loading="lazy">
+    <img class="page" src="./page_003.png" alt="page 3" loading="lazy">
+    <img class="page" src="./page_004.png" alt="page 4" loading="lazy">
+    <img class="page" src="./page_005.png" alt="page 5" loading="lazy">
+    <img class="page" src="./page_006.png" alt="page 6" loading="lazy">
+    <img class="page" src="./page_007.png" alt="page 7" loading="lazy">
+    <img class="page" src="./page_008.png" alt="page 8" loading="lazy">
+    <img class="page" src="./page_009.png" alt="page 9" loading="lazy">
+    <img class="page" src="./page_010.png" alt="page 10" loading="lazy">
+    <img class="page" src="./page_011.png" alt="page 11" loading="lazy">
+    <img class="page" src="./page_012.png" alt="page 12" loading="lazy">
+    <img class="page" src="./page_013.png" alt="page 13" loading="lazy">
+    <img class="page" src="./page_014.png" alt="page 14" loading="lazy">
   </div>
-
-  
 </body>
 </html>

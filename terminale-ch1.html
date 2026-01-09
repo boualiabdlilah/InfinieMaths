@@ -35,15 +35,47 @@ overflow: hidden;
 font-size: 80px;
 font-weight: 900;
 letter-spacing: 6px;
-transform: rotate(-25deg);color: rgba(0, 0, 252, 0.18);
-text-shadow: 0 1px 16px rgba(0,0,0,0.30);
+transform: rotate(-25deg);color: rgba(0, 0, 252, 0.18);text-shadow: 0 1px 16px rgba(0,0,0,0.30);
 -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
 user-select: none;
 white-space: nowrap;
 }
-  /* Kill-switch: si un ancien filigrane global existe, on le coupe */
-body > .watermark{ display: none !important; }
-</style>
+ /* === HARDENING FILIGRANE (clé en main) ===
+Objectif: aucun filigrane sur le header/menu/fond, uniquement sur la page
+(image) */
+ /* 1) On neutralise TOUT filigrane global éventuel (ancien code / CSS commun) */
+body > .watermark,
+header .watermark,
+nav .watermark,
+.site-header .watermark,
+.sidebar .watermark,
+.watermark{
+position: static !important;
+inset: auto !important;
+display: none !important;
+}
+ /* 2) Filigrane par page uniquement (noms uniques pour éviter les collisions) */
+.page-frame{ position: relative !important; display: inline-block !important; }
+.page-frame .page-watermark{
+position: absolute !important;
+inset: 0 !important;
+pointer-events: none !important;
+z-index: 3 !important;
+display: grid !important;
+place-items: center !important;
+overflow: hidden !important;
+}
+.page-frame .page-watermark span{
+font-size: 80px;
+font-weight: 900;
+letter-spacing: 6px;
+transform: rotate(-25deg);
+color: rgba(0, 0, 252, 0.18);
+text-shadow: 0 1px 16px rgba(0,0,0,0.30);
+-webkit-text-stroke: 1px rgba(0,0,0,0.15);
+user-select: none;
+white-space: nowrap;
+}</style>
 </head>
  <body class="terminale-page">
 <header class="site-header">
@@ -71,17 +103,17 @@ body > .watermark{ display: none !important; }
 Récurrence et limites de suites</a>
 <a class="chapter-link" href="terminale-ch2.html">Chapitre 2 – Limites de
 fonctions</a>
-<a class="chapter-link" href="terminale-ch3.html">Chapitre 3 – Continuité desfonctions</a>
+<a class="chapter-link" href="terminale-ch3.html">Chapitre 3 – Continuité des
+fonctions</a>
 <a class="chapter-link" href="terminale-ch4.html">Chapitre 4 – Dérivation et
 convexité</a>
-<a class="chapter-link" href="terminale-ch5.html">Chapitre 5 – Géométrie dans
-l’espace</a>
+<a class="chapter-link" href="terminale-ch5.html">Chapitre 5 – Géométrie
+dansl’espace</a>
 <a class="chapter-link" href="terminale-ch6.html">Chapitre 6 – Loi binomiale<
 a>
 <a class="chapter-link" href="terminale-ch7.html">Chapitre 7 – Fonctions
 trigonométriques</a>
-<a class="chapter-link" href="terminale-ch8.html">Chapitre 8 – Fonction
-logarithme</a>
+<a class="chapter-link" href="terminale-ch8.html">Chapitre 8 – Fonctionlogarithme</a>
 <a class="chapter-link" href="terminale-ch9.html">Chapitre 9 – Combinatoire et
 dénombrement</a>
 <a class="chapter-link" href="terminale-ch10.html">Chapitre 10 – Primitives et
@@ -103,71 +135,111 @@ variables aléatoires et loi des grands nombres</a>
   <div id="tab-cours" class="tab-panel active">
 <div class="course-pages">
 <div class="page-frame">
+<div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_001.png" alt="Cours
 Terminale Chapitre 1 page 1" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_002.png" alt="Cours
 Terminale Chapitre 1 page 2" loading="lazy">
-<div class="page-watermark"><span>www.infiniemaths.com</span></div></div>
-<div class="page-frame">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_003.png" alt="Cours
-Terminale Chapitre 1 page 3" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_003.png" alt="CoursTerminale Chapitre 1 page 3" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div><div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_004.png" alt="Cours
 Terminale Chapitre 1 page 4" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_005.png" alt="Cours
 Terminale Chapitre 1 page 5" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_006.png" alt="Cours
 Terminale Chapitre 1 page 6" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_007.png" alt="Cours
 Terminale Chapitre 1 page 7" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_008.png" alt="Cours
 Terminale Chapitre 1 page 8" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div><div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_009.png" alt="Cours
 Terminale Chapitre 1 page 9" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_010.png" alt="Cours
 Terminale Chapitre 1 page 10" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
-<div class="page-frame">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_011.png" alt="Cours
-Terminale Chapitre 1 page 11" loading="lazy"><div class="page-watermark"><span>www.infiniemaths.com</span></div>
-</div>
-<div class="page-frame">
-<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_012.png" alt="Cours
-Terminale Chapitre 1 page 12" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_011.png" alt="Cours
+Terminale Chapitre 1 page 11" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_012.png"
+alt="CoursTerminale Chapitre 1 page 12" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_013.png" alt="Cours
 Terminale Chapitre 1 page 13" loading="lazy">
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
 <div class="page-frame">
 <img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_014.png" alt="Cours
-Terminale Chapitre 1 page 14" loading="lazy">
+Terminale Chapitre 1 page 14" loading="lazy"><div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
 <div class="page-watermark"><span>www.infiniemaths.com</span></div>
 </div>
 </div>
@@ -192,10 +264,268 @@ veux.</div>
 </div>
 </main>
  <script>
-const tab_buttons = document.querySelectorAll('.tab');const tab_panels = document.querySelectorAll('.tab-panel');
+const tab_buttons = document.querySelectorAll('.tab');
+const tab_panels = document.querySelectorAll('.tab-panel');
   tab_buttons.forEach(btn => {
-btn.addEventListener('click', () => {
-const tab_id = btn.getAttribute('data-tab');
+btn.addEventListener('click', () => {const tab_id = btn.getAttribute('data-tab');
+  tab_buttons.forEach(b => b.classList.remove('active'));
+tab_panels.forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+const panel = document.getElementById('tab-' + tab_id);
+if (panel) panel.classList.add('active');
+});
+});</script>
+ <footer class="site-footer">
+<div class="footer-inner">
+<span class="footer-text">
+© 2026 InfinieMaths. Tous droits réservés.
+</span>
+  <div class="footer-links">
+<a href="cours-en-ligne.html">Cours en ligne</a>
+<a href="concours.html">Concours</a>
+<a href="python.html">Python</a>
+<a href="apropos.html">À propos</a>
+<a href="contact.html">Contact</a>
+</div>
+</div>
+</footer>
+ </body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Terminale - Chapitre 1 | InfinieMaths</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chapitre 1 de Terminale - Récurrence et
+limites de suites.">
+<link rel="stylesheet" href="/style.css?v=11">
+  <style>
+/* filet de sécurité si jamais ton style global gêne le scroll */
+html, body { height: 100%; }
+body { overflow-y: auto; }
+  /* si tes images sont trop grandes/pas centrées, ça force un rendu propre */
+.course-pages img{
+display:block;
+width:100%;
+height:auto;
+margin:14px auto;
+border-radius:10px;
+}
+/* Filigrane (au-dessus des images) */
+  /* Filigrane: uniquement sur les images de pages (ne touche pas le header/menu) */
+.page-frame{ position: relative; display: inline-block; }
+.page-frame .page-watermark{
+position: absolute;
+inset: 0;
+pointer-events: none;
+z-index: 3;
+display: grid;
+place-items: center;
+overflow: hidden;
+}
+.page-frame .page-watermark span{
+font-size: 80px;
+font-weight: 900;
+letter-spacing: 6px;
+transform: rotate(-25deg);color: rgba(0, 0, 252, 0.18);
+text-shadow: 0 1px 16px rgba(0,0,0,0.30);
+-webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
+user-select: none;
+white-space: nowrap;
+}
+</style>
+</head>
+ <body class="terminale-page">
+<header class="site-header">
+<div class="logo">
+<span class="logo-mark">∞</span>
+<span class="logo-text">
+<span class="highlight">InfinieMaths</span>
+</span>
+<span class="logo-subtitle">les maths du lycée, simplement.</span>
+</div>
+  <nav class="main-nav">
+<a href="index.html">Accueil</a>
+<a href="seconde.html">Seconde</a>
+<a href="premiere.html">Première</a>
+<a href="terminale.html" class="active">Terminale</a>
+<a href="pass-premium.html">Pass Premium</a>
+<a href="inscription.html">Inscription</a></nav>
+</header>
+ <main class="container">
+<div class="chapters-layout">
+  <aside class="chapters-sidebar">
+<div class="sidebar-title">Chapitres de Terminale</div>
+  <a class="chapter-link active" href="terminale-ch1.html">Chapitre 1 –
+Récurrence et limites de suites</a>
+<a class="chapter-link" href="terminale-ch2.html">Chapitre 2 – Limites de
+fonctions</a>
+<a class="chapter-link" href="terminale-ch3.html">Chapitre 3 – Continuité des
+fonctions</a>
+<a class="chapter-link" href="terminale-ch4.html">Chapitre 4 – Dérivation et
+convexité</a>
+<a class="chapter-link" href="terminale-ch5.html">Chapitre 5 – Géométrie
+dansl’espace</a>
+<a class="chapter-link" href="terminale-ch6.html">Chapitre 6 – Loi binomiale<
+a>
+<a class="chapter-link" href="terminale-ch7.html">Chapitre 7 – Fonctions
+trigonométriques</a>
+<a class="chapter-link" href="terminale-ch8.html">Chapitre 8 – Fonction
+logarithme</a>
+<a class="chapter-link" href="terminale-ch9.html">Chapitre 9 – Combinatoire et
+dénombrement</a>
+<a class="chapter-link" href="terminale-ch10.html">Chapitre 10 – Primitives et
+équations différentielles</a>
+<a class="chapter-link" href="terminale-ch11.html">Chapitre 11 – Intégration<
+a>
+<a class="chapter-link" href="terminale-ch12.html">Chapitre 12 – Somme de
+variables aléatoires et loi des grands nombres</a>
+</aside>
+  <section class="chapter-main">
+<a class="back-link" href="/terminale.html">← Retour Terminale</a>
+  <h1 class="chapter-title">Chapitre 1 – Récurrence et limites de suites</h1>
+<div class="chapter-subtitle">Suites, récurrence, convergence, limites.</div>
+  <div class="tabs">
+<button class="tab active" data-tab="cours">Cours</button>
+<button class="tab" data-tab="corriges">Corrigés</button><button class="tab" data-tab="videos">Vidéos</button>
+</div>
+  <div id="tab-cours" class="tab-panel active">
+<div class="course-pages">
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_001.png" alt="Cours
+Terminale Chapitre 1 page 1" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_002.png" alt="Cours
+Terminale Chapitre 1 page 2" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_003.png" alt="Cours
+Terminale Chapitre 1 page 3" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div><div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_004.png" alt="Cours
+Terminale Chapitre 1 page 4" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_005.png" alt="Cours
+Terminale Chapitre 1 page 5" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div><div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_006.png" alt="Cours
+Terminale Chapitre 1 page 6" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_007.png" alt="Cours
+Terminale Chapitre 1 page 7" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_008.png" alt="Cours
+Terminale Chapitre 1 page 8" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_009.png" alt="Cours
+Terminale Chapitre 1 page 9" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_010.png" alt="Cours
+Terminale Chapitre 1 page 10" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_011.png" alt="Cours
+Terminale Chapitre 1 page 11" loading="lazy"><div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_012.png"
+alt="CoursTerminale Chapitre 1 page 12" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_013.png" alt="Cours
+Terminale Chapitre 1 page 13" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-frame">
+<div class="page-frame">
+<img src="/terminale/chapitre-1/cours-et-exercices/ch1/page_014.png" alt="Cours
+Terminale Chapitre 1 page 14" loading="lazy">
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+<div class="page-watermark"><span>www.infiniemaths.com</span></div>
+</div>
+</div>
+</div>
+  <div id="tab-corriges" class="tab-panel">
+<div class="corriges-panel">
+<div class="corriges-title">Corrigés</div>
+<div class="corriges-subtitle">Accède aux corrigés gratuits ou à la version
+premium.</div>
+<a class="btn-premium" href="/terminale/chapitre-1/corriges
+index.html">Ouvrir la page corrigés</a>
+</div>
+</div>
+  <div id="tab-videos" class="tab-panel">
+<div class="videos-panel">
+<div class="videos-title">Vidéos</div><div class="videos-subtitle">Ajoute ici tes liens YouTube / Drive quand tu
+veux.</div>
+</div>
+</div>
+  </section>
+</div>
+</main>
+ <script>
+const tab_buttons = document.querySelectorAll('.tab');
+const tab_panels = document.querySelectorAll('.tab-panel');
+  tab_buttons.forEach(btn => {
+btn.addEventListener('click', () => {const tab_id = btn.getAttribute('data-tab');
   tab_buttons.forEach(b => b.classList.remove('active'));
 tab_panels.forEach(p => p.classList.remove('active'));
   btn.classList.add('active');

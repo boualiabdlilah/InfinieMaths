@@ -1778,22 +1778,28 @@ body.home-page .levels .level-card .btn:hover {
   display:inline-block;
   padding:10px 14px;
   border-radius:12px;
-  background:#16a34a;        /* couleur du bouton */
-  color:#ffffff;             /* couleur du texte */
-  text-decoration:none;
+
+  background:#f97316;      /* orange */
+  color:#ffffff;
+
+  text-decoration:none;    /* enlève le soulignement */
   font-weight:700;
+
   border:1px solid rgba(255,255,255,0.14);
   transition: filter .15s ease, transform .15s ease;
 }
 
-.back-btn:hover{
-  filter:brightness(1.07);
+.back-btn:hover,
+.back-btn:focus{
+  text-decoration:none;    /* évite le soulignement au hover/focus */
+  filter:brightness(1.06);
   transform: translateY(-1px);
 }
 
 .back-btn:active{
   transform: translateY(0px);
 }
+
 
 
 

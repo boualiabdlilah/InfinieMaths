@@ -1857,6 +1857,35 @@ a.back-link:focus{
   text-decoration:none;
   font-weight:700;
 }
+/* Carte cliquable */
+.level-card-link{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.level-card-link:hover{
+  transform: translateY(-2px);
+}
+
+.level-card-link:focus{
+  outline: none;
+}
+
+.level-card-link:focus-visible{
+  outline: 3px solid rgba(59,130,246,0.55);
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+/* Petit texte d'indication (optionnel) */
+.card-link-hint{
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 800;
+  opacity: 0.9;
+}
 
 
 

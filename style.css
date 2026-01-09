@@ -1814,6 +1814,20 @@ a.back-link:focus{
   text-decoration:none !important;
 }
 
+/* Retour Terminale: lien simple, orange visible, jamais souligné */
+a.back-link,
+a.back-link:link,
+a.back-link:visited{
+  color:#f97316 !important;
+  text-decoration:none !important;
+  font-weight:700;
+}
+
+a.back-link:hover,
+a.back-link:focus{
+  color:#fb923c !important;
+  text-decoration:none !important;
+}
 
 
 

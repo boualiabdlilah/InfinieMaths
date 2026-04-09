@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>InfinieMaths - Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assistant InfinieMaths - Une aide simple et guidée pour comprendre une notion, une méthode ou un exercice.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="assistant-page-body">
+
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">∞</span>
+            <span class="logo-text"><span class="highlight">InfinieMaths</span></span>
+            <span class="logo-subtitle">Les maths du lycée, simplement.</span>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Accueil</a>
+            <a href="seconde.html">Seconde</a>
+            <a href="premiere.html">Première</a>
+            <a href="terminale.html">Terminale</a>
+            <a href="assistant.html" class="active">Assistant</a>
+            <a href="pass-premium.html">Pass Premium</a>
+            <a href="inscription.html">Inscription</a>
+        </nav>
+    </header>
+
+    <main class="assistant-page">
+        <section class="assistant-hero">
+            <span class="assistant-badge">Assistant IA</span>
+            <h1>Assistant InfinieMaths</h1>
+            <p>
+                Une notion à revoir, une méthode à comprendre ou un exercice à débloquer ?
+                Pose ta question et l’assistant t’accompagne pas à pas, avec des explications
+                claires adaptées à ton niveau.
+            </p>
+        </section>
+
+        <section class="assistant-box">
+            <label for="userQuestion" class="assistant-label">Ta question</label>
+
+            <textarea
+                id="userQuestion"
+                class="assistant-textarea"
+                placeholder="Exemple : explique-moi comment résoudre une équation du second degré"
+            ></textarea>
+
+            <div class="assistant-actions">
+                <button id="sendBtn" class="assistant-btn" onclick="sendQuestion()">Envoyer</button>
+                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique-moi la dérivation simplement')">Exemple 1</button>
+                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
+            </div>
+
+            <div id="assistantResponse" class="assistant-response">
+                Bonjour 👋<br><br>
+                Je suis <strong>Assistant InfinieMaths</strong>.<br>
+                Pose-moi ta question et je t’aiderai étape par étape.
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-text">
+                © <span id="year-assistant"></span> InfinieMaths. Tous droits réservés.
+            </span>
+            <div class="footer-links">
+                <a href="cours-en-ligne.html">Cours en ligne</a>
+                <a href="concours.html">Concours</a>
+                <a href="python.html">Python</a>
+                <a href="apropos.html">À propos</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year-assistant").textContent = new Date().getFullYear();
+
+        function fillExample(text) {
+            document.getElementById("userQuestion").value = text;
+        }
+
+        async function sendQuestion() {
+            const question = document.getElementById("userQuestion").value.trim();
+            const responseBox = document.getElementById("assistantResponse");
+            const sendBtn = document.getElementById("sendBtn");
+
+            if (!question) {
+                responseBox.innerHTML = "Merci d’écrire une question avant d’envoyer.";
+                return;
+            }
+
+            responseBox.innerHTML = "Chargement de la réponse...";
+            sendBtn.disabled = true;
+            sendBtn.textContent = "Envoi...";
+
+            try {
+                const response = await fetch("http://localhost:5000/assistant", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        source: "InfinieMaths"
+                    })
+                });
+
+                const data = await response.json();
+                responseBox.innerHTML = data.reply;
+            } catch (error) {
+                responseBox.innerHTML = "Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.";
+            }
+
+            sendBtn.disabled = false;
+            sendBtn.textContent = "Envoyer";
+        }
+    </script>
+
+</body>
+</html>

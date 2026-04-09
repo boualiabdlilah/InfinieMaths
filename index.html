@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,13 +9,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="home-page">
+
     <!-- HEADER -->
-   <header class="site-header">
+    <header class="site-header">
         <div class="logo">
             <span class="logo-mark">∞</span>
-            <span class="logo-text">   <span class="highlight">InfinieMaths</span>   </span>
+            <span class="logo-text"><span class="highlight">InfinieMaths</span></span>
             <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
+
         <nav class="main-nav">
             <a href="index.html" class="active">Accueil</a>
             <a href="seconde.html">Seconde</a>
@@ -27,6 +30,7 @@
     </header>
 
     <main class="container">
+
         <!-- HERO D'ACCUEIL -->
         <section class="hero">
             <div class="hero-text">
@@ -40,12 +44,13 @@
                     <a href="#premiere" class="btn btn-primary">Aller en Première</a>
                 </div>
             </div>
+
             <div class="hero-side">
                 <div class="hero-card">
                     <h2>Comment fonctionne InfinieMaths</h2>
                     <ul>
-                        <li>Tu choisis ton niveau (Seconde, Première, Terminale).</li>
-                        <li>Tu suis un parcours structuré, chapitre par chapitre.</li>
+                        <li>Tu choisis ton niveau Seconde, Première ou Terminale.</li>
+                        <li>Tu suis un parcours structuré chapitre par chapitre.</li>
                         <li>Tu t’entraînes avec des exercices corrigés étape par étape.</li>
                         <li>Tu arrives en contrôle ou au Bac en ayant déjà vu l’essentiel.</li>
                     </ul>
@@ -59,17 +64,17 @@
             <p class="chapitres-subtitle">
                 Chaque parcours te guide pas à pas, du cours aux exercices corrigés.
             </p>
+
             <div class="level-grid">
                 <article class="level-card">
                     <span class="level-label">NIVEAU</span>
                     <h3>Seconde</h3>
                     <p>
-                        Revois les bases calmement: des explications détaillées et des exercices pour reprendre confiance.
+                        Revois les bases calmement avec des explications détaillées et des exercices
+                        pour reprendre confiance.
                     </p>
                     <ul class="card-links">
-                        <li>
-                            <a href="seconde.html" class="btn btn-primary">Accéder à la Seconde</a>
-                        </li>
+                        <li><a href="seconde.html" class="btn btn-primary">Accéder à la Seconde</a></li>
                     </ul>
                 </article>
 
@@ -77,13 +82,11 @@
                     <span class="level-label">NIVEAU</span>
                     <h3>Première</h3>
                     <p>
-                        Travaille ce qui compte pour la suite.
-                        Fiches claires, exercices type contrôle et entraînements progressifs.
+                        Travaille ce qui compte pour la suite avec des fiches claires, des exercices
+                        type contrôle et des entraînements progressifs.
                     </p>
                     <ul class="card-links">
-                        <li>
-                            <a href="premiere.html" class="btn btn-primary">Accéder à la Première</a>
-                        </li>
+                        <li><a href="premiere.html" class="btn btn-primary">Accéder à la Première</a></li>
                     </ul>
                 </article>
 
@@ -91,13 +94,11 @@
                     <span class="level-label">NIVEAU</span>
                     <h3>Terminale</h3>
                     <p>
-                        Prépare le Bac avec sérieux :
-                        annales, exercices clés et rappels de cours ciblés pour éviter les pièges le jour J.
+                        Prépare le Bac avec sérieux grâce aux annales, aux exercices clés et aux rappels
+                        de cours ciblés pour éviter les pièges le jour J.
                     </p>
                     <ul class="card-links">
-                        <li>
-                            <a href="terminale.html" class="btn btn-primary">Accéder à la Terminale</a>
-                        </li>
+                        <li><a href="terminale.html" class="btn btn-primary">Accéder à la Terminale</a></li>
                     </ul>
                 </article>
             </div>
@@ -113,40 +114,52 @@
             <a href="pass-premium.html" class="btn-premium">Découvrir le Premium</a>
         </section>
 
+        <!-- ASSISTANT -->
         <section class="assistant-preview">
             <div class="assistant-preview-content">
-                <span class="assistant-preview-badge">Nouveau</span>
-                <h2>Assistant InfinieMaths</h2>
-                <p>
-                    Besoin d’aide sur une notion, une méthode ou un exercice ?<br>
-                    L’assistant InfinieMaths t’accompagne pas à pas selon ton niveau.
-                </p>
-                <a href="assistant.html" class="assistant-preview-link">Ouvrir l’assistant</a>
+                <div class="assistant-preview-top">
+                    <span class="assistant-preview-badge">Assistant IA</span>
+                </div>
+
+                <div class="assistant-preview-body">
+                    <div class="assistant-preview-text">
+                        <h2>Assistant InfinieMaths</h2>
+                        <p>
+                            Besoin d’aide sur une notion, une méthode ou un exercice ?
+                            L’assistant InfinieMaths t’accompagne pas à pas selon ton niveau.
+                        </p>
+                    </div>
+
+                    <div class="assistant-preview-action">
+                        <a href="assistant.html" class="assistant-preview-button">Ouvrir l’assistant</a>
+                    </div>
+                </div>
             </div>
         </section>
+
     </main>
 
     <footer class="site-footer">
-      <div class="footer-inner">
-        <span class="footer-text">
-          © 2026 InfinieMaths. Tous droits réservés.
-        </span>
-        <div class="footer-links">
-          <a href="cours-en-ligne.html">Cours en ligne</a>
-          <a href="concours.html">Concours</a>
-          <a href="python.html">Python</a>
-          <a href="apropos.html">À propos</a>
-          <a href="contact.html">Contact</a>
+        <div class="footer-inner">
+            <span class="footer-text">
+                © <span id="year-home"></span> InfinieMaths. Tous droits réservés.
+            </span>
+            <div class="footer-links">
+                <a href="cours-en-ligne.html">Cours en ligne</a>
+                <a href="concours.html">Concours</a>
+                <a href="python.html">Python</a>
+                <a href="apropos.html">À propos</a>
+                <a href="contact.html">Contact</a>
+            </div>
         </div>
-      </div>
     </footer>
 
     <script>
         document.getElementById("year-home").textContent = new Date().getFullYear();
     </script>
+
 </body>
 </html>
-
 
 
 

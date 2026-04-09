@@ -33,12 +33,11 @@
             <h1>Assistant InfinieMaths</h1>
             <p>
                 Une notion à revoir, une méthode à comprendre ou un exercice à débloquer ?
-                Pose ta question et l’assistant t’accompagne pas à pas, avec des explications
-                claires adaptées à ton niveau.
+                Pose ta question et l’assistant t’accompagne pas à pas, avec des explications claires adaptées à ton niveau.
             </p>
         </section>
 
-        <section class="assistant-box">
+        <section class="assistant-card">
             <label for="userQuestion" class="assistant-label">Ta question</label>
 
             <textarea
@@ -54,9 +53,9 @@
             </div>
 
             <div id="assistantResponse" class="assistant-response">
-                Bonjour 👋<br><br>
-                Je suis <strong>Assistant InfinieMaths</strong>.<br>
-                Pose-moi ta question et je t’aiderai étape par étape.
+                <p class="assistant-response-intro">Bonjour 👋</p>
+                <p>Je suis <strong>Assistant InfinieMaths</strong>.</p>
+                <p>Pose-moi ta question et je t’aiderai étape par étape.</p>
             </div>
         </section>
     </main>
@@ -89,11 +88,11 @@
             const sendBtn = document.getElementById("sendBtn");
 
             if (!question) {
-                responseBox.innerHTML = "Merci d’écrire une question avant d’envoyer.";
+                responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
                 return;
             }
 
-            responseBox.innerHTML = "Chargement de la réponse...";
+            responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
             sendBtn.disabled = true;
             sendBtn.textContent = "Envoi...";
 
@@ -110,9 +109,9 @@
                 });
 
                 const data = await response.json();
-                responseBox.innerHTML = data.reply;
+                responseBox.innerHTML = "<p>" + data.reply + "</p>";
             } catch (error) {
-                responseBox.innerHTML = "Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.";
+                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
             }
 
             sendBtn.disabled = false;

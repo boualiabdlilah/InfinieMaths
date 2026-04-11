@@ -2472,6 +2472,8 @@ a.back-link:focus{
     box-shadow: none;
 }
 
+
+
 .assistant-response {
     background: #0b1224;
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -2481,6 +2483,7 @@ a.back-link:focus{
     font-size: 0.98rem;
     line-height: 1.42;
     overflow-wrap: break-word;
+    margin-top: 1rem;
 }
 
 .assistant-response > *:first-child {
@@ -2508,6 +2511,13 @@ a.back-link:focus{
     border-radius: 10px;
     font-weight: 700;
     line-height: 1.2;
+}
+
+.assistant-response h1 + p,
+.assistant-response h2 + p,
+.assistant-response h3 + p,
+.assistant-response h4 + p {
+    margin-top: 0.08rem;
 }
 
 .assistant-response hr {
@@ -2604,10 +2614,6 @@ a.back-link:focus{
     color: #cfe0ff;
     font-weight: 600;
 }
-
-
-
-
 
 
 

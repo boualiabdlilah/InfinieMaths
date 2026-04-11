@@ -68,17 +68,15 @@
 
     <footer class="site-footer">
         <div class="footer-content">
-            <span>
-                © <span id="year-assistant"></span> InfinieMaths - Tous droits réservés
-            </span>
+            <span>© <span id="year-assistant"></span> InfinieMaths - Tous droits réservés</span>
         </div>
     </footer>
 
     <script>
         document.getElementById("year-assistant").textContent = new Date().getFullYear();
 
-        function fillExample(text) {
-            document.getElementById("userQuestion").value = text;
+        function fillExample(exampleText) {
+            document.getElementById("userQuestion").value = exampleText;
         }
 
         async function sendQuestion() {
@@ -110,7 +108,7 @@
                     formData.append("file", selectedFile);
                 }
 
-                const response = await fetch("/assistant", {
+                const response = await fetch("https://api.infiniemaths.com/assistant", {
                     method: "POST",
                     body: formData
                 });
@@ -147,7 +145,7 @@
                     });
                 }
             } catch (error) {
-                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien publié et accessible en ligne.</p>";
+                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que l’API est bien accessible en ligne.</p>";
             } finally {
                 sendBtn.disabled = false;
                 sendBtn.textContent = "Envoyer";

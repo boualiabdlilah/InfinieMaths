@@ -76,58 +76,59 @@
             </div>
         </div>
     </footer>
+<script>
+    document.getElementById("year-assistant").textContent = new Date().getFullYear();
 
-    <script>
-        document.getElementById("year-assistant").textContent = new Date().getFullYear();
+    function fillExample(text) {
+        document.getElementById("userQuestion").value = text;
+    }
 
-        function fillExample(text) {
-            document.getElementById("userQuestion").value = text;
+    async function sendQuestion() {
+        const question = document.getElementById("userQuestion").value.trim();
+        const responseBox = document.getElementById("assistantResponse");
+        const sendBtn = document.getElementById("sendBtn");
+
+        if (!question) {
+            responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
+            return;
         }
 
-        async function sendQuestion() {
-            const question = document.getElementById("userQuestion").value.trim();
-            const responseBox = document.getElementById("assistantResponse");
-            const sendBtn = document.getElementById("sendBtn");
+        responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Envoi...";
 
-            if (!question) {
-                responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
-                return;
-            }
+        try {
+            const response = await fetch("http://localhost:5000/assistant", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    question: question,
+                    source: "InfinieMaths"
+                })
+            });
 
-            responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
-            sendBtn.disabled = true;
-            sendBtn.textContent = "Envoi...";
+            const data = await response.json();
 
-            try {
-                const response = await fetch("http://localhost:5000/assistant", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        question: question,
-                        source: "InfinieMaths"
-                    })
-                });
+            responseBox.innerHTML = data.reply;
 
-                const data = await response.json();
+            renderMathInElement(responseBox, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\$$", right: "\$$", display: false },
+                    { left: "\$$", right: "\$$", display: true }
+                ]
+            });
 
-                responseBox.innerHTML = marked.parse(data.reply);
-
-                renderMathInElement(responseBox, {
-                    delimiters: [
-                        { left: "$$", right: "$$", display: true },
-                        { left: "$", right: "$", display: false }
-                    ]
-                });
-
-            } catch (error) {
-                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
-            }
-
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Envoyer";
+        } catch (error) {
+            responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
         }
-    </script>
+
+        sendBtn.disabled = false;
+        sendBtn.textContent = "Envoyer";
+    }
+</script>
 </body>
 </html>

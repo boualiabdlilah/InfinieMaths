@@ -2530,7 +2530,37 @@ a.back-link:focus{
         text-align: center;
     }
 }
+.assistant-response {
+    line-height: 1.8;
+    font-size: 1rem;
+}
 
+.assistant-response h2,
+.assistant-response h3,
+.assistant-response h4 {
+    color: #ffffff;
+    margin-top: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.assistant-response p {
+    margin-bottom: 1rem;
+}
+
+.assistant-response ul {
+    margin: 0.8rem 0 1rem 1.2rem;
+    padding-left: 1rem;
+}
+
+.assistant-response li {
+    margin-bottom: 0.5rem;
+}
+
+.assistant-response .katex-display {
+    margin: 1.2rem 0;
+    overflow-x: auto;
+}
 
 
 

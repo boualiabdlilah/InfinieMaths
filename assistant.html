@@ -116,13 +116,13 @@
 
             const data = await response.json();
 
-            responseBox.innerHTML = marked.parse(data.reply);
-            renderMathInElement(responseBox, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }
-                ]
-            });
+            responseBox.innerHTML = data.reply;
+renderMathInElement(responseBox, {
+    delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+    ]
+});
 
         } catch (error) {
             responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";

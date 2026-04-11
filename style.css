@@ -2476,10 +2476,10 @@ a.back-link:focus{
     background: #0b1224;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 18px;
-    padding: 1rem 1.1rem;
+    padding: 0.9rem 1rem;
     color: #e8eefc;
     font-size: 0.98rem;
-    line-height: 1.5;
+    line-height: 1.42;
     overflow-wrap: break-word;
 }
 
@@ -2492,7 +2492,7 @@ a.back-link:focus{
 }
 
 .assistant-response p {
-    margin: 0.28rem 0 0.48rem 0;
+    margin: 0.18rem 0 0.32rem 0;
 }
 
 .assistant-response h1,
@@ -2500,35 +2500,35 @@ a.back-link:focus{
 .assistant-response h3,
 .assistant-response h4 {
     display: inline-block;
-    margin: 0.45rem 0 0.22rem 0;
-    padding: 0.34rem 0.78rem;
+    margin: 0.28rem 0 0.12rem 0;
+    padding: 0.28rem 0.72rem;
     border-left: 4px solid #4f8cff;
     background: linear-gradient(90deg, rgba(79, 140, 255, 0.18), rgba(79, 140, 255, 0.05));
     color: #9fc2ff;
     border-radius: 10px;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.2;
 }
 
 .assistant-response hr {
     border: none;
     height: 1px;
     background: rgba(255, 255, 255, 0.10);
-    margin: 0.45rem 0 0.55rem 0;
+    margin: 0.28rem 0 0.38rem 0;
 }
 
 .assistant-response ul,
 .assistant-response ol {
-    margin: 0.22rem 0 0.45rem 1rem;
-    padding-left: 0.7rem;
+    margin: 0.15rem 0 0.3rem 0.95rem;
+    padding-left: 0.65rem;
 }
 
 .assistant-response li {
-    margin-bottom: 0.16rem;
+    margin-bottom: 0.12rem;
 }
 
 .assistant-response li p {
-    margin: 0.12rem 0;
+    margin: 0.08rem 0;
 }
 
 .assistant-response strong {
@@ -2543,7 +2543,7 @@ a.back-link:focus{
 
 .assistant-response code {
     background: rgba(255, 255, 255, 0.06);
-    padding: 0.08rem 0.32rem;
+    padding: 0.06rem 0.28rem;
     border-radius: 6px;
     font-size: 0.95em;
     color: #b9d2ff;
@@ -2552,9 +2552,9 @@ a.back-link:focus{
 .assistant-response pre {
     background: rgba(255, 255, 255, 0.04);
     border-radius: 10px;
-    padding: 0.7rem 0.85rem;
+    padding: 0.55rem 0.7rem;
     overflow-x: auto;
-    margin: 0.4rem 0 0.55rem 0;
+    margin: 0.22rem 0 0.32rem 0;
 }
 
 .assistant-response pre code {
@@ -2563,8 +2563,8 @@ a.back-link:focus{
 }
 
 .assistant-response blockquote {
-    margin: 0.4rem 0 0.55rem 0;
-    padding: 0.45rem 0.8rem;
+    margin: 0.22rem 0 0.32rem 0;
+    padding: 0.35rem 0.65rem;
     border-left: 3px solid #4f8cff;
     background: rgba(79, 140, 255, 0.06);
     border-radius: 8px;
@@ -2572,30 +2572,30 @@ a.back-link:focus{
 }
 
 .assistant-response .katex-display {
-    margin: 0.3rem 0 0.45rem 0;
+    margin: 0.18rem 0 0.28rem 0;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
 .assistant-response .katex {
-    font-size: 1.02em;
+    font-size: 1em;
 }
 
 .assistant-response br {
-    line-height: 1.15;
+    line-height: 1.05;
 }
 
 .assistant-response table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0.4rem 0 0.55rem 0;
+    margin: 0.22rem 0 0.32rem 0;
     font-size: 0.95rem;
 }
 
 .assistant-response th,
 .assistant-response td {
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.45rem 0.55rem;
+    padding: 0.38rem 0.48rem;
     text-align: left;
 }
 
@@ -2604,10 +2604,6 @@ a.back-link:focus{
     color: #cfe0ff;
     font-weight: 600;
 }
-
-
-
-
 
 
 

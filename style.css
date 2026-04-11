@@ -2595,12 +2595,12 @@ a.back-link:focus{
     height: 1px;
     background: linear-gradient(
         90deg,
-        rgba(79, 140, 255, 0.10),
-        rgba(120, 170, 255, 0.55),
-        rgba(79, 140, 255, 0.10)
+        rgba(79, 140, 255, 0.18),
+        rgba(120, 170, 255, 0.95),
+        rgba(79, 140, 255, 0.18)
     );
-    box-shadow: 0 0 8px rgba(79, 140, 255, 0.22);
-    margin: 0.28rem 0 0.38rem 0;
+    box-shadow: 0 0 10px rgba(79, 140, 255, 0.38);
+    margin: 0.32rem 0 0.42rem 0;
 }
 
 .assistant-response table {

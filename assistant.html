@@ -54,17 +54,13 @@
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
             </div>
 
-            <div id="assistantResponse" class="assistant-response">
-                <p class="assistant-response-intro">Bonjour 👋</p>
-                <p>Je suis <strong>Assistant InfinieMaths</strong>.</p>
-                <p>Pose-moi ta question et je t’aiderai étape par étape.</p>
-            </div>
+            <div id="assistantResponse" class="assistant-response"></div>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="footer-inner">
-            <span class="footer-text">
+            <span>
                 © <span id="year-assistant"></span> InfinieMaths. Tous droits réservés.
             </span>
             <div class="footer-links">
@@ -112,13 +108,24 @@
 
                 const data = await response.json();
 
-                let cleanedReply = data.reply
+                let cleanedReply = data.reply || "";
+
+                cleanedReply = cleanedReply
                     .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
                     .replace(/<div class="assistant-response-body">/g, "")
                     .replace(/<\/div>/g, "")
                     .replace(/<p>/g, "")
-                    .replace(/<\/p>/g, "\n\n")
+                    .replace(/<\/p>/g, "\n")
+                    .replace(/<br\s*\/?>/g, "\n")
+                    .replace(/&nbsp;/g, " ")
                     .trim();
+
+                cleanedReply = cleanedReply
+                    .replace(/\r\n/g, "\n")
+                    .replace(/\n[ \t]+\n/g, "\n\n")
+                    .replace(/\n{3,}/g, "\n\n")
+                    .replace(/[ \t]{2,}/g, " ")
+                    .replace(/^\s+|\s+$/g, "");
 
                 responseBox.innerHTML = marked.parse(cleanedReply);
 

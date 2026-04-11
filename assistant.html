@@ -18,6 +18,7 @@
             <span class="logo-text"><span class="highlight">InfinieMaths</span></span>
             <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
+
         <nav class="main-nav">
             <a href="index.html">Accueil</a>
             <a href="seconde.html">Seconde</a>
@@ -41,6 +42,7 @@
 
         <section class="assistant-card">
             <label for="userQuestion" class="assistant-label">Ta question</label>
+
             <textarea
                 id="userQuestion"
                 class="assistant-textarea"
@@ -69,11 +71,6 @@
             <span>
                 © <span id="year-assistant"></span> InfinieMaths - Tous droits réservés
             </span>
-            <div class="footer-links">
-                <a href="mentions-legales.html">Mentions légales</a>
-                <a href="politique-confidentialite.html">Confidentialité</a>
-                <a href="contact.html">Contact</a>
-            </div>
         </div>
     </footer>
 
@@ -119,6 +116,13 @@
                 });
 
                 const data = await response.json();
+
+                if (!response.ok) {
+                    const errorMessage = data.reply || "Une erreur est survenue côté serveur.";
+                    responseBox.innerHTML = errorMessage;
+                    return;
+                }
+
                 let cleanedReply = data.reply || "";
 
                 cleanedReply = cleanedReply
@@ -127,7 +131,7 @@
                     .replace(/<\/div>/g, "")
                     .replace(/<p>/g, "")
                     .replace(/<\/p>/g, "\n")
-                    .replace(/<br\\s*\/?>/g, "\n")
+                    .replace(/<br\s*\/?>/g, "\n")
                     .replace(/&nbsp;/g, " ")
                     .replace(/\r\n/g, "\n")
                     .replace(/\n{3,}/g, "\n\n")
@@ -143,11 +147,11 @@
                     });
                 }
             } catch (error) {
-                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
+                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien publié et accessible en ligne.</p>";
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = "Envoyer";
             }
-
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Envoyer";
         }
     </script>
 </body>

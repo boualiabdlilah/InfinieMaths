@@ -2473,71 +2473,26 @@ a.back-link:focus{
 }
 
 .assistant-response {
-    margin-top: 8px;
-    padding: 22px;
-    border-radius: 18px;
-    background: rgba(2, 6, 23, 0.62);
+    background: #0b1224;
     border: 1px solid rgba(255, 255, 255, 0.06);
-    color: #e2e8f0;
-    font-size: 1.02rem;
-    line-height: 1.8;
-    min-height: 120px;
-}
-
-.assistant-response p {
-    margin: 0 0 10px 0;
-}
-
-.assistant-response p:last-child {
-    margin-bottom: 0;
-}
-
-.assistant-response-intro {
-    color: #93c5fd;
-    font-weight: 700;
-}
-
-@media (max-width: 768px) {
-    .assistant-page {
-        padding: 36px 16px 64px 16px;
-    }
-
-    .assistant-hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .assistant-hero p {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .assistant-card {
-        padding: 20px;
-        border-radius: 20px;
-    }
-
-    .assistant-textarea {
-        min-height: 150px;
-        padding: 16px;
-    }
-
-    .assistant-actions {
-        flex-direction: column;
-    }
-
-    .assistant-btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-.assistant-response {
-    line-height: 1.55;
-    font-size: 1rem;
+    border-radius: 18px;
+    padding: 1rem 1.1rem;
     color: #e8eefc;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+}
+
+.assistant-response > *:first-child {
+    margin-top: 0 !important;
+}
+
+.assistant-response > *:last-child {
+    margin-bottom: 0 !important;
 }
 
 .assistant-response p {
-    margin: 0.45rem 0 0.7rem 0;
+    margin: 0.28rem 0 0.48rem 0;
 }
 
 .assistant-response h1,
@@ -2545,50 +2500,110 @@ a.back-link:focus{
 .assistant-response h3,
 .assistant-response h4 {
     display: inline-block;
-    margin: 0.8rem 0 0.45rem 0;
-    padding: 0.42rem 0.85rem;
+    margin: 0.45rem 0 0.22rem 0;
+    padding: 0.34rem 0.78rem;
     border-left: 4px solid #4f8cff;
     background: linear-gradient(90deg, rgba(79, 140, 255, 0.18), rgba(79, 140, 255, 0.05));
     color: #9fc2ff;
     border-radius: 10px;
     font-weight: 700;
+    line-height: 1.25;
 }
 
 .assistant-response hr {
     border: none;
     height: 1px;
-    background: rgba(255, 255, 255, 0.12);
-    margin: 0.8rem 0 0.9rem 0;
+    background: rgba(255, 255, 255, 0.10);
+    margin: 0.45rem 0 0.55rem 0;
 }
 
-.assistant-response ul {
-    margin: 0.45rem 0 0.7rem 1.1rem;
-    padding-left: 0.8rem;
+.assistant-response ul,
+.assistant-response ol {
+    margin: 0.22rem 0 0.45rem 1rem;
+    padding-left: 0.7rem;
 }
 
 .assistant-response li {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.16rem;
+}
+
+.assistant-response li p {
+    margin: 0.12rem 0;
+}
+
+.assistant-response strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.assistant-response em {
+    color: #d7e6ff;
+    font-style: italic;
+}
+
+.assistant-response code {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.08rem 0.32rem;
+    border-radius: 6px;
+    font-size: 0.95em;
+    color: #b9d2ff;
+}
+
+.assistant-response pre {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+    overflow-x: auto;
+    margin: 0.4rem 0 0.55rem 0;
+}
+
+.assistant-response pre code {
+    background: transparent;
+    padding: 0;
+}
+
+.assistant-response blockquote {
+    margin: 0.4rem 0 0.55rem 0;
+    padding: 0.45rem 0.8rem;
+    border-left: 3px solid #4f8cff;
+    background: rgba(79, 140, 255, 0.06);
+    border-radius: 8px;
+    color: #dce9ff;
 }
 
 .assistant-response .katex-display {
-    margin: 0.6rem 0;
+    margin: 0.3rem 0 0.45rem 0;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .assistant-response .katex {
-    font-size: 1.05em;
+    font-size: 1.02em;
 }
 
+.assistant-response br {
+    line-height: 1.15;
+}
 
+.assistant-response table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4rem 0 0.55rem 0;
+    font-size: 0.95rem;
+}
 
+.assistant-response th,
+.assistant-response td {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.45rem 0.55rem;
+    text-align: left;
+}
 
-
-
-
-
-
-
-
+.assistant-response th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cfe0ff;
+    font-weight: 600;
+}
 
 
 

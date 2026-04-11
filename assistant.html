@@ -113,11 +113,14 @@
                 const data = await response.json();
 
                 let cleanedReply = data.reply
-    .replace(/<div class="assistant-response-header">.*?<\/div>/s, "")
-    .replace(/<div class="assistant-response-body">/g, "")
-    .replace(/<\/div>/g, "");
+                    .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
+                    .replace(/<div class="assistant-response-body">/g, "")
+                    .replace(/<\/div>/g, "")
+                    .replace(/<p>/g, "")
+                    .replace(/<\/p>/g, "\n\n")
+                    .trim();
 
-responseBox.innerHTML = marked.parse(cleanedReply);
+                responseBox.innerHTML = marked.parse(cleanedReply);
 
                 renderMathInElement(responseBox, {
                     delimiters: [

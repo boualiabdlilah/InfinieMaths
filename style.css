@@ -2590,8 +2590,17 @@ a.back-link:focus{
     font-size: 1em;
 }
 
-.assistant-response br {
-    line-height: 1.05;
+.assistant-response hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        rgba(79, 140, 255, 0.10),
+        rgba(120, 170, 255, 0.55),
+        rgba(79, 140, 255, 0.10)
+    );
+    box-shadow: 0 0 8px rgba(79, 140, 255, 0.22);
+    margin: 0.28rem 0 0.38rem 0;
 }
 
 .assistant-response table {

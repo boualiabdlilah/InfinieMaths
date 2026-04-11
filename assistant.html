@@ -48,6 +48,13 @@
                 placeholder="Exemple : explique-moi comment résoudre une équation du second degré"
             ></textarea>
 
+            <input
+                type="file"
+                id="userFile"
+                class="assistant-file-input"
+                accept=".pdf,image/*"
+            >
+
             <div class="assistant-actions">
                 <button id="sendBtn" class="assistant-btn" onclick="sendQuestion()">Envoyer</button>
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique-moi la dérivation simplement')">Exemple 1</button>
@@ -61,15 +68,8 @@
     <footer class="site-footer">
         <div class="footer-content">
             <span>
-                © <span id="year-assistant"></span> InfinieMaths - Tous droits réservés.
+                © <span id="year-assistant"></span> InfinieMaths - Tous droits réservés
             </span>
-            <div class="footer-links">
-                <a href="cours-en-ligne.html">Cours en ligne</a>
-                <a href="concours.html">Concours</a>
-                <a href="python.html">Python</a>
-                <a href="apropos.html">À propos</a>
-                <a href="contact.html">Contact</a>
-            </div>
         </div>
     </footer>
 
@@ -82,32 +82,35 @@
 
         async function sendQuestion() {
             const question = document.getElementById("userQuestion").value.trim();
+            const fileInput = document.getElementById("userFile");
+            const selectedFile = fileInput.files[0];
             const responseBox = document.getElementById("assistantResponse");
             const sendBtn = document.getElementById("sendBtn");
 
-            if (!question) {
-                responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
+            if (!question && !selectedFile) {
+                responseBox.innerHTML = "<p>Merci d’écrire une question ou d’ajouter un fichier.</p>";
                 return;
             }
 
-            responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
+            responseBox.innerHTML = "<p>L’assistant réfléchit...</p>";
             sendBtn.disabled = true;
             sendBtn.textContent = "Envoi...";
 
             try {
+                const formData = new FormData();
+                formData.append("question", question);
+                formData.append("source", "InfinieMaths");
+
+                if (selectedFile) {
+                    formData.append("file", selectedFile);
+                }
+
                 const response = await fetch("http://localhost:5000/assistant", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        question: question,
-                        source: "InfinieMaths"
-                    })
+                    body: formData
                 });
 
                 const data = await response.json();
-
                 let cleanedReply = data.reply || "";
 
                 cleanedReply = cleanedReply
@@ -119,21 +122,18 @@
                     .replace(/<br\s*\/?>/g, "\n")
                     .replace(/&nbsp;/g, " ")
                     .replace(/\r\n/g, "\n")
-                    .replace(/\n[ \t]+\n/g, "\n\n")
                     .replace(/\n{3,}/g, "\n\n")
-                    .replace(/[ \t]{2,}/g, " ")
                     .trim();
 
                 responseBox.innerHTML = marked.parse(cleanedReply);
 
-                renderMathInElement(responseBox, {
-                    delimiters: [
-                        { left: "$$", right: "$$", display: true },
-                        { left: "$", right: "$", display: false },
-                        { left: "\$$", right: "\$$", display: false },
-                        { left: "\$$", right: "\$$", display: true }
-                    ]
-                });
+                if (
+                    cleanedReply.includes("$$") ||                    cleanedReply.includes("\$$") ||
+                    cleanedReply.includes("\$$") ||                    cleanedReply.includes("$")                ) {                    renderMathInElement(responseBox, {                        delimiters: [                            { left: "$$", right: "$$", display: true },                            { left: "$", right: "$", display: false },                            { left: "\\(", right: "\$$", display: false },
+                            { left: "\\[", right: "\\$\$", display: true }
+                        ]
+                    });
+                }
 
             } catch (error) {
                 responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";

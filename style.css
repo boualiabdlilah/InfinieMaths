@@ -2483,7 +2483,6 @@ a.back-link:focus{
     font-size: 0.98rem;
     line-height: 1.42;
     overflow-wrap: break-word;
-    margin-top: 1rem;
 }
 
 .assistant-response > *:first-child {
@@ -2614,11 +2613,6 @@ a.back-link:focus{
     color: #cfe0ff;
     font-weight: 600;
 }
-
-
-
-
-
 
 
 

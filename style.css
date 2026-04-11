@@ -2592,15 +2592,21 @@ a.back-link:focus{
 
 .assistant-response hr {
     border: none;
-    height: 1px;
+    height: 3px;
     background: linear-gradient(
         90deg,
-        rgba(79, 140, 255, 0.18),
-        rgba(120, 170, 255, 0.95),
-        rgba(79, 140, 255, 0.18)
+        rgba(79, 140, 255, 0.00) 0%,
+        rgba(79, 140, 255, 0.45) 18%,
+        rgba(160, 205, 255, 1) 50%,
+        rgba(79, 140, 255, 0.45) 82%,
+        rgba(79, 140, 255, 0.00) 100%
     );
-    box-shadow: 0 0 10px rgba(79, 140, 255, 0.38);
-    margin: 0.32rem 0 0.42rem 0;
+    box-shadow:
+        0 0 8px rgba(79, 140, 255, 0.45),
+        0 0 18px rgba(79, 140, 255, 0.30);
+    border-radius: 999px;
+    margin: 0.6rem 0 0.75rem 0;
+    opacity: 1;
 }
 
 .assistant-response table {

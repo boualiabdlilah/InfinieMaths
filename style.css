@@ -2531,13 +2531,13 @@ a.back-link:focus{
     }
 }
 .assistant-response {
-    line-height: 1.65;
+    line-height: 1.55;
     font-size: 1rem;
     color: #e8eefc;
 }
 
 .assistant-response p {
-    margin: 0.65rem 0;
+    margin: 0.45rem 0 0.7rem 0;
 }
 
 .assistant-response h1,
@@ -2545,9 +2545,8 @@ a.back-link:focus{
 .assistant-response h3,
 .assistant-response h4 {
     display: inline-block;
-    margin-top: 0.9rem;
-    margin-bottom: 0.55rem;
-    padding: 0.45rem 0.9rem;
+    margin: 0.8rem 0 0.45rem 0;
+    padding: 0.42rem 0.85rem;
     border-left: 4px solid #4f8cff;
     background: linear-gradient(90deg, rgba(79, 140, 255, 0.18), rgba(79, 140, 255, 0.05));
     color: #9fc2ff;
@@ -2559,50 +2558,26 @@ a.back-link:focus{
     border: none;
     height: 1px;
     background: rgba(255, 255, 255, 0.12);
-    margin: 0.9rem 0 1rem 0;
+    margin: 0.8rem 0 0.9rem 0;
 }
 
 .assistant-response ul {
-    margin: 0.5rem 0 0.8rem 1.2rem;
+    margin: 0.45rem 0 0.7rem 1.1rem;
     padding-left: 0.8rem;
 }
 
 .assistant-response li {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
 }
 
 .assistant-response .katex-display {
-    margin: 0.8rem 0;
+    margin: 0.6rem 0;
     overflow-x: auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.assistant-response .katex {
+    font-size: 1.05em;
+}
 
 
 

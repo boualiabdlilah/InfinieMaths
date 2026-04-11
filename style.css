@@ -2561,7 +2561,51 @@ a.back-link:focus{
     margin: 1.2rem 0;
     overflow-x: auto;
 }
+.assistant-response {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #e8eefc;
+}
 
+.assistant-response h1,
+.assistant-response h2,
+.assistant-response h3,
+.assistant-response h4 {
+    display: inline-block;
+    margin-top: 1.4rem;
+    margin-bottom: 0.9rem;
+    padding: 0.55rem 1rem;
+    border-left: 4px solid #4f8cff;
+    background: linear-gradient(90deg, rgba(79, 140, 255, 0.18), rgba(79, 140, 255, 0.05));
+    color: #9fc2ff;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.assistant-response p {
+    margin-bottom: 1rem;
+}
+
+.assistant-response hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 1.2rem 0 1.4rem 0;
+}
+
+.assistant-response ul {
+    margin: 0.8rem 0 1rem 1.2rem;
+    padding-left: 1rem;
+}
+
+.assistant-response li {
+    margin-bottom: 0.45rem;
+}
+
+.assistant-response .katex-display {
+    margin: 1.2rem 0;
+    overflow-x: auto;
+}
 
 
 

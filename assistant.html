@@ -59,9 +59,9 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-inner">
+        <div class="footer-content">
             <span>
-                © <span id="year-assistant"></span> InfinieMaths. Tous droits réservés.
+                © <span id="year-assistant"></span> InfinieMaths - Tous droits réservés.
             </span>
             <div class="footer-links">
                 <a href="cours-en-ligne.html">Cours en ligne</a>
@@ -118,14 +118,11 @@
                     .replace(/<\/p>/g, "\n")
                     .replace(/<br\s*\/?>/g, "\n")
                     .replace(/&nbsp;/g, " ")
-                    .trim();
-
-                cleanedReply = cleanedReply
                     .replace(/\r\n/g, "\n")
                     .replace(/\n[ \t]+\n/g, "\n\n")
                     .replace(/\n{3,}/g, "\n\n")
                     .replace(/[ \t]{2,}/g, " ")
-                    .replace(/^\s+|\s+$/g, "");
+                    .trim();
 
                 responseBox.innerHTML = marked.parse(cleanedReply);
 

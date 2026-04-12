@@ -55,19 +55,17 @@
             </div>
 
             <div id="assistantResponse" class="assistant-response">
-                <p>La réponse de l’assistant apparaîtra ici.</p>
+                <p>Bonjour 👋 Je suis prêt à t’aider en maths.</p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-content">
-            <span>© <span id="year-assistant"></span> InfinieMaths - Tous droits réservés.</span>
-        </div>
+        <p>© <span id="currentYear"></span> InfinieMaths - Tous droits réservés.</p>
     </footer>
 
     <script>
-        document.getElementById("year-assistant").textContent = new Date().getFullYear();
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
 
         function fillExample(text) {
             document.getElementById("userQuestion").value = text;
@@ -120,6 +118,14 @@
                     .replace(/[ \t]{2,}/g, " ")
                     .replace(/^\s+|\s+$/g, "");
 
+                cleanedReply = cleanedReply
+                    .replace(/\\\\$$/g, "\\[")                    .replace(/\\\\$$/g, "\\]")
+                    .replace(/\\\\$$/g, "\\(")                    .replace(/\\\\$$/g, "\\)")
+                    .replace(/\\\\times/g, "\\times")
+                    .replace(/\\\\cdot/g, "\\cdot")
+                    .replace(/\\\\frac/g, "\\frac")
+                    .replace(/\\\\sqrt/g, "\\sqrt");
+
                 responseBox.innerHTML = marked.parse(cleanedReply);
 
                 renderMathInElement(responseBox, {
@@ -128,15 +134,17 @@
                         { left: "$", right: "$", display: false },
                         { left: "\$$", right: "\$$", display: false },
                         { left: "\$$", right: "\$$", display: true }
-                    ]
+                    ],
+                    throwOnError: false,
+                    strict: false
                 });
 
             } catch (error) {
                 responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = "Envoyer";
             }
-
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Envoyer";
         }
     </script>
 </body>

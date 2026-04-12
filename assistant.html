@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -59,9 +58,11 @@
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique comment factoriser un polynôme')">Exemple 3</button>
             </div>
 
-            <div id="assistantResponse" class="assistant-response">
-                <p>La réponse de l’assistant apparaîtra ici.</p>
+            <div id="assistantStatus" class="assistant-response" style="margin-top: 18px; opacity: 0.9;">
+                <p>Vérification de la connexion au backend...</p>
             </div>
+
+            <div id="assistantResponse" class="assistant-response"></div>
         </section>
     </main>
 
@@ -77,19 +78,20 @@
                 return "";
             }
 
-            reply = String(reply);
-
-            reply = reply
+            reply = String(reply)
+                .replace(/\r\n/g, "\n")
+                .replace(/\r/g, "\n")
                 .replace(/<br\s*\/?>/gi, "\n")
                 .replace(/&nbsp;/g, " ")
-                .replace(/\r\n/g, "\n")
-                .replace(/\n{3,}/g, "\n\n")
                 .trim();
 
             reply = reply
                 .replace(/\\$$/g, "$$")
                 .replace(/\\$$/g, "$$")
                 .replace(/\\$$/g, "$")                .replace(/\\$$/g, "$");
+
+            reply = reply
+                .replace(/\n{3,}/g, "\n\n");
 
             return reply.trim();
         }
@@ -112,6 +114,45 @@
             });
         }
 
+        async function fetchWithTimeout(url, options, timeoutMs) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(function() {
+                controller.abort();
+            }, timeoutMs);
+
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                throw error;
+            }
+        }
+
+        async function checkBackendStatus() {
+            const statusBox = document.getElementById("assistantStatus");
+
+            try {
+                const response = await fetchWithTimeout(BACKEND_URL + "/health", {
+                    method: "GET"
+                }, 8000);
+
+                if (!response.ok) {
+                    statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
+                    return;
+                }
+
+                statusBox.innerHTML = "<p>Backend connecté.</p>";
+            } catch (error) {
+                console.error("Erreur health check :", error);
+                statusBox.innerHTML = "<p>Backend inaccessible. Vérifie Render, l’URL publique ou CORS.</p>";
+            }
+        }
+
         async function sendQuestion() {
             const question = document.getElementById("userQuestion").value.trim();
             const responseBox = document.getElementById("assistantResponse");
@@ -129,7 +170,7 @@
             try {
                 console.log("Envoi vers :", BACKEND_URL + "/chat");
 
-                const response = await fetch(BACKEND_URL + "/chat", {
+                const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -137,7 +178,7 @@
                     body: JSON.stringify({
                         message: question
                     })
-                });
+                }, 45000);
 
                 console.log("Status HTTP :", response.status);
 
@@ -149,15 +190,21 @@
                 console.log("Réponse backend :", data);
 
                 renderResponse(data.reply || "Aucune réponse reçue.");
-
             } catch (error) {
                 console.error("Erreur fetch assistant :", error);
-                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie l’URL du backend, CORS, ou le déploiement Render.</p>";
+
+                if (error.name === "AbortError") {
+                    responseBox.innerHTML = "<p>Le backend a mis trop de temps à répondre. Le service est peut-être endormi sur Render.</p>";
+                } else {
+                    responseBox.innerHTML = "<p>Impossible de joindre le backend. Vérifie l’URL publique, CORS, ou le déploiement Render.</p>";
+                }
             } finally {
                 sendBtn.disabled = false;
                 sendBtn.textContent = "Envoyer";
             }
         }
+
+        checkBackendStatus();
     </script>
 </body>
 </html>

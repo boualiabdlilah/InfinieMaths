@@ -56,37 +56,26 @@
                 <button id="sendBtn" class="assistant-btn" onclick="sendQuestion()">Envoyer</button>
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique-moi la dérivation simplement')">Exemple 1</button>
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
+                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique comment factoriser un polynôme')">Exemple 3</button>
             </div>
 
-            <div id="assistantResponse" class="assistant-response"></div>
+            <div id="assistantResponse" class="assistant-response">
+                <p>La réponse de l’assistant apparaîtra ici.</p>
+            </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>© <span id="year"></span> InfinieMaths - Tous droits réservés.</p>
-    </footer>
-
     <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-
-        marked.setOptions({
-            breaks: true,
-            gfm: true
-        });
-
         function fillExample(text) {
             document.getElementById("userQuestion").value = text;
         }
 
         function normalizeReply(reply) {
-            if (!reply) return "";
+            if (!reply) {
+                return "";
+            }
 
-            reply = reply
-                .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
-                .replace(/<div class="assistant-response-body">/g, "")
-                .replace(/<\/div>/g, "")
-                .replace(/<p>/g, "")
-                .replace(/<\/p>/g, "\n")
+            reply = String(reply)
                 .replace(/<br\s*\/?>/g, "\n")
                 .replace(/&nbsp;/g, " ")
                 .trim();
@@ -95,15 +84,12 @@
                 .replace(/\r\n/g, "\n")
                 .replace(/\n{3,}/g, "\n\n");
 
-            reply = reply
-                .replace(/\\\\/g, "\\");
+            reply = reply.replace(/\\\\/g, "\\");
 
-            reply = reply.replace(
-                /(^|\n)$$\s*\n([\s\S]*?)\n$$\s*(?=\n|$)/g,
-                function(match, before, formula) {
-                    return before + "$$\n" + formula.trim() + "\n$$";
-                }
-            );
+            reply = reply
+                .replace(/\\$$/g, "$$")
+                .replace(/\\$$/g, "$$")
+                .replace(/\\$$/g, "$")                .replace(/\\$$/g, "$");
 
             return reply.trim();
         }
@@ -117,6 +103,7 @@
             renderMathInElement(responseBox, {
                 delimiters: [
                     { left: "$$", right: "$$", display: true },
+                    { left: "\$$", right: "\$$", display: true },
                     { left: "\$$", right: "\$$", display: false },
                     { left: "$", right: "$", display: false }
                 ],
@@ -140,14 +127,13 @@
             sendBtn.textContent = "Envoi...";
 
             try {
-                const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/assistant", {
+                const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/chat", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        question: question,
-                        source: "InfinieMaths"
+                        message: question
                     })
                 });
 

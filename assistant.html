@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Assistant InfinieMaths - Une aide simple et guidée pour comprendre une notion, une méthode ou un exercice.">
     <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -19,6 +21,7 @@
             <span class="logo-text"><span class="highlight">InfinieMaths</span></span>
             <span class="logo-subtitle">Les maths du lycée, simplement.</span>
         </div>
+
         <nav class="main-nav">
             <a href="index.html">Accueil</a>
             <a href="seconde.html">Seconde</a>
@@ -42,6 +45,7 @@
 
         <section class="assistant-card">
             <label for="userQuestion" class="assistant-label">Ta question</label>
+
             <textarea
                 id="userQuestion"
                 class="assistant-textarea"
@@ -54,112 +58,113 @@
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
             </div>
 
-            <div id="assistantResponse" class="assistant-response">
-                <p>Bonjour 👋 Je suis ton assistant InfinieMaths. Pose-moi une question de maths et je t’aiderai pas à pas.</p>
-            </div>
+            <div id="assistantResponse" class="assistant-response"></div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>© <span id="year"></span> InfinieMaths. Tous droits réservés.</p>
+        <p>© <span id="year"></span> InfinieMaths - Tous droits réservés.</p>
     </footer>
 
     <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-    function fillExample(text) {
-        document.getElementById("userQuestion").value = text;
-    }
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
 
-    function normalizeReply(reply) {
-        if (!reply) return "";
-
-        reply = reply
-            .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
-            .replace(/<div class="assistant-response-body">/g, "")
-            .replace(/<\/div>/g, "")
-            .replace(/<p>/g, "")
-            .replace(/<\/p>/g, "\n")
-            .replace(/<br\s*\/?>/g, "\n")
-            .replace(/&nbsp;/g, " ")
-            .trim();
-
-        reply = reply
-            .replace(/\r\n/g, "\n")
-            .replace(/\n[ \t]+\n/g, "\n\n")
-            .replace(/\n{3,}/g, "\n\n");
-
-        reply = reply
-            .replace(/\\\\$$/g, "\\[")            .replace(/\\\\$$/g, "\\]")
-            .replace(/\\\\$$/g, "\\(")            .replace(/\\\\$$/g, "\\)")
-            .replace(/\\\\frac/g, "\\frac")
-            .replace(/\\\\sqrt/g, "\\sqrt")
-            .replace(/\\\\cdot/g, "\\cdot")
-            .replace(/\\\\times/g, "\\times")
-            .replace(/\\\\lim/g, "\\lim")
-            .replace(/\\\\to/g, "\\to")
-            .replace(/\\\\pm/g, "\\pm")
-            .replace(/\\\\Delta/g, "\\Delta");
-
-        reply = reply.replace(
-            /(^|\n)$$\s*\n([\s\S]*?)\n$$\s*(?=\n|$)/g,
-            function(match, before, formula) {
-                return before + "\$$\n" + formula.trim() + "\n\$$";
-            }
-        );
-
-        return reply.trim();
-    }
-
-    async function sendQuestion() {
-        const question = document.getElementById("userQuestion").value.trim();
-        const responseBox = document.getElementById("assistantResponse");
-        const sendBtn = document.getElementById("sendBtn");
-
-        if (!question) {
-            responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
-            return;
+        function fillExample(text) {
+            document.getElementById("userQuestion").value = text;
         }
 
-        responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
-        sendBtn.disabled = true;
-        sendBtn.textContent = "Envoi...";
+        function normalizeReply(reply) {
+            if (!reply) return "";
 
-        try {
-            const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/assistant", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    question: question,
-                    source: "InfinieMaths"
-                })
-            });
+            reply = reply
+                .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
+                .replace(/<div class="assistant-response-body">/g, "")
+                .replace(/<\/div>/g, "")
+                .replace(/<p>/g, "")
+                .replace(/<\/p>/g, "\n")
+                .replace(/<br\s*\/?>/g, "\n")
+                .replace(/&nbsp;/g, " ")
+                .trim();
 
-            const data = await response.json();
-            const cleanedReply = normalizeReply(data.reply || "");
+            reply = reply
+                .replace(/\r\n/g, "\n")
+                .replace(/\n{3,}/g, "\n\n");
+
+            reply = reply
+                .replace(/\\\\/g, "\\");
+
+            reply = reply.replace(
+                /(^|\n)$$\s*\n([\s\S]*?)\n$$\s*(?=\n|$)/g,
+                function(match, before, formula) {
+                    return before + "$$\n" + formula.trim() + "\n$$";
+                }
+            );
+
+            return reply.trim();
+        }
+
+        function renderResponse(reply) {
+            const responseBox = document.getElementById("assistantResponse");
+            const cleanedReply = normalizeReply(reply);
 
             responseBox.innerHTML = marked.parse(cleanedReply);
 
             renderMathInElement(responseBox, {
                 delimiters: [
                     { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false },
                     { left: "\$$", right: "\$$", display: false },
-                    { left: "\$$", right: "\$$", display: true }
+                    { left: "$", right: "$", display: false }
                 ],
                 throwOnError: false,
                 strict: false
             });
-
-        } catch (error) {
-            responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
-        } finally {
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Envoyer";
         }
-    }
-</script>
+
+        async function sendQuestion() {
+            const question = document.getElementById("userQuestion").value.trim();
+            const responseBox = document.getElementById("assistantResponse");
+            const sendBtn = document.getElementById("sendBtn");
+
+            if (!question) {
+                responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
+                return;
+            }
+
+            responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
+            sendBtn.disabled = true;
+            sendBtn.textContent = "Envoi...";
+
+            try {
+                const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/assistant", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        source: "InfinieMaths"
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Erreur serveur");
+                }
+
+                const data = await response.json();
+                renderResponse(data.reply || "Aucune réponse reçue.");
+
+            } catch (error) {
+                responseBox.innerHTML = "<p>Le serveur assistant ne répond pas encore. Vérifie que le backend est bien lancé.</p>";
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = "Envoyer";
+            }
+        }
+    </script>
 </body>
 </html>

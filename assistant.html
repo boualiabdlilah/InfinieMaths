@@ -55,13 +55,13 @@
             </div>
 
             <div id="assistantResponse" class="assistant-response">
-                <p>L’assistant te répondra ici.</p>
+                <p>Bonjour 👋 Je suis ton assistant InfinieMaths. Pose-moi une question de maths et je t’aiderai pas à pas.</p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>© <span id="year"></span> InfinieMaths - Tous droits réservés.</p>
+        <p>© <span id="year"></span> InfinieMaths. Tous droits réservés.</p>
     </footer>
 
     <script>
@@ -72,28 +72,28 @@
         }
 
         function normalizeReply(rawText) {
-            let text = rawText || "";
+            let reply = rawText || "";
 
-            text = text
+            reply = reply
                 .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
                 .replace(/<div class="assistant-response-body">/g, "")
                 .replace(/<\/div>/g, "")
                 .replace(/<p>/g, "")
-                .replace(/<\/p>/g, "\n\n")
+                .replace(/<\/p>/g, "\n")
                 .replace(/<br\s*\/?>/g, "\n")
                 .replace(/&nbsp;/g, " ")
                 .trim();
 
-            text = text
+            reply = reply
                 .replace(/\r\n/g, "\n")
+                .replace(/\n[ \t]+\n/g, "\n\n")
                 .replace(/\n{3,}/g, "\n\n")
-                .replace(/[ \t]+\n/g, "\n")
-                .replace(/\n[ \t]+/g, "\n")
-                .trim();
+                .replace(/[ \t]{2,}/g, " ")
+                .replace(/^\s+|\s+$/g, "");
 
-            text = text
-                .replace(/\\\\$$/g, "\\(")                .replace(/\\\\$$/g, "\\)")
+            reply = reply
                 .replace(/\\\\$$/g, "\\[")                .replace(/\\\\$$/g, "\\]")
+                .replace(/\\\\$$/g, "\\(")                .replace(/\\\\$$/g, "\\)")
                 .replace(/\\\\frac/g, "\\frac")
                 .replace(/\\\\sqrt/g, "\\sqrt")
                 .replace(/\\\\times/g, "\\times")
@@ -103,7 +103,14 @@
                 .replace(/\\\\Delta/g, "\\Delta")
                 .replace(/\\\\pm/g, "\\pm");
 
-            return text;
+            reply = reply.replace(
+                /(^|\n)$$\s*\n([\s\S]*?)\n$$\s*(?=\n|$)/g,
+                function(match, before, formula) {
+                    return before + "\$$\n" + formula.trim() + "\n\$$";
+                }
+            );
+
+            return reply;
         }
 
         async function sendQuestion() {
@@ -144,7 +151,8 @@
                         { left: "\$$", right: "\$$", display: false },
                         { left: "\$$", right: "\$$", display: true }
                     ],
-                    throwOnError: false
+                    throwOnError: false,
+                    strict: false
                 });
 
             } catch (error) {

@@ -53,14 +53,9 @@
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique-moi la dérivation simplement')">Exemple 1</button>
                 <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
             </div>
-        </section>
 
-        <section class="assistant-response-card">
-            <div class="assistant-response-header">
-                <h2>Réponse de l’assistant</h2>
-            </div>
-            <div id="assistantResponse" class="assistant-response-body">
-                <p>Écris ta question puis clique sur <strong>Envoyer</strong>.</p>
+            <div id="assistantResponse" class="assistant-response">
+                <p>L’assistant te répondra ici.</p>
             </div>
         </section>
     </main>
@@ -74,6 +69,41 @@
 
         function fillExample(text) {
             document.getElementById("userQuestion").value = text;
+        }
+
+        function normalizeReply(rawText) {
+            let text = rawText || "";
+
+            text = text
+                .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
+                .replace(/<div class="assistant-response-body">/g, "")
+                .replace(/<\/div>/g, "")
+                .replace(/<p>/g, "")
+                .replace(/<\/p>/g, "\n\n")
+                .replace(/<br\s*\/?>/g, "\n")
+                .replace(/&nbsp;/g, " ")
+                .trim();
+
+            text = text
+                .replace(/\r\n/g, "\n")
+                .replace(/\n{3,}/g, "\n\n")
+                .replace(/[ \t]+\n/g, "\n")
+                .replace(/\n[ \t]+/g, "\n")
+                .trim();
+
+            text = text
+                .replace(/\\\\$$/g, "\\(")                .replace(/\\\\$$/g, "\\)")
+                .replace(/\\\\$$/g, "\\[")                .replace(/\\\\$$/g, "\\]")
+                .replace(/\\\\frac/g, "\\frac")
+                .replace(/\\\\sqrt/g, "\\sqrt")
+                .replace(/\\\\times/g, "\\times")
+                .replace(/\\\\cdot/g, "\\cdot")
+                .replace(/\\\\lim/g, "\\lim")
+                .replace(/\\\\to/g, "\\to")
+                .replace(/\\\\Delta/g, "\\Delta")
+                .replace(/\\\\pm/g, "\\pm");
+
+            return text;
         }
 
         async function sendQuestion() {
@@ -103,35 +133,7 @@
                 });
 
                 const data = await response.json();
-                let cleanedReply = data.reply || "";
-
-                cleanedReply = cleanedReply
-                    .replace(/<div class="assistant-response-header">.*?<\/div>/gs, "")
-                    .replace(/<div class="assistant-response-body">/g, "")
-                    .replace(/<\/div>/g, "")
-                    .replace(/<p>/g, "")
-                    .replace(/<\/p>/g, "\n")
-                    .replace(/<br\s*\/?>/g, "\n")
-                    .replace(/&nbsp;/g, " ")
-                    .trim();
-
-                cleanedReply = cleanedReply
-                    .replace(/\r\n/g, "\n")
-                    .replace(/\n[ \t]+\n/g, "\n\n")
-                    .replace(/\n{3,}/g, "\n\n")
-                    .replace(/[ \t]{2,}/g, " ")
-                    .replace(/^\s+|\s+$/g, "");
-
-                cleanedReply = cleanedReply
-                    .replace(/\\\\$$/g, "\\[")                    .replace(/\\\\$$/g, "\\]")
-                    .replace(/\\\\$$/g, "\\(")                    .replace(/\\\\$$/g, "\\)")
-                    .replace(/\\\\frac/g, "\\frac")
-                    .replace(/\\\\sqrt/g, "\\sqrt")
-                    .replace(/\\\\times/g, "\\times")
-                    .replace(/\\\\cdot/g, "\\cdot")
-                    .replace(/\\\\pm/g, "\\pm")
-                    .replace(/\\\\Delta/g, "\\Delta")
-                    .replace(/^$$\s*$/gm, "\\[")                    .replace(/^$$\s*$/gm, "\\]");
+                const cleanedReply = normalizeReply(data.reply || "");
 
                 responseBox.innerHTML = marked.parse(cleanedReply);
 
@@ -142,8 +144,7 @@
                         { left: "\$$", right: "\$$", display: false },
                         { left: "\$$", right: "\$$", display: true }
                     ],
-                    throwOnError: false,
-                    strict: false
+                    throwOnError: false
                 });
 
             } catch (error) {

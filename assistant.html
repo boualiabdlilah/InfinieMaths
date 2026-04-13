@@ -134,85 +134,84 @@
                 throw error;
             }
         }
+async function checkBackendStatus() {
+    const statusBox = document.getElementById("assistantStatus");
 
-        async function checkBackendStatus() {
-            const statusBox = document.getElementById("assistantStatus");
+    try {
+        const response = await fetchWithTimeout(BACKEND_URL + "/health", {
+            method: "GET"
+        }, 8000);
 
-            try {
-                const response = await fetchWithTimeout(BACKEND_URL + "/health", {
-                    method: "GET"
-                }, 8000);
-
-                if (!response.ok) {
-                    statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
-                    return;
-                }
-
-                statusBox.innerHTML = "<p>Backend connecté.</p>";
-            } catch (error) {
-         console.error("Erreur health check :", error);
-         statusBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
-          }
+        if (!response.ok) {
+            statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
+            return;
         }
 
-        async function sendQuestion() {
-            const question = document.getElementById("userQuestion").value.trim();
-            const responseBox = document.getElementById("assistantResponse");
-            const sendBtn = document.getElementById("sendBtn");
-
-            if (!question) {
-                responseBox.innerHTML = "<p>Merci d’écrire une question avant d’envoyer.</p>";
-                return;
-            }
-
-            responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
-clearPlot();
-sendBtn.disabled = true;
-sendBtn.textContent = "Envoi...";
-
-            try {
-                console.log("Envoi vers :", BACKEND_URL + "/chat");
-
-                const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: question
-                    })
-                }, 45000);
-
-                console.log("Status HTTP :", response.status);
-
-                if (!response.ok) {
-                    throw new Error("Erreur serveur HTTP " + response.status);
-                }
-
-                const data = await response.json();
-console.log("Réponse backend :", data);
-
-renderResponse(data.reply || "Aucune réponse reçue.");
-
-if (data.points && Array.isArray(data.points) && data.points.length > 0) {
-    drawMathPlot(data);
-} else {
-    clearPlot();
+        statusBox.innerHTML = "<p>Backend connecté.</p>";
+    } catch (error) {
+        console.error("Erreur health check :", error);
+        statusBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
+    }
 }
-            } catch (error) {
-                console.error("Erreur fetch assistant :", error);
 
-                if (error.name === "AbortError") {
-                    responseBox.innerHTML = "<p>Le backend a mis trop de temps à répondre. Le service est peut-être endormi sur Render.</p>";
-                } else {
-                    responseBox.innerHTML = "<p>Impossible de joindre le backend. Vérifie l’URL publique, CORS, ou le déploiement Render.</p>";
-                }
-            } finally {
-                sendBtn.disabled = false;
-                sendBtn.textContent = "Envoyer";
-            }
-    
+async function sendQuestion() {
+    const question = document.getElementById("userQuestion").value.trim();
+    const responseBox = document.getElementById("assistantResponse");
+    const sendBtn = document.getElementById("sendBtn");
+
+    if (!question) {
+        responseBox.innerHTML = "<p>Écris une question avant d’envoyer.</p>";
+        return;
+    }
+
+    clearPlot();
+    responseBox.innerHTML = "<p>Chargement...</p>";
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Envoi...";
+
+    try {
+        console.log("Envoi vers :", BACKEND_URL + "/chat");
+
+        const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: question
+            })
+        }, 45000);
+
+        console.log("Status HTTP :", response.status);
+
+        if (!response.ok) {
+            throw new Error("Erreur serveur HTTP " + response.status);
         }
+
+        const data = await response.json();
+        console.log("Réponse backend :", data);
+
+        renderResponse(data.reply || "Aucune réponse reçue.");
+
+        try {
+            if (data.points && Array.isArray(data.points) && data.points.length > 0) {
+                drawMathPlot(data);
+            } else {
+                clearPlot();
+            }
+        } catch (plotError) {
+            console.error("Erreur tracé graphique :", plotError);
+            responseBox.innerHTML += "<p>Erreur graphique : " + plotError.message + "</p>";
+        }
+
+    } catch (error) {
+        console.error("Erreur fetch assistant :", error);
+        responseBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
+    } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = "Envoyer";
+    }
+}
 function clearPlot() {
     const plotContainer = document.getElementById("plotContainer");
     if (plotContainer) {

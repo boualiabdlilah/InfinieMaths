@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body class="assistant-page-body">
     <header class="site-header">
@@ -63,6 +64,7 @@
             </div>
 
             <div id="assistantResponse" class="assistant-response"></div>
+            <div id="plotContainer" class="assistant-plot"></div>
         </section>
     </main>
 
@@ -203,7 +205,116 @@
                 sendBtn.textContent = "Envoyer";
             }
         }
+function clearPlot() {
+    const plotContainer = document.getElementById("plotContainer");
+    if (plotContainer) {
+        plotContainer.innerHTML = "";
+    }
+}
 
+function drawMathPlot(plotData) {
+    const plotContainer = document.getElementById("plotContainer");
+
+    if (!plotContainer) {
+        console.error("plotContainer introuvable");
+        return;
+    }
+
+    let traces = [];
+
+    if (plotData.functions && Array.isArray(plotData.functions)) {
+        plotData.functions.forEach(function(func) {
+            traces.push({
+                x: func.x || [],
+                y: func.y || [],
+                type: "scatter",
+                mode: "lines",
+                name: func.label || "fonction"
+            });
+        });
+    }
+
+    if (plotData.tangents && Array.isArray(plotData.tangents)) {
+        plotData.tangents.forEach(function(tangent) {
+            traces.push({
+                x: tangent.x || [],
+                y: tangent.y || [],
+                type: "scatter",
+                mode: "lines",
+                name: tangent.label || "tangente",
+                line: {
+                    dash: "dash"
+                }
+            });
+        });
+    }
+
+    if (plotData.special_points && Array.isArray(plotData.special_points)) {
+        traces.push({
+            x: plotData.special_points.map(function(p) { return p.x; }),
+            y: plotData.special_points.map(function(p) { return p.y; }),
+            text: plotData.special_points.map(function(p) { return p.label || ""; }),
+            type: "scatter",
+            mode: "markers+text",
+            name: "points remarquables",
+            textposition: "top center",
+            marker: {
+                size: 8
+            }
+        });
+    }
+
+    const layout = {
+        title: "Représentation graphique",
+        paper_bgcolor: "#ffffff",
+        plot_bgcolor: "#ffffff",
+        xaxis: {
+            title: "x",
+            zeroline: true
+        },
+        yaxis: {
+            title: "y",
+            zeroline: true
+        },
+        shapes: []
+    };
+
+    if (plotData.asymptotes && Array.isArray(plotData.asymptotes)) {
+        plotData.asymptotes.forEach(function(a) {
+            if (a.type === "vertical") {
+                layout.shapes.push({
+                    type: "line",
+                    x0: a.x,
+                    x1: a.x,
+                    y0: -100,
+                    y1: 100,
+                    line: {
+                        color: "gray",
+                        width: 2,
+                        dash: "dot"
+                    }
+                });
+            } else if (a.type === "horizontal") {
+                layout.shapes.push({
+                    type: "line",
+                    x0: -100,
+                    x1: 100,
+                    y0: a.y,
+                    y1: a.y,
+                    line: {
+                        color: "gray",
+                        width: 2,
+                        dash: "dot"
+                    }
+                });
+            }
+        });
+    }
+
+    Plotly.newPlot("plotContainer", traces, layout, {
+        responsive: true
+    });
+}
         checkBackendStatus();
     </script>
 </body>

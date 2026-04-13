@@ -166,8 +166,9 @@
             }
 
             responseBox.innerHTML = "<p>Chargement de la réponse...</p>";
-            sendBtn.disabled = true;
-            sendBtn.textContent = "Envoi...";
+clearPlot();
+sendBtn.disabled = true;
+sendBtn.textContent = "Envoi...";
 
             try {
                 console.log("Envoi vers :", BACKEND_URL + "/chat");

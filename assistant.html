@@ -194,8 +194,8 @@ console.log("Réponse backend :", data);
 
 renderResponse(data.reply || "Aucune réponse reçue.");
 
-if (data.plot) {
-    drawMathPlot(data.plot);
+if (data.points && Array.isArray(data.points) && data.points.length > 0) {
+    drawMathPlot(data);
 } else {
     clearPlot();
 }

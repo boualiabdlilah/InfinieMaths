@@ -2628,7 +2628,15 @@ a.back-link:focus{
     color: #cfe0ff;
     font-weight: 600;
 }
-
+.assistant-plot {
+    width: 100%;
+    min-height: 500px;
+    margin-top: 24px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 10px;
+}
 
 
 

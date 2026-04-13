@@ -98,11 +98,16 @@
             return reply.trim();
         }
 
-        function renderResponse(reply) {
-            const responseBox = document.getElementById("assistantResponse");
-            const cleanedReply = normalizeReply(reply);
+       function renderResponse(reply) {
+    const responseBox = document.getElementById("assistantResponse");
+    const cleanedReply = normalizeReply(reply || "");
 
-            responseBox.innerHTML = marked.parse(cleanedReply);
+    const escapedReply = cleanedReply
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+        responseBox.innerHTML = marked.parse(cleanedReply);
 
             renderMathInElement(responseBox, {
                 delimiters: [

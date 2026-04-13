@@ -194,8 +194,8 @@ console.log("Réponse backend :", data);
 
 renderResponse(data.reply || "Aucune réponse reçue.");
 
-if (data.plot_data) {
-    drawMathPlot(data.plot_data);
+if (data.plot) {
+    drawMathPlot(data.plot);
 } else {
     clearPlot();
 }
@@ -211,7 +211,7 @@ if (data.plot_data) {
                 sendBtn.disabled = false;
                 sendBtn.textContent = "Envoyer";
             }
-            clearPlot();
+    
         }
 function clearPlot() {
     const plotContainer = document.getElementById("plotContainer");

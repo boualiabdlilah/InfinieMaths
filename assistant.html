@@ -150,9 +150,9 @@
 
                 statusBox.innerHTML = "<p>Backend connecté.</p>";
             } catch (error) {
-                console.error("Erreur health check :", error);
-                statusBox.innerHTML = "<p>Backend inaccessible. Vérifie Render, l’URL publique ou CORS.</p>";
-            }
+          console.error("Erreur fetch assistant :", error);
+          responseBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
+           }
         }
 
         async function sendQuestion() {

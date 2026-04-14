@@ -54,60 +54,29 @@
 
             <div class="assistant-actions">
                 <button id="sendBtn" class="assistant-btn" onclick="sendQuestion()">Envoyer</button>
-                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique-moi la dérivation simplement')">Exemple 1</button>
-                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Donne-moi un exercice de probabilités niveau première')">Exemple 2</button>
-                <button class="assistant-btn assistant-btn-secondary" onclick="fillExample('Explique comment factoriser un polynôme')">Exemple 3</button>
             </div>
 
-            <div id="assistantStatus" class="assistant-response" style="margin-top: 18px; opacity: 0.9;">
-                <p>Vérification de la connexion au backend...</p>
-            </div>
-
+            <div id="assistantStatus" class="assistant-status"></div>
             <div id="assistantResponse" class="assistant-response"></div>
             <div id="plotContainer" class="assistant-plot"></div>
         </section>
     </main>
 
     <script>
-        const BACKEND_URL = "https://infiniemaths-assistant-backend.onrender.com";
-
-        function fillExample(text) {
-            document.getElementById("userQuestion").value = text;
-        }
+        const BACKEND_URL = "http://127.0.0.1:5001";
 
         function normalizeReply(reply) {
-            if (!reply) {
-                return "";
-            }
-
-            reply = String(reply)
+            return String(reply || "")
+                .replace(/\\n/g, "\n")
                 .replace(/\r\n/g, "\n")
-                .replace(/\r/g, "\n")
-                .replace(/<br\s*\/?>/gi, "\n")
-                .replace(/&nbsp;/g, " ")
                 .trim();
-
-            reply = reply
-                .replace(/\\$$/g, "$$")
-                .replace(/\\$$/g, "$$")
-                .replace(/\\$$/g, "$")                .replace(/\\$$/g, "$");
-
-            reply = reply
-                .replace(/\n{3,}/g, "\n\n");
-
-            return reply.trim();
         }
 
-       function renderResponse(reply) {
-    const responseBox = document.getElementById("assistantResponse");
-    const cleanedReply = normalizeReply(reply || "");
+        function renderResponse(reply) {
+            const responseBox = document.getElementById("assistantResponse");
+            const cleanedReply = normalizeReply(reply || "");
 
-    const escapedReply = cleanedReply
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-
-        responseBox.innerHTML = marked.parse(cleanedReply);
+            responseBox.innerHTML = marked.parse(cleanedReply);
 
             renderMathInElement(responseBox, {
                 delimiters: [
@@ -139,202 +108,221 @@
                 throw error;
             }
         }
-async function checkBackendStatus() {
-    const statusBox = document.getElementById("assistantStatus");
 
-    try {
-        const response = await fetchWithTimeout(BACKEND_URL + "/health", {
-            method: "GET"
-        }, 8000);
+        async function checkBackendStatus() {
+            const statusBox = document.getElementById("assistantStatus");
 
-        if (!response.ok) {
-            statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
-            return;
-        }
+            try {
+                const response = await fetchWithTimeout(BACKEND_URL + "/health", {
+                    method: "GET"
+                }, 8000);
 
-        statusBox.innerHTML = "<p>Backend connecté.</p>";
-    } catch (error) {
-        console.error("Erreur health check :", error);
-        statusBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
-    }
-}
-
-async function sendQuestion() {
-    const question = document.getElementById("userQuestion").value.trim();
-    const responseBox = document.getElementById("assistantResponse");
-    const sendBtn = document.getElementById("sendBtn");
-
-    if (!question) {
-        responseBox.innerHTML = "<p>Écris une question avant d’envoyer.</p>";
-        return;
-    }
-
-    clearPlot();
-    responseBox.innerHTML = "<p>Chargement...</p>";
-    sendBtn.disabled = true;
-    sendBtn.textContent = "Envoi...";
-
-    try {
-        console.log("Envoi vers :", BACKEND_URL + "/chat");
-
-        const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: question
-            })
-        }, 45000);
-
-        console.log("Status HTTP :", response.status);
-
-        if (!response.ok) {
-            throw new Error("Erreur serveur HTTP " + response.status);
-        }
-
-        const data = await response.json();
-        console.log("Réponse backend :", data);
-
-        renderResponse(data.reply || "Aucune réponse reçue.");
-
-        try {
-            if (data.points && Array.isArray(data.points) && data.points.length > 0) {
-                drawMathPlot(data);
-            } else {
-                clearPlot();
-            }
-        } catch (plotError) {
-            console.error("Erreur tracé graphique :", plotError);
-            responseBox.innerHTML += "<p>Erreur graphique : " + plotError.message + "</p>";
-        }
-
-    } catch (error) {
-        console.error("Erreur fetch assistant :", error);
-        responseBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
-    } finally {
-        sendBtn.disabled = false;
-        sendBtn.textContent = "Envoyer";
-    }
-}
-function clearPlot() {
-    const plotContainer = document.getElementById("plotContainer");
-    if (plotContainer) {
-        plotContainer.innerHTML = "";
-    }
-}
-
-function drawMathPlot(plotData) {
-    const plotContainer = document.getElementById("plotContainer");
-
-    if (!plotContainer) {
-        console.error("plotContainer introuvable");
-        return;
-    }
-
-    let traces = [];
-if (plotData.points && Array.isArray(plotData.points)) {
-    traces.push({
-        x: plotData.points.map(function(p) { return p.x; }),
-        y: plotData.points.map(function(p) { return p.y; }),
-        type: "scatter",
-        mode: "lines",
-        name: plotData.function || "fonction"
-    });
-}
-    if (plotData.functions && Array.isArray(plotData.functions)) {
-        plotData.functions.forEach(function(func) {
-            traces.push({
-                x: func.x || [],
-                y: func.y || [],
-                type: "scatter",
-                mode: "lines",
-                name: func.label || "fonction"
-            });
-        });
-    }
-
-    if (plotData.tangents && Array.isArray(plotData.tangents)) {
-        plotData.tangents.forEach(function(tangent) {
-            traces.push({
-                x: tangent.x || [],
-                y: tangent.y || [],
-                type: "scatter",
-                mode: "lines",
-                name: tangent.label || "tangente",
-                line: {
-                    dash: "dash"
+                if (!response.ok) {
+                    statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
+                    return;
                 }
+
+                statusBox.innerHTML = "<p>Backend connecté.</p>";
+            } catch (error) {
+                console.error("Erreur health check :", error);
+                statusBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
+            }
+        }
+
+        async function sendQuestion() {
+            const question = document.getElementById("userQuestion").value.trim();
+            const responseBox = document.getElementById("assistantResponse");
+            const sendBtn = document.getElementById("sendBtn");
+
+            if (!question) {
+                responseBox.innerHTML = "<p>Écris une question avant d’envoyer.</p>";
+                clearPlot();
+                return;
+            }
+
+            clearPlot();
+            responseBox.innerHTML = "<p>Chargement...</p>";
+            sendBtn.disabled = true;
+            sendBtn.textContent = "Envoi...";
+
+            try {
+                console.log("Envoi vers :", BACKEND_URL + "/chat");
+
+                const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: question
+                    })
+                }, 45000);
+
+                console.log("Status HTTP :", response.status);
+
+                if (!response.ok) {
+                    throw new Error("Erreur serveur HTTP " + response.status);
+                }
+
+                const data = await response.json();
+                console.log("Réponse backend :", data);
+
+                renderResponse(data.reply || "Aucune réponse reçue.");
+
+                try {
+                    if (data.plot) {
+                        drawMathPlot(data.plot);
+                    } else if (data.points && Array.isArray(data.points) && data.points.length > 0) {
+                        drawMathPlot(data);
+                    } else {
+                        clearPlot();
+                    }
+                } catch (plotError) {
+                    console.error("Erreur tracé graphique :", plotError);
+                    responseBox.innerHTML += "<p>Erreur graphique : " + plotError.message + "</p>";
+                }
+
+            } catch (error) {
+                console.error("Erreur fetch assistant :", error);
+                responseBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
+                clearPlot();
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = "Envoyer";
+            }
+        }
+
+        function clearPlot() {
+            const plotContainer = document.getElementById("plotContainer");
+            if (plotContainer) {
+                plotContainer.innerHTML = "";
+            }
+        }
+
+        function drawMathPlot(plotData) {
+            const plotContainer = document.getElementById("plotContainer");
+
+            if (!plotContainer) {
+                console.error("plotContainer introuvable");
+                return;
+            }
+
+            if (!plotData) {
+                clearPlot();
+                return;
+            }
+
+            let traces = [];
+
+            if (plotData.points && Array.isArray(plotData.points)) {
+                traces.push({
+                    x: plotData.points.map(function(p) { return p.x; }),
+                    y: plotData.points.map(function(p) { return p.y; }),
+                    type: "scatter",
+                    mode: "lines",
+                    name: plotData.function || "fonction"
+                });
+            }
+
+            if (plotData.functions && Array.isArray(plotData.functions)) {
+                plotData.functions.forEach(function(func) {
+                    traces.push({
+                        x: func.x || [],
+                        y: func.y || [],
+                        type: "scatter",
+                        mode: "lines",
+                        name: func.label || "fonction"
+                    });
+                });
+            }
+
+            if (plotData.tangents && Array.isArray(plotData.tangents)) {
+                plotData.tangents.forEach(function(tangent) {
+                    traces.push({
+                        x: tangent.x || [],
+                        y: tangent.y || [],
+                        type: "scatter",
+                        mode: "lines",
+                        name: tangent.label || "tangente",
+                        line: {
+                            dash: "dash"
+                        }
+                    });
+                });
+            }
+
+            if (plotData.special_points && Array.isArray(plotData.special_points)) {
+                traces.push({
+                    x: plotData.special_points.map(function(p) { return p.x; }),
+                    y: plotData.special_points.map(function(p) { return p.y; }),
+                    text: plotData.special_points.map(function(p) { return p.label || ""; }),
+                    type: "scatter",
+                    mode: "markers+text",
+                    name: "points remarquables",
+                    textposition: "top center",
+                    marker: {
+                        size: 8
+                    }
+                });
+            }
+
+            if (traces.length === 0) {
+                clearPlot();
+                return;
+            }
+
+            const layout = {
+                title: "Représentation graphique",
+                paper_bgcolor: "#ffffff",
+                plot_bgcolor: "#ffffff",
+                xaxis: {
+                    title: "x",
+                    zeroline: true
+                },
+                yaxis: {
+                    title: "y",
+                    zeroline: true
+                },
+                shapes: []
+            };
+
+            if (plotData.asymptotes && Array.isArray(plotData.asymptotes)) {
+                plotData.asymptotes.forEach(function(a) {
+                    if (a.type === "vertical") {
+                        layout.shapes.push({
+                            type: "line",
+                            x0: a.x,
+                            x1: a.x,
+                            y0: -100,
+                            y1: 100,
+                            line: {
+                                color: "gray",
+                                width: 2,
+                                dash: "dot"
+                            }
+                        });
+                    } else if (a.type === "horizontal") {
+                        layout.shapes.push({
+                            type: "line",
+                            x0: -100,
+                            x1: 100,
+                            y0: a.y,
+                            y1: a.y,
+                            line: {
+                                color: "gray",
+                                width: 2,
+                                dash: "dot"
+                            }
+                        });
+                    }
+                });
+            }
+
+            Plotly.newPlot("plotContainer", traces, layout, {
+                responsive: true
             });
-        });
-    }
+        }
 
-    if (plotData.special_points && Array.isArray(plotData.special_points)) {
-        traces.push({
-            x: plotData.special_points.map(function(p) { return p.x; }),
-            y: plotData.special_points.map(function(p) { return p.y; }),
-            text: plotData.special_points.map(function(p) { return p.label || ""; }),
-            type: "scatter",
-            mode: "markers+text",
-            name: "points remarquables",
-            textposition: "top center",
-            marker: {
-                size: 8
-            }
-        });
-    }
-
-    const layout = {
-        title: "Représentation graphique",
-        paper_bgcolor: "#ffffff",
-        plot_bgcolor: "#ffffff",
-        xaxis: {
-            title: "x",
-            zeroline: true
-        },
-        yaxis: {
-            title: "y",
-            zeroline: true
-        },
-        shapes: []
-    };
-
-    if (plotData.asymptotes && Array.isArray(plotData.asymptotes)) {
-        plotData.asymptotes.forEach(function(a) {
-            if (a.type === "vertical") {
-                layout.shapes.push({
-                    type: "line",
-                    x0: a.x,
-                    x1: a.x,
-                    y0: -100,
-                    y1: 100,
-                    line: {
-                        color: "gray",
-                        width: 2,
-                        dash: "dot"
-                    }
-                });
-            } else if (a.type === "horizontal") {
-                layout.shapes.push({
-                    type: "line",
-                    x0: -100,
-                    x1: 100,
-                    y0: a.y,
-                    y1: a.y,
-                    line: {
-                        color: "gray",
-                        width: 2,
-                        dash: "dot"
-                    }
-                });
-            }
-        });
-    }
-
-    Plotly.newPlot("plotContainer", traces, layout, {
-        responsive: true
-    });
-}
         checkBackendStatus();
     </script>
 </body>

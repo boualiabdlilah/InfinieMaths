@@ -2,328 +2,377 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>InfinieMaths - Assistant</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Assistant InfinieMaths - Une aide simple et guidée pour comprendre une notion, une méthode ou un exercice.">
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<meta charset="UTF-8">
+<title>InfinieMaths - Assistant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Assistant InfinieMaths - Une aide simple et
+guidée pour comprendre une notion, une méthode ou un exercice.">
+<link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist
+katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"><
+script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto
+render.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+.assistant-extra-block {
+margin-top: 24px;
+padding: 18px;
+border-radius: 14px;
+background: #f8fafc;
+border: 1px solid #dbeafe;
+}
+  .assistant-extra-block h3 {
+margin-top: 0;
+margin-bottom: 12px;
+color: #0f172a;
+}
+  .variation-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 12px;
+background: white;
+}
+  .variation-table th,
+.variation-table td {
+border: 1px solid #cbd5e1;padding: 10px;
+text-align: center;
+vertical-align: middle;
+}
+  .variation-table th {
+background: #e0f2fe;
+color: #0f172a;
+}
+  .assistant-response p {
+line-height: 1.6;
+}
+  #plotContainer {
+width: 100%;
+min-height: 420px;
+margin-top: 24px;
+}
+  .math-meta {
+margin-top: 10px;
+color: #334155;
+line-height: 1.6;
+}
+  .math-chip {
+display: inline-block;
+padding: 6px 10px;
+margin: 4px 6px 4px 0;
+border-radius: 999px;
+background: #eff6ff;
+border: 1px solid #bfdbfe;
+color: #1e3a8a;
+font-size: 14px;
+}
+</style>
 </head>
 <body class="assistant-page-body">
-    <header class="site-header">
-        <div class="logo">
-            <span class="logo-mark">∞</span>
-            <span class="logo-text"><span class="highlight">InfinieMaths</span></span>
-            <span class="logo-subtitle">Les maths du lycée, simplement.</span>
-        </div>
-
-        <nav class="main-nav">
-            <a href="index.html">Accueil</a>
-            <a href="seconde.html">Seconde</a>
-            <a href="premiere.html">Première</a>
-            <a href="terminale.html">Terminale</a>
-            <a href="assistant.html" class="active">Assistant</a>
-            <a href="pass-premium.html">Pass Premium</a>
-            <a href="inscription.html">Inscription</a>
-        </nav>
-    </header>
-
-    <main class="assistant-page">
-        <section class="assistant-hero">
-            <span class="assistant-badge">Assistant IA</span>
-            <h1>Assistant InfinieMaths</h1>
-            <p>
-                Une notion à revoir, une méthode à comprendre ou un exercice à débloquer ?
-                Pose ta question et l’assistant t’accompagne pas à pas, avec des explications claires adaptées à ton niveau.
-            </p>
-        </section>
-
-        <section class="assistant-card">
-            <label for="userQuestion" class="assistant-label">Ta question</label>
-
-            <textarea
-                id="userQuestion"
-                class="assistant-textarea"
-                placeholder="Exemple : explique-moi comment résoudre une équation du second degré"
-            ></textarea>
-
-            <div class="assistant-actions">
-                <button id="sendBtn" class="assistant-btn" onclick="sendQuestion()">Envoyer</button>
-            </div>
-
-            <div id="assistantStatus" class="assistant-status"></div>
-            <div id="assistantResponse" class="assistant-response"></div>
-            <div id="plotContainer" class="assistant-plot"></div>
-        </section>
-    </main>
-
-    <script>
-        const BACKEND_URL = "http://127.0.0.1:5001";
-
-        function normalizeReply(reply) {
-            return String(reply || "")
-                .replace(/\\n/g, "\n")
-                .replace(/\r\n/g, "\n")
-                .trim();
-        }
-
-        function renderResponse(reply) {
-            const responseBox = document.getElementById("assistantResponse");
-            const cleanedReply = normalizeReply(reply || "");
-
-            responseBox.innerHTML = marked.parse(cleanedReply);
-
-            renderMathInElement(responseBox, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "\$$", right: "\$$", display: true },
-                    { left: "\$$", right: "\$$", display: false },
-                    { left: "$", right: "$", display: false }
-                ],
-                throwOnError: false,
-                strict: false
-            });
-        }
-
-        async function fetchWithTimeout(url, options, timeoutMs) {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(function() {
-                controller.abort();
-            }, timeoutMs);
-
-            try {
-                const response = await fetch(url, {
-                    ...options,
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
-                return response;
-            } catch (error) {
-                clearTimeout(timeoutId);
-                throw error;
-            }
-        }
-
-        async function checkBackendStatus() {
-            const statusBox = document.getElementById("assistantStatus");
-
-            try {
-                const response = await fetchWithTimeout(BACKEND_URL + "/health", {
-                    method: "GET"
-                }, 8000);
-
-                if (!response.ok) {
-                    statusBox.innerHTML = "<p>Backend détecté mais endpoint /health en erreur HTTP " + response.status + ".</p>";
-                    return;
-                }
-
-                statusBox.innerHTML = "<p>Backend connecté.</p>";
-            } catch (error) {
-                console.error("Erreur health check :", error);
-                statusBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
-            }
-        }
-
-        async function sendQuestion() {
-            const question = document.getElementById("userQuestion").value.trim();
-            const responseBox = document.getElementById("assistantResponse");
-            const sendBtn = document.getElementById("sendBtn");
-
-            if (!question) {
-                responseBox.innerHTML = "<p>Écris une question avant d’envoyer.</p>";
-                clearPlot();
-                return;
-            }
-
-            clearPlot();
-            responseBox.innerHTML = "<p>Chargement...</p>";
-            sendBtn.disabled = true;
-            sendBtn.textContent = "Envoi...";
-
-            try {
-                console.log("Envoi vers :", BACKEND_URL + "/chat");
-
-                const response = await fetchWithTimeout(BACKEND_URL + "/chat", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: question
-                    })
-                }, 45000);
-
-                console.log("Status HTTP :", response.status);
-
-                if (!response.ok) {
-                    throw new Error("Erreur serveur HTTP " + response.status);
-                }
-
-                const data = await response.json();
-                console.log("Réponse backend :", data);
-
-                renderResponse(data.reply || "Aucune réponse reçue.");
-
-                try {
-                    if (data.plot) {
-                        drawMathPlot(data.plot);
-                    } else if (data.points && Array.isArray(data.points) && data.points.length > 0) {
-                        drawMathPlot(data);
-                    } else {
-                        clearPlot();
-                    }
-                } catch (plotError) {
-                    console.error("Erreur tracé graphique :", plotError);
-                    responseBox.innerHTML += "<p>Erreur graphique : " + plotError.message + "</p>";
-                }
-
-            } catch (error) {
-                console.error("Erreur fetch assistant :", error);
-                responseBox.innerHTML = "<p>Erreur réelle : " + error.name + " - " + error.message + "</p>";
-                clearPlot();
-            } finally {
-                sendBtn.disabled = false;
-                sendBtn.textContent = "Envoyer";
-            }
-        }
-
-        function clearPlot() {
-            const plotContainer = document.getElementById("plotContainer");
-            if (plotContainer) {
-                plotContainer.innerHTML = "";
-            }
-        }
-
-        function drawMathPlot(plotData) {
-            const plotContainer = document.getElementById("plotContainer");
-
-            if (!plotContainer) {
-                console.error("plotContainer introuvable");
-                return;
-            }
-
-            if (!plotData) {
-                clearPlot();
-                return;
-            }
-
-            let traces = [];
-
-            if (plotData.points && Array.isArray(plotData.points)) {
-                traces.push({
-                    x: plotData.points.map(function(p) { return p.x; }),
-                    y: plotData.points.map(function(p) { return p.y; }),
-                    type: "scatter",
-                    mode: "lines",
-                    name: plotData.function || "fonction"
-                });
-            }
-
-            if (plotData.functions && Array.isArray(plotData.functions)) {
-                plotData.functions.forEach(function(func) {
-                    traces.push({
-                        x: func.x || [],
-                        y: func.y || [],
-                        type: "scatter",
-                        mode: "lines",
-                        name: func.label || "fonction"
-                    });
-                });
-            }
-
-            if (plotData.tangents && Array.isArray(plotData.tangents)) {
-                plotData.tangents.forEach(function(tangent) {
-                    traces.push({
-                        x: tangent.x || [],
-                        y: tangent.y || [],
-                        type: "scatter",
-                        mode: "lines",
-                        name: tangent.label || "tangente",
-                        line: {
-                            dash: "dash"
-                        }
-                    });
-                });
-            }
-
-            if (plotData.special_points && Array.isArray(plotData.special_points)) {
-                traces.push({
-                    x: plotData.special_points.map(function(p) { return p.x; }),
-                    y: plotData.special_points.map(function(p) { return p.y; }),
-                    text: plotData.special_points.map(function(p) { return p.label || ""; }),
-                    type: "scatter",
-                    mode: "markers+text",
-                    name: "points remarquables",
-                    textposition: "top center",
-                    marker: {
-                        size: 8
-                    }
-                });
-            }
-
-            if (traces.length === 0) {
-                clearPlot();
-                return;
-            }
-
-            const layout = {
-                title: "Représentation graphique",
-                paper_bgcolor: "#ffffff",
-                plot_bgcolor: "#ffffff",
-                xaxis: {
-                    title: "x",
-                    zeroline: true
-                },
-                yaxis: {
-                    title: "y",
-                    zeroline: true
-                },
-                shapes: []
-            };
-
-            if (plotData.asymptotes && Array.isArray(plotData.asymptotes)) {
-                plotData.asymptotes.forEach(function(a) {
-                    if (a.type === "vertical") {
-                        layout.shapes.push({
-                            type: "line",
-                            x0: a.x,
-                            x1: a.x,
-                            y0: -100,
-                            y1: 100,
-                            line: {
-                                color: "gray",
-                                width: 2,
-                                dash: "dot"
-                            }
-                        });
-                    } else if (a.type === "horizontal") {
-                        layout.shapes.push({
-                            type: "line",
-                            x0: -100,
-                            x1: 100,
-                            y0: a.y,
-                            y1: a.y,
-                            line: {
-                                color: "gray",
-                                width: 2,
-                                dash: "dot"
-                            }
-                        });
-                    }
-                });
-            }
-
-            Plotly.newPlot("plotContainer", traces, layout, {
-                responsive: true
-            });
-        }
-
-        checkBackendStatus();
-    </script>
+<header class="site-header">
+<div class="logo">
+<span class="logo-mark">∞</span>
+<span class="logo-text"><span class="highlight">InfinieMaths</span><
+span><span class="logo-subtitle">Les maths du lycée, simplement.</span>
+</div>
+  <nav class="main-nav">
+<a href="index.html">Accueil</a>
+<a href="seconde.html">Seconde</a>
+<a href="premiere.html">Première</a>
+<a href="terminale.html">Terminale</a>
+<a href="assistant.html" class="active">Assistant</a>
+<a href="pass-premium.html">Pass Premium</a>
+<a href="inscription.html">Inscription</a>
+</nav>
+</header>
+  <main class="assistant-page">
+<section class="assistant-hero">
+<span class="assistant-badge">Assistant IA</span>
+<h1>Assistant InfinieMaths</h1>
+<p>
+Une notion à revoir, une méthode à comprendre ou un exercice à
+débloquer ?
+Pose ta question et l’assistant t’accompagne pas à pas, avec des
+explications claires adaptées à ton niveau.
+</p>
+</section>
+  <section class="assistant-card">
+<label for="userQuestion" class="assistant-label">Ta question</label>
+  <textarea
+id="userQuestion"
+class="assistant-textarea"
+placeholder="Exemple : étudie la fonction x^2, trace sa courbe et donne
+son tableau de variation"
+></textarea>
+  <div class="assistant-actions">
+<button id="sendBtn" class="assistant-btn"
+onclick="sendQuestion()">Envoyer</button>
+</div>
+  <div id="assistantStatus" class="assistant-status"></div>
+<div id="assistantResponse" class="assistant-response"></div>
+<div id="plotContainer" class="assistant-plot"></div>          </section>
+</main>
+<script>
+async function sendQuestion() {
+const questionInput = document.getElementById("userQuestion");
+const responseBox = document.getElementById("assistantResponse");
+const statusBox = document.getElementById("assistantStatus");
+const sendBtn = document.getElementById("sendBtn");
+const question = questionInput.value.trim();
+if (!question) {
+responseBox.innerHTML = "<p>Veuillez entrer une question.</p>";
+return;
+}
+sendBtn.disabled = true;
+sendBtn.textContent = "Analyse...";
+statusBox.textContent = "InfinieMaths réfléchit...";
+responseBox.innerHTML = "";
+clearPlot();
+try {
+const response = await fetch("http://127.0.0.1:5001/chat", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({ message: question })
+});
+if (!response.ok) {
+throw new Error("HTTP " + response.status);
+}
+const data = await response.json();
+console.log("Réponse backend :", data);
+statusBox.textContent = "";
+let html = "";
+if (data.reply) {html += "<div class='assistant-extra-block'><h3>Réponse</h3><p>" +
+escapeHtml(data.reply) + "</p></div>";
+} else {
+html += "<div class='assistant-extra-block'><h3>Réponse<
+h3><p>Aucune réponse générée.</p></div>";
+}
+  if (data.variation) {
+html += renderVariationBlock(data.variation);
+}
+  responseBox.innerHTML = html;
+  if (window.renderMathInElement) {
+renderMathInElement(responseBox, {
+delimiters: [
+{left: "$$", right: "$$", display: true},
+{left: "\\(", right: "\\)", display: false}
+],
+throwOnError: false
+});
+}
+  if (data.plot) {
+drawMathPlot(data.plot);
+} else {
+clearPlot();
+}
+  } catch (error) {
+console.error("Erreur fetch assistant :", error);
+statusBox.textContent = "";
+responseBox.innerHTML = "<div class='assistant-extra-block'><h3>Erreur<
+h3><p>Erreur réelle : " + escapeHtml(error.name) + " - " +
+escapeHtml(error.message) + "</p></div>";
+clearPlot();
+} finally {
+sendBtn.disabled = false;
+sendBtn.textContent = "Envoyer";
+}
+}
+  function clearPlot() {
+const plotContainer = document.getElementById("plotContainer");      if (plotContainer) {
+plotContainer.innerHTML = "";
+}
+}
+function drawMathPlot(plotData) {
+const plotContainer = document.getElementById("plotContainer");
+if (!plotContainer) {
+console.error("plotContainer introuvable");
+return;
+}
+if (!plotData) {
+clearPlot();
+return;
+}
+let traces = [];
+if (plotData.segments && Array.isArray(plotData.segments)) {
+plotData.segments.forEach(function(segment, index) {
+traces.push({
+x: Array.isArray(segment.x) ? segment.x : [],
+y: Array.isArray(segment.y) ? segment.y : [],
+type: "scatter",
+mode: "lines",
+name: segment.label || "Courbe " + (index + 1),
+line: {
+color: "#2563eb",
+width: 3
+},
+hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
+});
+});
+}
+if (traces.length === 0 && plotData.x && plotData.y) {
+traces.push({
+x: plotData.x,
+y: plotData.y,
+type: "scatter",
+mode: "lines",
+name: plotData.expression || "Courbe",line: {
+color: "#2563eb",
+width: 3
+},
+hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
+});
+}
+  if (traces.length === 0 && plotData.points && Array.isArray(plotData.points)) {
+traces.push({
+x: plotData.points.map(function(p) { return p.x; }),
+y: plotData.points.map(function(p) { return p.y; }),
+type: "scatter",
+mode: "lines",
+name: plotData.expression || "Courbe",
+line: {
+color: "#2563eb",
+width: 3
+},
+hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
+});
+}
+  if (traces.length === 0) {
+plotContainer.innerHTML = "<div class='assistant-extra
+block'><h3>Courbe</h3><p>Aucune donnée graphique exploitable.</p></div>";
+return;
+}
+  const layout = {
+title: {
+text: plotData.expression ? "Courbe de " + plotData.expression :
+"Courbe",
+font: { size: 20 }
+},
+paper_bgcolor: "white",
+plot_bgcolor: "white",
+margin: { t: 60, r: 20, b: 60, l: 60 },
+xaxis: {
+title: "x",
+zeroline: true,
+showgrid: true,
+gridcolor: "#e2e8f0"
+},yaxis: {
+title: "f(x)",
+zeroline: true,
+showgrid: true,
+gridcolor: "#e2e8f0"
+},
+showlegend: true
+};
+  const config = {
+responsive: true,
+displaylogo: false
+};
+  Plotly.newPlot(plotContainer, traces, layout, config);
+}
+  function renderVariationBlock(variation) {
+const expression = variation.expression ? escapeHtml(variation.expression) :
+"Non précisée";
+const derivative = variation.derivative ? escapeHtml(variation.derivative) :
+"Non précisée";
+const domainHtml = variation.domain ?
+escapeHtml(formatDomain(variation.domain)) : "Non précisé";
+  const criticalPoints = Array.isArray(variation.critical_points) ?
+variation.critical_points : [];
+const criticalValues = Array.isArray(variation.critical_values) ?
+variation.critical_values : [];
+const intervals = Array.isArray(variation.intervals) ? variation.intervals : [];
+  const criticalPointsHtml = criticalPoints.length
+? criticalPoints.map(function(point) {
+return "<span class='math-chip'>" + escapeHtml(String(point)) + "<
+span>";
+}).join("")
+: "Aucun point critique";
+  const criticalValuesHtml = criticalValues.length
+? criticalValues.map(function(item) {
+const xVal = item.x !== undefined ? escapeHtml(String(item.x)) : "?";
+const fxVal = item.f_x !== undefined ? escapeHtml(String(item.f_x)) :
+(item["f(x)"] !== undefined ? escapeHtml(String(item["f(x)"])) : "?");
+return "<span class='math-chip'>x = " + xVal + " ; f(x) = " + fxVal + "<span>";
+}).join("")
+: "Aucune valeur remarquable";
+  let rows = "";
+  if (intervals.length) {
+intervals.forEach(function(interval) {
+rows += "<tr>"
++ "<td>" + escapeHtml(formatInterval(interval)) + "</td>"
++ "<td>" + escapeHtml(interval.sign || "") + "</td>"
++ "<td>" + escapeHtml(translateVariation(interval.variation || "")) + "<
+td>"
++ "</tr>";
+});
+} else {
+rows = "<tr><td colspan='3'>Aucun intervalle fourni</td></tr>";
+}
+  return "<div class='assistant-extra-block'>"
++ "<h3>Tableau de variation</h3>"
++ "<div class='math-meta'><strong>Expression :</strong> " + expression +
+"</div>"
++ "<div class='math-meta'><strong>Dérivée :</strong> " + derivative + "<
+div>"
++ "<div class='math-meta'><strong>Domaine :</strong> " + domainHtml +
+"</div>"
++ "<div class='math-meta'><strong>Points critiques :</strong><br>" +
+criticalPointsHtml + "</div>"
++ "<div class='math-meta'><strong>Valeurs remarquables :</strong><br>"
++ criticalValuesHtml + "</div>"
++ "<table class='variation-table'>"
++ "<thead>"
++ "<tr>"
++ "<th>Intervalle</th>"
++ "<th>Signe de f'</th>"
++ "<th>Variation</th>"
++ "</tr>"
++ "</thead>"
++ "<tbody>"
++ rows
++ "</tbody>"
++ "</table>"
++ "</div>";      function(event)}
+function formatInterval(interval) {
+const fromValue = interval.from !== undefined ? interval.from : "";
+const toValue = interval.to !== undefined ? interval.to : "";
+return "[" + fromValue + " ; " + toValue + "]";
+}
+function translateVariation(value) {
+if (value === "increasing") return "croissante";
+if (value === "decreasing") return "décroissante";
+if (value === "constant") return "constante";
+return value;
+}
+function formatDomain(domain) {
+if (!Array.isArray(domain)) return "";
+return domain.map(function(part) {
+if (part.type === "interval") {
+const leftBracket = part.left_open ? "]" : "[";
+const rightBracket = part.right_open ? "[" : "]";
+return leftBracket + part.left + ", " + part.right + rightBracket;
+}
+return "";
+}).join(" U ");
+}
+function escapeHtml(text) {
+return String(text)
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;")
+.replace(/>/g, "&gt;")
+.replace(/\"/g, "&quot;")
+.replace(/'/g, "&#039;");
+}
+document.getElementById("userQuestion").addEventListener("keypress",
+{
+if (event.key === "Enter" && !event.shiftKey) {
+event.preventDefault();
+sendQuestion();
+}
+});</script>
 </body>
 </html>

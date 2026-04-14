@@ -233,7 +233,15 @@ function drawMathPlot(plotData) {
     }
 
     let traces = [];
-
+if (plotData.points && Array.isArray(plotData.points)) {
+    traces.push({
+        x: plotData.points.map(function(p) { return p.x; }),
+        y: plotData.points.map(function(p) { return p.y; }),
+        type: "scatter",
+        mode: "lines",
+        name: plotData.function || "fonction"
+    });
+}
     if (plotData.functions && Array.isArray(plotData.functions)) {
         plotData.functions.forEach(function(func) {
             traces.push({

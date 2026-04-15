@@ -312,6 +312,7 @@
       <div id="assistantStatus" class="assistant-status"></div>
       <div id="assistantError" class="assistant-error"></div>
       <div id="assistantResponse" class="assistant-response">La réponse apparaîtra ici.</div>
+      <div id="variationContainer" class="assistant-response" style="display:none;"></div>
       <div id="plotContainer" class="assistant-plot"></div>
 
       <div class="assistant-hint">
@@ -330,23 +331,22 @@
         .replace(/'/g, "&#039;");
     }
 
-    function renderAssistantReply(reply) {
-      const responseBox = document.getElementById("assistantResponse");
-      const safeReply = reply || "Aucune réponse générée.";
+  function renderAssistantReply(reply) {
+  const responseBox = document.getElementById("assistantResponse");
+  const safeReply = reply || "Aucune réponse générée.";
 
-      responseBox.innerHTML = marked.parse(safeReply);
+  responseBox.innerHTML = marked.parse(safeReply);
 
-      if (window.renderMathInElement) {
-        renderMathInElement(responseBox, {
-          delimiters: [
-            { left: "$$", right: "$$", display: true },
-            { left: "\$$", right: "\$$", display: false },
-            { left: "\$$", right: "\$$", display: true }
-          ],
-          throwOnError: false
-        });
-      }
-    }
+  if (window.renderMathInElement) {
+    renderMathInElement(responseBox, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+}
 
     function showError(message) {
       const errorBox = document.getElementById("assistantError");
@@ -366,51 +366,116 @@
       plotContainer.innerHTML = "";
     }
 
-    function drawMathPlot(plotData) {
-      const plotContainer = document.getElementById("plotContainer");
+   function drawMathPlot(plotData) {
+  const plotContainer = document.getElementById("plotContainer");
 
-      if (!plotData || !window.Plotly) {
-        clearPlot();
-        return;
-      }
+  if (!plotData || !window.Plotly || !plotData.segments || !plotData.segments.length) {
+    clearPlot();
+    return;
+  }
 
-      plotContainer.style.display = "block";
+  plotContainer.style.display = "block";
 
-      const trace = {
-        x: plotData.x || [],
-        y: plotData.y || [],
-        type: "scatter",
-        mode: "lines",
-        line: {
-          color: "#2563eb",
-          width: 3
-        },
-        name: plotData.label || "Courbe"
-      };
+  const traces = plotData.segments.map((segment, index) => ({
+    x: segment.x || [],
+    y: segment.y || [],
+    type: "scatter",
+    mode: "lines",
+    line: {
+      color: "#2563eb",
+      width: 3
+    },
+    name: index === 0 ? (plotData.expression || "Courbe") : undefined,
+    showlegend: index === 0
+  }));
 
-      const layout = {
-        title: plotData.title || "Représentation graphique",
-        paper_bgcolor: "#ffffff",
-        plot_bgcolor: "#ffffff",
-        margin: { t: 50, r: 20, b: 50, l: 60 },
-        xaxis: {
-          title: plotData.x_label || "x",
-          zeroline: true,
-          gridcolor: "#e2e8f0"
-        },
-        yaxis: {
-          title: plotData.y_label || "y",
-          zeroline: true,
-          gridcolor: "#e2e8f0"
-        }
-      };
-
-      Plotly.newPlot(plotContainer, [trace], layout, {
-        responsive: true,
-        displaylogo: false
-      });
+  const layout = {
+    title: plotData.expression
+      ? `Courbe de f(x) = ${plotData.expression}`
+      : "Représentation graphique",
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+    margin: { t: 50, r: 20, b: 50, l: 60 },
+    xaxis: {
+      title: "x",
+      zeroline: true,
+      gridcolor: "#e2e8f0"
+    },
+    yaxis: {
+      title: "f(x)",
+      zeroline: true,
+      gridcolor: "#e2e8f0"
     }
+  };
 
+  Plotly.newPlot(plotContainer, traces, layout, {
+    responsive: true,
+    displaylogo: false
+  });
+}
+function renderVariationTable(variationData) {
+  const box = document.getElementById("variationContainer");
+
+  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+
+  const translateVariation = (value) => {
+    if (value === "increasing") return "Croissante";
+    if (value === "decreasing") return "Décroissante";
+    if (value === "constant") return "Constante";
+    return "Inconnue";
+  };
+
+  const translateSign = (sign) => {
+    if (sign === "+") return "+";
+    if (sign === "-") return "−";
+    if (sign === "0") return "0";
+    return "?";
+  };
+
+  const formatBound = (v) => {
+    if (v === "-inf") return "−∞";
+    if (v === "+inf") return "+∞";
+    return String(v);
+  };
+
+  let html = `
+    <h3>Tableau de variation</h3>
+    <p><strong>Dérivée :</strong> ${variationData.derivative || "Non disponible"}</p>
+    <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #ccc; padding:8px;">Intervalle</th>
+          <th style="border:1px solid #ccc; padding:8px;">Signe de f'(x)</th>
+          <th style="border:1px solid #ccc; padding:8px;">Variation de f</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  variationData.intervals.forEach(interval => {
+    html += `
+      <tr>
+        <td style="border:1px solid #ccc; padding:8px;">
+          ${formatBound(interval.from)} ; ${formatBound(interval.to)}
+        </td>
+        <td style="border:1px solid #ccc; padding:8px;">
+          ${translateSign(interval.sign)}
+        </td>
+        <td style="border:1px solid #ccc; padding:8px;">
+          ${translateVariation(interval.variation)}
+        </td>
+      </tr>
+    `;
+  });
+
+  html += "</tbody></table>";
+  box.innerHTML = html;
+  box.style.display = "block";
+}
     async function sendQuestion() {
       const textarea = document.getElementById("userQuestion");
       const sendBtn = document.getElementById("sendBtn");
@@ -432,33 +497,36 @@
 
       try {
         const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ message: question })
-        });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ message: question })
+});
 
-        if (!response.ok) {
-          throw new Error("Erreur serveur : " + response.status);
-        }
+const data = await response.json();
 
-        const data = await response.json();
+if (!response.ok) {
+  throw new Error(data.reply || ("Erreur serveur : " + response.status));
+}
 
-        statusBox.textContent = "";
-        renderAssistantReply(data.reply);
+statusBox.textContent = "";
+renderAssistantReply(data.reply);
+renderVariationTable(data.variation);
 
-        if (data.plot) {
-          drawMathPlot(data.plot);
-        } else {
-          clearPlot();
-        }
+if (data.plot) {
+  drawMathPlot(data.plot);
+} else {
+  clearPlot();
+}
       } catch (error) {
-        statusBox.textContent = "";
-        responseBox.innerHTML = "Une erreur est survenue.";
-        clearPlot();
-        showError("Impossible de contacter le serveur. Vérifie que le backend Render est bien lancé.");
-      } finally {
+  statusBox.textContent = "";
+  responseBox.innerHTML = "Une erreur est survenue.";
+  clearPlot();
+  document.getElementById("variationContainer").style.display = "none";
+  document.getElementById("variationContainer").innerHTML = "";
+  showError(error.message || "Erreur inconnue.");
+} finally {
         sendBtn.disabled = false;
       }
     }

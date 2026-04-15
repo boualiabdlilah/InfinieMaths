@@ -113,258 +113,198 @@ onclick="sendQuestion()">Envoyer</button>
 </main>
 <script>
 async function sendQuestion() {
-const questionInput = document.getElementById("userQuestion");
-const responseBox = document.getElementById("assistantResponse");
-const statusBox = document.getElementById("assistantStatus");
-const sendBtn = document.getElementById("sendBtn");
-const question = questionInput.value.trim();
-if (!question) {
-responseBox.innerHTML = "<p>Veuillez entrer une question.</p>";
-return;
+  const questionInput = document.getElementById("userQuestion");
+  const responseBox = document.getElementById("assistantResponse");
+  const statusBox = document.getElementById("assistantStatus");
+  const sendBtn = document.getElementById("sendBtn");
+  const question = questionInput.value.trim();
+
+  if (!question) {
+    responseBox.innerHTML = "<p>Veuillez entrer une question.</p>";
+    return;
+  }
+
+  sendBtn.disabled = true;
+  sendBtn.textContent = "Analyse...";
+  statusBox.textContent = "InfinieMaths réfléchit...";
+  responseBox.innerHTML = "";
+  clearPlot();
+
+  try {
+    const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: question })
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const data = await response.json();
+    console.log("Réponse backend :", data);
+
+    statusBox.textContent = "";
+    let html = "";
+
+    if (data.reply) {
+      html += "<div class='assistant-extra-block'><h3>Réponse</h3><p>" + escapeHtml(data.reply) + "</p></div>";
+    } else {
+      html += "<div class='assistant-extra-block'><h3>Réponse</h3><p>Aucune réponse générée.</p></div>";
+    }
+
+    if (data.variation) {
+      html += renderVariationBlock(data.variation);
+    }
+
+    responseBox.innerHTML = html;
+
+    if (window.renderMathInElement) {
+      renderMathInElement(responseBox, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\$$', right: '\$$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    if (data.plot) {
+      drawMathPlot(data.plot);
+    } else {
+      clearPlot();
+    }
+
+  } catch (error) {
+    console.error("Erreur fetch assistant :", error);
+    statusBox.textContent = "";
+    responseBox.innerHTML = "<div class='assistant-extra-block'><h3>Erreur</h3><p>Erreur réelle : " + escapeHtml(error.name) + " - " + escapeHtml(error.message) + "</p></div>";
+    clearPlot();
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = "Envoyer";
+  }
 }
-sendBtn.disabled = true;
-sendBtn.textContent = "Analyse...";
-statusBox.textContent = "InfinieMaths réfléchit...";
-responseBox.innerHTML = "";
-clearPlot();
-try {
-const response = await fetch("https://infiniemaths-assistant
-backend.onrender.com/chat", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({ message: question })
-});
-if (!response.ok) {
-throw new Error("HTTP " + response.status);
+
+function clearPlot() {
+  const plotContainer = document.getElementById("plotContainer");
+  if (plotContainer) {
+    plotContainer.innerHTML = "";
+  }
 }
-const data = await response.json();
-console.log("Réponse backend :", data);
-statusBox.textContent = "";
-let html = "";
-if (data.reply) {html += "<div class='assistant-extra-block'><h3>Réponse</h3><p>" +
-escapeHtml(data.reply) + "</p></div>";
-} else {html += "<div class='assistant-extra-block'><h3>Réponse</h3><p>Aucune réponse
-générée.</p></div>";
-}
-  if (data.variation) {
-html += renderVariationBlock(data.variation);
-}
-  responseBox.innerHTML = html;
-  if (window.renderMathInElement) {
-renderMathInElement(responseBox, {
-delimiters: [
-{left: "$$", right: "$$", display: true},
-{left: "\\(", right: "\\)", display: false}
-],
-throwOnError: false
-});
-}
-  if (data.plot) {
-drawMathPlot(data.plot);
-} else {
-clearPlot();
-}
-  } catch (error) {
-console.error("Erreur fetch assistant :", error);
-statusBox.textContent = "";
-responseBox.innerHTML = "<div class='assistant-extra-block'><h3>Erreur<
-h3><p>Erreur réelle : " + escapeHtml(error.name) + " - " +
-escapeHtml(error.message) + "</p></div>";
-clearPlot();
-} finally {
-sendBtn.disabled = false;
-sendBtn.textContent = "Envoyer";
-}
-}
-  function clearPlot() {
-const plotContainer = document.getElementById("plotContainer");
-    if (plotContainer) {
-plotContainer.innerHTML = "";
-}
-}
+
 function drawMathPlot(plotData) {
-const plotContainer = document.getElementById("plotContainer");
-if (!plotContainer) {
-console.error("plotContainer introuvable");
-return;
+  const plotContainer = document.getElementById("plotContainer");
+  if (!plotContainer) {
+    console.error("plotContainer introuvable");
+    return;
+  }
+
+  if (!plotData) {
+    clearPlot();
+    return;
+  }
+
+  let traces = [];
+
+  if (plotData.segments && Array.isArray(plotData.segments)) {
+    plotData.segments.forEach(function(segment, index) {
+      traces.push({
+        x: Array.isArray(segment.x) ? segment.x : [],
+        y: Array.isArray(segment.y) ? segment.y : [],
+        type: "scatter",
+        mode: "lines",
+        name: segment.label || "Courbe " + (index + 1),
+        line: {
+          color: "#2563eb",
+          width: 3
+        },
+        hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
+      });
+    });
+  }
+
+  if (traces.length === 0 && plotData.x && plotData.y) {
+    traces.push({
+      x: plotData.x,
+      y: plotData.y,
+      type: "scatter",
+      mode: "lines",
+      name: plotData.label || "Courbe",
+      line: {
+        color: "#2563eb",
+        width: 3
+      }
+    });
+  }
+
+  const layout = {
+    title: plotData.title || "Représentation graphique",
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+    margin: { t: 50, r: 20, b: 50, l: 60 },
+    xaxis: {
+      title: plotData.x_label || "x",
+      zeroline: true,
+      gridcolor: "#e2e8f0"
+    },
+    yaxis: {
+      title: plotData.y_label || "y",
+      zeroline: true,
+      gridcolor: "#e2e8f0"
+    }
+  };
+
+  Plotly.newPlot(plotContainer, traces, layout, { responsive: true });
 }
-if (!plotData) {
-clearPlot();
-return;
-}
-let traces = [];
-if (plotData.segments && Array.isArray(plotData.segments)) {
-plotData.segments.forEach(function(segment, index) {
-traces.push({
-x: Array.isArray(segment.x) ? segment.x : [],
-y: Array.isArray(segment.y) ? segment.y : [],
-type: "scatter",
-mode: "lines",
-name: segment.label || "Courbe " + (index + 1),
-line: {
-color: "#2563eb",
-width: 3
-},
-hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
-});
-});
-}
-if (traces.length === 0 && plotData.x && plotData.y) {
-traces.push({
-x: plotData.x,
-y: plotData.y,
-type: "scatter",
-mode: "lines",
-name: plotData.expression || "Courbe",line: {
-color: "#2563eb",
-width: 3
-},
-hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"});
-}
-  if (traces.length === 0 && plotData.points && Array.isArray(plotData.points)) {
-traces.push({
-x: plotData.points.map(function(p) { return p.x; }),
-y: plotData.points.map(function(p) { return p.y; }),
-type: "scatter",
-mode: "lines",
-name: plotData.expression || "Courbe",
-line: {
-color: "#2563eb",
-width: 3
-},
-hovertemplate: "x=%{x}<br>y=%{y}<extra></extra>"
-});
-}
-  if (traces.length === 0) {
-plotContainer.innerHTML = "<div class='assistant-extra
-block'><h3>Courbe</h3><p>Aucune donnée graphique exploitable.</p></div>";
-return;
-}
-  const layout = {
-title: {
-text: plotData.expression ? "Courbe de " + plotData.expression :
-"Courbe",
-font: { size: 20 }
-},
-paper_bgcolor: "white",
-plot_bgcolor: "white",
-margin: { t: 60, r: 20, b: 60, l: 60 },
-xaxis: {
-title: "x",
-zeroline: true,
-showgrid: true,
-gridcolor: "#e2e8f0"
-},yaxis: {
-title: "f(x)",
-zeroline: true,
-showgrid: true,
-gridcolor: "#e2e8f0"
-},showlegend: true
-};
-  const config = {
-responsive: true,
-displaylogo: false
-};
-  Plotly.newPlot(plotContainer, traces, layout, config);
-}
-  function renderVariationBlock(variation) {
-const expression = variation.expression ? escapeHtml(variation.expression) :
-"Non précisée";
-const derivative = variation.derivative ? escapeHtml(variation.derivative) :
-"Non précisée";
-const domainHtml = variation.domain ?
-escapeHtml(formatDomain(variation.domain)) : "Non précisé";
-  const criticalPoints = Array.isArray(variation.critical_points) ?
-variation.critical_points : [];
-const criticalValues = Array.isArray(variation.critical_values) ?
-variation.critical_values : [];
-const intervals = Array.isArray(variation.intervals) ? variation.intervals : [];
-  const criticalPointsHtml = criticalPoints.length
-? criticalPoints.map(function(point) {
-return "<span class='math-chip'>" + escapeHtml(String(point)) + "<
-span>";
-}).join("")
-: "Aucun point critique";
-  const criticalValuesHtml = criticalValues.length
-? criticalValues.map(function(item) {
-const xVal = item.x !== undefined ? escapeHtml(String(item.x)) : "?";
-const fxVal = item.f_x !== undefined ? escapeHtml(String(item.f_x)) :
-(item["f(x)"] !== undefined ? escapeHtml(String(item["f(x)"])) : "?");
-return "<span class='math-chip'>x = " + xVal + " ; f(x) = " + fxVal + "</span>";
-}).join("")
-: "Aucune valeur remarquable";
-  let rows = "";
-  if (intervals.length) {intervals.forEach(function(interval) {
-rows += "<tr>"
-+ "<td>" + escapeHtml(formatInterval(interval)) + "</td>"
-+ "<td>" + escapeHtml(interval.sign || "") + "</td>"
-+ "<td>" + escapeHtml(translateVariation(interval.variation || "")) + "</td>"
-+ "</tr>";
-});
-} else {
-rows = "<tr><td colspan='3'>Aucun intervalle fourni</td></tr>";
-}
-  return "<div class='assistant-extra-block'>"
-+ "<h3>Tableau de variation</h3>"
-+ "<div class='math-meta'><strong>Expression :</strong> " + expression +
-"</div>"
-+ "<div class='math-meta'><strong>Dérivée :</strong> " + derivative + "</div>"
-+ "<div class='math-meta'><strong>Domaine :</strong> " + domainHtml +
-"</div>"
-+ "<div class='math-meta'><strong>Points critiques :</strong><br>" +
-criticalPointsHtml + "</div>"
-+ "<div class='math-meta'><strong>Valeurs remarquables :</strong><br>"
-+ criticalValuesHtml + "</div>"
-+ "<table class='variation-table'>"
-+ "<thead>"
-+ "<tr>"
-+ "<th>Intervalle</th>"
-+ "<th>Signe de f'</th>"
-+ "<th>Variation</th>"
-+ "</tr>"
-+ "</thead>"
-+ "<tbody>"
-+ rows
-+ "</tbody>"
-+ "</table>"
-+ "</div>";
-     function formatInterval(interval) {
-const fromValue = interval.from !== undefined ? interval.from : "";
-const toValue = interval.to !== undefined ? interval.to : "";
-return "[" + fromValue + " ; " + toValue + "]";}
-function translateVariation(value) {
-if (value === "increasing") return "croissante";
-if (value === "decreasing") return "décroissante";
-if (value === "constant") return "constante";
-return value;
-}
-function formatDomain(domain) {
-if (!Array.isArray(domain)) return "";
-return domain.map(function(part) {
-if (part.type === "interval") {
-const leftBracket = part.left_open ? "]" : "[";
-const rightBracket = part.right_open ? "[" : "]";
-return leftBracket + part.left + ", " + part.right + rightBracket;
-}
-return "";
-}).join(" U ");
-}
-function escapeHtml(text) {
-return String(text)
-.replace(/&/g, "&amp;")
-.replace(/</g, "&lt;")
-.replace(/>/g, "&gt;")
-.replace(/\"/g, "&quot;")
-.replace(/'/g, "&#039;");
-}
-document.getElementById("userQuestion").addEventListener("keypress",
-function(event) {
-if (event.key === "Enter" && !event.shiftKey) {
-event.preventDefault();
-sendQuestion();
-}
-});</script>
+
+function renderVariationBlock(variationData) {
+  const expression = variationData.expression ? escapeHtml(variationData.expression) : "Non fournie";
+  const derivative = variationData.derivative ? escapeHtml(variationData.derivative) : "Non fournie";
+  const domainHtml = variationData.domain ? escapeHtml(formatDomain(variationData.domain)) : "Non précisé";
+  const criticalPoints = Array.isArray(variationData.critical_points) ? variationData.critical_points : [];
+  const criticalValues = Array.isArray(variationData.critical_values) ? variationData.critical_values : [];
+  const intervals = Array.isArray(variationData.intervals) ? variationData.intervals : [];
+
+  const criticalPointsHtml = criticalPoints.length
+    ? criticalPoints.map(function(point) {
+        return "<span class='math-chip'>" + escapeHtml(String(point)) + "</span>";
+      }).join("")
+    : "Aucun point critique";
+
+  const criticalValuesHtml = criticalValues.length
+    ? criticalValues.map(function(item) {
+        const xVal = item.x !== undefined ? escapeHtml(String(item.x)) : "?";
+        const fxVal = item.f_x !== undefined
+          ? escapeHtml(String(item.f_x))
+          : (item["f(x)"] !== undefined ? escapeHtml(String(item["f(x)"])) : "?");
+        return "<span class='math-chip'>x = " + xVal + " ; f(x) = " + fxVal + "</span>";
+      }).join("")
+    : "Aucune valeur remarquable";
+
+  let rows = "";
+
+  if (intervals.length) {
+    intervals.forEach(function(interval) {
+      rows += "<tr>"
+        + "<td>" + escapeHtml(formatInterval(interval)) + "</td>"
+        + "<td>" + escapeHtml(interval.sign || "") + "</td>"
+        + "<td>" + escapeHtml(translateVariation(interval.variation || "")) + "</td>"
+        + "</tr>";
+    });
+  } else {
+    rows = "<tr><td colspan='3'>Aucun intervalle fourni</td></tr>";
+  }
+
+  return "<div class='assistant-extra-block'>"
+    + "<h3>Tableau de variation</h3>"
+    + "<div class='math-meta'><strong>Expression :</strong> " + expression + "</div>"
+    + "<div class='math-meta'><strong>Dérivée :</strong> " + derivative + "</div>"
+    + "<div class='math-meta'><strong>Domaine :</strong> " + domainHtml + "</div>"
+    + "<div class='math-meta'><strong>Points critiques :</strong><br>" + criticalPointsHtml + "</div>"
+    + "<div class='math-meta'><strong>Valeurs remarquables :</strong><br>" + criticalValuesHtml + "</div>"
+    + "
 </body>
 </html>

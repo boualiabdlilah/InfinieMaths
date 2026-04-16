@@ -429,64 +429,120 @@
     return;
   }
 
-  const translateVariation = (value) => {
-    if (value === "increasing") return "Décroissante".replace("Dé", "Cro").replace("roissante", "issante"); // returns "Croissante"
-    if (value === "decreasing") return "Décroissante";
-    if (value === "constant") return "Constante";
-    return "Inconnue";
-  };
+  const cps = variationData.critical_points || [];
+  const criticalValues = variationData.critical_values || [];
+  const limits = variationData.limits || {};
 
-  const translateSign = (sign) => {
-    if (sign === "+") return "+";
-    if (sign === "-") return "−";
-    if (sign === "0") return "0";
-    return "?";
-  };
-
-  const formatBound = (v) => {
+  const formatVal = (v) => {
     if (v === "-inf" || v === "-oo") return "−∞";
-    if (v === "+inf" || v === "oo") return "+∞";
+    if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
     if (v === null || v === undefined) return "";
     return String(v);
   };
 
+  const getFxAtCritical = (xVal) => {
+    const found = criticalValues.find(item => String(item.x) === String(xVal));
+    return found ? formatVal(found["f(x)"]) : "";
+  };
+
+  const leftInf = formatVal(limits.left_infinity);
+  const rightInf = formatVal(limits.right_infinity);
+
+  const signBetween = {};
+  const varBetween = {};
+
+  variationData.intervals.forEach(interval => {
+    const key = `${interval.from}|${interval.to}`;
+    signBetween[key] = interval.sign || "";
+    varBetween[key] = interval.variation || "";
+  });
+
+  const xPoints = ["-inf", ...cps, "+inf"];
+
+  const getSignForGap = (left, right) => {
+    const key = `${left}|${right}`;
+    return signBetween[key] || "";
+  };
+
+  const getArrowForGap = (left, right) => {
+    const key = `${left}|${right}`;
+    const v = varBetween[key];
+    if (v === "increasing") return "↗";
+    if (v === "decreasing") return "↘";
+    if (v === "constant") return "→";
+    return "";
+  };
+
+  const nbCols = xPoints.length * 2 - 1;
+
   let html = `
     <h3>Tableau de variation</h3>
     <p><strong>Dérivée :</strong> ${variationData.derivative || "Non disponible"}</p>
-    <table style="width:100%; border-collapse: collapse; margin-top:10px;">
-      <thead>
-        <tr>
-          <th style="border:1px solid #ccc; padding:8px;">Intervalle</th>
-          <th style="border:1px solid #ccc; padding:8px;">Signe de f'(x)</th>
-          <th style="border:1px solid #ccc; padding:8px;">Variation de f</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div style="overflow-x:auto;">
+      <table style="
+        border-collapse:collapse;
+        margin-top:12px;
+        background:white;
+        font-size:22px;
+        text-align:center;
+        min-width:700px;
+      ">
   `;
 
-  variationData.intervals.forEach(interval => {
-    html += `
-      <tr>
-       <td style="border:1px solid #ccc; padding:8px; text-align:center;">
-  <div style="font-size:32px; line-height:1;">${
-    interval.variation === "increasing"
-      ? "↗"
-      : interval.variation === "decreasing"
-      ? "↘"
-      : "→"
-  }</div>
-  <div style="font-size:14px; margin-top:6px;">
-    ${translateVariation(interval.variation)}
-  </div>
-</td>
-      </tr>
-    `;
+  // Ligne x
+  html += `<tr><th style="border:2px solid #666; padding:10px 14px; min-width:90px;">x</th>`;
+  xPoints.forEach((p, i) => {
+    html += `<td style="border:2px solid #666; padding:10px 18px; min-width:70px;">${formatVal(p)}</td>`;
+    if (i < xPoints.length - 1) {
+      html += `<td style="border-top:2px solid #666; border-bottom:2px solid #666; padding:10px 12px; min-width:45px;"></td>`;
+    }
+  });
+  html += `</tr>`;
+
+  // Ligne f'(x)
+  html += `<tr><th style="border:2px solid #666; padding:10px 14px;">f'(x)</th>`;
+  xPoints.forEach((p, i) => {
+    if (i > 0 && i < xPoints.length - 1) {
+      html += `<td style="border:2px solid #666; padding:10px 18px;">0</td>`;
+    } else {
+      html += `<td style="border:2px solid #666; padding:10px 18px;"></td>`;
+    }
+
+    if (i < xPoints.length - 1) {
+      const sign = getSignForGap(xPoints[i], xPoints[i + 1]);
+      html += `<td style="border-top:2px solid #666; border-bottom:2px solid #666; padding:10px 12px;">${sign}</td>`;
+    }
+  });
+  html += `</tr>`;
+
+  // Ligne f(x)
+  html += `<tr><th style="border:2px solid #666; padding:10px 14px;">f(x)</th>`;
+
+  xPoints.forEach((p, i) => {
+    let value = "";
+    if (i === 0) value = leftInf;
+    else if (i === xPoints.length - 1) value = rightInf;
+    else value = getFxAtCritical(p);
+
+    html += `<td style="border:2px solid #666; padding:16px 18px; vertical-align:middle;">${value}</td>`;
+
+    if (i < xPoints.length - 1) {
+      const arrow = getArrowForGap(xPoints[i], xPoints[i + 1]);
+      html += `
+        <td style="
+          border-top:2px solid #666;
+          border-bottom:2px solid #666;
+          padding:16px 12px;
+          font-size:34px;
+          line-height:1;
+          vertical-align:middle;
+        ">${arrow}</td>
+      `;
+    }
   });
 
-  html += `
-      </tbody>
-    </table>
-  `;
+  html += `</tr>`;
+  html += `</table></div>`;
 
   box.innerHTML = html;
   box.style.display = "block";

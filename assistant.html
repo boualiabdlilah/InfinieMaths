@@ -421,226 +421,194 @@
   }
 
   function renderVariationTable(variationData) {
-    const box = document.getElementById("variationContainer");
+  const box = document.getElementById("variationContainer");
 
-    if (!variationData || !variationData.intervals || !variationData.intervals.length) {
-      box.style.display = "none";
-      box.innerHTML = "";
-      return;
-    }
+  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
 
-    const cps = variationData.critical_points || [];
-    const criticalValues = variationData.critical_values || [];
-    const limits = variationData.limits || {};
+  const cps = variationData.critical_points || [];
+  const criticalValues = variationData.critical_values || [];
+  const limits = variationData.limits || {};
 
-    function formatVal(v) {
-      if (v === "-inf" || v === "-oo") return "−∞";
-      if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
-      if (v === null || v === undefined) return "";
-      return String(v);
-    }
+  const formatVal = (v) => {
+    if (v === "-inf" || v === "-oo") return "−∞";
+    if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
+    if (v === null || v === undefined) return "";
+    return String(v);
+  };
 
-    function getFxAtCritical(xVal) {
-      const found = criticalValues.find(item => String(item.x) === String(xVal));
-      return found ? formatVal(found["f(x)"]) : "";
-    }
+  const getFxAtCritical = (xVal) => {
+    const found = criticalValues.find(item => String(item.x) === String(xVal));
+    return found ? formatVal(found["f(x)"]) : "";
+  };
 
-    const xPoints = ["-inf", ...cps, "+inf"];
+  const xPoints = ["-inf", ...cps, "+inf"];
 
-    const signBetween = {};
-    const varBetween = {};
+  const signBetween = {};
+  const varBetween = {};
 
-    variationData.intervals.forEach(interval => {
-      const key = `${interval.from}|${interval.to}`;
-      signBetween[key] = interval.sign || "";
-      varBetween[key] = interval.variation || "";
-    });
+  variationData.intervals.forEach(interval => {
+    const key = `${interval.from}|${interval.to}`;
+    signBetween[key] = interval.sign || "";
+    varBetween[key] = interval.variation || "";
+  });
 
-    function getSignForGap(left, right) {
-      const key = `${left}|${right}`;
-      return signBetween[key] || "";
-    }
+  const getSignLeft = (index) => {
+    if (index === 0) return "";
+    return signBetween[`${xPoints[index - 1]}|${xPoints[index]}`] || "";
+  };
 
-    function getArrowForGap(left, right) {
-      const key = `${left}|${right}`;
-      const v = varBetween[key];
-      if (v === "increasing") return "↗";
-      if (v === "decreasing") return "↘";
-      if (v === "constant") return "→";
-      return "";
-    }
+  const getSignRight = (index) => {
+    if (index >= xPoints.length - 1) return "";
+    return signBetween[`${xPoints[index]}|${xPoints[index + 1]}`] || "";
+  };
 
-    const leftInf = formatVal(limits.left_infinity);
-    const rightInf = formatVal(limits.right_infinity);
+  const getArrow = (left, right) => {
+    const v = varBetween[`${left}|${right}`];
+    if (v === "increasing") return "↗";
+    if (v === "decreasing") return "↘";
+    if (v === "constant") return "→";
+    return "";
+  };
 
-    let html = `
-      <h3 style="
-        margin-top:0;
-        margin-bottom:18px;
-        font-size:20px;
+  const leftInf = formatVal(limits.left_infinity);
+  const rightInf = formatVal(limits.right_infinity);
+
+  let html = `
+    <h3 style="
+      margin-top:0;
+      margin-bottom:18px;
+      font-size:20px;
+      color:#0f172a;
+    ">Tableau de variation</h3>
+
+    <div style="overflow-x:auto;">
+      <table style="
+        border-collapse:collapse;
+        background:#fff;
+        min-width:760px;
+        font-size:22px;
+        text-align:center;
         color:#0f172a;
-      ">Tableau de variation</h3>
+      ">
+  `;
 
-      <div style="overflow-x:auto;">
-        <table style="
-          border-collapse:collapse;
-          width:auto;
-          min-width:760px;
-          background:#fff;
-          margin-top:8px;
-          font-size:20px;
-          text-align:center;
-          color:#0f172a;
+  // Ligne x
+  html += `
+    <tr>
+      <th style="
+        border:1px solid #666;
+        padding:14px 18px;
+        min-width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">x</th>
+  `;
+
+  xPoints.forEach((p) => {
+    html += `
+      <td style="
+        border:1px solid #666;
+        padding:14px 22px;
+        min-width:150px;
+      ">${formatVal(p)}</td>
+    `;
+  });
+
+  html += `</tr>`;
+
+  // Ligne f'(x)
+  html += `
+    <tr>
+      <th style="
+        border:1px solid #666;
+        padding:14px 18px;
+        min-width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f'(x)</th>
+  `;
+
+  for (let i = 0; i < xPoints.length; i++) {
+    let content = "";
+
+    if (i === 0) {
+      content = getSignRight(i);
+    } else if (i === xPoints.length - 1) {
+      content = getSignLeft(i);
+    } else {
+      content = `${getSignLeft(i)}&nbsp;&nbsp;0&nbsp;&nbsp;${getSignRight(i)}`;
+    }
+
+    html += `
+      <td style="
+        border:1px solid #666;
+        padding:14px 22px;
+        min-width:150px;
+      ">${content}</td>
+    `;
+  }
+
+  html += `</tr>`;
+
+  // Ligne f(x) sans traits verticaux internes
+  html += `
+    <tr>
+      <th style="
+        border:1px solid #666;
+        padding:18px;
+        min-width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f(x)</th>
+  `;
+
+  for (let i = 0; i < xPoints.length; i++) {
+    let value = "";
+    if (i === 0) value = leftInf;
+    else if (i === xPoints.length - 1) value = rightInf;
+    else value = getFxAtCritical(xPoints[i]);
+
+    let borderStyle = `
+      border-top:1px solid #666;
+      border-bottom:1px solid #666;
+      padding:18px 22px;
+      min-width:150px;
+      height:90px;
+      vertical-align:middle;
+    `;
+
+    if (i === 0) borderStyle += `border-left:1px solid #666;`;
+    if (i === xPoints.length - 1) borderStyle += `border-right:1px solid #666;`;
+
+    html += `
+      <td style="${borderStyle}">
+        <div style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:18px;
+          width:100%;
         ">
+          <span>${value}</span>
+          ${
+            i < xPoints.length - 1
+              ? `<span style="font-size:34px; line-height:1;">${getArrow(xPoints[i], xPoints[i + 1])}</span>`
+              : ``
+          }
+        </div>
+      </td>
     `;
+  }
 
-    // ===== Ligne x =====
-    html += `
-      <tr>
-        <th style="
-          border:1px solid #666;
-          padding:14px 18px;
-          min-width:110px;
-          font-style:italic;
-          font-weight:600;
-          background:#f8fafc;
-        ">x</th>
-    `;
+  html += `</tr>`;
+  html += `</table></div>`;
 
-    xPoints.forEach((p) => {
-      html += `
-        <td style="
-          border:1px solid #666;
-          padding:14px 22px;
-          min-width:110px;
-        ">${formatVal(p)}</td>
-      `;
-    });
-
-    html += `</tr>`;
-
-    // ===== Ligne f'(x) =====
-    html += `
-      <tr>
-        <th style="
-          border:1px solid #666;
-          padding:14px 18px;
-          font-style:italic;
-          font-weight:600;
-          background:#f8fafc;
-        ">f'(x)</th>
-    `;
-
-    for (let i = 0; i < xPoints.length; i++) {
-      if (i === 0 || i === xPoints.length - 1) {
-        html += `
-          <td style="
-            border:1px solid #666;
-            padding:14px 22px;
-          "></td>
-        `;
-      } else {
-        html += `
-          <td style="
-            border:1px solid #666;
-            padding:14px 22px;
-          ">0</td>
-        `;
-      }
-    }
-
-    html += `</tr>`;
-
-    // ===== Ligne des signes entre les bornes =====
-    html += `
-      <tr>
-        <th style="
-          border-left:1px solid #666;
-          border-right:1px solid #666;
-          border-bottom:1px solid #666;
-          padding:10px 18px;
-          background:#f8fafc;
-        "></th>
-    `;
-
-    for (let i = 0; i < xPoints.length; i++) {
-      if (i < xPoints.length - 1) {
-        const sign = getSignForGap(xPoints[i], xPoints[i + 1]);
-        html += `
-          <td style="
-            border-bottom:1px solid #666;
-            border-right:1px solid #666;
-            padding:10px 22px;
-            font-size:24px;
-            font-weight:500;
-          ">${sign}</td>
-        `;
-      } else {
-        html += `
-          <td style="
-            border-bottom:1px solid #666;
-            border-right:1px solid #666;
-            padding:10px 22px;
-          "></td>
-        `;
-      }
-    }
-
-    html += `</tr>`;
-
-    // ===== Ligne f(x) =====
-    html += `
-      <tr>
-        <th style="
-          border:1px solid #666;
-          padding:18px;
-          font-style:italic;
-          font-weight:600;
-          background:#f8fafc;
-        ">f(x)</th>
-    `;
-
-    for (let i = 0; i < xPoints.length; i++) {
-      let value = "";
-      if (i === 0) {
-        value = leftInf;
-      } else if (i === xPoints.length - 1) {
-        value = rightInf;
-      } else {
-        value = getFxAtCritical(xPoints[i]);
-      }
-
-      html += `
-        <td style="
-          border:1px solid #666;
-          padding:18px 22px;
-          min-width:110px;
-          height:68px;
-          vertical-align:middle;
-          font-size:20px;
-        ">
-          <div style="
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:16px;
-          ">
-            <span>${value}</span>
-            ${
-              i < xPoints.length - 1
-                ? `<span style="font-size:34px; line-height:1;">${getArrowForGap(xPoints[i], xPoints[i + 1])}</span>`
-                : ``
-            }
-          </div>
-        </td>
-      `;
-    }
-
-    html += `</tr>`;
-    html += `</table></div>`;
-
-    box.innerHTML = html;
-    box.style.display = "block";
+  box.innerHTML = html;
+  box.style.display = "block";
   }
 
   async function sendQuestion() {

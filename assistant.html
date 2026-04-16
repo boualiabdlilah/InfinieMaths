@@ -544,180 +544,106 @@
     return found ? formatVal(found["f(x)"]) : "";
   }
 
-  function getVariation(left, right) {
-    return varBetween[`${left}|${right}`] || "";
+  function getArrow(left, right) {
+    const v = varBetween[`${left}|${right}`];
+    if (v === "increasing") return "↗";
+    if (v === "decreasing") return "↘";
+    if (v === "constant") return "→";
+    return "";
   }
 
   const leftInf = formatVal(limits.left_infinity);
   const rightInf = formatVal(limits.right_infinity);
 
-  // =========================
-  // Préparation des points f(x)
-  // =========================
-  const fxValues = xPoints.map((x, i) => {
-    if (i === 0) return leftInf;
-    if (i === xPoints.length - 1) return rightInf;
-    return getFxAtCritical(x);
-  });
-
-  // Pour un vrai rendu "à la française", on place :
-  // - une valeur haute puis basse selon la variation
-  // - le point critique au milieu entre les deux segments
-  function computeYPositions() {
-    const n = xPoints.length;
-    const y = new Array(n).fill(60);
-
-    if (n === 1) return y;
-    if (n === 2) return [60, 60];
-
-    // Affectation locale selon les variations autour du point
-    for (let i = 0; i < n; i++) {
-      if (i === 0) {
-        const v = getVariation(xPoints[0], xPoints[1]);
-        if (v === "increasing") y[i] = 85;
-        else if (v === "decreasing") y[i] = 35;
-        else y[i] = 60;
-      } else if (i === n - 1) {
-        const v = getVariation(xPoints[n - 2], xPoints[n - 1]);
-        if (v === "increasing") y[i] = 35;
-        else if (v === "decreasing") y[i] = 85;
-        else y[i] = 60;
-      } else {
-        const leftVar = getVariation(xPoints[i - 1], xPoints[i]);
-        const rightVar = getVariation(xPoints[i], xPoints[i + 1]);
-
-        if (leftVar === "decreasing" && rightVar === "increasing") {
-          y[i] = 85; // minimum
-        } else if (leftVar === "increasing" && rightVar === "decreasing") {
-          y[i] = 35; // maximum
-        } else if (leftVar === "increasing" && rightVar === "increasing") {
-          y[i] = 50;
-        } else if (leftVar === "decreasing" && rightVar === "decreasing") {
-          y[i] = 70;
-        } else {
-          y[i] = 60;
-        }
-      }
-    }
-
-    return y;
-  }
-
-  const yPositions = computeYPositions();
-
-  // =========================
-  // Construction HTML
-  // =========================
   let html = `
-    <h3 class="tab-variation-title">Tableau de variation</h3>
-    <div class="tab-variation-wrap">
-      <table class="tab-variation">
+    <h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
+      Tableau de variation
+    </h3>
+    <div style="overflow-x:auto;">
+      <table style="
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+        min-width: 760px;
+        margin-top: 8px;
+        background: white;
+        font-size: 22px;
+        text-align: center;
+        color: #0f172a;
+        font-family: 'Times New Roman', serif;
+      ">
   `;
 
-  // =========================
   // Ligne x
-  // =========================
   html += `<tr>`;
-  html += `<th class="tv-label">x</th>`;
+  html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-    html += `<td class="tv-x-point">${formatVal(xPoints[i])}</td>`;
+    html += `<td style="border:1px solid #666; padding:16px 24px; width:140px;">${formatVal(xPoints[i])}</td>`;
     if (i < xPoints.length - 1) {
-      html += `<td class="tv-x-gap"></td>`;
+      html += `<td style="border-top:1px solid #666; border-bottom:1px solid #666; padding:16px 10px; width:70px;"></td>`;
     }
   }
   html += `</tr>`;
 
-  // =========================
   // Ligne f'(x)
-  // =========================
   html += `<tr>`;
-  html += `<th class="tv-label">f'(x)</th>`;
+  html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-    const extraClass =
-      i === 0 ? "first" : (i === xPoints.length - 1 ? "last" : "");
+    let pointStyle = `border-top:1px solid #666; padding:16px 24px; width:140px;`;
+    if (i === 0) pointStyle += `border-left:1px solid #666;`;
+    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-    html += `<td class="tv-sign-point ${extraClass}">${
-      (i > 0 && i < xPoints.length - 1) ? "0" : ""
-    }</td>`;
+    html += `<td style="${pointStyle}">${(i > 0 && i < xPoints.length - 1) ? "0" : ""}</td>`;
 
     if (i < xPoints.length - 1) {
       const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      html += `<td class="tv-sign-gap">${sign}</td>`;
+      html += `<td style="border-top:1px solid #666; padding:16px 10px; width:70px; font-size:28px; font-weight:600;">${sign}</td>`;
+    }
+  }
+  html += `</tr>`;
+
+  // Ligne f(x)
+  html += `<tr>`;
+  html += `<th style="border:1px solid #666; padding:18px; width:110px; font-style:italic; background:#f8fafc;">f(x)</th>`;
+
+  for (let i = 0; i < xPoints.length; i++) {
+    let value = "";
+    if (i === 0) value = leftInf;
+    else if (i === xPoints.length - 1) value = rightInf;
+    else value = getFxAtCritical(xPoints[i]);
+
+    let pointStyle = `
+      border-top:1px solid #666;
+      border-bottom:1px solid #666;
+      padding:18px 24px;
+      width:140px;
+      height:84px;
+      vertical-align:middle;
+      font-size:22px;
+    `;
+    if (i === 0) pointStyle += `border-left:1px solid #666;`;
+    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+
+    html += `<td style="${pointStyle}">${value}</td>`;
+
+    if (i < xPoints.length - 1) {
+      const arrow = getArrow(xPoints[i], xPoints[i + 1]);
+      html += `<td style="
+        border-top:1px solid #666;
+        border-bottom:1px solid #666;
+        padding:18px 10px;
+        width:70px;
+        height:84px;
+        vertical-align:middle;
+        font-size:34px;
+        line-height:1;
+      ">${arrow}</td>`;
     }
   }
 
   html += `</tr>`;
-
-  // =========================
-  // Ligne f(x) en SVG
-  // =========================
-  const totalCols = 2 * xPoints.length - 1;
-  html += `
-    <tr>
-      <th class="tv-label">f(x)</th>
-      <td colspan="${totalCols}" class="tv-svg-cell">
-        <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
-          <defs>
-            <marker id="tv-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-              <path d="M0,0 L8,3 L0,6 Z" fill="#0f172a"></path>
-            </marker>
-          </defs>
-  `;
-
-  const n = xPoints.length;
-  const step = n > 1 ? 1000 / (n - 1) : 1000;
-
-  // lignes/flèches
-  for (let i = 0; i < n - 1; i++) {
-    const x1 = i * step + 18;
-    const x2 = (i + 1) * step - 18;
-    const y1 = yPositions[i];
-    const y2 = yPositions[i + 1];
-
-    html += `
-      <line
-        x1="${x1}"
-        y1="${y1}"
-        x2="${x2}"
-        y2="${y2}"
-        stroke="#0f172a"
-        stroke-width="2.2"
-        marker-end="url(#tv-arrow)"
-      />
-    `;
-  }
-
-  // valeurs
-  for (let i = 0; i < n; i++) {
-    const x = i * step;
-    const y = yPositions[i];
-
-    // Décalage vertical du texte pour éviter que la flèche passe dessus
-    let textY = y;
-    if (y <= 40) textY = y - 10;
-    else if (y >= 80) textY = y + 18;
-    else textY = y - 10;
-
-    html += `
-      <text
-        x="${x}"
-        y="${textY}"
-        text-anchor="middle"
-        font-size="18"
-        font-family="Times New Roman, serif"
-        fill="#0f172a"
-      >${fxValues[i]}</text>
-    `;
-  }
-
-  html += `
-        </svg>
-      </td>
-    </tr>
-  `;
-
   html += `</table></div>`;
 
   box.innerHTML = html;

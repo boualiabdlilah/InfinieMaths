@@ -473,9 +473,19 @@
         <td style="border:1px solid #ccc; padding:8px;">
           ${translateSign(interval.sign)}
         </td>
-        <td style="border:1px solid #ccc; padding:8px;">
-          ${translateVariation(interval.variation)}
-        </td>
+        <td style="border:1px solid #ccc; padding:8px; text-align:center; font-size:20px;">
+  ${
+    interval.variation === "increasing"
+      ? "↗️"
+      : interval.variation === "decreasing"
+      ? "↘️"
+      : "→"
+  }
+  <br>
+  <span style="font-size:14px;">
+    ${translateVariation(interval.variation)}
+  </span>
+</td>
       </tr>
     `;
   });

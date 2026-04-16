@@ -333,15 +333,21 @@
 
   function renderAssistantReply(reply) {
   const responseBox = document.getElementById("assistantResponse");
-  const safeReply = reply || "Aucune réponse générée.";
 
-  responseBox.innerHTML = marked.parse(safeReply);
+  let text = reply || "Aucune réponse générée.";
+
+  // 🔥 Supprime les tableaux LaTeX générés par GPT
+  text = text.replace(/\\begin{array}[\s\S]*?\\end{array}/g, "");
+
+  responseBox.innerHTML = marked.parse(text);
 
   if (window.renderMathInElement) {
     renderMathInElement(responseBox, {
       delimiters: [
         { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false }
+        { left: "$", right: "$", display: false },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false }
       ],
       throwOnError: false
     });

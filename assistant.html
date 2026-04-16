@@ -338,7 +338,7 @@
 
     // Supprime les tableaux LaTeX générés par GPT
     text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
-
+    text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
     responseBox.innerHTML = marked.parse(text);
 
     if (window.renderMathInElement) {
@@ -475,7 +475,6 @@
 
   let html = `
     <h3>Tableau de variation</h3>
-    <p><strong>Dérivée :</strong> ${variationData.derivative || "Non disponible"}</p>
     <div style="overflow-x:auto;">
       <table style="
         border-collapse:collapse;

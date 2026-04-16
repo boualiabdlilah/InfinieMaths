@@ -473,8 +473,6 @@
     return "";
   };
 
-  const nbCols = xPoints.length * 2 - 1;
-
   let html = `
     <h3>Tableau de variation</h3>
     <p><strong>Dérivée :</strong> ${variationData.derivative || "Non disponible"}</p>
@@ -490,58 +488,58 @@
   `;
 
   // Ligne x
-  html += `<tr><th style="border:2px solid #666; padding:10px 14px; min-width:90px;">x</th>`;
+  html += `<tr><th style="border:1px solid #666; padding:10px 14px; min-width:90px; font-style:italic;">x</th>`;
   xPoints.forEach((p, i) => {
-    html += `<td style="border:2px solid #666; padding:10px 18px; min-width:70px;">${formatVal(p)}</td>`;
+    html += `<td style="border:1px solid #666; padding:10px 18px; min-width:70px;">${formatVal(p)}</td>`;
     if (i < xPoints.length - 1) {
-      html += `<td style="border-top:2px solid #666; border-bottom:2px solid #666; padding:10px 12px; min-width:45px;"></td>`;
+      html += `<td style="border-top:1px solid #666; border-bottom:1px solid #666; padding:10px 8px; min-width:35px;"></td>`;
     }
   });
   html += `</tr>`;
 
   // Ligne f'(x)
-  html += `<tr><th style="border:2px solid #666; padding:10px 14px;">f'(x)</th>`;
+  html += `<tr><th style="border:1px solid #666; padding:10px 14px; font-style:italic;">f'(x)</th>`;
   xPoints.forEach((p, i) => {
     if (i > 0 && i < xPoints.length - 1) {
-      html += `<td style="border:2px solid #666; padding:10px 18px;">0</td>`;
+      html += `<td style="border:1px solid #666; padding:10px 18px;">0</td>`;
     } else {
-      html += `<td style="border:2px solid #666; padding:10px 18px;"></td>`;
+      html += `<td style="border:1px solid #666; padding:10px 18px;"></td>`;
     }
 
     if (i < xPoints.length - 1) {
       const sign = getSignForGap(xPoints[i], xPoints[i + 1]);
-      html += `<td style="border-top:2px solid #666; border-bottom:2px solid #666; padding:10px 12px;">${sign}</td>`;
+      html += `<td style="border-top:1px solid #666; border-bottom:1px solid #666; padding:10px 8px; min-width:35px;">${sign}</td>`;
     }
   });
   html += `</tr>`;
 
   // Ligne f(x)
-  html += `<tr><th style="border:2px solid #666; padding:10px 14px;">f(x)</th>`;
-
+  html += `<tr><th style="border:1px solid #666; padding:10px 14px; font-style:italic;">f(x)</th>`;
   xPoints.forEach((p, i) => {
     let value = "";
     if (i === 0) value = leftInf;
     else if (i === xPoints.length - 1) value = rightInf;
     else value = getFxAtCritical(p);
 
-    html += `<td style="border:2px solid #666; padding:16px 18px; vertical-align:middle;">${value}</td>`;
+    html += `<td style="border:1px solid #666; padding:16px 18px; vertical-align:middle;">${value}</td>`;
 
     if (i < xPoints.length - 1) {
       const arrow = getArrowForGap(xPoints[i], xPoints[i + 1]);
       html += `
         <td style="
-          border-top:2px solid #666;
-          border-bottom:2px solid #666;
-          padding:16px 12px;
-          font-size:34px;
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:16px 8px;
+          font-size:28px;
           line-height:1;
           vertical-align:middle;
+          min-width:35px;
         ">${arrow}</td>
       `;
     }
   });
-
   html += `</tr>`;
+
   html += `</table></div>`;
 
   box.innerHTML = html;

@@ -293,15 +293,16 @@
 }
 
 .tab-variation .tv-x-point {
-  border: 1px solid #666;
-  padding: 16px 22px;
-  min-width: 120px;
-  font-size: 22px;
-}
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
 
 .tab-variation .tv-x-gap {
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
+  border-left: none;   /* 🔥 IMPORTANT */
+  border-right: none;  /* 🔥 IMPORTANT */
   padding: 16px 10px;
   min-width: 80px;
 }
@@ -332,6 +333,7 @@
 .tab-variation .tv-svg-cell {
   border-left: 1px solid #666;
   border-right: 1px solid #666;
+  border-top: 1px solid #666;   /* ✅ AJOUT ICI */
   border-bottom: 1px solid #666;
   padding: 0 !important;
   height: 120px;

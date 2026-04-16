@@ -420,7 +420,7 @@
     });
   }
 
-  function renderVariationTable(variationData) {
+ function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
 
   if (!variationData || !variationData.intervals || !variationData.intervals.length) {
@@ -433,18 +433,6 @@
   const criticalValues = variationData.critical_values || [];
   const limits = variationData.limits || {};
 
-  const formatVal = (v) => {
-    if (v === "-inf" || v === "-oo") return "−∞";
-    if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
-    if (v === null || v === undefined) return "";
-    return String(v);
-  };
-
-  const getFxAtCritical = (xVal) => {
-    const found = criticalValues.find(item => String(item.x) === String(xVal));
-    return found ? formatVal(found["f(x)"]) : "";
-  };
-
   const xPoints = ["-inf", ...cps, "+inf"];
 
   const signBetween = {};
@@ -456,23 +444,25 @@
     varBetween[key] = interval.variation || "";
   });
 
-  const getSignLeft = (index) => {
-    if (index === 0) return "";
-    return signBetween[`${xPoints[index - 1]}|${xPoints[index]}`] || "";
-  };
+  function formatVal(v) {
+    if (v === "-inf" || v === "-oo") return "−∞";
+    if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
+    if (v === null || v === undefined) return "";
+    return String(v);
+  }
 
-  const getSignRight = (index) => {
-    if (index >= xPoints.length - 1) return "";
-    return signBetween[`${xPoints[index]}|${xPoints[index + 1]}`] || "";
-  };
+  function getFxAtCritical(xVal) {
+    const found = criticalValues.find(item => String(item.x) === String(xVal));
+    return found ? formatVal(found["f(x)"]) : "";
+  }
 
-  const getArrow = (left, right) => {
+  function getArrow(left, right) {
     const v = varBetween[`${left}|${right}`];
     if (v === "increasing") return "↗";
     if (v === "decreasing") return "↘";
     if (v === "constant") return "→";
     return "";
-  };
+  }
 
   const leftInf = formatVal(limits.left_infinity);
   const rightInf = formatVal(limits.right_infinity);
@@ -489,14 +479,17 @@
       <table style="
         border-collapse:collapse;
         background:#fff;
-        min-width:760px;
+        min-width:900px;
         font-size:22px;
         text-align:center;
         color:#0f172a;
       ">
   `;
 
+  // =========================
   // Ligne x
+  // structure : point / intervalle / point / intervalle / ... / point
+  // =========================
   html += `
     <tr>
       <th style="
@@ -508,19 +501,33 @@
       ">x</th>
   `;
 
-  xPoints.forEach((p) => {
+  for (let i = 0; i < xPoints.length; i++) {
     html += `
       <td style="
         border:1px solid #666;
-        padding:14px 22px;
-        min-width:150px;
-      ">${formatVal(p)}</td>
+        padding:14px 24px;
+        min-width:120px;
+      ">${formatVal(xPoints[i])}</td>
     `;
-  });
+
+    if (i < xPoints.length - 1) {
+      html += `
+        <td style="
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:14px 10px;
+          min-width:90px;
+        "></td>
+      `;
+    }
+  }
 
   html += `</tr>`;
 
+  // =========================
   // Ligne f'(x)
+  // pas de traits verticaux internes
+  // =========================
   html += `
     <tr>
       <th style="
@@ -533,28 +540,44 @@
   `;
 
   for (let i = 0; i < xPoints.length; i++) {
-    let content = "";
+    const isFirstPoint = i === 0;
+    const isLastPoint = i === xPoints.length - 1;
 
-    if (i === 0) {
-      content = getSignRight(i);
-    } else if (i === xPoints.length - 1) {
-      content = getSignLeft(i);
-    } else {
-      content = `${getSignLeft(i)}&nbsp;&nbsp;0&nbsp;&nbsp;${getSignRight(i)}`;
-    }
+    let pointStyle = `
+      border-top:1px solid #666;
+      padding:14px 24px;
+      min-width:120px;
+    `;
+    if (isFirstPoint) pointStyle += `border-left:1px solid #666;`;
+    if (isLastPoint) pointStyle += `border-right:1px solid #666;`;
 
     html += `
-      <td style="
-        border:1px solid #666;
-        padding:14px 22px;
-        min-width:150px;
-      ">${content}</td>
+      <td style="${pointStyle}">
+        ${(!isFirstPoint && !isLastPoint) ? "0" : ""}
+      </td>
     `;
+
+    if (i < xPoints.length - 1) {
+      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+      html += `
+        <td style="
+          border-top:1px solid #666;
+          padding:14px 10px;
+          min-width:90px;
+          font-size:26px;
+          font-weight:500;
+        ">${sign}</td>
+      `;
+    }
   }
 
   html += `</tr>`;
 
-  // Ligne f(x) sans traits verticaux internes
+  // =========================
+  // Ligne f(x)
+  // pas de traits verticaux internes
+  // valeurs bien réparties + flèches entre elles
+  // =========================
   html += `
     <tr>
       <th style="
@@ -572,40 +595,52 @@
     else if (i === xPoints.length - 1) value = rightInf;
     else value = getFxAtCritical(xPoints[i]);
 
-    let borderStyle = `
+    const isFirstPoint = i === 0;
+    const isLastPoint = i === xPoints.length - 1;
+
+    let pointStyle = `
       border-top:1px solid #666;
       border-bottom:1px solid #666;
-      padding:18px 22px;
-      min-width:150px;
-      height:90px;
+      padding:18px 24px;
+      min-width:120px;
+      height:82px;
       vertical-align:middle;
+      font-size:20px;
     `;
-
-    if (i === 0) borderStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) borderStyle += `border-right:1px solid #666;`;
+    if (isFirstPoint) pointStyle += `border-left:1px solid #666;`;
+    if (isLastPoint) pointStyle += `border-right:1px solid #666;`;
 
     html += `
-      <td style="${borderStyle}">
-        <div style="
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          gap:18px;
-          width:100%;
-        ">
-          <span>${value}</span>
-          ${
-            i < xPoints.length - 1
-              ? `<span style="font-size:34px; line-height:1;">${getArrow(xPoints[i], xPoints[i + 1])}</span>`
-              : ``
-          }
-        </div>
+      <td style="${pointStyle}">
+        ${value}
       </td>
     `;
+
+    if (i < xPoints.length - 1) {
+      const arrow = getArrow(xPoints[i], xPoints[i + 1]);
+
+      html += `
+        <td style="
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:18px 10px;
+          min-width:90px;
+          height:82px;
+          vertical-align:middle;
+          font-size:36px;
+          line-height:1;
+        ">
+          ${arrow}
+        </td>
+      `;
+    }
   }
 
-  html += `</tr>`;
-  html += `</table></div>`;
+  html += `
+      </tr>
+      </table>
+    </div>
+  `;
 
   box.innerHTML = html;
   box.style.display = "block";

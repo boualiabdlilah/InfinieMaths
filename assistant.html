@@ -698,71 +698,90 @@ for (let i = 0; i < xPoints.length; i++) {
 }
 html += `</tr>`;
 
-  // Ligne f(x)
-  html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:18px;
-    width:110px;
-    font-style:italic;
-    background:#f8fafc;
-  ">f(x)</th>`;
+ // Ligne f(x)
+html += `<tr>`;
+html += `<th style="
+  border:1px solid #666;
+  padding:18px;
+  width:110px;
+  font-style:italic;
+  background:#f8fafc;
+">f(x)</th>`;
 
-  for (let i = 0; i < xPoints.length; i++) {
-    let value = "";
-    if (i === 0) value = leftInf;
-    else if (i === xPoints.length - 1) value = rightInf;
-    else value = getFxAtCritical(xPoints[i]);
+for (let i = 0; i < xPoints.length; i++) {
+  let value = "";
+  if (i === 0) value = leftInf;
+  else if (i === xPoints.length - 1) value = rightInf;
+  else value = getFxAtCritical(xPoints[i]);
 
-    let pointStyle = `
+  let pointStyle = `
+    border-top:2px solid #444;
+    border-bottom:1px solid #666;
+    padding:18px 24px;
+    width:140px;
+    height:84px;
+    vertical-align:middle;
+    font-size:22px;
+  `;
+  if (i === 0) pointStyle += `border-left:1px solid #666;`;
+  if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+
+  // cellule valeur
+  html += `<td style="${pointStyle}">
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      width:100%;
+    ">${value}</div>
+  </td>`;
+
+  // cellule flèche
+  if (i < xPoints.length - 1) {
+    const arrow = getArrow(xPoints[i], xPoints[i + 1]);
+
+    html += `<td style="
       border-top:2px solid #444;
       border-bottom:1px solid #666;
-      padding:18px 24px;
-      width:140px;
+      padding:0;
+      width:70px;
       height:84px;
       vertical-align:middle;
-      font-size:22px;
-    `;
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+      position:relative;
+    ">
 
-    html += `<td style="${pointStyle}">
+      <!-- ligne diagonale longue -->
       <div style="
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        height:100%;
+        position:absolute;
+        top:50%;
+        left:0%;
         width:100%;
-      ">${value}</div>
+        height:2px;
+        background:#0f172a;
+        transform: ${arrow === "↘" ? "rotate(32deg)" : "rotate(-32deg)"};
+        transform-origin:center;
+      "></div>
+
+      <!-- pointe -->
+      <div style="
+        position:absolute;
+        top:${arrow === "↘" ? "72%" : "28%"};
+        ${arrow === "↘" ? "right:-2px;" : "left:-2px;"}
+        width:0;
+        height:0;
+        border-left:7px solid transparent;
+        border-right:7px solid transparent;
+        border-top:${arrow === "↘" ? "12px solid #0f172a" : "none"};
+        border-bottom:${arrow === "↗" ? "12px solid #0f172a" : "none"};
+        transform: rotate(${arrow === "↘" ? "32deg" : "-32deg"});
+      "></div>
+
     </td>`;
-
-    if (i < xPoints.length - 1) {
-      const arrow = getArrow(xPoints[i], xPoints[i + 1]);
-      html += `<td style="
-        border-top:2px solid #444;
-        border-bottom:1px solid #666;
-        padding:18px 10px;
-        width:70px;
-        height:84px;
-        vertical-align:middle;
-      ">
-        <div style="
-    position:absolute;
-    top:${arrow === "↘" ? "65%" : "35%"};
-    ${arrow === "↘" ? "right:2%;" : "left:2%;"}
-    width:0;
-    height:0;
-    border-left:6px solid transparent;
-    border-right:6px solid transparent;
-    border-top:${arrow === "↘" ? "10px solid #0f172a" : "none"};
-    border-bottom:${arrow === "↗" ? "10px solid #0f172a" : "none"};
-    transform: rotate(${arrow === "↘" ? "25deg" : "-25deg"});
-  "></div>
-      </td>`;
-    }
   }
+}
 
-  html += `</tr>`;
+html += `</tr>`;
   html += `</table></div>`;
 
   box.innerHTML = html;

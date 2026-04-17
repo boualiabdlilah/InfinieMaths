@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -613,7 +612,14 @@ html += `<tr>`;
 html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">f'(x)</th>`;
 
 for (let i = 0; i < xPoints.length; i++) {
-  let pointStyle = `border-top:1px solid #666; border-bottom:1px solid #666; padding:16px 24px; width:140px; height:56px;`;
+  let pointStyle = `
+  border-top:1px solid #666;
+  border-bottom:1px solid #666;
+  padding:16px 24px;
+  width:140px;
+  height:70px;
+  vertical-align:middle;
+`;
   if (i === 0) pointStyle += `border-left:1px solid #666;`;
   if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
@@ -752,4 +758,5 @@ html += `</tr>`;
 </script>
 </body>
 </html>
+
 

@@ -589,18 +589,7 @@
       Tableau de variation
     </h3>
     <div style="overflow-x:auto;">
-      <table style="
-        border-collapse: collapse;
-        table-layout: fixed;
-        width: 100%;
-        min-width: 760px;
-        margin-top: 8px;
-        background: white;
-        font-size: 22px;
-        text-align: center;
-        color: #0f172a;
-        font-family: 'Times New Roman', serif;
-      ">
+     <table class="tab-variation-manual">
   `;
 
   // Ligne x
@@ -610,7 +599,7 @@
   for (let i = 0; i < xPoints.length; i++) {
     html += `<td style="border:1px solid #666; padding:16px 24px; width:140px;">${formatVal(xPoints[i])}</td>`;
     if (i < xPoints.length - 1) {
-      html += `<td style="border-top:1px solid #666; border-bottom:1px solid #666; padding:16px 10px; width:70px;"></td>`;
+      html += `<td style="border-top:1px solid #666; border-bottom:1px solid #666; border-left:none; border-right:none; padding:16px 10px; width:70px;"></td>`;
     }
   }
   html += `</tr>`;

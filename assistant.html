@@ -648,16 +648,16 @@
 
     if (i < xPoints.length - 1) {
       const arrow = getArrow(xPoints[i], xPoints[i + 1]);
-      html += `<td style="
-        border-top:1px solid #666;
-        border-bottom:1px solid #666;
-        padding:18px 10px;
-        width:70px;
-        height:84px;
-        vertical-align:middle;
-        font-size:34px;
-        line-height:1;
-      ">${arrow}</td>`;
+     html += `<td style="
+  border-top:2px solid #444;
+  border-bottom:1px solid #666;
+  padding:18px 10px;
+  width:70px;
+  height:84px;
+  vertical-align:middle;
+">
+  <span class="tv-arrow">${arrow}</span>
+</td>`;
     }
   }
 

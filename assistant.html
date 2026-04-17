@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -633,19 +634,19 @@ for (let i = 0; i < xPoints.length; i++) {
     content = signBetween[`${xPoints[i - 1]}|${xPoints[i]}`] || "";
   }
 
-  html += `<td style="${pointStyle}">
-    <div style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100%;
-      width:100%;
-      font-size:26px;
-      font-weight:600;
-    ">
-      ${content}
-    </div>
-  </td>`;
+ html += `<td style="${pointStyle}">
+  <div style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    width:100%;
+    font-size:26px;
+    font-weight:600;
+  ">
+    ${content}
+  </div>
+</td>`;
 }
 html += `</tr>`;
 
@@ -751,5 +752,4 @@ html += `</tr>`;
 </script>
 </body>
 </html>
-
 

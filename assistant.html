@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -597,17 +598,12 @@
   html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-    html += `<td style="border:1px solid #666; padding:16px 24px; width:140px;">${formatVal(xPoints[i])}</td>`;
-   if (i < xPoints.length - 1) {
-  html += `<td style="
-    border-top:1px solid #666;
-    border-bottom:1px solid #666;
-    border-left:none;
-    border-right:none;
-    padding:16px 10px;
-    width:70px;
-  "></td>`;
-  }
+    html += `<td style="
+  border-top:1px solid #666;
+  border-bottom:1px solid #666;
+  padding:16px 24px;
+  width:140px;
+  ">${formatVal(xPoints[i])}</td>`;
   }
   html += `</tr>`;
 
@@ -622,10 +618,6 @@
 
     html += `<td style="${pointStyle}">${(i > 0 && i < xPoints.length - 1) ? "0" : ""}</td>`;
 
-    if (i < xPoints.length - 1) {
-      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      html += `<td style="border-top:1px solid #666; padding:16px 10px; width:70px; font-size:28px; font-weight:600;">${sign}</td>`;
-    }
   }
   html += `</tr>`;
 
@@ -653,19 +645,7 @@
 
     html += `<td style="${pointStyle}">${value}</td>`;
 
-    if (i < xPoints.length - 1) {
-      const arrow = getArrow(xPoints[i], xPoints[i + 1]);
-     html += `<td style="
-  border-top:2px solid #444;
-  border-bottom:1px solid #666;
-  padding:18px 10px;
-  width:70px;
-  height:84px;
-  vertical-align:middle;
-">
-  <span class="tv-arrow">${arrow}</span>
-</td>`;
-    }
+    
   }
 
   html += `</tr>`;

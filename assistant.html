@@ -536,8 +536,7 @@
       displaylogo: false
     });
   }
-
- function renderVariationTable(variationData) {
+function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
 
   if (!variationData || !variationData.intervals || !variationData.intervals.length) {
@@ -635,11 +634,11 @@
   }
   html += `</tr>`;
 
-  // Ligne f'(x)
+  // Ligne f'(x) plus fine
   html += `<tr>`;
   html += `<th style="
     border:1px solid #666;
-    padding:16px 18px;
+    padding:10px 18px;
     width:110px;
     font-style:italic;
     background:#f8fafc;
@@ -649,9 +648,9 @@
     let pointStyle = `
       border-top:1px solid #666;
       border-bottom:1px solid #666;
-      padding:16px 24px;
+      padding:8px 24px;
       width:140px;
-      height:70px;
+      height:40px;
       vertical-align:middle;
     `;
     if (i === 0) pointStyle += `border-left:1px solid #666;`;
@@ -668,6 +667,7 @@
         width:100%;
         font-size:26px;
         font-weight:600;
+        line-height:1;
       ">${pointContent}</div>
     </td>`;
 
@@ -676,9 +676,9 @@
       html += `<td style="
         border-top:1px solid #666;
         border-bottom:1px solid #666;
-        padding:16px 10px;
+        padding:8px 10px;
         width:70px;
-        height:70px;
+        height:40px;
         vertical-align:middle;
       ">
         <div style="
@@ -689,6 +689,7 @@
           width:100%;
           font-size:26px;
           font-weight:600;
+          line-height:1;
         ">${sign}</div>
       </td>`;
     }

@@ -747,18 +747,17 @@ html += `</tr>`;
         vertical-align:middle;
       ">
         <div style="
-  display:flex;
-  align-items:center;
-  height:100%;
-  width:100%;
-  font-size:42px;
-  line-height:1;
-  transform: scaleX(1.4);
-  ${arrow === "↘" ? "justify-content:flex-end;" : ""}
-  ${arrow === "↗" ? "justify-content:flex-start;" : ""}
-">
-  ${arrow}
-</div>
+    position:absolute;
+    top:${arrow === "↘" ? "65%" : "35%"};
+    ${arrow === "↘" ? "right:2%;" : "left:2%;"}
+    width:0;
+    height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:${arrow === "↘" ? "10px solid #0f172a" : "none"};
+    border-bottom:${arrow === "↗" ? "10px solid #0f172a" : "none"};
+    transform: rotate(${arrow === "↘" ? "25deg" : "-25deg"});
+  "></div>
       </td>`;
     }
   }

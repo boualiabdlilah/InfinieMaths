@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -616,7 +615,24 @@
     if (i === 0) pointStyle += `border-left:1px solid #666;`;
     if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-    html += `<td style="${pointStyle}">${(i > 0 && i < xPoints.length - 1) ? "0" : ""}</td>`;
+    let content = "";
+
+// gauche → signe
+if (i === 0) {
+  content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+}
+
+// milieu → 0
+else if (i > 0 && i < xPoints.length - 1) {
+  content = "0";
+}
+
+// droite → signe
+else if (i === xPoints.length - 1) {
+  content = signBetween[`${xPoints[i - 1]}|${xPoints[i]}`] || "";
+}
+
+html += `<td style="${pointStyle}">${content}</td>`;
 
   }
   html += `</tr>`;
@@ -723,3 +739,4 @@
 </script>
 </body>
 </html>
+

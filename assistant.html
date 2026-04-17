@@ -606,36 +606,48 @@
   }
   html += `</tr>`;
 
-  // Ligne f'(x)
-  html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">f'(x)</th>`;
 
-  for (let i = 0; i < xPoints.length; i++) {
-    let pointStyle = `border-top:1px solid #666; padding:16px 24px; width:140px;`;
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+// Ligne f'(x)
+html += `<tr>`;
+html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">f'(x)</th>`;
 
-    let content = "";
+for (let i = 0; i < xPoints.length; i++) {
+  let pointStyle = `border-top:1px solid #666; border-bottom:1px solid #666; padding:16px 24px; width:140px; height:56px;`;
+  if (i === 0) pointStyle += `border-left:1px solid #666;`;
+  if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-// gauche → signe
-if (i === 0) {
-  content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-}
+  let content = "";
 
-// milieu → 0
-else if (i > 0 && i < xPoints.length - 1) {
-  content = "0";
-}
-
-// droite → signe
-else if (i === xPoints.length - 1) {
-  content = signBetween[`${xPoints[i - 1]}|${xPoints[i]}`] || "";
-}
-
-html += `<td style="${pointStyle}">${content}</td>`;
-
+  // gauche → signe
+  if (i === 0) {
+    content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
   }
-  html += `</tr>`;
+
+  // milieu → 0
+  else if (i > 0 && i < xPoints.length - 1) {
+    content = "0";
+  }
+
+  // droite → signe
+  else if (i === xPoints.length - 1) {
+    content = signBetween[`${xPoints[i - 1]}|${xPoints[i]}`] || "";
+  }
+
+  html += `<td style="${pointStyle}">
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      width:100%;
+      font-size:26px;
+      font-weight:600;
+    ">
+      ${content}
+    </div>
+  </td>`;
+}
+html += `</tr>`;
 
   // Ligne f(x)
   html += `<tr>`;
@@ -739,4 +751,5 @@ html += `<td style="${pointStyle}">${content}</td>`;
 </script>
 </body>
 </html>
+
 

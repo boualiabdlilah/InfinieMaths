@@ -589,76 +589,121 @@
       Tableau de variation
     </h3>
     <div style="overflow-x:auto;">
-     <table class="tab-variation-manual">
+      <table class="tab-variation-manual" style="
+        border-collapse:collapse;
+        table-layout:fixed;
+        width:100%;
+        min-width:760px;
+        background:white;
+        font-size:22px;
+        text-align:center;
+        color:#0f172a;
+        font-family:'Times New Roman', serif;
+      ">
   `;
 
   // Ligne x
   html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">x</th>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:16px 18px;
+    width:110px;
+    font-style:italic;
+    background:#f8fafc;
+  ">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     html += `<td style="
-  border-top:1px solid #666;
-  border-bottom:1px solid #666;
-  padding:16px 24px;
-  width:140px;
-  ">${formatVal(xPoints[i])}</td>`;
+      border-top:1px solid #666;
+      border-bottom:1px solid #666;
+      padding:16px 24px;
+      width:140px;
+      ${i === 0 ? "border-left:1px solid #666;" : ""}
+      ${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
+    ">${formatVal(xPoints[i])}</td>`;
+
+    if (i < xPoints.length - 1) {
+      html += `<td style="
+        border-top:1px solid #666;
+        border-bottom:1px solid #666;
+        border-left:none;
+        border-right:none;
+        padding:16px 10px;
+        width:70px;
+      "></td>`;
+    }
   }
   html += `</tr>`;
 
+  // Ligne f'(x)
+  html += `<tr>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:16px 18px;
+    width:110px;
+    font-style:italic;
+    background:#f8fafc;
+  ">f'(x)</th>`;
 
-// Ligne f'(x)
-html += `<tr>`;
-html += `<th style="border:1px solid #666; padding:16px 18px; width:110px; font-style:italic; background:#f8fafc;">f'(x)</th>`;
+  for (let i = 0; i < xPoints.length; i++) {
+    let pointStyle = `
+      border-top:1px solid #666;
+      border-bottom:1px solid #666;
+      padding:16px 24px;
+      width:140px;
+      height:70px;
+      vertical-align:middle;
+    `;
+    if (i === 0) pointStyle += `border-left:1px solid #666;`;
+    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-for (let i = 0; i < xPoints.length; i++) {
-  let pointStyle = `
-  border-top:1px solid #666;
-  border-bottom:1px solid #666;
-  padding:16px 24px;
-  width:140px;
-  height:70px;
-  vertical-align:middle;
-`;
-  if (i === 0) pointStyle += `border-left:1px solid #666;`;
-  if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+    const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
 
-  let content = "";
+    html += `<td style="${pointStyle}">
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:100%;
+        width:100%;
+        font-size:26px;
+        font-weight:600;
+      ">${pointContent}</div>
+    </td>`;
 
-  // gauche → signe
-  if (i === 0) {
-    content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+    if (i < xPoints.length - 1) {
+      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+      html += `<td style="
+        border-top:1px solid #666;
+        border-bottom:1px solid #666;
+        padding:16px 10px;
+        width:70px;
+        height:70px;
+        vertical-align:middle;
+      ">
+        <div style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          height:100%;
+          width:100%;
+          font-size:26px;
+          font-weight:600;
+        ">${sign}</div>
+      </td>`;
+    }
   }
-
-  // milieu → 0
-  else if (i > 0 && i < xPoints.length - 1) {
-    content = "0";
-  }
-
-  // droite → signe
-  else if (i === xPoints.length - 1) {
-    content = signBetween[`${xPoints[i - 1]}|${xPoints[i]}`] || "";
-  }
-
- html += `<td style="${pointStyle}">
-  <div style="
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100%;
-    width:100%;
-    font-size:26px;
-    font-weight:600;
-  ">
-    ${content}
-  </div>
-</td>`;
-}
-html += `</tr>`;
+  html += `</tr>`;
 
   // Ligne f(x)
   html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:18px; width:110px; font-style:italic; background:#f8fafc;">f(x)</th>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:18px;
+    width:110px;
+    font-style:italic;
+    background:#f8fafc;
+  ">f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let value = "";
@@ -678,9 +723,37 @@ html += `</tr>`;
     if (i === 0) pointStyle += `border-left:1px solid #666;`;
     if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-    html += `<td style="${pointStyle}">${value}</td>`;
+    html += `<td style="${pointStyle}">
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:100%;
+        width:100%;
+      ">${value}</div>
+    </td>`;
 
-    
+    if (i < xPoints.length - 1) {
+      const arrow = getArrow(xPoints[i], xPoints[i + 1]);
+      html += `<td style="
+        border-top:2px solid #444;
+        border-bottom:1px solid #666;
+        padding:18px 10px;
+        width:70px;
+        height:84px;
+        vertical-align:middle;
+      ">
+        <div style="
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          height:100%;
+          width:100%;
+          font-size:36px;
+          line-height:1;
+        ">${arrow}</div>
+      </td>`;
+    }
   }
 
   html += `</tr>`;

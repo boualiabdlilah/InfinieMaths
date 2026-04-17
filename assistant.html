@@ -635,8 +635,8 @@ function renderVariationTable(variationData) {
   html += `</tr>`;
 
   // Ligne f'(x) plus fine
-  html += `<tr>`;
- html +=<th style="
+html += `<tr>`;
+html += `<th style="
   border:1px solid #666;
   padding:6px 10px;
   width:120px;
@@ -644,7 +644,7 @@ function renderVariationTable(variationData) {
   max-width:120px;
   font-style:italic;
   background:#f8fafc;
-">f'(x)</th>;
+">f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let pointStyle = `

@@ -518,153 +518,162 @@
     }
 
     function drawMathPlot(plotData) {
-  const plotContainer = document.getElementById("plotContainer");
+  const canvas = document.getElementById("mathPlot");
+  if (!canvas) return;
 
-  if (!plotData || !window.Plotly || !plotData.segments || !plotData.segments.length) {
-    clearPlot();
-    return;
+  const ctx = canvas.getContext("2d");
+
+  if (window.mathChart) {
+    window.mathChart.destroy();
   }
 
-  plotContainer.style.display = "block";
-  plotContainer.innerHTML = "";
-
-  function prettifyExpression(expr) {
-    if (!expr) return "";
-    return String(expr)
-      .replace(/\*\*/g, "^")
-      .replace(/\^2/g, "²")
-      .replace(/\^3/g, "³")
-      .replace(/\*/g, "·");
-  }
-
-  const prettyExpr = prettifyExpression(plotData.expression);
-
-  const traces = plotData.segments.map((segment, index) => ({
-    x: segment.x || [],
-    y: segment.y || [],
-    type: "scatter",
-    mode: "lines",
-    line: {
-      color: "#2563eb",
-      width: 4
+  window.mathChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: plotData.label || "f(x)",
+          data: plotData.points || [],
+          borderColor: "#2e7d32",
+          borderWidth: 3,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          fill: false,
+          tension: 0.15
+        }
+      ]
     },
-    name: index === 0 ? (prettyExpr || "Courbe") : undefined,
-    showlegend: index === 0,
-    hovertemplate: "x = %{x}<br>f(x) = %{y}<extra></extra>"
-  }));
-
-  const vertexTrace = {
-    x: [0],
-    y: [0],
-    type: "scatter",
-    mode: "markers+text",
-    marker: {
-      color: "#dc2626",
-      size: 9
-    },
-    text: ["Sommet (0, 0)"],
-    textposition: "top center",
-    textfont: {
-      size: 14,
-      color: "#991b1b"
-    },
-    showlegend: false,
-    hovertemplate: "Sommet : (0, 0)<extra></extra>"
-  };
-
-  const layout = {
-    title: {
-      text: prettyExpr
-        ? `Courbe de f(x) = ${prettyExpr}`
-        : "Représentation graphique",
-      font: {
-        size: 24,
-        color: "#0f172a"
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      parsing: false,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: "#222",
+            font: {
+              size: 16
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: plotData.title || "Courbe de f(x)",
+          color: "#111",
+          font: {
+            size: 22,
+            weight: "normal"
+          },
+          padding: {
+            top: 10,
+            bottom: 20
+          }
+        },
+        tooltip: {
+          enabled: true
+        }
       },
-      x: 0.5,
-      xanchor: "center"
-    },
-    paper_bgcolor: "#ffffff",
-    plot_bgcolor: "#ffffff",
-    margin: { t: 90, r: 30, b: 70, l: 80 },
-    hovermode: "closest",
-
-    xaxis: {
-      title: {
-        text: "x",
-        font: { size: 18, color: "#0f172a" }
-      },
-      range: [-2, 2],
-      dtick: 1,
-      zeroline: true,
-      zerolinewidth: 2,
-      zerolinecolor: "#444",
-      showgrid: true,
-      gridcolor: "#e2e8f0",
-      linecolor: "#444",
-      linewidth: 2,
-      tickfont: { size: 14, color: "#334155" }
-    },
-
-    yaxis: {
-      title: {
-        text: "f(x)",
-        font: { size: 18, color: "#0f172a" }
-      },
-      range: [0, 4],
-      dtick: 1,
-      zeroline: true,
-      zerolinewidth: 2,
-      zerolinecolor: "#444",
-      showgrid: true,
-      gridcolor: "#e2e8f0",
-      linecolor: "#444",
-      linewidth: 2,
-      tickfont: { size: 14, color: "#334155" },
-      scaleanchor: "x",
-      scaleratio: 1
-    },
-
-    shapes: [
-      {
-        type: "line",
-        x0: 0,
-        x1: 0,
-        y0: 0,
-        y1: 4,
-        line: {
-          color: "#94a3b8",
-          width: 2,
-          dash: "dot"
+      scales: {
+        x: {
+          type: "linear",
+          min: -3.5,
+          max: 4.5,
+          offset: false,
+          grid: {
+            color: "#d9d9d9",
+            lineWidth: 1,
+            drawTicks: true
+          },
+          border: {
+            display: true,
+            color: "#444",
+            width: 1.5
+          },
+          ticks: {
+            stepSize: 1,
+            color: "#222",
+            font: {
+              size: 14
+            }
+          },
+          position: "center"
+        },
+        y: {
+          min: -0.5,
+          max: 9,
+          offset: false,
+          grid: {
+            color: "#d9d9d9",
+            lineWidth: 1,
+            drawTicks: true
+          },
+          border: {
+            display: true,
+            color: "#444",
+            width: 1.5
+          },
+          ticks: {
+            stepSize: 1,
+            color: "#222",
+            font: {
+              size: 14
+            }
+          },
+          position: "center"
         }
       }
-    ],
+    },
+    plugins: [
+      {
+        id: "axisArrows",
+        afterDraw(chart) {
+          const { ctx, chartArea, scales } = chart;
+          const xScale = scales.x;
+          const yScale = scales.y;
 
-    legend: {
-      orientation: "h",
-      y: 1.08,
-      x: 0.5,
-      xanchor: "center",
-      font: { size: 14, color: "#334155" }
-    }
-  };
+          const x0 = yScale.getPixelForValue(0);
+          const y0 = xScale.getPixelForValue(0);
 
-  const config = {
-    responsive: true,
-    displaylogo: false,
-    toImageButtonOptions: {
-      format: "png",
-      filename: "courbe_math",
-      scale: 2
-    }
-  };
+          ctx.save();
+          ctx.strokeStyle = "#444";
+          ctx.fillStyle = "#444";
+          ctx.lineWidth = 1.5;
 
-  Plotly.newPlot(
-    plotContainer,
-    [...traces, vertexTrace],
-    layout,
-    config
-  );
+          // Axe horizontal y = 0
+          ctx.beginPath();
+          ctx.moveTo(chartArea.left, x0);
+          ctx.lineTo(chartArea.right, x0);
+          ctx.stroke();
+
+          // Flèche axe horizontal
+          ctx.beginPath();
+          ctx.moveTo(chartArea.right, x0);
+          ctx.lineTo(chartArea.right - 8, x0 - 4);
+          ctx.lineTo(chartArea.right - 8, x0 + 4);
+          ctx.closePath();
+          ctx.fill();
+
+          // Axe vertical x = 0
+          ctx.beginPath();
+          ctx.moveTo(y0, chartArea.bottom);
+          ctx.lineTo(y0, chartArea.top);
+          ctx.stroke();
+
+          // Flèche axe vertical
+          ctx.beginPath();
+          ctx.moveTo(y0, chartArea.top);
+          ctx.lineTo(y0 - 4, chartArea.top + 8);
+          ctx.lineTo(y0 + 4, chartArea.top + 8);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.restore();
+        }
+      }
+    ]
+  });
 }
 
     function renderVariationTable(variationData) {

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -180,7 +179,7 @@
 
     .assistant-plot {
       margin-top: 48px;
-      min-height: 540px;
+      min-height: 560px;
       display: none;
       border-radius: 18px;
       overflow: hidden;
@@ -493,6 +492,31 @@
       plotContainer.innerHTML = "";
     }
 
+    function prettifyExpression(expr) {
+      if (!expr) return "";
+
+      return String(expr)
+        .replace(/\*\*/g, "^")
+        .replace(/\^2/g, "²")
+        .replace(/\^3/g, "³")
+        .replace(/\*/g, "·");
+    }
+
+    function buildTicks(minVal, maxVal) {
+      const tickVals = [];
+      const tickText = [];
+
+      const start = Math.ceil(minVal);
+      const end = Math.floor(maxVal);
+
+      for (let k = start; k <= end; k++) {
+        tickVals.push(k);
+        tickText.push(String(k));
+      }
+
+      return { tickVals, tickText };
+    }
+
     function drawMathPlot(plotData) {
       const plotContainer = document.getElementById("plotContainer");
 
@@ -504,7 +528,42 @@
       plotContainer.style.display = "block";
       plotContainer.innerHTML = "";
 
-      const traces = plotData.segments.map((segment, index) => ({
+      let allX = [];
+      let allY = [];
+
+      plotData.segments.forEach(segment => {
+        if (segment.x && segment.x.length) allX = allX.concat(segment.x);
+        if (segment.y && segment.y.length) allY = allY.concat(segment.y);
+      });
+
+      if (!allX.length || !allY.length) {
+        clearPlot();
+        return;
+      }
+
+      let xMinData = Math.min(...allX);
+      let xMaxData = Math.max(...allX);
+      let yMinData = Math.min(...allY);
+      let yMaxData = Math.max(...allY);
+
+      let xMin = Math.max(-1, Math.floor(xMinData));
+      let xMax = Math.min(4, Math.ceil(xMaxData));
+
+      if (xMin >= xMax) {
+        xMin = Math.floor(xMinData);
+        xMax = Math.ceil(xMaxData);
+      }
+
+      let yMin = Math.floor(Math.min(0, yMinData));
+      let yMax = Math.ceil(Math.max(4, yMaxData));
+
+      if (yMax <= 4) yMax = 4;
+      if (yMin > 0) yMin = 0;
+
+      const { tickVals: xTickVals, tickText: xTickText } = buildTicks(xMin, xMax);
+      const { tickVals: yTickVals, tickText: yTickText } = buildTicks(yMin, yMax);
+
+      const mainTraces = plotData.segments.map((segment, index) => ({
         x: segment.x || [],
         y: segment.y || [],
         type: "scatter",
@@ -513,15 +572,34 @@
           color: "#2563eb",
           width: 4
         },
-        name: index === 0 ? (plotData.expression || "Courbe") : undefined,
+        name: index === 0 ? (prettifyExpression(plotData.expression) || "Courbe") : undefined,
         showlegend: index === 0,
         hovertemplate: "x = %{x}<br>f(x) = %{y}<extra></extra>"
       }));
 
+      const vertexTrace = {
+        x: [0],
+        y: [0],
+        type: "scatter",
+        mode: "markers+text",
+        marker: {
+          color: "#dc2626",
+          size: 9
+        },
+        text: ["Sommet (0, 0)"],
+        textposition: "top center",
+        textfont: {
+          size: 14,
+          color: "#991b1b"
+        },
+        showlegend: false,
+        hovertemplate: "Sommet : (0, 0)<extra></extra>"
+      };
+
       const layout = {
         title: {
           text: plotData.expression
-            ? `Courbe de f(x) = ${plotData.expression}`
+            ? `Courbe de f(x) = ${prettifyExpression(plotData.expression)}`
             : "Représentation graphique",
           font: {
             size: 24,
@@ -534,18 +612,36 @@
         plot_bgcolor: "#ffffff",
         margin: { t: 90, r: 30, b: 70, l: 80 },
         hovermode: "closest",
+        shapes: [
+          {
+            type: "line",
+            x0: 0,
+            x1: 0,
+            y0: yMin,
+            y1: yMax,
+            line: {
+              color: "#94a3b8",
+              width: 2,
+              dash: "dot"
+            }
+          }
+        ],
         xaxis: {
           title: {
             text: "x",
             font: { size: 18, color: "#0f172a" }
           },
+          range: [xMin, xMax],
+          tickmode: "array",
+          tickvals: xTickVals,
+          ticktext: xTickText,
           zeroline: true,
           zerolinewidth: 2,
+          zerolinecolor: "#444",
           showgrid: true,
           gridcolor: "#e2e8f0",
-          linecolor: "#94a3b8",
-          linewidth: 1,
-          mirror: false,
+          linecolor: "#444",
+          linewidth: 2,
           tickfont: { size: 14, color: "#334155" }
         },
         yaxis: {
@@ -553,13 +649,17 @@
             text: "f(x)",
             font: { size: 18, color: "#0f172a" }
           },
+          range: [yMin, yMax],
+          tickmode: "array",
+          tickvals: yTickVals,
+          ticktext: yTickText,
           zeroline: true,
           zerolinewidth: 2,
+          zerolinecolor: "#444",
           showgrid: true,
           gridcolor: "#e2e8f0",
-          linecolor: "#94a3b8",
-          linewidth: 1,
-          mirror: false,
+          linecolor: "#444",
+          linewidth: 2,
           tickfont: { size: 14, color: "#334155" }
         },
         legend: {
@@ -581,11 +681,12 @@
         }
       };
 
-      Plotly.newPlot(plotContainer, traces, layout, config);
-
-      window.addEventListener("resize", () => {
-        Plotly.Plots.resize(plotContainer);
-      });
+      Plotly.newPlot(
+        plotContainer,
+        [...mainTraces, vertexTrace],
+        layout,
+        config
+      );
     }
 
     function renderVariationTable(variationData) {

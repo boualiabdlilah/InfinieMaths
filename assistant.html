@@ -517,7 +517,7 @@
       return { tickVals, tickText };
     }
 
-  function drawMathPlot(plotData) {
+ function drawMathPlot(plotData) {
   const canvas = document.getElementById("mathPlot");
   if (!canvas) return;
 
@@ -528,7 +528,7 @@
     window.mathChart.destroy();
   }
 
-  // ❗ sécurité : pas de données
+  // ❗ sécurité
   if (!plotData || !plotData.points || plotData.points.length === 0) {
     console.error("Pas de points à tracer");
     return;
@@ -545,7 +545,10 @@
           borderWidth: 3,
           pointRadius: 0,
           fill: false,
-          tension: 0.1
+          tension: 0.1,
+
+          // 👉 IMPORTANT : on lie au premier axe
+          yAxisID: "y"
         }
       ]
     },
@@ -571,7 +574,7 @@
         }
       },
 
-      // 🎯 ICI ON GARDE UN SEUL AXE VERTICAL
+      // 🎯 ICI LES 2 AXES VERTICAUX
       scales: {
         x: {
           type: "linear",
@@ -590,8 +593,9 @@
           }
         },
 
+        // ✅ axe gauche
         y: {
-          position: "left",   // ✅ axe vertical UNIQUE
+          position: "left",
           grid: {
             color: "#ddd"
           },
@@ -604,9 +608,21 @@
             text: "y",
             color: "#222"
           }
-        }
+        },
 
-        // ❌ surtout PAS de y1 ici
+        // ✅ axe droit (le fameux en trop)
+        y1: {
+          position: "right",
+          grid: {
+            drawOnChartArea: false // 👉 évite double quadrillage
+          },
+          ticks: {
+            color: "#999"
+          },
+          title: {
+            display: false
+          }
+        }
       }
     }
   });

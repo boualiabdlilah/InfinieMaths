@@ -763,16 +763,16 @@ for (let i = 0; i < xPoints.length; i++) {
         transform-origin:center;
       "></div>
 
-      <div style="
-        position:absolute;
-        top:52%;
-        ${variation === "decreasing" ? "right:2px;" : "left:2px;"}
-        transform: translateY(-50%) rotate(${variation === "decreasing" ? "22deg" : "-22deg"});
-        font-size:18px;
-        font-weight:bold;
-      ">
-        ➤
-      </div>
+     <div style="
+  position:absolute;
+  top:50%;
+  ${variation === "decreasing" ? "right:0;" : "left:0;"}
+  transform: translateY(-50%) rotate(${variation === "decreasing" ? "22deg" : "-22deg"});
+  font-size:20px;
+  line-height:1;
+">
+  ${variation === "decreasing" ? "➘" : "➚"}
+</div>
 
     </td>`;
   }

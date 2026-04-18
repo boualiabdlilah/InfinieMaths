@@ -738,7 +738,7 @@ for (let i = 0; i < xPoints.length; i++) {
     ">${value}</div>
   </td>`;
 
-  // cellule variation en SVG
+ // cellule variation en SVG
 if (i < xPoints.length - 1) {
   const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
@@ -786,13 +786,15 @@ if (i < xPoints.length - 1) {
     vertical-align:middle;
   ">${svg}</td>`;
 }
-}
-html += `</tr>`;
-  html += `</table></div>`;
 
-  box.innerHTML = html;
-  box.style.display = "block";
-  }
+} // fin du for
+
+html += `</tr>`;
+html += `</table></div>`;
+
+box.innerHTML = html;
+box.style.display = "block";
+}
 
   async function sendQuestion() {
     const textarea = document.getElementById("userQuestion");

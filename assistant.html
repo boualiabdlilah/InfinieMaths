@@ -738,7 +738,7 @@ for (let i = 0; i < xPoints.length; i++) {
     ">${value}</div>
   </td>`;
 
- // cellule variation en SVG
+// cellule variation en SVG
 if (i < xPoints.length - 1) {
   const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
@@ -752,7 +752,7 @@ if (i < xPoints.length - 1) {
       <path d="M0,0 L5,2.5 L0,5 Z" fill="#0f172a"></path>
     </marker>
   </defs>
-  <line x1="1" y1="10" x2="99" y2="74"
+  <line x1="1" y1="6" x2="99" y2="78"
         stroke="#0f172a"
         stroke-width="1.8"
         marker-end="url(#arrow-down)"/>
@@ -765,7 +765,7 @@ if (i < xPoints.length - 1) {
       <path d="M0,0 L5,2.5 L0,5 Z" fill="#0f172a"></path>
     </marker>
   </defs>
-  <line x1="1" y1="74" x2="99" y2="10"
+  <line x1="1" y1="78" x2="99" y2="6"
         stroke="#0f172a"
         stroke-width="1.8"
         marker-end="url(#arrow-up)"/>
@@ -796,7 +796,7 @@ html += `</table></div>`;
 
 box.innerHTML = html;
 box.style.display = "block";
-}
+  }
 
   async function sendQuestion() {
     const textarea = document.getElementById("userQuestion");

@@ -517,7 +517,7 @@
       return { tickVals, tickText };
     }
 
-    function drawMathPlot(plotData) {
+   function drawMathPlot(plotData) {
   const canvas = document.getElementById("mathPlot");
   if (!canvas) return;
 
@@ -534,6 +534,7 @@
         {
           label: plotData.label || "f(x)",
           data: plotData.points || [],
+          parsing: false,
           borderColor: "#2e7d32",
           borderWidth: 3,
           pointRadius: 0,
@@ -547,7 +548,6 @@
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
-      parsing: false,
       plugins: {
         legend: {
           display: true,
@@ -587,9 +587,7 @@
             drawTicks: true
           },
           border: {
-            display: true,
-            color: "#444",
-            width: 1.5
+            display: false
           },
           ticks: {
             stepSize: 1,
@@ -597,8 +595,7 @@
             font: {
               size: 14
             }
-          },
-          position: "center"
+          }
         },
         y: {
           min: -0.5,
@@ -610,9 +607,7 @@
             drawTicks: true
           },
           border: {
-            display: true,
-            color: "#444",
-            width: 1.5
+            display: false
           },
           ticks: {
             stepSize: 1,
@@ -620,8 +615,7 @@
             font: {
               size: 14
             }
-          },
-          position: "center"
+          }
         }
       }
     },
@@ -633,41 +627,47 @@
           const xScale = scales.x;
           const yScale = scales.y;
 
-          const x0 = yScale.getPixelForValue(0);
-          const y0 = xScale.getPixelForValue(0);
+          if (!xScale || !yScale) return;
+
+          const x0 = xScale.getPixelForValue(0); // position de l'axe vertical
+          const y0 = yScale.getPixelForValue(0); // position de l'axe horizontal
 
           ctx.save();
           ctx.strokeStyle = "#444";
           ctx.fillStyle = "#444";
           ctx.lineWidth = 1.5;
 
-          // Axe horizontal y = 0
-          ctx.beginPath();
-          ctx.moveTo(chartArea.left, x0);
-          ctx.lineTo(chartArea.right, x0);
-          ctx.stroke();
+          // Axe horizontal : y = 0
+          if (y0 >= chartArea.top && y0 <= chartArea.bottom) {
+            ctx.beginPath();
+            ctx.moveTo(chartArea.left, y0);
+            ctx.lineTo(chartArea.right, y0);
+            ctx.stroke();
 
-          // Flèche axe horizontal
-          ctx.beginPath();
-          ctx.moveTo(chartArea.right, x0);
-          ctx.lineTo(chartArea.right - 8, x0 - 4);
-          ctx.lineTo(chartArea.right - 8, x0 + 4);
-          ctx.closePath();
-          ctx.fill();
+            // flèche à droite
+            ctx.beginPath();
+            ctx.moveTo(chartArea.right, y0);
+            ctx.lineTo(chartArea.right - 8, y0 - 4);
+            ctx.lineTo(chartArea.right - 8, y0 + 4);
+            ctx.closePath();
+            ctx.fill();
+          }
 
-          // Axe vertical x = 0
-          ctx.beginPath();
-          ctx.moveTo(y0, chartArea.bottom);
-          ctx.lineTo(y0, chartArea.top);
-          ctx.stroke();
+          // Axe vertical : x = 0
+          if (x0 >= chartArea.left && x0 <= chartArea.right) {
+            ctx.beginPath();
+            ctx.moveTo(x0, chartArea.bottom);
+            ctx.lineTo(x0, chartArea.top);
+            ctx.stroke();
 
-          // Flèche axe vertical
-          ctx.beginPath();
-          ctx.moveTo(y0, chartArea.top);
-          ctx.lineTo(y0 - 4, chartArea.top + 8);
-          ctx.lineTo(y0 + 4, chartArea.top + 8);
-          ctx.closePath();
-          ctx.fill();
+            // flèche en haut
+            ctx.beginPath();
+            ctx.moveTo(x0, chartArea.top);
+            ctx.lineTo(x0 - 4, chartArea.top + 8);
+            ctx.lineTo(x0 + 4, chartArea.top + 8);
+            ctx.closePath();
+            ctx.fill();
+          }
 
           ctx.restore();
         }

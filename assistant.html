@@ -742,7 +742,7 @@ for (let i = 0; i < xPoints.length; i++) {
   if (i < xPoints.length - 1) {
     const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
-  html += `<td style="
+ html += `<td style="
   border-top:2px solid #444;
   border-bottom:1px solid #666;
   padding:0;
@@ -752,7 +752,6 @@ for (let i = 0; i < xPoints.length; i++) {
   position:relative;
 ">
 
-  <!-- segment -->
   <div style="
     position:absolute;
     top:52%;
@@ -764,7 +763,6 @@ for (let i = 0; i < xPoints.length; i++) {
     transform-origin:center;
   "></div>
 
-  <!-- flèche -->
   <div style="
     position:absolute;
     top:52%;
@@ -772,7 +770,7 @@ for (let i = 0; i < xPoints.length; i++) {
     transform: translateY(-50%) rotate(${variation === "decreasing" ? "22deg" : "-22deg"});
     font-size:18px;
   ">
-    ${variation === "decreasing" ? "➤" : "➤"}
+    ➤
   </div>
 
 </td>`;

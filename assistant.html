@@ -738,42 +738,47 @@ for (let i = 0; i < xPoints.length; i++) {
     ">${value}</div>
   </td>`;
 
-  // cellule variation (trait diagonal)
+  // cellule variation
   if (i < xPoints.length - 1) {
     const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
- html += `<td style="
-  border-top:2px solid #444;
-  border-bottom:1px solid #666;
-  padding:0;
-  width:70px;
-  height:84px;
-  vertical-align:middle;
-  position:relative;
-">
+    html += `<td style="
+      border-top:2px solid #444;
+      border-bottom:1px solid #666;
+      padding:0;
+      width:70px;
+      height:84px;
+      vertical-align:middle;
+      position:relative;
+    ">
 
-  <div style="
-    position:absolute;
-    top:52%;
-    left:0%;
-    width:100%;
-    height:2px;
-    background:#0f172a;
-    transform:${variation === "decreasing" ? "rotate(22deg)" : "rotate(-22deg)"};
-    transform-origin:center;
-  "></div>
+      <div style="
+        position:absolute;
+        top:52%;
+        left:0%;
+        width:100%;
+        height:2px;
+        background:#0f172a;
+        transform:${variation === "decreasing" ? "rotate(22deg)" : "rotate(-22deg)"};
+        transform-origin:center;
+      "></div>
 
-  <div style="
-    position:absolute;
-    top:52%;
-    ${variation === "decreasing" ? "right:2px;" : "left:2px;"}
-    transform: translateY(-50%) rotate(${variation === "decreasing" ? "22deg" : "-22deg"});
-    font-size:18px;
-  ">
-    ➤
-  </div>
+      <div style="
+        position:absolute;
+        top:52%;
+        ${variation === "decreasing" ? "right:2px;" : "left:2px;"}
+        transform: translateY(-50%) rotate(${variation === "decreasing" ? "22deg" : "-22deg"});
+        font-size:18px;
+        font-weight:bold;
+      ">
+        ➤
+      </div>
 
-</td>`;
+    </td>`;
+  }
+}
+
+html += `</tr>`;
   html += `</table></div>`;
 
   box.innerHTML = html;

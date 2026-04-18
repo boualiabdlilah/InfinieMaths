@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test graphe</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 30px;
+      background: #f5f7fb;
+    }
+
+    .box {
+      width: 900px;
+      max-width: 100%;
+      height: 450px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <canvas id="mathPlot"></canvas>
+  </div>
+
+  <script>
+    function drawMathPlot() {
+      const canvas = document.getElementById("mathPlot");
+      if (!canvas) {
+        console.error("Canvas introuvable");
+        return;
+      }
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        console.error("Contexte 2D introuvable");
+        return;
+      }
+
+      const points = [
+        { x: -4, y: 16 },
+        { x: -3, y: 9 },
+        { x: -2, y: 4 },
+        { x: -1, y: 1 },
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+        { x: 2, y: 4 },
+        { x: 3, y: 9 },
+        { x: 4, y: 16 }
+      ];
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          datasets: [
+            {
+              label: "f(x)=x²",
+              data: points,
+              parsing: false,
+              borderColor: "#2e7d32",
+              borderWidth: 3,
+              pointRadius: 3,
+              pointHoverRadius: 4,
+              fill: false,
+              tension: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: {
+              display: true
+            },
+            title: {
+              display: true,
+              text: "Courbe de f(x)=x²"
+            }
+          },
+          scales: {
+            x: {
+              type: "linear",
+              position: "bottom",
+              min: -4,
+              max: 4
+            },
+            y: {
+              min: 0,
+              max: 16
+            }
+          }
+        }
+      });
+    }
+
+    window.onload = drawMathPlot;
+  </script>
+
+</body>
+</html>

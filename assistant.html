@@ -517,115 +517,65 @@
       return { tickVals, tickText };
     }
 
- function drawMathPlot(plotData) {
+function drawMathPlot() {
   const canvas = document.getElementById("mathPlot");
-  if (!canvas) return;
+  if (!canvas) {
+    console.error("Canvas introuvable");
+    return;
+  }
 
   const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    console.error("Contexte 2D introuvable");
+    return;
+  }
 
-  // 🔄 Supprimer ancien graphe
   if (window.mathChart) {
     window.mathChart.destroy();
   }
 
-  // ❗ sécurité
-  if (!plotData || !plotData.points || plotData.points.length === 0) {
-    console.error("Pas de points à tracer");
-    return;
-  }
+  const testPoints = [
+    { x: -2, y: 4 },
+    { x: -1, y: 1 },
+    { x: 0, y: 0 },
+    { x: 1, y: 1 },
+    { x: 2, y: 4 }
+  ];
 
   window.mathChart = new Chart(ctx, {
     type: "line",
     data: {
       datasets: [
         {
-          label: plotData.label || "f(x)",
-          data: plotData.points,
+          label: "f(x) = x²",
+          data: testPoints,
           borderColor: "#2e7d32",
           borderWidth: 3,
-          pointRadius: 0,
+          pointRadius: 3,
           fill: false,
-          tension: 0.1,
-
-          // 👉 IMPORTANT : on lie au premier axe
-          yAxisID: "y"
+          tension: 0
         }
       ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      animation: false,
       parsing: false,
-
-      plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: "#222",
-            font: { size: 14 }
-          }
-        },
-        title: {
-          display: true,
-          text: plotData.title || "Courbe de f(x)",
-          color: "#222",
-          font: { size: 18 }
-        }
-      },
-
-      // 🎯 ICI LES 2 AXES VERTICAUX
+      animation: false,
       scales: {
         x: {
           type: "linear",
-          position: "bottom",
-          grid: {
-            color: "#ddd"
-          },
-          ticks: {
-            color: "#222",
-            stepSize: 1
-          },
-          title: {
-            display: true,
-            text: "x",
-            color: "#222"
-          }
+          position: "bottom"
         },
-
-        // ✅ axe gauche
         y: {
-          position: "left",
-          grid: {
-            color: "#ddd"
-          },
-          ticks: {
-            color: "#222",
-            stepSize: 1
-          },
-          title: {
-            display: true,
-            text: "y",
-            color: "#222"
-          }
-        },
-
-        // ✅ axe droit (le fameux en trop)
-        y1: {
-          position: "right",
-          grid: {
-            drawOnChartArea: false // 👉 évite double quadrillage
-          },
-          ticks: {
-            color: "#999"
-          },
-          title: {
-            display: false
-          }
+          type: "linear",
+          position: "left"
         }
       }
     }
   });
+
+  console.log("Graphique créé");
 }
 
     function renderVariationTable(variationData) {

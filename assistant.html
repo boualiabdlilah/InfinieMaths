@@ -698,7 +698,7 @@ for (let i = 0; i < xPoints.length; i++) {
 }
 html += `</tr>`;
 
- // Ligne f(x)
+// Ligne f(x)
 html += `<tr>`;
 html += `<th style="
   border:1px solid #666;
@@ -709,6 +709,7 @@ html += `<th style="
 ">f(x)</th>`;
 
 for (let i = 0; i < xPoints.length; i++) {
+
   let value = "";
   if (i === 0) value = leftInf;
   else if (i === xPoints.length - 1) value = rightInf;
@@ -737,9 +738,9 @@ for (let i = 0; i < xPoints.length; i++) {
     ">${value}</div>
   </td>`;
 
-  // cellule flèche
+  // cellule variation (trait diagonal)
   if (i < xPoints.length - 1) {
-    const arrow = getArrow(xPoints[i], xPoints[i + 1]);
+    const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
     html += `<td style="
       border-top:2px solid #444;
@@ -750,33 +751,16 @@ for (let i = 0; i < xPoints.length; i++) {
       vertical-align:middle;
       position:relative;
     ">
-
-      <!-- ligne diagonale longue -->
       <div style="
         position:absolute;
         top:50%;
-        left:0%;
-        width:100%;
+        left:10%;
+        width:80%;
         height:2px;
         background:#0f172a;
-        transform: ${arrow === "↘" ? "rotate(32deg)" : "rotate(-32deg)"};
+        transform:${variation === "decreasing" ? "rotate(28deg)" : variation === "increasing" ? "rotate(-28deg)" : "none"};
         transform-origin:center;
       "></div>
-
-      <!-- pointe -->
-  <div style="
-  position:absolute;
-  top:50%;
-  ${arrow === "↘" ? "right:0;" : "left:0;"}
-  transform: translateY(-50%) rotate(${arrow === "↘" ? "32deg" : "-32deg"});
-  width:0;
-  height:0;
-  border-left:7px solid transparent;
-  border-right:7px solid transparent;
-  border-top:${arrow === "↘" ? "12px solid #0f172a" : "none"};
-  border-bottom:${arrow === "↗" ? "12px solid #0f172a" : "none"};
-"></div>
-
     </td>`;
   }
 }

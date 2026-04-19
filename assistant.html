@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -1023,14 +1023,16 @@
     if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
     html += `<td style="${pointStyle}">
-      <div style="
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        height:100%;
-        width:100%;
-      ">${value}</div>
-    </td>`;
+  <div style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    width:100%;
+  ">
+    <span>$$${value.replace(/\$/g, "")}$$</span>
+  </div>
+</td>`;
 
     if (i < xPoints.length - 1) {
       const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";

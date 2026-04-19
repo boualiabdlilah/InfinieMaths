@@ -384,6 +384,13 @@
       line-height: 1;
       display: inline-block;
     }
+    .assistant-response {
+  font-size: 18px;
+}
+
+.assistant-response .katex {
+  font-size: 1.08em;
+}
   </style>
 </head>
 <body>
@@ -453,27 +460,142 @@
     }
 
     function renderAssistantReply(reply) {
-      const responseBox = document.getElementById("assistantResponse");
+  const responseBox = document.getElementById("assistantResponse");
 
-      let text = reply || "Aucune réponse générée.";
+  let text = reply || "Aucune réponse générée.";
 
-      text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
-      text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
+  // =========================
+  // 1) Supprimer les tableaux texte Markdown / ASCII
+  // =========================
+  text = text.replace(/(^|\n)\|.*\|(\n\|.*\|)*/g, "");
 
-      responseBox.innerHTML = marked.parse(text);
+  // =========================
+  // 2) Supprimer les anciens tableaux LaTeX
+  // =========================
+  text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
+  text = text.replace(/\\begin\{tabular\}[\s\S]*?\\end\{tabular\}/g, "");
 
-      if (window.renderMathInElement) {
-        renderMathInElement(responseBox, {
-          delimiters: [
-            { left: "$$", right: "$$", display: true },
-            { left: "$", right: "$", display: false },
-            { left: "\\[", right: "\\]", display: true },
-            { left: "\\(", right: "\\)", display: false }
-          ],
-          throwOnError: false
-        });
-      }
+  // =========================
+  // 3) Supprimer les phrases redondantes
+  // =========================
+  text = text.replace(/Voici le tableau de variation[^:\n]*:?\s*/gi, "");
+  text = text.replace(/Voici le tableau de signes[^:\n]*:?\s*/gi, "");
+
+  // =========================
+  // 4) Normalisation de quelques symboles
+  // =========================
+  text = text.replace(/<=/g, "≤");
+  text = text.replace(/>=/g, "≥");
+
+  // =========================
+  // 5) Fonctions usuelles
+  // =========================
+  text = text.replace(/sqrt\(([^()]+)\)/gi, "$\\\\sqrt{$1}$");
+  text = text.replace(/ln\(([^()]+)\)/gi, "$\\\\ln($1)$");
+  text = text.replace(/exp\(([^()]+)\)/gi, "$e^{$1}$");
+  text = text.replace(/\be\^([a-zA-Z0-9+\-]+)/g, "$e^{$1}$");
+
+  // =========================
+  // 6) Dérivées
+  // =========================
+  text = text.replace(/\bf''\(x\)\b/g, "$f''(x)$");
+  text = text.replace(/\bf'\(x\)\b/g, "$f'(x)$");
+
+  // =========================
+  // 7) Puissances sur x
+  // =========================
+  text = text.replace(/\bx\^2\b/g, "$x^2$");
+  text = text.replace(/\bx\^3\b/g, "$x^3$");
+  text = text.replace(/\bx\^([4-9]\d*)\b/g, "$x^{$1}$");
+
+  // =========================
+  // 8) Fractions simples usuelles
+  // =========================
+  text = text.replace(/\b1\/2\b/g, "$\\\\frac{1}{2}$");
+  text = text.replace(/\b3\/2\b/g, "$\\\\frac{3}{2}$");
+  text = text.replace(/\b1\/3\b/g, "$\\\\frac{1}{3}$");
+  text = text.replace(/\b2\/3\b/g, "$\\\\frac{2}{3}$");
+  text = text.replace(/\b1\/4\b/g, "$\\\\frac{1}{4}$");
+  text = text.replace(/\b3\/4\b/g, "$\\\\frac{3}{4}$");
+
+  // =========================
+  // 9) Fractions générales entières a/b
+  // =========================
+  text = text.replace(/\b([0-9]+)\/([0-9]+)\b/g, "$\\\\frac{$1}{$2}$");
+
+  // =========================
+  // 10) Infinis
+  // =========================
+  text = text.replace(/\+\s*∞|\+inf|\+oo/gi, "$+\\\\infty$");
+  text = text.replace(/-\s*∞|-inf|-oo/gi, "$-\\\\infty$");
+
+  // =========================
+  // 11) Fonction complète : f(x)=...
+  // =========================
+  text = text.replace(/\bf\(x\)\s*=\s*([^\n]+)/g, function(match, expr) {
+    if (match.includes("$")) return match;
+
+    let cleanedExpr = expr.trim();
+
+    cleanedExpr = cleanedExpr.replace(/([a-zA-Z0-9)])\^([0-9]+)/g, "$1^{$2}");
+    cleanedExpr = cleanedExpr.replace(/\s+/g, " ");
+
+    return `$f(x)=${cleanedExpr}$`;
+  });
+
+  // =========================
+  // 12) Cas "fonction x^2-3x+2"
+  // =========================
+  text = text.replace(
+    /fonction\s+([a-zA-Z0-9+\-*/^(). ]*x\^[0-9][a-zA-Z0-9+\-*/^(). ]*)/gi,
+    function(match, expr) {
+      let cleanedExpr = expr.trim();
+      cleanedExpr = cleanedExpr.replace(/([a-zA-Z0-9)])\^([0-9]+)/g, "$1^{$2}");
+      return `fonction $${cleanedExpr}$`;
     }
+  );
+
+  // =========================
+  // 13) Intervalles simples
+  // =========================
+  text = text.replace(/\]\s*([^;]+)\s*;\s*([^\[]+)\s*\[/g, "$]$ $1$ ; $2$ $[$");
+  text = text.replace(/\[\s*([^;]+)\s*;\s*([^\]]+)\s*\]/g, "$[$ $1$ ; $2$ $]$");
+
+  // =========================
+  // 14) Mots mathématiques
+  // =========================
+  text = text.replace(/\bf est décroissante\b/gi, "$f$ est décroissante");
+  text = text.replace(/\bf est croissante\b/gi, "$f$ est croissante");
+
+  // =========================
+  // 15) Nettoyage final
+  // =========================
+  text = text.replace(/\n{3,}/g, "\n\n").trim();
+
+  if (!text) {
+    text = "Réponse générée.";
+  }
+
+  // =========================
+  // 16) Rendu Markdown
+  // =========================
+  responseBox.innerHTML = marked.parse(text);
+
+  // =========================
+  // 17) Rendu KaTeX
+  // =========================
+  if (window.renderMathInElement) {
+    renderMathInElement(responseBox, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+}
 
     function showError(message) {
       const errorBox = document.getElementById("assistantError");

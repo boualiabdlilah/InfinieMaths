@@ -528,30 +528,30 @@ function drawMathPlot(plotData) {
   plotContainer.innerHTML = "";
 
   if (!plotData) {
-    console.error("Aucune donnée de tracé reçue");
+    console.error("Aucune donnée reçue");
     return;
   }
 
-  // =========================
+  // ======================
   // OUTILS
-  // =========================
+  // ======================
   function isNum(v) {
     return typeof v === "number" && isFinite(v);
   }
 
-  function prettifyNumber(v) {
+  function pretty(v) {
     if (!isNum(v)) return "";
     if (Math.abs(v) < 1e-10) return "0";
-    return Number(v.toFixed(4)).toString();
+    return Number(v.toFixed(3)).toString();
   }
 
-  function normalizeFunctionData(item, defaultLabel = "f(x)") {
+  function normalize(item, defaultLabel = "f(x)") {
     let x = [];
     let y = [];
 
     if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
-      x = item.x.slice();
-      y = item.y.slice();
+      x = item.x;
+      y = item.y;
     } else if (Array.isArray(item?.points)) {
       x = item.points.map(p => p.x);
       y = item.points.map(p => p.y);
@@ -561,12 +561,12 @@ function drawMathPlot(plotData) {
       label: item?.label || defaultLabel,
       x,
       y,
-      roots: Array.isArray(item?.roots) ? item.roots : [],
+      roots: item?.roots || [],
       vertex: item?.vertex || null
     };
   }
 
-  function computeRange(values, padRatio = 0.08, minPad = 1) {
+  function computeRange(values) {
     const clean = values.filter(isNum);
     if (!clean.length) return [-5, 5];
 
@@ -578,77 +578,49 @@ function drawMathPlot(plotData) {
       max += 2;
     }
 
-    const span = max - min;
-    const pad = Math.max(minPad, span * padRatio);
-
-    return [min - pad, max + pad];
+    const pad = Math.max(1, (max - min) * 0.1);
+    return [Math.floor(min - pad), Math.ceil(max + pad)];
   }
 
-  function makeAxisNice([min, max]) {
-    return [Math.floor(min), Math.ceil(max)];
-  }
-
-  function collectAllNumbers(functions, extraX = [], extraY = []) {
-    const xs = [...extraX];
-    const ys = [...extraY];
-
-    functions.forEach(fn => {
-      xs.push(...fn.x.filter(isNum));
-      ys.push(...fn.y.filter(isNum));
-
-      fn.roots.forEach(r => {
-        if (isNum(r?.x)) xs.push(r.x);
-        if (isNum(r?.y)) ys.push(r.y);
-      });
-
-      if (fn.vertex) {
-        if (isNum(fn.vertex.x)) xs.push(fn.vertex.x);
-        if (isNum(fn.vertex.y)) ys.push(fn.vertex.y);
-      }
-    });
-
-    return { xs, ys };
-  }
-
-  // =========================
-  // NORMALISATION DES DONNÉES
-  // =========================
+  // ======================
+  // DONNÉES
+  // ======================
   let functions = [];
 
-  if (Array.isArray(plotData.functions) && plotData.functions.length) {
-    functions = plotData.functions.map((fn, i) =>
-      normalizeFunctionData(fn, `f${i + 1}(x)`)
+  if (Array.isArray(plotData.functions)) {
+    functions = plotData.functions.map((f, i) =>
+      normalize(f, `f${i + 1}(x)`)
     );
   } else {
-    functions = [normalizeFunctionData(plotData, plotData.label || "f(x)")];
+    functions = [normalize(plotData)];
   }
 
-  // Fallback test si aucune courbe n'est reçue
-  if (!functions[0].x.length || !functions[0].y.length) {
-    const x = [];
-    const y = [];
+  // fallback test
+  if (!functions[0].x.length) {
+    const x = [], y = [];
     for (let t = -4; t <= 4; t += 0.1) {
-      x.push(Number(t.toFixed(2)));
-      y.push(Number((t * t).toFixed(4)));
+      x.push(t);
+      y.push(t * t);
     }
-
     functions = [{
       label: "f(x)=x²",
       x,
       y,
-      roots: [{ x: 0, y: 0, label: "Racine" }],
-      vertex: { x: 0, y: 0, label: "Sommet" }
+      roots: [{ x: 0, y: 0 }],
+      vertex: { x: 0, y: 0 }
     }];
   }
 
-  // =========================
-  // TRACES DES COURBES
-  // =========================
   const traces = [];
-  const markerTraces = [];
+  const markers = [];
   const annotations = [];
 
-  functions.forEach((fn, index) => {
+  // ======================
+  // TRACÉS
+  // ======================
+  functions.forEach(fn => {
+
+    // courbe
     traces.push({
       x: fn.x,
       y: fn.y,
@@ -657,107 +629,109 @@ function drawMathPlot(plotData) {
       name: fn.label,
       line: {
         width: 4,
-        shape: "spline",
-        smoothing: 0.8
-      },
-      hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
+        shape: "spline"
+      }
     });
 
-    // Racines
-    fn.roots.forEach((root, i) => {
-      if (!isNum(root?.x) || !isNum(root?.y)) return;
-
-      markerTraces.push({
-        x: [root.x],
-        y: [root.y],
-        type: "scatter",
-        mode: "markers",
-        name: `${fn.label} - racine`,
-        marker: {
-          size: 10,
-          symbol: "circle"
-        },
-        hovertemplate: `${fn.label}<br>Racine : (${prettifyNumber(root.x)}, ${prettifyNumber(root.y)})<extra></extra>`,
-        showlegend: false
-      });
-
-      annotations.push({
-        x: root.x,
-        y: root.y,
-        text: root.label || `R${i + 1}(${prettifyNumber(root.x)}, ${prettifyNumber(root.y)})`,
-        showarrow: true,
-        arrowhead: 2,
-        ax: 0,
-        ay: -28,
-        font: { size: 13 }
-      });
-    });
-
-    // Sommet
+    // sommet
     if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
-      markerTraces.push({
+      markers.push({
         x: [fn.vertex.x],
         y: [fn.vertex.y],
         type: "scatter",
         mode: "markers",
-        name: `${fn.label} - sommet`,
         marker: {
-          size: 11,
+          size: 12,
+          color: "#dc2626",
           symbol: "diamond"
         },
-        hovertemplate: `${fn.label}<br>Sommet : (${prettifyNumber(fn.vertex.x)}, ${prettifyNumber(fn.vertex.y)})<extra></extra>`,
         showlegend: false
       });
 
       annotations.push({
         x: fn.vertex.x,
         y: fn.vertex.y,
-        text: fn.vertex.label || `Sommet (${prettifyNumber(fn.vertex.x)}, ${prettifyNumber(fn.vertex.y)})`,
+        text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
         showarrow: true,
         arrowhead: 2,
-        ax: 38,
-        ay: -36,
-        font: { size: 13 }
+        ax: 40,
+        ay: -50
       });
+    }
+
+    // racines (sans doublon sommet)
+    fn.roots.forEach(root => {
+      if (!isNum(root?.x) || !isNum(root?.y)) return;
+
+      if (
+        fn.vertex &&
+        Math.abs(root.x - fn.vertex.x) < 1e-6 &&
+        Math.abs(root.y - fn.vertex.y) < 1e-6
+      ) return;
+
+      markers.push({
+        x: [root.x],
+        y: [root.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 10,
+          color: "#16a34a",
+          symbol: "circle"
+        },
+        showlegend: false
+      });
+
+      annotations.push({
+        x: root.x,
+        y: root.y,
+        text: `R(${pretty(root.x)}, ${pretty(root.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 0,
+        ay: -40
+      });
+    });
+
+  });
+
+  // ======================
+  // ZOOM INTELLIGENT
+  // ======================
+  let allX = [];
+  let allY = [];
+
+  functions.forEach(fn => {
+    allX.push(...fn.x);
+    allY.push(...fn.y);
+
+    fn.roots.forEach(r => {
+      allX.push(r.x);
+      allY.push(r.y);
+    });
+
+    if (fn.vertex) {
+      allX.push(fn.vertex.x);
+      allY.push(fn.vertex.y);
     }
   });
 
-  // =========================
-  // ZOOM INTELLIGENT AUTOMATIQUE
-  // =========================
-  const { xs, ys } = collectAllNumbers(functions, [0], [0]);
+  allX.push(0);
+  allY.push(0);
 
-  let xRange = makeAxisNice(computeRange(xs, 0.10, 1));
-  let yRange = makeAxisNice(computeRange(ys, 0.12, 1));
+  const xRange = computeRange(allX);
+  const yRange = computeRange(allY);
 
-  // Si une fonction a un sommet, on essaie d’avoir une fenêtre plus pédagogique
-  if (functions.length === 1 && functions[0].vertex && isNum(functions[0].vertex.x)) {
-    const vx = functions[0].vertex.x;
-    const dxLeft = Math.abs(xRange[0] - vx);
-    const dxRight = Math.abs(xRange[1] - vx);
-    const dx = Math.max(dxLeft, dxRight);
-    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
-  }
-
-  // =========================
-  // TITRE
-  // =========================
-  let titleText = "Courbe";
-  if (functions.length === 1) {
-    titleText = functions[0].label || "f(x)";
-  } else {
-    titleText = "Tracé de plusieurs fonctions";
-  }
-
-  // =========================
+  // ======================
   // LAYOUT
-  // =========================
+  // ======================
   const layout = {
-    title: {
-      text: titleText,
-      font: { size: 22 }
-    },
-    margin: { l: 60, r: 20, t: 70, b: 60 },
+    title: functions.length === 1
+      ? functions[0].label
+      : "Plusieurs fonctions",
+
+    margin: { l: 60, r: 20, t: 60, b: 60 },
+
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
@@ -769,9 +743,7 @@ function drawMathPlot(plotData) {
       gridcolor: "#e2e8f0",
       zeroline: true,
       zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      showline: false
+      zerolinewidth: 2
     },
 
     yaxis: {
@@ -783,22 +755,17 @@ function drawMathPlot(plotData) {
       zeroline: true,
       zerolinecolor: "#000",
       zerolinewidth: 2,
-      ticks: "outside",
-      showline: false
+      scaleanchor: "x",
+      scaleratio: 1
     },
 
     annotations,
-    showlegend: functions.length > 1,
-    legend: {
-      orientation: "h",
-      y: 1.08,
-      x: 0
-    }
+    showlegend: functions.length > 1
   };
 
   Plotly.newPlot(
     plotContainer,
-    [...traces, ...markerTraces],
+    [...traces, ...markers],
     layout,
     {
       responsive: true,

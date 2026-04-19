@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -517,137 +518,284 @@
       return { tickVals, tickText };
     }
 
-function drawMathPlot() {
-  const canvas = document.getElementById("mathPlot");
-  if (!canvas) {
-    console.error("Canvas introuvable");
+function drawMathPlot(plotData) {
+  const plotContainer = document.getElementById("plotContainer");
+  if (!plotContainer) {
+    console.error("plotContainer introuvable");
     return;
   }
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    console.error("Contexte 2D introuvable");
+  plotContainer.style.display = "block";
+  plotContainer.innerHTML = "";
+
+  if (!plotData) {
+    console.error("Aucune donnée reçue pour le tracé");
     return;
   }
 
-  if (window.mathChart) {
-    window.mathChart.destroy();
+  function isNum(v) {
+    return typeof v === "number" && isFinite(v);
   }
 
-  const testPoints = [
-    { x: -3, y: 9 },
-    { x: -2, y: 4 },
-    { x: -1, y: 1 },
-    { x: 0, y: 0 },
-    { x: 1, y: 1 },
-    { x: 2, y: 4 },
-    { x: 3, y: 9 }
-  ];
+  function pretty(v) {
+    if (!isNum(v)) return "";
+    if (Math.abs(v) < 1e-10) return "0";
+    return Number(v.toFixed(3)).toString();
+  }
 
-  window.mathChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      datasets: [
-        {
-          label: "f(x) = x²",
-          data: testPoints,
-          borderColor: "#2e7d32",
-          borderWidth: 3,
-          pointRadius: 0,
-          pointHoverRadius: 4,
-          fill: false,
-          tension: 0.15
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      aspectRatio: 1,
-      animation: false,
-      parsing: false,
-      plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: "#222",
-            font: {
-              size: 16
-            }
-          }
-        },
-        title: {
-          display: true,
-          text: "Courbe de f(x) = x²",
-          color: "#111",
-          font: {
-            size: 22,
-            weight: "normal"
-          },
-          padding: {
-            top: 10,
-            bottom: 20
-          }
-        }
+  function normalize(item, defaultLabel = "f(x)") {
+    let x = [];
+    let y = [];
+
+    if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
+      x = item.x.slice();
+      y = item.y.slice();
+    } else if (Array.isArray(item?.points)) {
+      x = item.points.map(p => p.x);
+      y = item.points.map(p => p.y);
+    }
+
+    return {
+      label: item?.label || defaultLabel,
+      x,
+      y,
+      roots: Array.isArray(item?.roots) ? item.roots : [],
+      vertex: item?.vertex || null
+    };
+  }
+
+  function computeRange(values, padRatio = 0.1, minPad = 1) {
+    const clean = values.filter(isNum);
+    if (!clean.length) return [-5, 5];
+
+    let min = Math.min(...clean);
+    let max = Math.max(...clean);
+
+    if (min === max) {
+      min -= 2;
+      max += 2;
+    }
+
+    const pad = Math.max(minPad, (max - min) * padRatio);
+    return [Math.floor(min - pad), Math.ceil(max + pad)];
+  }
+
+  let functions = [];
+
+  if (Array.isArray(plotData.functions) && plotData.functions.length) {
+    functions = plotData.functions.map((f, i) => normalize(f, `f${i + 1}(x)`));
+  } else {
+    functions = [normalize(plotData, plotData.label || "f(x)")];
+  }
+
+  // Fallback test
+  if (!functions[0].x.length || !functions[0].y.length) {
+    const x = [];
+    const y = [];
+    for (let t = -4; t <= 4; t += 0.1) {
+      x.push(Number(t.toFixed(2)));
+      y.push(Number((t * t).toFixed(4)));
+    }
+
+    functions = [{
+      label: "f(x)=x²",
+      x,
+      y,
+      roots: [{ x: 0, y: 0 }],
+      vertex: { x: 0, y: 0 }
+    }];
+  }
+
+  const traces = [];
+  const markers = [];
+  const annotations = [];
+
+  functions.forEach(fn => {
+    traces.push({
+      x: fn.x,
+      y: fn.y,
+      type: "scatter",
+      mode: "lines",
+      name: fn.label,
+      line: {
+        width: 4,
+        shape: "spline",
+        smoothing: 0.6
       },
-      scales: {
-        x: {
-          type: "linear",
-          position: "bottom",
-          min: -3,
-          max: 3,
-          grid: {
-            color: "#d9d9d9",
-            lineWidth: 1
-          },
-          border: {
-            display: true,
-            color: "#444",
-            width: 1.5
-          },
-          ticks: {
-            stepSize: 1,
-            color: "#222",
-            font: {
-              size: 14
-            }
-          }
+      hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
+    });
+
+    if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
+      markers.push({
+        x: [fn.vertex.x],
+        y: [fn.vertex.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 12,
+          color: "#dc2626",
+          symbol: "diamond"
         },
-        y: {
-          type: "linear",
-          position: "left",
-          min: -1,
-          max: 5,
-          grid: {
-            color: "#d9d9d9",
-            lineWidth: 1
-          },
-          border: {
-            display: true,
-            color: "#444",
-            width: 1.5
-          },
-          ticks: {
-            stepSize: 1,
-            color: "#222",
-            font: {
-              size: 14
-            }
-          },
-          title: {
-            display: true,
-            text: "f(x)",
-            color: "#222",
-            font: {
-              size: 16
-            }
-          }
-        }
+        showlegend: false,
+        hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})<extra></extra>`
+      });
+
+      annotations.push({
+        x: fn.vertex.x,
+        y: fn.vertex.y,
+        text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 60,
+        ay: -60,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 14 }
+      });
+    }
+
+    fn.roots.forEach((root, i) => {
+      if (!isNum(root?.x) || !isNum(root?.y)) return;
+
+      if (
+        fn.vertex &&
+        isNum(fn.vertex.x) &&
+        isNum(fn.vertex.y) &&
+        Math.abs(root.x - fn.vertex.x) < 1e-6 &&
+        Math.abs(root.y - fn.vertex.y) < 1e-6
+      ) {
+        return;
       }
+
+      markers.push({
+        x: [root.x],
+        y: [root.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 10,
+          color: "#16a34a",
+          symbol: "circle"
+        },
+        showlegend: false,
+        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
+      });
+
+      annotations.push({
+        x: root.x,
+        y: root.y,
+        text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 0,
+        ay: -40,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 13 }
+      });
+    });
+  });
+
+  let allX = [];
+  let allY = [];
+
+  functions.forEach(fn => {
+    allX.push(...fn.x.filter(isNum));
+    allY.push(...fn.y.filter(isNum));
+
+    fn.roots.forEach(r => {
+      if (isNum(r?.x)) allX.push(r.x);
+      if (isNum(r?.y)) allY.push(r.y);
+    });
+
+    if (fn.vertex) {
+      if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
+      if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
     }
   });
 
-  console.log("Graphique créé");
+  allX.push(0);
+  allY.push(0);
+
+  let xRange, yRange;
+
+  if (
+    functions.length === 1 &&
+    functions[0].vertex &&
+    isNum(functions[0].vertex.x)
+  ) {
+    const vx = functions[0].vertex.x;
+    const xs = functions[0].x.filter(isNum);
+    const ys = functions[0].y.filter(isNum);
+
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
+
+    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
+
+    const maxY = ys.length ? Math.max(...ys) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)];
+  } else {
+    xRange = computeRange(allX, 0.1, 1);
+    yRange = computeRange(allY, 0.12, 1);
+  }
+
+  const layout = {
+    title: {
+      text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
+      font: { size: 22 }
+    },
+    margin: { l: 60, r: 20, t: 70, b: 60 },
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+
+    xaxis: {
+      title: "x",
+      range: xRange,
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
+
+    yaxis: {
+      title: "y",
+      range: yRange,
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
+
+    annotations,
+    showlegend: functions.length > 1,
+    legend: {
+      orientation: "h",
+      y: 1.08,
+      x: 0
+    }
+  };
+
+  Plotly.newPlot(
+    plotContainer,
+    [...traces, ...markers],
+    layout,
+    {
+      responsive: true,
+      displayModeBar: false
+    }
+  );
 }
 
     function renderVariationTable(variationData) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -751,14 +751,15 @@ function drawMathPlot(plotData) {
 
     xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
 
-   const minY = ys.length ? Math.min(...ys) : -5;
-   const maxY = ys.length ? Math.max(...ys) : 10;
+  const minY = Math.min(...ys);
+const maxY = Math.max(...ys);
 
-   const dy = maxY - minY;
+// marge proportionnelle
+const dy = Math.max(5, maxY - minY);
 
-   yRange = [
-   Math.floor(minY - 0.2 * dy),
-   Math.ceil(maxY + 0.2 * dy)
+yRange = [
+  Math.floor(minY - 0.3 * dy),
+  Math.ceil(maxY + 0.3 * dy)
 ];
   } else {
     xRange = computeRange(allX, 0.1, 1);

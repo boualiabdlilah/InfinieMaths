@@ -753,15 +753,8 @@ function drawMathPlot(plotData) {
 
     xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
 
-const minY = ys.length ? Math.min(...ys) : -2;
-const maxY = ys.length ? Math.max(...ys) : 10;
-
-const dy = Math.max(1, maxY - minY);
-
-yRange = [
-  Math.floor(minY - 0.2 * dy),
-  Math.ceil(maxY + 0.2 * dy)
-];
+    const maxY = ys.length ? Math.max(...ys) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)];
   } else {
     xRange = computeRange(allX, 0.1, 1);
     yRange = computeRange(allY, 0.12, 1);
@@ -777,30 +770,30 @@ yRange = [
     plot_bgcolor: "#ffffff",
 
     xaxis: {
-  title: "x",
-  range: xRange,
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
-  showline: false
-},
+      title: "x",
+      range: [-3, 3],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
 
-yaxis: {
-  title: "y",
-  range: yRange,
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
-  showline: false
-},
+    yaxis: {
+      title: "y",
+      range: [-1, 5],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
 
     annotations,
     showlegend: functions.length > 1,

@@ -742,28 +742,22 @@ function drawMathPlot(plotData) {
     isNum(functions[0].vertex.x)
   ) {
     const vx = functions[0].vertex.x;
-const vy = functions[0].vertex.y;
+    const xs = functions[0].x.filter(isNum);
+    const ys = functions[0].y.filter(isNum);
 
-const xs = functions[0].x.filter(isNum);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
 
-// largeur autour du sommet
-const minX = Math.min(...xs);
-const maxX = Math.max(...xs);
-const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
+    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
 
-// X centré autour du sommet
-xRange = [
-  Math.floor(vx - dx),
-  Math.ceil(vx + dx)
-];
+    const minY = ys.length ? Math.min(...ys) : -5;
+    const maxY = ys.length ? Math.max(...ys) : 10;
 
-// 🔥 Y basé sur le sommet (important)
-const dy = Math.max(5, dx * dx);
-
-yRange = [
-  Math.floor(vy - 0.3 * dy),
-  Math.ceil(vy + dy)
-];
+    yRange = [
+      Math.floor(minY - 1),
+      Math.ceil(maxY + 1)
+    ];
   } else {
     xRange = computeRange(allX, 0.1, 1);
     yRange = computeRange(allY, 0.12, 1);

@@ -1184,8 +1184,18 @@ function drawMathPlot(plotData) {
       html += `</tr>`;
       html += `</table></div>`;
 
-      box.innerHTML = html;
-      box.style.display = "block";
+     box.innerHTML = html;
+box.style.display = "block";
+
+// 🔥 IMPORTANT : activer KaTeX sur le tableau
+if (window.renderMathInElement) {
+  renderMathInElement(box, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false }
+    ]
+  });
+}
     }
 
     async function sendQuestion() {

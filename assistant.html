@@ -526,7 +526,25 @@ function drawMathPlot(plotData) {
   }
 
   plotContainer.style.display = "block";
-  plotContainer.innerHTML = "";
+
+  // 🔵 Cartouche bleu + zone graphique
+  plotContainer.innerHTML = `
+    <div style="
+      display:inline-block;
+      margin-bottom:16px;
+      padding:16px 20px;
+      border-left:5px solid #3b82f6;
+      border-radius:16px;
+      background:linear-gradient(90deg, #dbeafe, #eff6ff);
+      color:#0f172a;
+      font-size:22px;
+      font-weight:700;
+    ">
+      Courbe représentative
+    </div>
+
+    <div id="plotInner"></div>
+  `;
 
   if (!plotData) {
     console.error("Aucune donnée reçue pour le tracé");
@@ -752,31 +770,31 @@ function drawMathPlot(plotData) {
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
-   xaxis: {
-  title: "x",
-  range: [-3, 3],   // 🔥 axe x propre
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
-  ticks: "outside",
-  showline: false
-},
+    xaxis: {
+      title: "x",
+      range: [-3, 3],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
 
-yaxis: {
-  title: "y",
-  range: [-1, 5],   // 🔥 axe y corrigé
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
-  ticks: "outside",
-  showline: false
-},
+    yaxis: {
+      title: "y",
+      range: [-1, 5],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
 
     annotations,
     showlegend: functions.length > 1,
@@ -788,7 +806,7 @@ yaxis: {
   };
 
   Plotly.newPlot(
-    plotContainer,
+    document.getElementById("plotInner"),
     [...traces, ...markers],
     layout,
     {

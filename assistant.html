@@ -755,8 +755,10 @@
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
     xaxis: {
-      title: "x",
-      range: xRange,
+    title: "x",
+    range: (plotData.xmin !== undefined && plotData.xmax !== undefined)
+    ? [plotData.xmin, plotData.xmax]
+    : xRange,
       dtick: xDtick,
       showgrid: true,
       gridcolor: "#e2e8f0",
@@ -767,8 +769,10 @@
       showline: false
     },
     yaxis: {
-      title: "y",
-      range: yRange,
+    title: "y",
+    range: (plotData.ymin !== undefined && plotData.ymax !== undefined)
+    ? [plotData.ymin, plotData.ymax]
+    : yRange,
       dtick: yDtick,
       showgrid: true,
       gridcolor: "#e2e8f0",

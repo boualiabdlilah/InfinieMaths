@@ -560,41 +560,44 @@ function drawMathPlot(plotData) {
   const yMax = Math.max(...yValues);
 
   const layout = {
-    title: {
-      text: exprLabel,
-      font: { size: 22 }
-    },
-    margin: { l: 70, r: 30, t: 60, b: 60 },
-    paper_bgcolor: "#ffffff",
-    plot_bgcolor: "#ffffff",
-    xaxis: {
-      title: "x",
-      range: [xMin, xMax],
-      zeroline: true,
-      showline: true,
-      mirror: false,
-      ticks: "outside",
-      dtick: 1,
-      gridcolor: "#dbeafe",
-      zerolinecolor: "#0f172a",
-      zerolinewidth: 2
-    },
-    yaxis: {
-      title: "y",
-      range: [Math.floor(yMin) - 1, Math.ceil(yMax) + 1],
-      zeroline: true,
-      showline: true,
-      mirror: false,
-      ticks: "outside",
-      dtick: 1,
-      gridcolor: "#dbeafe",
-      zerolinecolor: "#0f172a",
-      zerolinewidth: 2,
-      scaleanchor: "x",
-      scaleratio: 1
-    },
-    showlegend: false
-  };
+  title: {
+    text: exprLabel,
+    font: { size: 22 }
+  },
+  margin: { l: 60, r: 20, t: 60, b: 60 },
+
+  paper_bgcolor: "#ffffff",
+  plot_bgcolor: "#ffffff",
+
+  xaxis: {
+    title: "x",
+    range: [-5, 5],
+    dtick: 1,
+    showgrid: true,
+    gridcolor: "#e2e8f0",
+
+    zeroline: true,
+    zerolinecolor: "#000",
+    zerolinewidth: 2
+  },
+
+  yaxis: {
+    title: "y",
+    range: [-1, 10],
+    dtick: 1,
+    showgrid: true,
+    gridcolor: "#e2e8f0",
+
+    zeroline: true,
+    zerolinecolor: "#000",
+    zerolinewidth: 2,
+
+    scaleanchor: "x",
+    scaleratio: 1
+  },
+
+  showlegend: false
+};
 
   const trace = {
     x: xValues,

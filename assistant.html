@@ -528,13 +528,10 @@ function drawMathPlot(plotData) {
   plotContainer.innerHTML = "";
 
   if (!plotData) {
-    console.error("Aucune donnée reçue");
+    console.error("Aucune donnée reçue pour le tracé");
     return;
   }
 
-  // ======================
-  // OUTILS
-  // ======================
   function isNum(v) {
     return typeof v === "number" && isFinite(v);
   }
@@ -550,8 +547,8 @@ function drawMathPlot(plotData) {
     let y = [];
 
     if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
-      x = item.x;
-      y = item.y;
+      x = item.x.slice();
+      y = item.y.slice();
     } else if (Array.isArray(item?.points)) {
       x = item.points.map(p => p.x);
       y = item.points.map(p => p.y);
@@ -561,12 +558,12 @@ function drawMathPlot(plotData) {
       label: item?.label || defaultLabel,
       x,
       y,
-      roots: item?.roots || [],
+      roots: Array.isArray(item?.roots) ? item.roots : [],
       vertex: item?.vertex || null
     };
   }
 
-  function computeRange(values) {
+  function computeRange(values, padRatio = 0.1, minPad = 1) {
     const clean = values.filter(isNum);
     if (!clean.length) return [-5, 5];
 
@@ -578,30 +575,27 @@ function drawMathPlot(plotData) {
       max += 2;
     }
 
-    const pad = Math.max(1, (max - min) * 0.1);
+    const pad = Math.max(minPad, (max - min) * padRatio);
     return [Math.floor(min - pad), Math.ceil(max + pad)];
   }
 
-  // ======================
-  // DONNÉES
-  // ======================
   let functions = [];
 
-  if (Array.isArray(plotData.functions)) {
-    functions = plotData.functions.map((f, i) =>
-      normalize(f, `f${i + 1}(x)`)
-    );
+  if (Array.isArray(plotData.functions) && plotData.functions.length) {
+    functions = plotData.functions.map((f, i) => normalize(f, `f${i + 1}(x)`));
   } else {
-    functions = [normalize(plotData)];
+    functions = [normalize(plotData, plotData.label || "f(x)")];
   }
 
-  // fallback test
-  if (!functions[0].x.length) {
-    const x = [], y = [];
+  // Fallback de test
+  if (!functions[0].x.length || !functions[0].y.length) {
+    const x = [];
+    const y = [];
     for (let t = -4; t <= 4; t += 0.1) {
-      x.push(t);
-      y.push(t * t);
+      x.push(Number(t.toFixed(2)));
+      y.push(Number((t * t).toFixed(4)));
     }
+
     functions = [{
       label: "f(x)=x²",
       x,
@@ -615,12 +609,8 @@ function drawMathPlot(plotData) {
   const markers = [];
   const annotations = [];
 
-  // ======================
-  // TRACÉS
-  // ======================
   functions.forEach(fn => {
-
-    // courbe
+    // Courbe
     traces.push({
       x: fn.x,
       y: fn.y,
@@ -629,11 +619,13 @@ function drawMathPlot(plotData) {
       name: fn.label,
       line: {
         width: 4,
-        shape: "spline"
-      }
+        shape: "spline",
+        smoothing: 0.6
+      },
+      hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
     });
 
-    // sommet
+    // Sommet
     if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
       markers.push({
         x: [fn.vertex.x],
@@ -645,7 +637,8 @@ function drawMathPlot(plotData) {
           color: "#dc2626",
           symbol: "diamond"
         },
-        showlegend: false
+        showlegend: false,
+        hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})<extra></extra>`
       });
 
       annotations.push({
@@ -654,20 +647,28 @@ function drawMathPlot(plotData) {
         text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
         showarrow: true,
         arrowhead: 2,
-        ax: 40,
-        ay: -50
+        ax: 60,
+        ay: -60,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 14 }
       });
     }
 
-    // racines (sans doublon sommet)
-    fn.roots.forEach(root => {
+    // Racines sans doublon avec le sommet
+    fn.roots.forEach((root, i) => {
       if (!isNum(root?.x) || !isNum(root?.y)) return;
 
       if (
         fn.vertex &&
+        isNum(fn.vertex.x) &&
+        isNum(fn.vertex.y) &&
         Math.abs(root.x - fn.vertex.x) < 1e-6 &&
         Math.abs(root.y - fn.vertex.y) < 1e-6
-      ) return;
+      ) {
+        return;
+      }
 
       markers.push({
         x: [root.x],
@@ -679,59 +680,75 @@ function drawMathPlot(plotData) {
           color: "#16a34a",
           symbol: "circle"
         },
-        showlegend: false
+        showlegend: false,
+        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
       });
 
       annotations.push({
         x: root.x,
         y: root.y,
-        text: `R(${pretty(root.x)}, ${pretty(root.y)})`,
+        text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
         showarrow: true,
         arrowhead: 2,
         ax: 0,
-        ay: -40
+        ay: -40,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 13 }
       });
     });
-
   });
 
-  // ======================
-  // ZOOM INTELLIGENT
-  // ======================
   let allX = [];
   let allY = [];
 
   functions.forEach(fn => {
-    allX.push(...fn.x);
-    allY.push(...fn.y);
+    allX.push(...fn.x.filter(isNum));
+    allY.push(...fn.y.filter(isNum));
 
     fn.roots.forEach(r => {
-      allX.push(r.x);
-      allY.push(r.y);
+      if (isNum(r?.x)) allX.push(r.x);
+      if (isNum(r?.y)) allY.push(r.y);
     });
 
     if (fn.vertex) {
-      allX.push(fn.vertex.x);
-      allY.push(fn.vertex.y);
+      if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
+      if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
     }
   });
 
   allX.push(0);
   allY.push(0);
 
-  const xRange = computeRange(allX);
-  const yRange = computeRange(allY);
+  let xRange;
+  let yRange;
 
-  // ======================
-  // LAYOUT
-  // ======================
+  // Si une seule fonction avec sommet : centrage intelligent
+  if (
+    functions.length === 1 &&
+    functions[0].vertex &&
+    isNum(functions[0].vertex.x)
+  ) {
+    const vx = functions[0].vertex.x;
+    const dx = 4;
+
+    xRange = [vx - dx, vx + dx];
+
+    const visibleY = functions[0].y.filter(isNum);
+    const maxY = visibleY.length ? Math.max(...visibleY) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)];
+  } else {
+    xRange = computeRange(allX, 0.1, 1);
+    yRange = computeRange(allY, 0.12, 1);
+  }
+
   const layout = {
-    title: functions.length === 1
-      ? functions[0].label
-      : "Plusieurs fonctions",
-
-    margin: { l: 60, r: 20, t: 60, b: 60 },
-
+    title: {
+      text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
+      font: { size: 22 }
+    },
+    margin: { l: 60, r: 20, t: 70, b: 60 },
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
@@ -743,7 +760,9 @@ function drawMathPlot(plotData) {
       gridcolor: "#e2e8f0",
       zeroline: true,
       zerolinecolor: "#000",
-      zerolinewidth: 2
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
     },
 
     yaxis: {
@@ -755,12 +774,19 @@ function drawMathPlot(plotData) {
       zeroline: true,
       zerolinecolor: "#000",
       zerolinewidth: 2,
+      ticks: "outside",
+      showline: false,
       scaleanchor: "x",
       scaleratio: 1
     },
 
     annotations,
-    showlegend: functions.length > 1
+    showlegend: functions.length > 1,
+    legend: {
+      orientation: "h",
+      y: 1.08,
+      x: 0
+    }
   };
 
   Plotly.newPlot(

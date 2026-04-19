@@ -753,15 +753,8 @@ function drawMathPlot(plotData) {
 
     xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
 
-const minY = ys.length ? Math.min(...ys) : -2;
-const maxY = ys.length ? Math.max(...ys) : 10;
-
-const dy = Math.max(1, maxY - minY);
-
-yRange = [
-  Math.floor(minY - 0.2 * dy),
-  Math.ceil(maxY + 0.2 * dy)
-];
+    const maxY = ys.length ? Math.max(...ys) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)]; 
   } else {
     xRange = computeRange(allX, 0.1, 1);
     yRange = computeRange(allY, 0.12, 1);
@@ -1142,4 +1135,3 @@ yaxis: {
   </script>
 </body>
 </html>
-

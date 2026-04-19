@@ -813,11 +813,20 @@
       });
 
       function formatVal(v) {
-        if (v === "-inf" || v === "-oo") return "$-\\infty$";
-        if (v === "+inf" || v === "oo" || v === "+oo") return "$+\\infty$";
-        if (v === null || v === undefined) return "";
-        return String(v);
-      }
+  if (v === "-inf" || v === "-oo") return "$-\\infty$";
+  if (v === "+inf" || v === "oo" || v === "+oo") return "$+\\infty$";
+  if (v === null || v === undefined) return "";
+
+  const num = Number(v);
+
+  if (!isNaN(num)) {
+    if (Math.abs(num - 1.5) < 1e-9) return "$\\frac{3}{2}$";
+    if (Math.abs(num + 0.25) < 1e-9) return "$-\\frac{1}{4}$";
+    if (Math.abs(num) < 1e-9) return "0";
+  }
+
+  return String(v);
+}
 
       function getFxAtCritical(xVal) {
         const found = criticalValues.find(item => String(item.x) === String(xVal));

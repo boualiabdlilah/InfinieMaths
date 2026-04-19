@@ -1184,18 +1184,21 @@ function drawMathPlot(plotData) {
       html += `</tr>`;
       html += `</table></div>`;
 
-     box.innerHTML = html;
+   box.innerHTML = html;
 box.style.display = "block";
 
-// 🔥 IMPORTANT : activer KaTeX sur le tableau
-if (window.renderMathInElement) {
-  renderMathInElement(box, {
-    delimiters: [
-      { left: "$$", right: "$$", display: true },
-      { left: "$", right: "$", display: false }
-    ]
-  });
-}
+// 🔥 CORRECTION FINALE : relancer KaTeX sur le tableau
+setTimeout(() => {
+  if (window.renderMathInElement) {
+    renderMathInElement(box, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+}, 0);
     }
 
     async function sendQuestion() {

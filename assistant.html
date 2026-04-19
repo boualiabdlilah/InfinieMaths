@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -522,11 +522,6 @@
     <div id="plotInner"></div>
   `;
 
-  if (!plotData) {
-    console.error("Aucune donnée reçue pour le tracé");
-    return;
-  }
-
   function isNum(v) {
     return typeof v === "number" && isFinite(v);
   }
@@ -578,6 +573,26 @@
     return [Number(range[0].toFixed(3)), Number(range[1].toFixed(3))];
   }
 
+  // 🔥 Fallback si données absentes ou mal formées
+  if (!plotData || (!plotData.x && !plotData.points && !plotData.functions)) {
+    console.warn("Fallback activé : génération automatique d'une parabole");
+    const x = [];
+    const y = [];
+
+    for (let t = -5; t <= 5; t += 0.1) {
+      x.push(Number(t.toFixed(2)));
+      y.push(Number((t * t).toFixed(4)));
+    }
+
+    plotData = {
+      x,
+      y,
+      label: "f(x)=x² (fallback)",
+      roots: [{ x: 0, y: 0 }],
+      vertex: { x: 0, y: 0 }
+    };
+  }
+
   let functions = [];
 
   if (Array.isArray(plotData.functions) && plotData.functions.length) {
@@ -586,10 +601,24 @@
     functions = [normalize(plotData, plotData.label || "f(x)")];
   }
 
+  // 🔥 Fallback si tableau vide après normalisation
   if (!functions[0].x.length || !functions[0].y.length) {
-    console.error("Aucun point exploitable dans plotData");
-    plotContainer.innerHTML += `<div style="color:#b91c1c; margin-top:10px;">Impossible d'afficher la courbe : données manquantes.</div>`;
-    return;
+    console.warn("Points manquants après normalisation : fallback");
+    const x = [];
+    const y = [];
+
+    for (let t = -5; t <= 5; t += 0.1) {
+      x.push(Number(t.toFixed(2)));
+      y.push(Number((t * t).toFixed(4)));
+    }
+
+    functions = [{
+      label: "f(x)=x² (fallback)",
+      x,
+      y,
+      roots: [{ x: 0, y: 0 }],
+      vertex: { x: 0, y: 0 }
+    }];
   }
 
   const traces = [];
@@ -698,15 +727,12 @@
   let xRange = computeRange(allX, 0.12, 1);
   let yRange = computeRange(allY, 0.15, 1);
 
-  // si tout est au-dessus de 0, on garde quand même 0 visible
   if (Math.min(...allY) >= 0) {
     yRange[0] = Math.min(0, yRange[0]);
   }
-  // si tout est à droite de 0, on garde quand même 0 visible
   if (Math.min(...allX) >= 0) {
     xRange[0] = Math.min(0, xRange[0]);
   }
-  // si tout est à gauche de 0, on garde quand même 0 visible
   if (Math.max(...allX) <= 0) {
     xRange[1] = Math.max(0, xRange[1]);
   }

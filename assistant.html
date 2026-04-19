@@ -587,7 +587,7 @@ function drawMathPlot(plotData) {
     functions = [normalize(plotData, plotData.label || "f(x)")];
   }
 
-  // Fallback de test
+  // Fallback test
   if (!functions[0].x.length || !functions[0].y.length) {
     const x = [];
     const y = [];
@@ -610,7 +610,6 @@ function drawMathPlot(plotData) {
   const annotations = [];
 
   functions.forEach(fn => {
-    // Courbe
     traces.push({
       x: fn.x,
       y: fn.y,
@@ -625,7 +624,6 @@ function drawMathPlot(plotData) {
       hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
     });
 
-    // Sommet
     if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
       markers.push({
         x: [fn.vertex.x],
@@ -656,7 +654,6 @@ function drawMathPlot(plotData) {
       });
     }
 
-    // Racines sans doublon avec le sommet
     fn.roots.forEach((root, i) => {
       if (!isNum(root?.x) || !isNum(root?.y)) return;
 
@@ -721,9 +718,6 @@ function drawMathPlot(plotData) {
   allX.push(0);
   allY.push(0);
 
-  // ======================
-  // ZOOM INTELLIGENT PRO
-  // ======================
   let xRange, yRange;
 
   if (
@@ -732,22 +726,14 @@ function drawMathPlot(plotData) {
     isNum(functions[0].vertex.x)
   ) {
     const vx = functions[0].vertex.x;
-
     const xs = functions[0].x.filter(isNum);
     const ys = functions[0].y.filter(isNum);
 
     const minX = Math.min(...xs);
     const maxX = Math.max(...xs);
+    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
 
-    const dx = Math.max(
-      Math.abs(vx - minX),
-      Math.abs(maxX - vx)
-    );
-
-    xRange = [
-      Math.floor(vx - dx),
-      Math.ceil(vx + dx)
-    ];
+    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
 
     const maxY = ys.length ? Math.max(...ys) : 10;
     yRange = [-2, Math.ceil(maxY * 1.1)];
@@ -788,9 +774,7 @@ function drawMathPlot(plotData) {
       zerolinecolor: "#000",
       zerolinewidth: 2,
       ticks: "outside",
-      showline: false,
-      scaleanchor: "x",
-      scaleratio: 1
+      showline: false
     },
 
     annotations,

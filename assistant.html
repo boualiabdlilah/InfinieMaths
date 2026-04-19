@@ -721,22 +721,35 @@ function drawMathPlot(plotData) {
   allX.push(0);
   allY.push(0);
 
-  let xRange;
-  let yRange;
+  // ======================
+  // ZOOM INTELLIGENT PRO
+  // ======================
+  let xRange, yRange;
 
-  // Si une seule fonction avec sommet : centrage intelligent
   if (
     functions.length === 1 &&
     functions[0].vertex &&
     isNum(functions[0].vertex.x)
   ) {
     const vx = functions[0].vertex.x;
-    const dx = 4;
 
-    xRange = [vx - dx, vx + dx];
+    const xs = functions[0].x.filter(isNum);
+    const ys = functions[0].y.filter(isNum);
 
-    const visibleY = functions[0].y.filter(isNum);
-    const maxY = visibleY.length ? Math.max(...visibleY) : 10;
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+
+    const dx = Math.max(
+      Math.abs(vx - minX),
+      Math.abs(maxX - vx)
+    );
+
+    xRange = [
+      Math.floor(vx - dx),
+      Math.ceil(vx + dx)
+    ];
+
+    const maxY = ys.length ? Math.max(...ys) : 10;
     yRange = [-2, Math.ceil(maxY * 1.1)];
   } else {
     xRange = computeRange(allX, 0.1, 1);

@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Assistant InfinieMaths - Une aide simple, claire et interactive pour les maths du lycée.">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
-    .assistant-page {
+    .assistant-page { 
       max-width: 900px;
       margin: 0 auto;
       padding: 40px 20px 80px;
@@ -78,7 +78,6 @@
       line-height: 1.6;
       box-sizing: border-box;
       outline: none;
-      font-family: inherit;
     }
 
     .assistant-textarea:focus {
@@ -132,7 +131,6 @@
       color: #0f172a;
       line-height: 1.7;
       min-height: 80px;
-      font-size: 18px;
     }
 
     .assistant-response h1,
@@ -161,10 +159,6 @@
 
     .assistant-response strong {
       color: #0f172a;
-    }
-
-    .assistant-response .katex {
-      font-size: 1.08em;
     }
 
     .assistant-response .katex-display {
@@ -257,11 +251,115 @@
       color: #2563eb;
     }
 
+    @media (max-width: 700px) {
+      .assistant-hero h1 {
+        font-size: 30px;
+      }
+
+      .assistant-card {
+        padding: 18px;
+      }
+
+      .site-header {
+        padding: 16px;
+      }
+    }
+
+    .tab-variation-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    .tab-variation {
+      border-collapse: collapse;
+      margin-top: 8px;
+      background: white;
+      min-width: 900px;
+      color: #0f172a;
+      font-family: "Times New Roman", serif;
+    }
+
+    .tab-variation th,
+    .tab-variation td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .tab-variation .tv-label {
+      border: 1px solid #666;
+      padding: 16px 18px;
+      min-width: 110px;
+      font-style: italic;
+      font-size: 22px;
+      background: #f8fafc;
+    }
+
+    .tab-variation .tv-x-point {
+      border: 1px solid #666;
+      padding: 16px 22px;
+      min-width: 120px;
+      font-size: 22px;
+    }
+
+    .tab-variation .tv-x-gap {
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666;
+      border-left: none;
+      border-right: none;
+      padding: 16px 10px;
+      min-width: 80px;
+    }
+
+    .tab-variation .tv-sign-point {
+      border-top: 1px solid #666;
+      padding: 14px 22px;
+      min-width: 120px;
+      font-size: 22px;
+    }
+
+    .tab-variation .tv-sign-point.first {
+      border-left: 1px solid #666;
+    }
+
+    .tab-variation .tv-sign-point.last {
+      border-right: 1px solid #666;
+    }
+
+    .tab-variation .tv-sign-gap {
+      border-top: 1px solid #666;
+      padding: 14px 10px;
+      min-width: 80px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .tab-variation .tv-svg-cell {
+      border-left: 1px solid #666;
+      border-right: 1px solid #666;
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666;
+      padding: 0 !important;
+      height: 120px;
+    }
+
+    .tab-variation svg {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+
+    .tab-variation-title {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 20px;
+      color: #0f172a;
+    }
+
     .tab-variation-manual {
       border-collapse: collapse;
       table-layout: fixed;
       width: 100%;
-      min-width: 760px;
+      min-width: unset;
       margin-top: 8px;
       background: white;
       font-size: 22px;
@@ -276,18 +374,14 @@
       vertical-align: middle;
     }
 
-    @media (max-width: 700px) {
-      .assistant-hero h1 {
-        font-size: 30px;
-      }
+    .tv-divider-top {
+      border-top: 2px solid #444 !important;
+    }
 
-      .assistant-card {
-        padding: 18px;
-      }
-
-      .site-header {
-        padding: 16px;
-      }
+    .tv-arrow {
+      font-size: 34px;
+      line-height: 1;
+      display: inline-block;
     }
   </style>
 </head>
@@ -359,85 +453,11 @@
 
     function renderAssistantReply(reply) {
       const responseBox = document.getElementById("assistantResponse");
+
       let text = reply || "Aucune réponse générée.";
 
-      text = text.replace(/\\\\/g, "\\");
-
-      text = text.replace(/(^|\n)\|.*\|(\n\|.*\|)*/g, "");
-      text = text.replace(/^[ \t]*x[ \t]*\|.*$/gim, "");
-      text = text.replace(/^[ \t]*f'\(x\)[ \t]*\|.*$/gim, "");
-      text = text.replace(/^[ \t]*f\(x\)[ \t]*\|.*$/gim, "");
-      text = text.replace(/^[ \t]*Variation[ \t]*\|.*$/gim, "");
-      text = text.replace(/^[ \t]*[-–—. ]{4,}.*$/gim, "");
-
       text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
-      text = text.replace(/\\begin\{tabular\}[\s\S]*?\\end\{tabular\}/g, "");
-
-      text = text.replace(/Voici le tableau de variation[^:\n]*:?\s*/gi, "");
-      text = text.replace(/Voici le tableau de signes[^:\n]*:?\s*/gi, "");
-
-      text = text.replace(/<=/g, "≤");
-      text = text.replace(/>=/g, "≥");
-
-      text = text.replace(/sqrt\(([^()]+)\)/gi, "$\\sqrt{$1}$");
-      text = text.replace(/ln\(([^()]+)\)/gi, "$\\ln($1)$");
-      text = text.replace(/exp\(([^()]+)\)/gi, "$e^{$1}$");
-      text = text.replace(/\be\^([a-zA-Z0-9+\-]+)/g, "$e^{$1}$");
-
-      text = text.replace(/\bf''\(x\)\b/g, "$f''(x)$");
-      text = text.replace(/\bf'\(x\)\b/g, "$f'(x)$");
-
-      text = text.replace(/\bx\^2\b/g, "$x^2$");
-      text = text.replace(/\bx\^3\b/g, "$x^3$");
-      text = text.replace(/\bx\^([4-9]\d*)\b/g, "$x^{$1}$");
-
-      text = text.replace(/\b1\/2\b/g, "$\\frac{1}{2}$");
-      text = text.replace(/\b3\/2\b/g, "$\\frac{3}{2}$");
-      text = text.replace(/\b1\/3\b/g, "$\\frac{1}{3}$");
-      text = text.replace(/\b2\/3\b/g, "$\\frac{2}{3}$");
-      text = text.replace(/\b1\/4\b/g, "$\\frac{1}{4}$");
-      text = text.replace(/\b3\/4\b/g, "$\\frac{3}{4}$");
-
-      text = text.replace(/\b([0-9]+)\/([0-9]+)\b/g, "$\\frac{$1}{$2}$");
-
-      text = text.replace(/\+\s*∞|\+inf|\+oo/gi, "$+\\infty$");
-      text = text.replace(/-\s*∞|-inf|-oo/gi, "$-\\infty$");
-
-      text = text.replace(/\bf\(x\)\s*=\s*([^\n]+)/g, function(match, expr) {
-        if (match.includes("$")) return match;
-        let cleanedExpr = expr.trim();
-        cleanedExpr = cleanedExpr.replace(/([a-zA-Z0-9)])\^([0-9]+)/g, "$1^{$2}");
-        cleanedExpr = cleanedExpr.replace(/\s+/g, " ");
-        return `$f(x)=${cleanedExpr}$`;
-      });
-
-      text = text.replace(
-        /fonction\s+([a-zA-Z0-9+\-*/^(). ]*x\^[0-9][a-zA-Z0-9+\-*/^(). ]*)/gi,
-        function(match, expr) {
-          let cleanedExpr = expr.trim();
-          cleanedExpr = cleanedExpr.replace(/([a-zA-Z0-9)])\^([0-9]+)/g, "$1^{$2}");
-          return `fonction $${cleanedExpr}$`;
-        }
-      );
-
-      text = text.replace(/\]\s*([^;]+)\s*;\s*([^\[]+)\s*\[/g, "$]$ $1$ ; $2$ $[$");
-      text = text.replace(/\[\s*([^;]+)\s*;\s*([^\]]+)\s*\]/g, "$[$ $1$ ; $2$ $]$");
-
-      text = text.replace(
-        /(?<![$\\])((?:\\(?:frac|sqrt|infty|left|right|cdots|ldots|times|pm|mp|leq|geq|neq|approx|to|alpha|beta|gamma|pi)[^ \n<]*)+)/g,
-        function(match) {
-          return `$${match}$`;
-        }
-      );
-
-      text = text.replace(/\(\s*x\s*=\s*(\\frac\{[^}]+\}\{[^}]+\})\s*\)/g, "( $x = $ $1$ )");
-      text = text.replace(/\(\s*([+-]?\\infty)\s*,\s*([^)]+)\)/g, "( $1$ , $2$ )");
-
-      text = text.replace(/\n{3,}/g, "\n\n").trim();
-
-      if (!text) {
-        text = "Réponse générée.";
-      }
+      text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
 
       responseBox.innerHTML = marked.parse(text);
 
@@ -474,6 +494,7 @@
 
     function prettifyExpression(expr) {
       if (!expr) return "";
+
       return String(expr)
         .replace(/\*\*/g, "^")
         .replace(/\^2/g, "²")
@@ -484,6 +505,7 @@
     function buildTicks(minVal, maxVal) {
       const tickVals = [];
       const tickText = [];
+
       const start = Math.ceil(minVal);
       const end = Math.floor(maxVal);
 
@@ -495,7 +517,7 @@
       return { tickVals, tickText };
     }
 
-    function drawMathPlot(plotData) {
+function drawMathPlot(plotData) {
   const plotContainer = document.getElementById("plotContainer");
   if (!plotContainer) {
     console.error("plotContainer introuvable");
@@ -504,6 +526,7 @@
 
   plotContainer.style.display = "block";
 
+  // 🔵 Cartouche bleu + zone graphique
   plotContainer.innerHTML = `
     <div style="
       display:inline-block;
@@ -521,6 +544,11 @@
 
     <div id="plotInner"></div>
   `;
+
+  if (!plotData) {
+    console.error("Aucune donnée reçue pour le tracé");
+    return;
+  }
 
   function isNum(v) {
     return typeof v === "number" && isFinite(v);
@@ -553,44 +581,20 @@
     };
   }
 
-  function computeRange(values, padRatio = 0.12, minPad = 1) {
+  function computeRange(values, padRatio = 0.1, minPad = 1) {
     const clean = values.filter(isNum);
     if (!clean.length) return [-5, 5];
 
     let min = Math.min(...clean);
     let max = Math.max(...clean);
 
-    if (Math.abs(max - min) < 1e-9) {
+    if (min === max) {
       min -= 2;
       max += 2;
     }
 
     const pad = Math.max(minPad, (max - min) * padRatio);
-    return [min - pad, max + pad];
-  }
-
-  function cleanRange(range) {
-    return [Number(range[0].toFixed(3)), Number(range[1].toFixed(3))];
-  }
-
-  // 🔥 Fallback si données absentes ou mal formées
-  if (!plotData || (!plotData.x && !plotData.points && !plotData.functions)) {
-    console.warn("Fallback activé : génération automatique d'une parabole");
-    const x = [];
-    const y = [];
-
-    for (let t = -5; t <= 5; t += 0.1) {
-      x.push(Number(t.toFixed(2)));
-      y.push(Number((t * t).toFixed(4)));
-    }
-
-    plotData = {
-      x,
-      y,
-      label: "f(x)=x² (fallback)",
-      roots: [{ x: 0, y: 0 }],
-      vertex: { x: 0, y: 0 }
-    };
+    return [Math.floor(min - pad), Math.ceil(max + pad)];
   }
 
   let functions = [];
@@ -601,19 +605,17 @@
     functions = [normalize(plotData, plotData.label || "f(x)")];
   }
 
-  // 🔥 Fallback si tableau vide après normalisation
+  // Fallback test
   if (!functions[0].x.length || !functions[0].y.length) {
-    console.warn("Points manquants après normalisation : fallback");
     const x = [];
     const y = [];
-
-    for (let t = -5; t <= 5; t += 0.1) {
+    for (let t = -4; t <= 4; t += 0.1) {
       x.push(Number(t.toFixed(2)));
       y.push(Number((t * t).toFixed(4)));
     }
 
     functions = [{
-      label: "f(x)=x² (fallback)",
+      label: "f(x)=x²",
       x,
       y,
       roots: [{ x: 0, y: 0 }],
@@ -624,67 +626,20 @@
   const traces = [];
   const markers = [];
   const annotations = [];
-  const allX = [];
-  const allY = [];
 
   functions.forEach(fn => {
-    const cleanPoints = [];
-
-    for (let i = 0; i < Math.min(fn.x.length, fn.y.length); i++) {
-      if (isNum(fn.x[i]) && isNum(fn.y[i])) {
-        cleanPoints.push({ x: fn.x[i], y: fn.y[i] });
-        allX.push(fn.x[i]);
-        allY.push(fn.y[i]);
-      }
-    }
-
     traces.push({
-      x: cleanPoints.map(p => p.x),
-      y: cleanPoints.map(p => p.y),
+      x: fn.x,
+      y: fn.y,
       type: "scatter",
       mode: "lines",
       name: fn.label,
       line: {
         width: 4,
         shape: "spline",
-        smoothing: 0.5
+        smoothing: 0.6
       },
       hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
-    });
-
-    fn.roots.forEach((root, i) => {
-      if (!isNum(root?.x) || !isNum(root?.y)) return;
-
-      markers.push({
-        x: [root.x],
-        y: [root.y],
-        type: "scatter",
-        mode: "markers",
-        marker: {
-          size: 9,
-          color: "#16a34a",
-          symbol: "circle"
-        },
-        showlegend: false,
-        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
-      });
-
-      annotations.push({
-        x: root.x,
-        y: root.y,
-        text: root.label || `R${i + 1}`,
-        showarrow: true,
-        arrowhead: 2,
-        ax: 0,
-        ay: -35,
-        bgcolor: "white",
-        bordercolor: "#ccc",
-        borderwidth: 1,
-        font: { size: 13 }
-      });
-
-      allX.push(root.x);
-      allY.push(root.y);
     });
 
     if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
@@ -694,7 +649,7 @@
         type: "scatter",
         mode: "markers",
         marker: {
-          size: 10,
+          size: 12,
           color: "#dc2626",
           symbol: "diamond"
         },
@@ -708,80 +663,138 @@
         text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
         showarrow: true,
         arrowhead: 2,
-        ax: 55,
-        ay: -50,
+        ax: 60,
+        ay: -60,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 14 }
+      });
+    }
+
+    fn.roots.forEach((root, i) => {
+      if (!isNum(root?.x) || !isNum(root?.y)) return;
+
+      if (
+        fn.vertex &&
+        isNum(fn.vertex.x) &&
+        isNum(fn.vertex.y) &&
+        Math.abs(root.x - fn.vertex.x) < 1e-6 &&
+        Math.abs(root.y - fn.vertex.y) < 1e-6
+      ) {
+        return;
+      }
+
+      markers.push({
+        x: [root.x],
+        y: [root.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 10,
+          color: "#16a34a",
+          symbol: "circle"
+        },
+        showlegend: false,
+        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
+      });
+
+      annotations.push({
+        x: root.x,
+        y: root.y,
+        text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 0,
+        ay: -40,
         bgcolor: "white",
         bordercolor: "#ccc",
         borderwidth: 1,
         font: { size: 13 }
       });
+    });
+  });
 
-      allX.push(fn.vertex.x);
-      allY.push(fn.vertex.y);
+  let allX = [];
+  let allY = [];
+
+  functions.forEach(fn => {
+    allX.push(...fn.x.filter(isNum));
+    allY.push(...fn.y.filter(isNum));
+
+    fn.roots.forEach(r => {
+      if (isNum(r?.x)) allX.push(r.x);
+      if (isNum(r?.y)) allY.push(r.y);
+    });
+
+    if (fn.vertex) {
+      if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
+      if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
     }
   });
 
   allX.push(0);
   allY.push(0);
 
-  let xRange = computeRange(allX, 0.12, 1);
-  let yRange = computeRange(allY, 0.15, 1);
+  let xRange, yRange;
 
-  if (Math.min(...allY) >= 0) {
-    yRange[0] = Math.min(0, yRange[0]);
+  if (
+    functions.length === 1 &&
+    functions[0].vertex &&
+    isNum(functions[0].vertex.x)
+  ) {
+    const vx = functions[0].vertex.x;
+    const xs = functions[0].x.filter(isNum);
+    const ys = functions[0].y.filter(isNum);
+
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
+
+    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
+
+    const maxY = ys.length ? Math.max(...ys) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)];
+  } else {
+    xRange = computeRange(allX, 0.1, 1);
+    yRange = computeRange(allY, 0.12, 1);
   }
-  if (Math.min(...allX) >= 0) {
-    xRange[0] = Math.min(0, xRange[0]);
-  }
-  if (Math.max(...allX) <= 0) {
-    xRange[1] = Math.max(0, xRange[1]);
-  }
-
-  xRange = cleanRange(xRange);
-  yRange = cleanRange(yRange);
-
-  const xSpan = xRange[1] - xRange[0];
-  const ySpan = yRange[1] - yRange[0];
-
-  const xDtick = xSpan <= 8 ? 1 : xSpan <= 16 ? 2 : 5;
-  const yDtick = ySpan <= 8 ? 1 : ySpan <= 16 ? 2 : 5;
 
   const layout = {
     title: {
-      text: functions.length === 1 ? functions[0].label : "Courbes représentatives",
+      text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
       font: { size: 22 }
     },
-    margin: { l: 70, r: 20, t: 70, b: 60 },
+    margin: { l: 60, r: 20, t: 70, b: 60 },
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
+
     xaxis: {
-  title: "x",
-  range: (plotData.xmin !== undefined && plotData.xmax !== undefined)
-    ? [plotData.xmin, plotData.xmax]
-    : xRange,
-  dtick: xDtick,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
-  showline: false
-},
-yaxis: {
-  title: "y",
-  range: (plotData.ymin !== undefined && plotData.ymax !== undefined)
-    ? [plotData.ymin, plotData.ymax]
-    : yRange,
-  dtick: yDtick,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
-  showline: false
-},
+      title: "x",
+      range: [-3, 3],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
+
+    yaxis: {
+      title: "y",
+      range: [-1, 5],
+      dtick: 1,
+      showgrid: true,
+      gridcolor: "#e2e8f0",
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      showline: false
+    },
+
     annotations,
     showlegend: functions.length > 1,
     legend: {
@@ -803,257 +816,206 @@ yaxis: {
 }
 
     function renderVariationTable(variationData) {
-  const box = document.getElementById("variationContainer");
+      const box = document.getElementById("variationContainer");
 
-  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
-    box.style.display = "none";
+      if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+        box.style.display = "none";
+    
+
     box.innerHTML = "";
-    return;
-  }
-
-  const cps = variationData.critical_points || [];
-  const criticalValues = variationData.critical_values || [];
-  const limits = variationData.limits || {};
-
-  const xPoints = ["-inf", ...cps, "+inf"];
-
-  const signBetween = {};
-  const varBetween = {};
-
-  variationData.intervals.forEach(interval => {
-    const key = `${interval.from}|${interval.to}`;
-    signBetween[key] = interval.sign || "";
-    varBetween[key] = interval.variation || "";
-  });
-
-  function decimalToFraction(x, tolerance = 1e-6) {
-    if (!isFinite(x)) return null;
-
-    let sign = x < 0 ? -1 : 1;
-    x = Math.abs(x);
-
-    if (Math.abs(x - Math.round(x)) < tolerance) {
-      return [sign * Math.round(x), 1];
-    }
-
-    let h1 = 1, h2 = 0;
-    let k1 = 0, k2 = 1;
-    let b = x;
-
-    do {
-      let a = Math.floor(b);
-      let h = a * h1 + h2;
-      let k = a * k1 + k2;
-      h2 = h1; h1 = h;
-      k2 = k1; k1 = k;
-      b = 1 / (b - a);
-    } while (Math.abs(x - h1 / k1) > x * tolerance);
-
-    return [sign * h1, k1];
-  }
-
-  function formatVal(v) {
-    if (v === "-inf" || v === "-oo") return "$-\\infty$";
-    if (v === "+inf" || v === "oo" || v === "+oo") return "$+\\infty$";
-    if (v === null || v === undefined) return "";
-
-    const num = Number(v);
-
-    if (!isNaN(num)) {
-      if (Math.abs(num) < 1e-10) return "$0$";
-
-      const frac = decimalToFraction(num);
-
-      if (frac && frac[1] !== 1) {
-        return `$\\frac{${frac[0]}}{${frac[1]}}$`;
+        return;
       }
 
-      return `$${num}$`;
-    }
+      const cps = variationData.critical_points || [];
+      const criticalValues = variationData.critical_values || [];
+      const limits = variationData.limits || {};
 
-    return `$${v}$`;
-  }
+      const xPoints = ["-inf", ...cps, "+inf"];
 
-  function getFxAtCritical(xVal) {
-    const found = criticalValues.find(item => String(item.x) === String(xVal));
-    return found ? formatVal(found["f(x)"]) : "";
-  }
+      const signBetween = {};
+      const varBetween = {};
 
-  const leftInf = formatVal(limits.left_infinity);
-  const rightInf = formatVal(limits.right_infinity);
+      variationData.intervals.forEach(interval => {
+        const key = `${interval.from}|${interval.to}`;
+        signBetween[key] = interval.sign || "";
+        varBetween[key] = interval.variation || "";
+      });
 
-  let html = `
-    <h3 style="
-      display:inline-block;
-      margin-top:0;
-      margin-bottom:18px;
-      padding:16px 20px;
-      border-left:5px solid #3b82f6;
-      border-radius:16px;
-      background:linear-gradient(90deg, #dbeafe, #eff6ff);
-      color:#0f172a;
-      font-size:20px;
-      font-weight:700;
-    ">
-      Tableau de variation
-    </h3>
-    <div style="overflow-x:auto; margin-bottom:35px;">
-      <table class="tab-variation-manual" style="
-        border-collapse:collapse;
-        table-layout:fixed;
-        width:100%;
-        min-width:unset;
-        background:white;
-        font-size:20px;
-        text-align:center;
-        color:#0f172a;
-        font-family:'Times New Roman', serif;
-      ">
-  `;
+      function formatVal(v) {
+        if (v === "-inf" || v === "-oo") return "−∞";
+        if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
+        if (v === null || v === undefined) return "";
+        return String(v);
+      }
 
-  html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:12px 10px;
-    width:90px;
-    font-style:italic;
-    background:#f8fafc;
-  ">x</th>`;
+      function getFxAtCritical(xVal) {
+        const found = criticalValues.find(item => String(item.x) === String(xVal));
+        return found ? formatVal(found["f(x)"]) : "";
+      }
 
-  for (let i = 0; i < xPoints.length; i++) {
-    html += `<td style="
-      border-top:1px solid #666;
-      border-bottom:1px solid #666;
-      padding:10px 6px;
-      width:90px;
-      ${i === 0 ? "border-left:1px solid #666;" : ""}
-      ${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
-    ">${formatVal(xPoints[i])}</td>`;
+      const leftInf = formatVal(limits.left_infinity);
+      const rightInf = formatVal(limits.right_infinity);
 
-    if (i < xPoints.length - 1) {
-      html += `<td style="
-        border-top:1px solid #666;
-        border-bottom:1px solid #666;
-        border-left:none;
-        border-right:none;
-        padding:6px 2px;
-        width:50px;
-      "></td>`;
-    }
-  }
-  html += `</tr>`;
+      let html = `
+        <h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
+          Tableau de variation
+        </h3>
+        <div style="overflow-x:auto; margin-bottom:35px;">
+          <table class="tab-variation-manual" style="
+            border-collapse:collapse;
+            table-layout:fixed;
+            width:100%;
+            min-width:760px;
+            background:white;
+            font-size:22px;
+            text-align:center;
+            color:#0f172a;
+            font-family:'Times New Roman', serif;
+          ">
+      `;
 
-  html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:12px 10px;
-    width:90px;
-    font-style:italic;
-    background:#f8fafc;
-  ">f'(x)</th>`;
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:16px 18px;
+        width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">x</th>`;
 
-  for (let i = 0; i < xPoints.length; i++) {
-    let pointStyle = `
-      border-top:1px solid #666;
-      border-bottom:1px solid #666;
-      padding:0;
-      width:90px;
-      height:28px;
-      line-height:28px;
-      vertical-align:middle;
-    `;
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+      for (let i = 0; i < xPoints.length; i++) {
+        html += `<td style="
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:16px 24px;
+          width:140px;
+          ${i === 0 ? "border-left:1px solid #666;" : ""}
+          ${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
+        ">${formatVal(xPoints[i])}</td>`;
 
-    const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
+        if (i < xPoints.length - 1) {
+          html += `<td style="
+            border-top:1px solid #666;
+            border-bottom:1px solid #666;
+            border-left:none;
+            border-right:none;
+            padding:16px 10px;
+            width:70px;
+          "></td>`;
+        }
+      }
+      html += `</tr>`;
 
-    html += `<td style="${pointStyle}">
-      <div style="
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        height:28px;
-        width:100%;
-        font-size:26px;
-        font-weight:600;
-        line-height:1;
-      ">${pointContent}</div>
-    </td>`;
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:16px 18px;
+        width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f'(x)</th>`;
 
-    if (i < xPoints.length - 1) {
-      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      html += `<td style="
-        border-top:1px solid #666;
-        border-bottom:1px solid #666;
-        padding:0;
-        width:50px;
-        height:28px;
-        line-height:28px;
-        vertical-align:middle;
-      ">
-        <div style="
-          display:flex;
-          align-items:center;
-          justify-content:center;
+      for (let i = 0; i < xPoints.length; i++) {
+        let pointStyle = `
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:0;
+          width:140px;
           height:28px;
-          width:100%;
-          font-size:26px;
-          font-weight:600;
-          line-height:1;
-        ">${sign}</div>
-      </td>`;
-    }
-  }
-  html += `</tr>`;
+          line-height:28px;
+          vertical-align:middle;
+        `;
+        if (i === 0) pointStyle += `border-left:1px solid #666;`;
+        if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
 
-  html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:2px 8px;
-    width:80px;
-    min-width:80px;
-    max-width:80px;
-    height:32px;
-    font-style:italic;
-    background:#f8fafc;
-  ">f(x)</th>`;
+        const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
 
-  for (let i = 0; i < xPoints.length; i++) {
-    let value = "";
-    if (i === 0) value = leftInf;
-    else if (i === xPoints.length - 1) value = rightInf;
-    else value = getFxAtCritical(xPoints[i]);
+        html += `<td style="${pointStyle}">
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:28px;
+            width:100%;
+            font-size:26px;
+            font-weight:600;
+            line-height:1;
+          ">${pointContent}</div>
+        </td>`;
 
-    let pointStyle = `
-      border-top:2px solid #444;
-      border-bottom:1px solid #666;
-      padding:2px 8px;
-      width:80px;
-      height:32px;
-      vertical-align:middle;
-      font-size:22px;
-    `;
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+        if (i < xPoints.length - 1) {
+          const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+          html += `<td style="
+            border-top:1px solid #666;
+            border-bottom:1px solid #666;
+            padding:0;
+            width:70px;
+            height:28px;
+            line-height:28px;
+            vertical-align:middle;
+          ">
+            <div style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              height:28px;
+              width:100%;
+              font-size:26px;
+              font-weight:600;
+              line-height:1;
+            ">${sign}</div>
+          </td>`;
+        }
+      }
+      html += `</tr>`;
 
-    html += `<td style="${pointStyle}">
-  <div style="
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100%;
-    width:100%;
-  ">
-    <span>$$${value.replace(/\$/g, "")}$$</span>
-  </div>
-</td>`;
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:2px 8px;
+        width:90px;
+        min-width:90px;
+        max-width:90px;
+        height:32px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f(x)</th>`;
 
-    if (i < xPoints.length - 1) {
-      const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      let svg = "";
+      for (let i = 0; i < xPoints.length; i++) {
+        let value = "";
+        if (i === 0) value = leftInf;
+        else if (i === xPoints.length - 1) value = rightInf;
+        else value = getFxAtCritical(xPoints[i]);
 
-      if (variation === "decreasing") {
-        svg = `
+        let pointStyle = `
+          border-top:2px solid #444;
+          border-bottom:1px solid #666;
+          padding:2px 8px;
+          width:90px;
+          height:32px;
+          vertical-align:middle;
+          font-size:22px;
+        `;
+        if (i === 0) pointStyle += `border-left:1px solid #666;`;
+        if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+
+        html += `<td style="${pointStyle}">
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:100%;
+            width:100%;
+          ">${value}</div>
+        </td>`;
+
+        if (i < xPoints.length - 1) {
+          const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+
+          let svg = "";
+
+          if (variation === "decreasing") {
+            svg = `
 <svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-10px);">
   <defs>
     <marker id="arrow-down" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
@@ -1065,8 +1027,8 @@ yaxis: {
         stroke-width="2.2"
         marker-end="url(#arrow-down)"/>
 </svg>`;
-      } else if (variation === "increasing") {
-        svg = `
+          } else if (variation === "increasing") {
+            svg = `
 <svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-10px);">
   <defs>
     <marker id="arrow-up" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
@@ -1078,46 +1040,32 @@ yaxis: {
         stroke-width="2.2"
         marker-end="url(#arrow-up)"/>
 </svg>`;
-      } else {
-        svg = `
+          } else {
+            svg = `
 <svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-4px);">
   <line x1="5" y1="16" x2="95" y2="16"
         stroke="#0f172a"
         stroke-width="1.8"/>
 </svg>`;
+          }
+
+          html += `<td style="
+            border-top:2px solid #444;
+            border-bottom:1px solid #666;
+            padding:0;
+            width:55px;
+            height:32px;
+            vertical-align:middle;
+          ">${svg}</td>`;
+        }
       }
 
-      html += `<td style="
-        border-top:2px solid #444;
-        border-bottom:1px solid #666;
-        padding:0;
-        width:50px;
-        height:32px;
-        vertical-align:middle;
-      ">${svg}</td>`;
+      html += `</tr>`;
+      html += `</table></div>`;
+
+      box.innerHTML = html;
+      box.style.display = "block";
     }
-  }
-
-  html += `</tr>`;
-  html += `</table></div>`;
-
-  box.innerHTML = html;
-  box.style.display = "block";
-
-  setTimeout(() => {
-    if (window.renderMathInElement) {
-      renderMathInElement(box, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "$", right: "$", display: false },
-          { left: "\\[", right: "\\]", display: true },
-          { left: "\\(", right: "\\)", display: false }
-        ],
-        throwOnError: false
-      });
-    }
-  }, 0);
-}
 
     async function sendQuestion() {
       const textarea = document.getElementById("userQuestion");

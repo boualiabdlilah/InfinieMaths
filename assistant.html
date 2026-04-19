@@ -517,65 +517,101 @@
       return { tickVals, tickText };
     }
 
-function drawMathPlot() {
-  const canvas = document.getElementById("mathPlot");
-  if (!canvas) {
-    console.error("Canvas introuvable");
+function drawMathPlot(plotData) {
+  const plotContainer = document.getElementById("plotContainer");
+  if (!plotContainer) {
+    console.error("plotContainer introuvable");
     return;
   }
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    console.error("Contexte 2D introuvable");
-    return;
+  plotContainer.style.display = "block";
+  plotContainer.innerHTML = "";
+
+  let xValues = [];
+  let yValues = [];
+  let exprLabel = "f(x)";
+
+  // Cas 1 : backend envoie {x: [...], y: [...]}
+  if (plotData && Array.isArray(plotData.x) && Array.isArray(plotData.y)) {
+    xValues = plotData.x;
+    yValues = plotData.y;
+    exprLabel = plotData.label || "f(x)";
   }
 
-  if (window.mathChart) {
-    window.mathChart.destroy();
+  // Cas 2 : backend envoie {points: [{x:..., y:...}, ...]}
+  else if (plotData && Array.isArray(plotData.points)) {
+    xValues = plotData.points.map(p => p.x);
+    yValues = plotData.points.map(p => p.y);
+    exprLabel = plotData.label || "f(x)";
   }
 
-  const testPoints = [
-    { x: -2, y: 4 },
-    { x: -1, y: 1 },
-    { x: 0, y: 0 },
-    { x: 1, y: 1 },
-    { x: 2, y: 4 }
-  ];
-
-  window.mathChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      datasets: [
-        {
-          label: "f(x) = x²",
-          data: testPoints,
-          borderColor: "#2e7d32",
-          borderWidth: 3,
-          pointRadius: 3,
-          fill: false,
-          tension: 0
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      parsing: false,
-      animation: false,
-      scales: {
-        x: {
-          type: "linear",
-          position: "bottom"
-        },
-        y: {
-          type: "linear",
-          position: "left"
-        }
-      }
+  // Cas 3 : secours test pour vérifier que le tracé fonctionne
+  else {
+    for (let x = -4; x <= 4; x += 0.1) {
+      xValues.push(Number(x.toFixed(2)));
+      yValues.push(Number((x * x).toFixed(4)));
     }
-  });
+    exprLabel = "f(x)=x²";
+  }
 
-  console.log("Graphique créé");
+  const xMin = Math.min(...xValues);
+  const xMax = Math.max(...xValues);
+  const yMin = Math.min(...yValues);
+  const yMax = Math.max(...yValues);
+
+  const layout = {
+    title: {
+      text: exprLabel,
+      font: { size: 22 }
+    },
+    margin: { l: 70, r: 30, t: 60, b: 60 },
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+    xaxis: {
+      title: "x",
+      range: [xMin, xMax],
+      zeroline: true,
+      showline: true,
+      mirror: false,
+      ticks: "outside",
+      dtick: 1,
+      gridcolor: "#dbeafe",
+      zerolinecolor: "#0f172a",
+      zerolinewidth: 2
+    },
+    yaxis: {
+      title: "y",
+      range: [Math.floor(yMin) - 1, Math.ceil(yMax) + 1],
+      zeroline: true,
+      showline: true,
+      mirror: false,
+      ticks: "outside",
+      dtick: 1,
+      gridcolor: "#dbeafe",
+      zerolinecolor: "#0f172a",
+      zerolinewidth: 2,
+      scaleanchor: "x",
+      scaleratio: 1
+    },
+    showlegend: false
+  };
+
+  const trace = {
+    x: xValues,
+    y: yValues,
+    type: "scatter",
+    mode: "lines",
+    line: {
+      color: "#2563eb",
+      width: 3
+    },
+    hovertemplate: "x = %{x}<br>y = %{y}<extra></extra>"
+  };
+
+  Plotly.newPlot(plotContainer, [trace], layout, {
+    responsive: true,
+    displayModeBar: false
+  });
 }
 
     function renderVariationTable(variationData) {

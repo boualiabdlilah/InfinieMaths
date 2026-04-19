@@ -812,7 +812,33 @@
         varBetween[key] = interval.variation || "";
       });
 
-      function formatVal(v) {
+     function decimalToFraction(x, tolerance = 1e-6) {
+  if (!isFinite(x)) return null;
+
+  let sign = x < 0 ? -1 : 1;
+  x = Math.abs(x);
+
+  if (Math.abs(x - Math.round(x)) < tolerance) {
+    return [sign * Math.round(x), 1];
+  }
+
+  let h1 = 1, h2 = 0;
+  let k1 = 0, k2 = 1;
+  let b = x;
+
+  do {
+    let a = Math.floor(b);
+    let h = a * h1 + h2;
+    let k = a * k1 + k2;
+    h2 = h1; h1 = h;
+    k2 = k1; k1 = k;
+    b = 1 / (b - a);
+  } while (Math.abs(x - h1 / k1) > x * tolerance);
+
+  return [sign * h1, k1];
+}
+
+function formatVal(v) {
   if (v === "-inf" || v === "-oo") return "$-\\infty$";
   if (v === "+inf" || v === "oo" || v === "+oo") return "$+\\infty$";
   if (v === null || v === undefined) return "";
@@ -820,12 +846,18 @@
   const num = Number(v);
 
   if (!isNaN(num)) {
-    if (Math.abs(num - 1.5) < 1e-9) return "$\\frac{3}{2}$";
-    if (Math.abs(num + 0.25) < 1e-9) return "$-\\frac{1}{4}$";
-    if (Math.abs(num) < 1e-9) return "0";
+    if (Math.abs(num) < 1e-10) return "$0$";
+
+    const frac = decimalToFraction(num);
+
+    if (frac && frac[1] !== 1) {
+      return `$\\frac{${frac[0]}}{${frac[1]}}$`;
+    }
+
+    return `$${num}$`;
   }
 
-  return String(v);
+  return `$${v}$`;
 }
 
       function getFxAtCritical(xVal) {

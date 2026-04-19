@@ -1,975 +1,1137 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>InfinieMaths - Assistant</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Assistant InfinieMaths - Une aide simple,
-claire et interactive pour les maths du lycée.">
-  <link rel="stylesheet" href="style.css"> 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist
-katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"><
-script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto
-render.min.js"></script>
-<script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script> 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <style>
-.assistant-page { 
-max-width: 900px;
-margin: 0 auto;
-padding: 40px 20px 80px;
-}
-  .assistant-hero {
-text-align: center;
-margin-bottom: 30px;
-}
-  .assistant-badge {
-display: inline-block;
-padding: 8px 14px;
-border-radius: 999px;
-background: #e0f2fe;
-color: #0369a1;
-font-weight: 700;
-font-size: 14px;
-margin-bottom: 12px;
-}
-  .assistant-hero h1 {     margin: 0 0 12px;
-color: #0f172a;
-font-size: 38px;
-}
-.assistant-hero p {
-margin: 0 auto;
-max-width: 720px;
-color: #334155;
-line-height: 1.7;
-font-size: 17px;
-}
-.assistant-card {
-background: #ffffff;
-border: 1px solid #dbeafe;
-border-radius: 18px;
-padding: 24px;
-box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-.assistant-label {
-display: block;
-font-weight: 700;
-color: #0f172a;
-margin-bottom: 10px;
-font-size: 16px;
-}
-.assistant-textarea {
-width: 100%;
-min-height: 150px;
-padding: 16px;
-border: 1px solid #cbd5e1;
-border-radius: 14px;
-resize: vertical;
-font-size: 16px;
-line-height: 1.6;
-box-sizing: border-box;
-outline: none;
-}
-.assistant-textarea:focusborder-color: #38bdf8;{
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
-}
-.assistant-actions {
-margin-top: 16px;
-display: flex;
-gap: 12px;
-align-items: center;
-flex-wrap: wrap;
-}
-.assistant-btn {
-background: linear-gradient(135deg, #0284c7, #2563eb);
-color: white;
-border: none;
-border-radius: 12px;
-padding: 12px 20px;
-font-size: 16px;
-font-weight: 700;
-cursor: pointer;
-transition: transform 0.15s ease, opacity 0.15s ease;
-}
-.assistant-btn:hover {
-transform: translateY(-1px);
-}
-.assistant-btn:disabledcursor: not-allowed;
-opacity: 0.7;
-transform: none;
-}
-{
-.assistant-status {
-margin-top: 18px;
-color: #0369a1;
-font-weight: 600;
-min-height: 24px;
-}
-.assistant-response {
-margin-top: 18px;
-padding: 18px;
-border-radius: 14px;       background: #f8fafc;
-border: 1px solid #e2e8f0;
-color: #0f172a;
-line-height: 1.7;
-min-height: 80px;
-}
-.assistant-response h1,
-.assistant-response h2,
-.assistant-response h3 {
-color: #0f172a;
-margin-top: 18px;
-margin-bottom: 10px;
-}
-.assistant-response p,
-.assistant-response li {
-line-height: 1.7;
-color: #1e293b;
-}
-.assistant-response p {
-margin-top: 0;
-margin-bottom: 12px;
-}
-.assistant-response ul {
-padding-left: 20px;
-margin-bottom: 14px;
-}
-.assistant-response strong {
-color: #0f172a;
-}
-.assistant-response .katex-display {
-margin: 16px 0;
-overflow-x: auto;
-overflow-y: hidden;
-}
-.assistant-error {
-margin-top: 18px;
-padding: 14px 16px;     border-radius: 12px;
-background: #fef2f2;
-border: 1px solid #fecaca;
-color: #b91c1c;
-display: none;
-}
-.assistant-plot {
-margin-top: 48px;
-min-height: 560px;
-display: none;
-border-radius: 18px;
-overflow: hidden;
-background: #ffffff;
-border: 1px solid #dbeafe;
-padding: 16px;
-box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-.assistant-hint {
-margin-top: 14px;
-color: #64748b;
-font-size: 14px;
-}
-.site-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 20px;
-padding: 18px 24px;
-border-bottom: 1px solid #e2e8f0;
-background: #ffffff;
-flex-wrap: wrap;
-}
-.logo {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-.logo-mark {
-font-size: 28px;        color: #2563eb;
-font-weight: 800;
-}
-.logo-text {
-display: flex;
-flex-direction: column;
-line-height: 1.2;
-}
-.highlight {
-font-size: 22px;
-font-weight: 800;
-color: #0f172a;
-}
-.logo-subtitle {
-font-size: 13px;
-color: #64748b;
-}
-.main-nav {
-display: flex;
-gap: 16px;
-flex-wrap: wrap;
-}
-.main-nav a {
-text-decoration: none;
-color: #334155;
-font-weight: 600;
-}
-.main-nav a.active {
-color: #2563eb;
-}
-@media (max-width: 700px) {
-.assistant-hero h1 {
-font-size: 30px;
-}
-.assistant-card {
-padding: 18px;       }
-.site-header {
-padding: 16px;
-}
-}
-.tab-variation-wrapoverflow-x: auto;
-margin-top: 12px;
-}
-{
-.tab-variation {
-border-collapse: collapse;
-margin-top: 8px;
-background: white;
-min-width: 900px;
-color: #0f172a;
-font-family: "Times New Roman", serif;
-}
-.tab-variation th,
-.tab-variation td {
-text-align: center;
-vertical-align: middle;
-}
-.tab-variation .tv-label {
-border: 1px solid #666;
-padding: 16px 18px;
-min-width: 110px;
-font-style: italic;
-font-size: 22px;
-background: #f8fafc;
-}
-.tab-variation .tv-x-point {
-border: 1px solid #666;
-padding: 16px 22px;
-min-width: 120px;
-font-size: 22px;
-}
-.tab-variation .tv-x-gap {      border-top: 1px solid #666;
-border-bottom: 1px solid #666;
-border-left: none;
-border-right: none;
-padding: 16px 10px;
-min-width: 80px;
-}
-.tab-variation .tv-sign-point {
-border-top: 1px solid #666;
-padding: 14px 22px;
-min-width: 120px;
-font-size: 22px;
-}
-.tab-variation .tv-sign-point.first {
-border-left: 1px solid #666;
-}
-.tab-variation .tv-sign-point.last {
-border-right: 1px solid #666;
-}
-.tab-variation .tv-sign-gap {
-border-top: 1px solid #666;
-padding: 14px 10px;
-min-width: 80px;
-font-size: 28px;
-font-weight: 600;
-}
-.tab-variation .tv-svg-cell {
-border-left: 1px solid #666;
-border-right: 1px solid #666;
-border-top: 1px solid #666;
-border-bottom: 1px solid #666;
-padding: 0 !important;
-height: 120px;
-}
-.tab-variation svg {
-display: block;
-width: 100%;
-height: 120px;}
-  .tab-variation-title {
-margin-top: 0;
-margin-bottom: 18px;
-font-size: 20px;
-color: #0f172a;
-}
-  .tab-variation-manual {
-border-collapse: collapse;
-table-layout: fixed;
-width: 100%;
-min-width: unset;
-margin-top: 8px;
-background: white;
-font-size: 22px;
-text-align: center;
-color: #0f172a;
-font-family: "Times New Roman", serif;
-}
-  .tab-variation-manual th,
-.tab-variation-manual td {
-text-align: center;
-vertical-align: middle;
-}
-  .tv-divider-top {
-border-top: 2px solid #444 !important;
-}
-  .tv-arrow {
-font-size: 34px;
-line-height: 1;
-display: inline-block;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>InfinieMaths - Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Assistant InfinieMaths - Une aide simple, claire et interactive pour les maths du lycée.">
+
+  <link rel="stylesheet" href="style.css"> 
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    .assistant-page { 
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .assistant-hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .assistant-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .assistant-hero h1 {
+      margin: 0 0 12px;
+      color: #0f172a;
+      font-size: 38px;
+    }
+
+    .assistant-hero p {
+      margin: 0 auto;
+      max-width: 720px;
+      color: #334155;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .assistant-card {
+      background: #ffffff;
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .assistant-label {
+      display: block;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .assistant-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      resize: vertical;
+      font-size: 16px;
+      line-height: 1.6;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .assistant-textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    }
+
+    .assistant-actions {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .assistant-btn {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .assistant-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .assistant-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+      transform: none;
+    }
+
+    .assistant-status {
+      margin-top: 18px;
+      color: #0369a1;
+      font-weight: 600;
+      min-height: 24px;
+    }
+
+    .assistant-response {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #0f172a;
+      line-height: 1.7;
+      min-height: 80px;
+    }
+
+    .assistant-response h1,
+    .assistant-response h2,
+    .assistant-response h3 {
+      color: #0f172a;
+      margin-top: 18px;
+      margin-bottom: 10px;
+    }
+
+    .assistant-response p,
+    .assistant-response li {
+      line-height: 1.7;
+      color: #1e293b;
+    }
+
+    .assistant-response p {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .assistant-response ul {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    .assistant-response strong {
+      color: #0f172a;
+    }
+
+    .assistant-response .katex-display {
+      margin: 16px 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .assistant-error {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      display: none;
+    }
+
+    .assistant-plot {
+      margin-top: 48px;
+      min-height: 560px;
+      display: none;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #dbeafe;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .assistant-hint {
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      font-size: 28px;
+      color: #2563eb;
+      font-weight: 800;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .highlight {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .logo-subtitle {
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .main-nav a.active {
+      color: #2563eb;
+    }
+
+    @media (max-width: 700px) {
+      .assistant-hero h1 {
+        font-size: 30px;
+      }
+
+      .assistant-card {
+        padding: 18px;
+      }
+
+      .site-header {
+        padding: 16px;
+      }
+    }
+
+    .tab-variation-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    .tab-variation {
+      border-collapse: collapse;
+      margin-top: 8px;
+      background: white;
+      min-width: 900px;
+      color: #0f172a;
+      font-family: "Times New Roman", serif;
+    }
+
+    .tab-variation th,
+    .tab-variation td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .tab-variation .tv-label {
+      border: 1px solid #666;
+      padding: 16px 18px;
+      min-width: 110px;
+      font-style: italic;
+      font-size: 22px;
+      background: #f8fafc;
+    }
+
+    .tab-variation .tv-x-point {
+      border: 1px solid #666;
+      padding: 16px 22px;
+      min-width: 120px;
+      font-size: 22px;
+    }
+
+    .tab-variation .tv-x-gap {
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666;
+      border-left: none;
+      border-right: none;
+      padding: 16px 10px;
+      min-width: 80px;
+    }
+
+    .tab-variation .tv-sign-point {
+      border-top: 1px solid #666;
+      padding: 14px 22px;
+      min-width: 120px;
+      font-size: 22px;
+    }
+
+    .tab-variation .tv-sign-point.first {
+      border-left: 1px solid #666;
+    }
+
+    .tab-variation .tv-sign-point.last {
+      border-right: 1px solid #666;
+    }
+
+    .tab-variation .tv-sign-gap {
+      border-top: 1px solid #666;
+      padding: 14px 10px;
+      min-width: 80px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .tab-variation .tv-svg-cell {
+      border-left: 1px solid #666;
+      border-right: 1px solid #666;
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666;
+      padding: 0 !important;
+      height: 120px;
+    }
+
+    .tab-variation svg {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+
+    .tab-variation-title {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 20px;
+      color: #0f172a;
+    }
+
+    .tab-variation-manual {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      min-width: unset;
+      margin-top: 8px;
+      background: white;
+      font-size: 22px;
+      text-align: center;
+      color: #0f172a;
+      font-family: "Times New Roman", serif;
+    }
+
+    .tab-variation-manual th,
+    .tab-variation-manual td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .tv-divider-top {
+      border-top: 2px solid #444 !important;
+    }
+
+    .tv-arrow {
+      font-size: 34px;
+      line-height: 1;
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-<div class="logo">
-<span class="logo-mark">∞</span>
-<span class="logo-text"><span class="highlight">InfinieMaths</span>
-<span class="logo-subtitle">Les maths du lycée, simplement.</span>
-</span>
-</div>
-  <nav class="main-nav">
-<a href="index.html">Accueil</a>
-<a href="seconde.html">Seconde</a>
-<a href="premiere.html">Première</a>
-<a href="terminale.html">Terminale</a>
-<a href="assistant.html" class="active">Assistant</a>
-<a href="pass-premium.html">Pass Premium</a>
-<a href="inscription.html">Inscription</a>
-</nav>
-</header>
-  <main class="assistant-page">
-<section class="assistant-hero">
-<span class="assistant-badge">Assistant IA</span>
-<h1>Assistant InfinieMaths</h1>
-<p>
-Pose ta question de maths et reçois une aide claire, rapide et adaptée à ton
-niveau.
-Tu peux demander une explication, une méthode, une correction, une étude de
-fonction ou un graphique.
-</p>
-</section>
-  <section class="assistant-card">
-<label for="userQuestion" class="assistant-label">Ta question</label>
-  <textarea
-id="userQuestion"
-class="assistant-textarea"
-placeholder="Exemple : Étudie la fonction f(x)=x^2-4x+3, donne les variations
-et trace la courbe."
-></textarea>
-  <div class="assistant-actions">
-<button id="sendBtn" class="assistant-btn" type="button">Envoyer</button>
-</div>
-  <div id="assistantStatus" class="assistant-status"></div>
-<div id="assistantError" class="assistant-error"></div><div id="assistantResponse" class="assistant-response">La réponse apparaîtra
-ici.</div>
-<div id="variationContainer" class="assistant-response" style="display:none;"><
-div>
-<div id="plotContainer" class="assistant-plot"></div>
-  <div class="assistant-hint">
-Astuce : appuie sur Entrée pour envoyer. Utilise Maj + Entrée pour aller à la
-ligne.
-</div>
-</section>
-</main>
-  <script>
-function escapeHtml(text) {
-return String(text)
-.replace(/&/g, "&amp;")
-.replace(/</g, "&lt;")
-.replace(/>/g, "&gt;")
-.replace(/"/g, "&quot;")
-.replace(/'/g, "&#039;");
-}
-  function renderAssistantReply(reply) {
-const responseBox = document.getElementById("assistantResponse");
-  let text = reply || "Aucune réponse générée.";
-  text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
-text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
-  responseBox.innerHTML = marked.parse(text);
-  if (window.renderMathInElement) {
-renderMathInElement(responseBox, {
-delimiters: [
-{ left: "$$", right: "$$", display: true },
-{ left: "$", right: "$", display: false },
-{ left: "\\[", right: "\\]", display: true },
-{ left: "\\(", right: "\\)", display: false }
-],
-throwOnError: false
-});
-}         }
-function showError(message) {
-const errorBox = document.getElementById("assistantError");
-errorBox.style.display = "block";
-errorBox.textContent = message;
-}
-function clearError() {
-const errorBox = document.getElementById("assistantError");
-errorBox.style.display = "none";
-errorBox.textContent = "";
-}
-function clearPlot() {
-const plotContainer = document.getElementById("plotContainer");
-plotContainer.style.display = "none";
-plotContainer.innerHTML = "";
-}
-function prettifyExpression(expr) {
-if (!expr) return "";
-return String(expr)
-.replace(/\*\*/g, "^")
-.replace(/\^2/g, "²")
-.replace(/\^3/g, "³")
-.replace(/\*/g, "·");
-}
-function buildTicks(minVal, maxVal) {
-const tickVals = [];
-const tickText = [];
-const start = Math.ceil(minVal);
-const end = Math.floor(maxVal);
-for (let k = start; k <= end; k++) {
-tickVals.push(k);
-tickText.push(String(k));
-}
-return { tickVals, tickText };
-} function drawMathPlot(plotData) {
-const plotContainer = document.getElementById("plotContainer");
-if (!plotContainer) {
-console.error("plotContainer introuvable");
-return;
-}
-  plotContainer.style.display = "block";
-  // 🔵 Cartouche bleu + zone graphique
-plotContainer.innerHTML = `
-<div style="
-display:inline-block;
-margin-bottom:16px;
-padding:16px 20px;
-border-left:5px solid #3b82f6;
-border-radius:16px;
-background:linear-gradient(90deg, #dbeafe, #eff6ff);
-color:#0f172a;
-font-size:22px;
-font-weight:700;
-">
-Courbe représentative
-</div>
-  <div id="plotInner" style="width:100%; min-height:480px;"></div>
-`;
-  if (!plotData) {
-console.error("Aucune donnée reçue pour le tracé");
-return;
-}
-  function isNum(v) {
-return typeof v === "number" && isFinite(v);
-}
-  function pretty(v) {
-if (!isNum(v)) return "";
-if (Math.abs(v) < 1e-10) return "0";
-return Number(v.toFixed(3)).toString();
-}
-function normalize(item, defaultLabel = "f(x)") {
-let x = [];
-let y = [];
-  if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
-x = item.x.slice();
-y = item.y.slice();
-} else if (Array.isArray(item?.points)) {
-x = item.points.map(p => p.x);
-y = item.points.map(p => p.y);
-}
-  return {
-label: item?.label || defaultLabel,
-x,
-y,
-roots: Array.isArray(item?.roots) ? item.roots : [],
-vertex: item?.vertex || null
-};
-}
-  function computeRange(values, padRatio = 0.1, minPad = 1) {
-const clean = values.filter(isNum);
-if (!clean.length) return [-5, 5];
-  let min = Math.min(...clean);
-let max = Math.max(...clean);
-  if (min === max) {
-min -= 2;
-max += 2;
-}
-  const pad = Math.max(minPad, (max - min) * padRatio);
-return [Math.floor(min - pad), Math.ceil(max + pad)];
-}
-  let functions = [];
-  if (Array.isArray(plotData.functions) && plotData.functions.length) {
-functions = plotData.functions.map((f, i) => normalize(f, `f${i + 1}(x)`));
-} else {
-functions = [normalize(plotData, plotData.label || "f(x)")];
-}  // Fallback test
-if (!functions[0].x.length || !functions[0].y.length) {
-const x = [];
-const y = [];
-for (let t = -4; t <= 4; t += 0.1) {
-x.push(Number(t.toFixed(2)));
-y.push(Number((t * t).toFixed(4)));
-}
-  functions = [{
-label: "f(x)=x²",
-x,
-y,
-roots: [{ x: 0, y: 0 }],
-vertex: { x: 0, y: 0 }
-}];
-}
-  const traces = [];
-const markers = [];
-const annotations = [];
-  functions.forEach(fn => {
-traces.push({
-x: fn.x,
-y: fn.y,
-type: "scatter",
-mode: "lines",
-name: fn.label,
-line: {
-width: 4,
-shape: "spline",
-smoothing: 0.6
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-mark">∞</span>
+      <span class="logo-text">
+        <span class="highlight">InfinieMaths</span>
+        <span class="logo-subtitle">Les maths du lycée, simplement.</span>
+      </span>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html">Accueil</a>
+      <a href="seconde.html">Seconde</a>
+      <a href="premiere.html">Première</a>
+      <a href="terminale.html">Terminale</a>
+      <a href="assistant.html" class="active">Assistant</a>
+      <a href="pass-premium.html">Pass Premium</a>
+      <a href="inscription.html">Inscription</a>
+    </nav>
+  </header>
+
+  <main class="assistant-page">
+    <section class="assistant-hero">
+      <span class="assistant-badge">Assistant IA</span>
+      <h1>Assistant InfinieMaths</h1>
+      <p>
+        Pose ta question de maths et reçois une aide claire, rapide et adaptée à ton niveau.
+        Tu peux demander une explication, une méthode, une correction, une étude de fonction ou un graphique.
+      </p>
+    </section>
+
+    <section class="assistant-card">
+      <label for="userQuestion" class="assistant-label">Ta question</label>
+
+      <textarea
+        id="userQuestion"
+        class="assistant-textarea"
+        placeholder="Exemple : Étudie la fonction f(x)=x^2-4x+3, donne les variations et trace la courbe."
+      ></textarea>
+
+      <div class="assistant-actions">
+        <button id="sendBtn" class="assistant-btn" type="button">Envoyer</button>
+      </div>
+
+      <div id="assistantStatus" class="assistant-status"></div>
+      <div id="assistantError" class="assistant-error"></div>
+      <div id="assistantResponse" class="assistant-response">La réponse apparaîtra ici.</div>
+      <div id="variationContainer" class="assistant-response" style="display:none;"></div>
+      <div id="plotContainer" class="assistant-plot"></div>
+
+      <div class="assistant-hint">
+        Astuce : appuie sur Entrée pour envoyer. Utilise Maj + Entrée pour aller à la ligne.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderAssistantReply(reply) {
+      const responseBox = document.getElementById("assistantResponse");
+
+      let text = reply || "Aucune réponse générée.";
+
+      text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
+      text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
+
+      responseBox.innerHTML = marked.parse(text);
+
+      if (window.renderMathInElement) {
+        renderMathInElement(responseBox, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function showError(message) {
+      const errorBox = document.getElementById("assistantError");
+      errorBox.style.display = "block";
+      errorBox.textContent = message;
+    }
+
+    function clearError() {
+      const errorBox = document.getElementById("assistantError");
+      errorBox.style.display = "none";
+      errorBox.textContent = "";
+    }
+
+    function clearPlot() {
+      const plotContainer = document.getElementById("plotContainer");
+      plotContainer.style.display = "none";
+      plotContainer.innerHTML = "";
+    }
+
+    function prettifyExpression(expr) {
+      if (!expr) return "";
+
+      return String(expr)
+        .replace(/\*\*/g, "^")
+        .replace(/\^2/g, "²")
+        .replace(/\^3/g, "³")
+        .replace(/\*/g, "·");
+    }
+
+    function buildTicks(minVal, maxVal) {
+      const tickVals = [];
+      const tickText = [];
+
+      const start = Math.ceil(minVal);
+      const end = Math.floor(maxVal);
+
+      for (let k = start; k <= end; k++) {
+        tickVals.push(k);
+        tickText.push(String(k));
+      }
+
+      return { tickVals, tickText };
+    }
+
+function drawMathPlot(plotData) {
+  const plotContainer = document.getElementById("plotContainer");
+  if (!plotContainer) {
+    console.error("plotContainer introuvable");
+    return;
+  }
+
+  plotContainer.style.display = "block";
+
+  // 🔵 Cartouche bleu + zone graphique
+  plotContainer.innerHTML = `
+    <div style="
+      display:inline-block;
+      margin-bottom:16px;
+      padding:16px 20px;
+      border-left:5px solid #3b82f6;
+      border-radius:16px;
+      background:linear-gradient(90deg, #dbeafe, #eff6ff);
+      color:#0f172a;
+      font-size:22px;
+      font-weight:700;
+    ">
+      Courbe représentative
+    </div>
+
+    <div id="plotInner"></div>
+  `;
+
+  if (!plotData) {
+    console.error("Aucune donnée reçue pour le tracé");
+    return;
+  }
+
+  function isNum(v) {
+    return typeof v === "number" && isFinite(v);
+  }
+
+  function pretty(v) {
+    if (!isNum(v)) return "";
+    if (Math.abs(v) < 1e-10) return "0";
+    return Number(v.toFixed(3)).toString();
+  }
+
+  function normalize(item, defaultLabel = "f(x)") {
+    let x = [];
+    let y = [];
+
+    if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
+      x = item.x.slice();
+      y = item.y.slice();
+    } else if (Array.isArray(item?.points)) {
+      x = item.points.map(p => p.x);
+      y = item.points.map(p => p.y);
+    }
+
+    return {
+      label: item?.label || defaultLabel,
+      x,
+      y,
+      roots: Array.isArray(item?.roots) ? item.roots : [],
+      vertex: item?.vertex || null
+    };
+  }
+
+  function computeRange(values, padRatio = 0.1, minPad = 1) {
+    const clean = values.filter(isNum);
+    if (!clean.length) return [-5, 5];
+
+    let min = Math.min(...clean);
+    let max = Math.max(...clean);
+
+    if (min === max) {
+      min -= 2;
+      max += 2;
+    }
+
+    const pad = Math.max(minPad, (max - min) * padRatio);
+    return [Math.floor(min - pad), Math.ceil(max + pad)];
+  }
+
+  let functions = [];
+
+  if (Array.isArray(plotData.functions) && plotData.functions.length) {
+    functions = plotData.functions.map((f, i) => normalize(f, `f${i + 1}(x)`));
+  } else {
+    functions = [normalize(plotData, plotData.label || "f(x)")];
+  }
+
+  // Fallback test
+  if (!functions[0].x.length || !functions[0].y.length) {
+    const x = [];
+    const y = [];
+    for (let t = -4; t <= 4; t += 0.1) {
+      x.push(Number(t.toFixed(2)));
+      y.push(Number((t * t).toFixed(4)));
+    }
+
+    functions = [{
+      label: "f(x)=x²",
+      x,
+      y,
+      roots: [{ x: 0, y: 0 }],
+      vertex: { x: 0, y: 0 }
+    }];
+  }
+
+  const traces = [];
+  const markers = [];
+  const annotations = [];
+
+  functions.forEach(fn => {
+    traces.push({
+      x: fn.x,
+      y: fn.y,
+      type: "scatter",
+      mode: "lines",
+      name: fn.label,
+      line: {
+        width: 4,
+        shape: "spline",
+        smoothing: 0.6
+      },
+      hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
+    });
+
+    if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
+      markers.push({
+        x: [fn.vertex.x],
+        y: [fn.vertex.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 12,
+          color: "#dc2626",
+          symbol: "diamond"
+        },
+        showlegend: false,
+        hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})<extra></extra>`
+      });
+
+      annotations.push({
+        x: fn.vertex.x,
+        y: fn.vertex.y,
+        text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 60,
+        ay: -60,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 14 }
+      });
+    }
+
+    fn.roots.forEach((root, i) => {
+      if (!isNum(root?.x) || !isNum(root?.y)) return;
+
+      if (
+        fn.vertex &&
+        isNum(fn.vertex.x) &&
+        isNum(fn.vertex.y) &&
+        Math.abs(root.x - fn.vertex.x) < 1e-6 &&
+        Math.abs(root.y - fn.vertex.y) < 1e-6
+      ) {
+        return;
+      }
+
+      markers.push({
+        x: [root.x],
+        y: [root.y],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          size: 10,
+          color: "#16a34a",
+          symbol: "circle"
+        },
+        showlegend: false,
+        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
+      });
+
+      annotations.push({
+        x: root.x,
+        y: root.y,
+        text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
+        showarrow: true,
+        arrowhead: 2,
+        ax: 0,
+        ay: -40,
+        bgcolor: "white",
+        bordercolor: "#ccc",
+        borderwidth: 1,
+        font: { size: 13 }
+      });
+    });
+  });
+
+  let allX = [];
+  let allY = [];
+
+  functions.forEach(fn => {
+    allX.push(...fn.x.filter(isNum));
+    allY.push(...fn.y.filter(isNum));
+
+    fn.roots.forEach(r => {
+      if (isNum(r?.x)) allX.push(r.x);
+      if (isNum(r?.y)) allY.push(r.y);
+    });
+
+    if (fn.vertex) {
+      if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
+      if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
+    }
+  });
+
+  allX.push(0);
+  allY.push(0);
+
+  let xRange, yRange;
+
+  if (
+    functions.length === 1 &&
+    functions[0].vertex &&
+    isNum(functions[0].vertex.x)
+  ) {
+    const vx = functions[0].vertex.x;
+    const xs = functions[0].x.filter(isNum);
+    const ys = functions[0].y.filter(isNum);
+
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
+
+    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
+
+    const maxY = ys.length ? Math.max(...ys) : 10;
+    yRange = [-2, Math.ceil(maxY * 1.1)]; 
+  } else {
+    xRange = computeRange(allX, 0.1, 1);
+    yRange = computeRange(allY, 0.12, 1);
+  }
+
+  const layout = {
+    title: {
+      text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
+      font: { size: 22 }
+    },
+    margin: { l: 60, r: 20, t: 70, b: 60 },
+    paper_bgcolor: "#ffffff",
+    plot_bgcolor: "#ffffff",
+
+    xaxis: {
+  title: "x",
+  range: xRange,
+  dtick: 1,
+  showgrid: true,
+  gridcolor: "#e2e8f0",
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 1,
+  ticks: "outside",
+  showline: false
 },
-hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
-});
-  if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
-markers.push({
-x: [fn.vertex.x],
-y: [fn.vertex.y],
-type: "scatter",
-mode: "markers",{pretty(fn.vertex.y)})<extra></extra>`
-    marker: {
-size: 12,
-color: "#dc2626",
-symbol: "diamond"
+
+yaxis: {
+  title: "y",
+  range: yRange,
+  dtick: 1,
+  showgrid: true,
+  gridcolor: "#e2e8f0",
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 1,
+  ticks: "outside",
+  showline: false
 },
-showlegend: false,
-hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, 
-});
-annotations.push({
-x: fn.vertex.x,
-y: fn.vertex.y,
-text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
-showarrow: true,
-arrowhead: 2,
-ax: 60,
-ay: -60,
-bgcolor: "white",
-bordercolor: "#ccc",
-borderwidth: 1,
-font: { size: 14 }
-});
+
+    annotations,
+    showlegend: functions.length > 1,
+    legend: {
+      orientation: "h",
+      y: 1.08,
+      x: 0
+    }
+  };
+
+  Plotly.newPlot(
+    document.getElementById("plotInner"),
+    [...traces, ...markers],
+    layout,
+    {
+      responsive: true,
+      displayModeBar: false
+    }
+  );
 }
-fn.roots.forEach((root, i) => {
-if (!isNum(root?.x) || !isNum(root?.y)) return;
-if (
-fn.vertex &&
-isNum(fn.vertex.x) &&
-isNum(fn.vertex.y) &&
-Math.abs(root.x - fn.vertex.x) < 1e-6 &&
-Math.abs(root.y - fn.vertex.y) < 1e-6
-) {
-return;
-}
-markers.push({
-x: [root.x],
-y: [root.y],
-type: "scatter",
-mode: "markers",
-marker: {size: 10,
-color: "#16a34a",
-symbol: "circle"
-},
-showlegend: false,
-hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
-});
-  annotations.push({
-x: root.x,
-y: root.y,
-text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
-showarrow: true,
-arrowhead: 2,
-ax: 0,
-ay: -40,
-bgcolor: "white",
-bordercolor: "#ccc",
-borderwidth: 1,
-font: { size: 13 }
-});
-});
-});
-  let allX = [];
-let allY = [];
-  functions.forEach(fn => {
-allX.push(...fn.x.filter(isNum));
-allY.push(...fn.y.filter(isNum));
-  fn.roots.forEach(r => {
-if (isNum(r?.x)) allX.push(r.x);
-if (isNum(r?.y)) allY.push(r.y);
-});
-  if (fn.vertex) {
-if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
-if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
-}
-});
-  allX.push(0);
-allY.push(0);  let xRange, yRange;
-  if (
-functions.length === 1 &&
-functions[0].vertex &&
-isNum(functions[0].vertex.x)
-) {
-const vx = functions[0].vertex.x;
-const xs = functions[0].x.filter(isNum);
-const ys = functions[0].y.filter(isNum);
-  const minX = Math.min(...xs);
-const maxX = Math.max(...xs);
-const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
-  xRange = [
-Math.floor(vx - dx - 0.5),
-Math.ceil(vx + dx + 0.5)
-];
-  const maxY = ys.length ? Math.max(...ys) : 10;
-yRange = [-2, Math.ceil(maxY * 1.1)]; 
-} else {
-xRange = computeRange(allX, 0.1, 1);
-yRange = computeRange(allY, 0.12, 1);
-}
-  const layout = {
-title: {
-text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
-font: { size: 22 }
-},
-margin: { l: 60, r: 20, t: 70, b: 60 },
-paper_bgcolor: "#ffffff",
-plot_bgcolor: "#ffffff",
-  xaxis: {
-title: "x",
-range: xRange,
-dtick: 1,
-showgrid: true,
-gridcolor: "#e2e8f0",
-zeroline: true,zerolinecolor: "#000",
-zerolinewidth: 1,
-ticks: "outside",
-showline: false
-},
- yaxis: {
-title: "y",
-range: yRange,
-dtick: 1,
-showgrid: true,
-gridcolor: "#e2e8f0",
-zeroline: true,
-zerolinecolor: "#000",
-zerolinewidth: 1,
-ticks: "outside",
-showline: false
-},
-  annotations,
-showlegend: functions.length > 1,
-legend: {
-orientation: "h",
-y: 1.08,
-x: 0
-}
-};
-  Plotly.newPlot(
-document.getElementById("plotInner"),
-[...traces, ...markers],
-layout,
-{
-responsive: true,
-displayModeBar: false
-}
-);
-}
-  function renderVariationTable(variationData) {
-const box = document.getElementById("variationContainer");
-  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
-box.style.display = "none";         
-box.innerHTML = "";
-return;
-}
-const cps = variationData.critical_points || [];
-const criticalValues = variationData.critical_values || [];
-const limits = variationData.limits || {};
-const xPoints = ["-inf", ...cps, "+inf"];
-const signBetween = {};
-const varBetween = {};
-variationData.intervals.forEach(interval => {
-const key = `${interval.from}|${interval.to}`;
-signBetween[key] = interval.sign || "";
-varBetween[key] = interval.variation || "";
-});
-function formatVal(v) {
-if (v === "-inf" || v === "-oo") return "−∞";
-if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
-if (v === null || v === undefined) return "";
-return String(v);
-}
-function getFxAtCritical(xVal) {
-const found = criticalValues.find(item => String(item.x) === String(xVal));
-return found ? formatVal(found["f(x)"]) : "";
-}
-const leftInf = formatVal(limits.left_infinity);
-const rightInf = formatVal(limits.right_infinity);
-let html = `
-<h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
-Tableau de variation
-</h3>
-<div style="overflow-x:auto; margin-bottom:35px;">
-<table class="tab-variation-manual" style="
-border-collapse:collapse;
-table-layout:fixed;    width:100%;
-min-width:760px;
-background:white;
-font-size:22px;
-text-align:center;
-color:#0f172a;
-font-family:'Times New Roman', serif;
-">
-`;
-html += `<tr>`;
-html += `<th style="
-border:1px solid #666;
-padding:16px 18px;
-width:110px;
-font-style:italic;
-background:#f8fafc;
-">x</th>`;
-for (let i = 0; i < xPoints.length; i++) {
-html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-padding:16px 24px;
-width:140px;
-${i === 0 ? "border-left:1px solid #666;" : ""}
-${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
-">${formatVal(xPoints[i])}</td>`;
-if (i < xPoints.length - 1) {
-html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-border-left:none;
-border-right:none;
-padding:16px 10px;
-width:70px;
-"></td>`;
-}
-}
-html += `</tr>`;
-html += `<tr>`;
-html += `<th style="    border:1px solid #666;
-padding:16px 18px;
-width:110px;
-font-style:italic;
-background:#f8fafc;
-">f'(x)</th>`;
-for (let i = 0; i < xPoints.length; i++) {
-let pointStyle = `
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-padding:0;
-width:140px;
-height:28px;
-line-height:28px;
-vertical-align:middle;
-`;
-if (i === 0) pointStyle += `border-left:1px solid #666;`;
-if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
-const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
-html += `<td style="${pointStyle}">
-<div style="
-display:flex;
-align-items:center;
-justify-content:center;
-height:28px;
-width:100%;
-font-size:26px;
-font-weight:600;
-line-height:1;
-">${pointContent}</div>
-</td>`;
-if (i < xPoints.length - 1) {
-const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-padding:0;
-width:70px;
-height:28px;
-line-height:28px;   vertical-align:middle;
-">
-<div style="
-display:flex;
-align-items:center;
-justify-content:center;
-height:28px;
-width:100%;
-font-size:26px;
-font-weight:600;
-line-height:1;
-">${sign}</div>
-</td>`;
-}
-}
-html += `</tr>`;
-html += `<tr>`;
-html += `<th style="
-border:1px solid #666;
-padding:2px 8px;
-width:90px;
-min-width:90px;
-max-width:90px;
-height:32px;
-font-style:italic;
-background:#f8fafc;
-">f(x)</th>`;
-for (let i = 0; i < xPoints.length; i++) {
-let value = "";
-if (i === 0) value = leftInf;
-else if (i === xPoints.length - 1) value = rightInf;
-else value = getFxAtCritical(xPoints[i]);
-let pointStyle = `
-border-top:2px solid #444;
-border-bottom:1px solid #666;
-padding:2px 8px;
-width:90px;
-height:32px;
-vertical-align:middle;
-font-size:22px;
-`;if (i === 0) pointStyle += `border-left:1px solid #666;`;
-if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
-  html += `<td style="${pointStyle}">
-<div style="
-display:flex;
-align-items:center;
-justify-content:center;
-height:100%;
-width:100%;
-">${value}</div>
-</td>`;
-  if (i < xPoints.length - 1) {
-const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-  let svg = "";
-  if (variation === "decreasing") {
-svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;
-width:100%; height:32px; transform: translateY(-10px);">
-<defs>
-<marker id="arrow-down" markerWidth="6" markerHeight="6" refX="5.2"
-refY="3" orient="auto">
-<path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
-</marker>
-</defs>
-<line x1="0" y1="2" x2="100" y2="24"
-stroke="#0f172a"
-stroke-width="2.2"
-marker-end="url(#arrow-down)"/>
+
+    function renderVariationTable(variationData) {
+      const box = document.getElementById("variationContainer");
+
+      if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+        box.style.display = "none";
+    
+
+    box.innerHTML = "";
+        return;
+      }
+
+      const cps = variationData.critical_points || [];
+      const criticalValues = variationData.critical_values || [];
+      const limits = variationData.limits || {};
+
+      const xPoints = ["-inf", ...cps, "+inf"];
+
+      const signBetween = {};
+      const varBetween = {};
+
+      variationData.intervals.forEach(interval => {
+        const key = `${interval.from}|${interval.to}`;
+        signBetween[key] = interval.sign || "";
+        varBetween[key] = interval.variation || "";
+      });
+
+      function formatVal(v) {
+        if (v === "-inf" || v === "-oo") return "−∞";
+        if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
+        if (v === null || v === undefined) return "";
+        return String(v);
+      }
+
+      function getFxAtCritical(xVal) {
+        const found = criticalValues.find(item => String(item.x) === String(xVal));
+        return found ? formatVal(found["f(x)"]) : "";
+      }
+
+      const leftInf = formatVal(limits.left_infinity);
+      const rightInf = formatVal(limits.right_infinity);
+
+      let html = `
+        <h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
+          Tableau de variation
+        </h3>
+        <div style="overflow-x:auto; margin-bottom:35px;">
+          <table class="tab-variation-manual" style="
+            border-collapse:collapse;
+            table-layout:fixed;
+            width:100%;
+            min-width:760px;
+            background:white;
+            font-size:22px;
+            text-align:center;
+            color:#0f172a;
+            font-family:'Times New Roman', serif;
+          ">
+      `;
+
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:16px 18px;
+        width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">x</th>`;
+
+      for (let i = 0; i < xPoints.length; i++) {
+        html += `<td style="
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:16px 24px;
+          width:140px;
+          ${i === 0 ? "border-left:1px solid #666;" : ""}
+          ${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
+        ">${formatVal(xPoints[i])}</td>`;
+
+        if (i < xPoints.length - 1) {
+          html += `<td style="
+            border-top:1px solid #666;
+            border-bottom:1px solid #666;
+            border-left:none;
+            border-right:none;
+            padding:16px 10px;
+            width:70px;
+          "></td>`;
+        }
+      }
+      html += `</tr>`;
+
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:16px 18px;
+        width:110px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f'(x)</th>`;
+
+      for (let i = 0; i < xPoints.length; i++) {
+        let pointStyle = `
+          border-top:1px solid #666;
+          border-bottom:1px solid #666;
+          padding:0;
+          width:140px;
+          height:28px;
+          line-height:28px;
+          vertical-align:middle;
+        `;
+        if (i === 0) pointStyle += `border-left:1px solid #666;`;
+        if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+
+        const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
+
+        html += `<td style="${pointStyle}">
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:28px;
+            width:100%;
+            font-size:26px;
+            font-weight:600;
+            line-height:1;
+          ">${pointContent}</div>
+        </td>`;
+
+        if (i < xPoints.length - 1) {
+          const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+          html += `<td style="
+            border-top:1px solid #666;
+            border-bottom:1px solid #666;
+            padding:0;
+            width:70px;
+            height:28px;
+            line-height:28px;
+            vertical-align:middle;
+          ">
+            <div style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              height:28px;
+              width:100%;
+              font-size:26px;
+              font-weight:600;
+              line-height:1;
+            ">${sign}</div>
+          </td>`;
+        }
+      }
+      html += `</tr>`;
+
+      html += `<tr>`;
+      html += `<th style="
+        border:1px solid #666;
+        padding:2px 8px;
+        width:90px;
+        min-width:90px;
+        max-width:90px;
+        height:32px;
+        font-style:italic;
+        background:#f8fafc;
+      ">f(x)</th>`;
+
+      for (let i = 0; i < xPoints.length; i++) {
+        let value = "";
+        if (i === 0) value = leftInf;
+        else if (i === xPoints.length - 1) value = rightInf;
+        else value = getFxAtCritical(xPoints[i]);
+
+        let pointStyle = `
+          border-top:2px solid #444;
+          border-bottom:1px solid #666;
+          padding:2px 8px;
+          width:90px;
+          height:32px;
+          vertical-align:middle;
+          font-size:22px;
+        `;
+        if (i === 0) pointStyle += `border-left:1px solid #666;`;
+        if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
+
+        html += `<td style="${pointStyle}">
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            height:100%;
+            width:100%;
+          ">${value}</div>
+        </td>`;
+
+        if (i < xPoints.length - 1) {
+          const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+
+          let svg = "";
+
+          if (variation === "decreasing") {
+            svg = `
+<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-10px);">
+  <defs>
+    <marker id="arrow-down" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
+    </marker>
+  </defs>
+  <line x1="0" y1="2" x2="100" y2="24"
+        stroke="#0f172a"
+        stroke-width="2.2"
+        marker-end="url(#arrow-down)"/>
 </svg>`;
-} else if (variation === "increasing") {
-svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;
-width:100%; height:32px; transform: translateY(-10px);">
-<defs>
-<marker id="arrow-up" markerWidth="6" markerHeight="6" refX="5.2" refY="3"
-orient="auto">
-<path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
-</marker>
-</defs>
-<line x1="0" y1="24" x2="100" y2="2"stroke="#0f172a"
-stroke-width="2.2"
-marker-end="url(#arrow-up)"/>
+          } else if (variation === "increasing") {
+            svg = `
+<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-10px);">
+  <defs>
+    <marker id="arrow-up" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
+    </marker>
+  </defs>
+  <line x1="0" y1="24" x2="100" y2="2"
+        stroke="#0f172a"
+        stroke-width="2.2"
+        marker-end="url(#arrow-up)"/>
 </svg>`;
-} else {
-svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;
-width:100%; height:32px; transform: translateY(-4px);">
-<line x1="5" y1="16" x2="95" y2="16"
-stroke="#0f172a"
-stroke-width="1.8"/>
+          } else {
+            svg = `
+<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block; width:100%; height:32px; transform: translateY(-4px);">
+  <line x1="5" y1="16" x2="95" y2="16"
+        stroke="#0f172a"
+        stroke-width="1.8"/>
 </svg>`;
-}
-  html += `<td style="
-border-top:2px solid #444;
-border-bottom:1px solid #666;
-padding:0;
-width:55px;
-height:32px;
-vertical-align:middle;
-">${svg}</td>`;
-}
-}
-  html += `</tr>`;
-html += `</table></div>`;
-  box.innerHTML = html;
-box.style.display = "block";
-}
-  async function sendQuestion() {
-const textarea = document.getElementById("userQuestion");
-const sendBtn = document.getElementById("sendBtn");
-const statusBox = document.getElementById("assistantStatus");
-const responseBox = document.getElementById("assistantResponse");
-  const question = textarea.value.trim();
-  if (!question) {
-showError("Écris une question avant d'envoyer.");
-return;
-}  backend.onrender.com/chat",    clearError();
-statusBox.textContent = "Analyse en cours...";
-responseBox.innerHTML = "Chargement...";
-clearPlot();
-document.getElementById("variationContainer").style.display = "none";
-document.getElementById("variationContainer").innerHTML = "";
-sendBtn.disabled = true;
-try {
-const response = await fetch("https://infiniemaths-assistant
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({ message: question })
-});
-const data = await response.json();
-if (!response.ok) {
-throw new Error(data.reply || ("Erreur serveur : " + response.status));
-}
-statusBox.textContent = "";
-renderAssistantReply(data.reply);
-renderVariationTable(data.variation);
-if (data.plot) {
-drawMathPlot(data.plot);
-} else {
-clearPlot();
-}
-} catch (error) {
-statusBox.textContent = "";
-responseBox.innerHTML = "Une erreur est survenue.";
-clearPlot();
-document.getElementById("variationContainer").style.display = "none";
-document.getElementById("variationContainer").innerHTML = "";
-showError(error.message || "Erreur inconnue.");
-} finally {
-sendBtn.disabled = false;
-}}
-  document.getElementById("sendBtn").addEventListener("click", sendQuestion);
-  document.getElementById("userQuestion").addEventListener("keydown",
-function(event) {
-if (event.key === "Enter" && !event.shiftKey) {
-event.preventDefault();
-sendQuestion();
-}
-});
-</script>
+          }
+
+          html += `<td style="
+            border-top:2px solid #444;
+            border-bottom:1px solid #666;
+            padding:0;
+            width:55px;
+            height:32px;
+            vertical-align:middle;
+          ">${svg}</td>`;
+        }
+      }
+
+      html += `</tr>`;
+      html += `</table></div>`;
+
+      box.innerHTML = html;
+      box.style.display = "block";
+    }
+
+    async function sendQuestion() {
+      const textarea = document.getElementById("userQuestion");
+      const sendBtn = document.getElementById("sendBtn");
+      const statusBox = document.getElementById("assistantStatus");
+      const responseBox = document.getElementById("assistantResponse");
+
+      const question = textarea.value.trim();
+
+      if (!question) {
+        showError("Écris une question avant d'envoyer.");
+        return;
+      }
+
+      clearError();
+      statusBox.textContent = "Analyse en cours...";
+      responseBox.innerHTML = "Chargement...";
+      clearPlot();
+      document.getElementById("variationContainer").style.display = "none";
+      document.getElementById("variationContainer").innerHTML = "";
+      sendBtn.disabled = true;
+
+      try {
+        const response = await fetch("https://infiniemaths-assistant-backend.onrender.com/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ message: question })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.reply || ("Erreur serveur : " + response.status));
+        }
+
+        statusBox.textContent = "";
+        renderAssistantReply(data.reply);
+        renderVariationTable(data.variation);
+
+        if (data.plot) {
+          drawMathPlot(data.plot);
+        } else {
+          clearPlot();
+        }
+      } catch (error) {
+        statusBox.textContent = "";
+        responseBox.innerHTML = "Une erreur est survenue.";
+        clearPlot();
+        document.getElementById("variationContainer").style.display = "none";
+        document.getElementById("variationContainer").innerHTML = "";
+        showError(error.message || "Erreur inconnue.");
+      } finally {
+        sendBtn.disabled = false;
+      }
+    }
+
+    document.getElementById("sendBtn").addEventListener("click", sendQuestion);
+
+    document.getElementById("userQuestion").addEventListener("keydown", function(event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendQuestion();
+      }
+    });
+  </script>
 </body>
 </html>

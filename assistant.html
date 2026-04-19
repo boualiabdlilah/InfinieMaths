@@ -769,23 +769,10 @@ function drawMathPlot(plotData) {
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
-    xaxis: {
-  title: "x",
+   xaxis: {
   range: xRange,
   dtick: 1,
-  showgrid: true,
-  gridcolor: "#e2e8f0",
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
-  showline: false
-},
 
-yaxis: {
-  title: "y",
-  range: yRange,
-  dtick: 1,
   showgrid: true,
   gridcolor: "#d1d5db",
 
@@ -793,8 +780,21 @@ yaxis: {
   zerolinecolor: "#000",
   zerolinewidth: 2,
 
-  ticks: "",          // ❌ enlève les graduations visibles
-  showticklabels: false,  // ❌ enlève les nombres à gauche
+  ticks: "outside",
+  ticklabelposition: "outside bottom", // 👈 important
+  showline: false
+},
+
+yaxis: {
+  showgrid: true,
+  gridcolor: "#d1d5db",
+
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+
+  showticklabels: false, // ❌ supprime les nombres
+  ticks: "",             // ❌ supprime les traits
 
   showline: false
 },

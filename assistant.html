@@ -770,7 +770,10 @@
 },
 
 yaxis: {
- title: "y",
+  title: "y",
+  range: (plotData.ymin !== undefined && plotData.ymax !== undefined)
+    ? [plotData.ymin, plotData.ymax]
+    : yRange,
   dtick: yDtick,
   showgrid: true,
   gridcolor: "#e2e8f0",
@@ -778,8 +781,7 @@ yaxis: {
   zerolinecolor: "#222",
   zerolinewidth: 1,
   ticks: "outside",
-  showline: false,
-  scaleanchor: "x"
+  showline: false
 },
     annotations,
     showlegend: functions.length > 1,

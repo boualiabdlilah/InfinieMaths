@@ -756,9 +756,9 @@ function drawMathPlot(plotData) {
 
    const dy = maxY - minY;
 
-  yRange = [
-  Math.floor(minY - 0.2 * dy),
-  Math.ceil(maxY + 0.2 * dy)
+   yRange = [
+   Math.floor(minY - 0.2 * dy),
+   Math.ceil(maxY + 0.2 * dy)
 ];
   } else {
     xRange = computeRange(allX, 0.1, 1);

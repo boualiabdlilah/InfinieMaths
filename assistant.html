@@ -787,11 +787,15 @@ yaxis: {
   range: yRange,
   dtick: 1,
   showgrid: true,
-  gridcolor: "#e2e8f0",
+  gridcolor: "#d1d5db",
+
   zeroline: true,
   zerolinecolor: "#000",
-  zerolinewidth: 1,
-  ticks: "outside",
+  zerolinewidth: 2,
+
+  ticks: "",          // ❌ enlève les graduations visibles
+  showticklabels: false,  // ❌ enlève les nombres à gauche
+
   showline: false
 },
 

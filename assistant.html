@@ -646,6 +646,21 @@ function drawMathPlot(plotData) {
   const annotations = [];
 
   functions.forEach(fn => {
+    // 🔥 FILTRE DES POINTS (IMPORTANT)
+const X_LIMIT = 6;
+
+const newX = [];
+const newY = [];
+
+for (let i = 0; i < fn.x.length; i++) {
+  if (Math.abs(fn.x[i]) <= X_LIMIT) {
+    newX.push(fn.x[i]);
+    newY.push(fn.y[i]);
+  }
+}
+
+fn.x = newX;
+fn.y = newY;
     traces.push({
       x: fn.x,
       y: fn.y,

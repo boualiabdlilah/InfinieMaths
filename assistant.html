@@ -751,22 +751,11 @@ if (xRange[1] - xRange[0] > MAX_X_SPAN) {
   xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
 }
 
-const width = xRange[1] - xRange[0];
-const height = yRange[1] - yRange[0];
-const maxRatio = 2;
-
-let sizeX = width;
-
-// 🔥 NE PAS ré-agrandir si déjà limité
-if (height > width * maxRatio && width < MAX_X_SPAN) {
-  sizeX = height / maxRatio;
-}
+// 🔥 LIMITE PROPRE ET STABLE
+const MAX_X_SPAN = 10;
 
 const xCenter = (xRange[0] + xRange[1]) / 2;
-const yCenter = (yRange[0] + yRange[1]) / 2;
-
-xRange = [xCenter - sizeX / 2, xCenter + sizeX / 2];
-yRange = [yCenter - height / 2, yCenter + height / 2];
+xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
 
 const span = Math.max(
   xRange[1] - xRange[0],

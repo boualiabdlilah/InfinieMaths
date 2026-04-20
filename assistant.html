@@ -738,17 +738,18 @@ function drawMathPlot(plotData) {
     }
   });
 
-  allX.push(0);
+allX.push(0);
 allY.push(0);
 
 let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
-  // 🔥 LIMITE LA LARGEUR MAX (évite -40 à 40)
+
+// 🔥 limite la largeur max
 const MAX_X_SPAN = 12;
 
 if (xRange[1] - xRange[0] > MAX_X_SPAN) {
-  const xCenter = (xRange[0] + xRange[1]) / 2;
-  xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
+  const xMid = (xRange[0] + xRange[1]) / 2;
+  xRange = [xMid - MAX_X_SPAN / 2, xMid + MAX_X_SPAN / 2];
 }
 
 // 🔥 LIMITE PROPRE ET STABLE

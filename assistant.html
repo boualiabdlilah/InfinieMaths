@@ -646,21 +646,6 @@ function drawMathPlot(plotData) {
   const annotations = [];
 
   functions.forEach(fn => {
-    // 🔥 FILTRE DES POINTS (IMPORTANT)
-const X_LIMIT = 6;
-
-const newX = [];
-const newY = [];
-
-for (let i = 0; i < fn.x.length; i++) {
-  if (Math.abs(fn.x[i]) <= X_LIMIT) {
-    newX.push(fn.x[i]);
-    newY.push(fn.y[i]);
-  }
-}
-
-fn.x = newX;
-fn.y = newY;
     traces.push({
       x: fn.x,
       y: fn.y,
@@ -753,17 +738,35 @@ fn.y = newY;
     }
   });
 
-allX.push(0);
+  allX.push(0);
 allY.push(0);
 
 let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
+  // 🔥 LIMITE LA LARGEUR MAX (évite -40 à 40)
+const MAX_X_SPAN = 12;
 
-// 🔥 UNE SEULE limitation propre
-const MAX_X_SPAN = 8;
+if (xRange[1] - xRange[0] > MAX_X_SPAN) {
+  const xCenter = (xRange[0] + xRange[1]) / 2;
+  xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
+}
 
-const xMid = (xRange[0] + xRange[1]) / 2;
-xRange = [xMid - MAX_X_SPAN / 2, xMid + MAX_X_SPAN / 2];
+const width = xRange[1] - xRange[0];
+const height = yRange[1] - yRange[0];
+const maxRatio = 2;
+
+let sizeX = width;
+
+// 🔥 NE PAS ré-agrandir si déjà limité
+if (height > width * maxRatio && width < MAX_X_SPAN) {
+  sizeX = height / maxRatio;
+}
+
+const xCenter = (xRange[0] + xRange[1]) / 2;
+const yCenter = (yRange[0] + yRange[1]) / 2;
+
+xRange = [xCenter - sizeX / 2, xCenter + sizeX / 2];
+yRange = [yCenter - height / 2, yCenter + height / 2];
 
 const span = Math.max(
   xRange[1] - xRange[0],
@@ -889,20 +892,12 @@ return String(v);
 }
 
 function getFxAtCritical(xVal) {
-  const found = criticalValues.find(item => String(item.x) === String(xVal));
-  if (!found) return "";
+const found = criticalValues.find(item => String(item.x) === String(xVal));
+if (!found) return "";
 
-  // 🔥 priorité au latex propre
-  if (found["f(x)_latex"]) {
-    return `\\(${found["f(x)_latex"]}\\)`;
-  }
-
-  // 🔥 filtre les valeurs bizarres
-  if (typeof found["f(x)"] === "string" && found["f(x)"].includes("tableau")) {
-    return "";
-  }
-
-  return formatVal(found["f(x)"]);
+return found["f(x)_latex"]
+? `\\(${found["f(x)_latex"]}\\)`
+: formatVal(found["f(x)"]);
 }
 
 const leftInf = limits.left_infinity_latex

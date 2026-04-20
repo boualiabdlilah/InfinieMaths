@@ -764,17 +764,21 @@ function drawMathPlot(plotData) {
   type: "linear",
   autorange: false,
   range: xRange,
-  dtick: 1,
-  tickmode: "linear",
+
+  tickmode: "auto",   // 🔥 IMPORTANT
+  nticks: 10,         // limite le nombre
+
   showgrid: true,
   gridcolor: "#d1d5db",
   gridwidth: 1,
+
   zeroline: true,
   zerolinecolor: "#000",
   zerolinewidth: 2,
+
   ticks: "outside",
   ticklen: 6,
-  ticklabelposition: "outside bottom",
+
   showline: false
 },
 
@@ -782,21 +786,27 @@ yaxis: {
   type: "linear",
   autorange: false,
   range: yRange,
-  dtick: 1,
-  tickmode: "linear",
+
+  tickmode: "auto",
+  nticks: 10,
+
   showgrid: true,
   gridcolor: "#d1d5db",
   gridwidth: 1,
+
   zeroline: true,
   zerolinecolor: "#000",
   zerolinewidth: 2,
+
   ticks: "outside",
   ticklen: 6,
+
   showticklabels: true,
   showline: false,
+
   scaleanchor: "x",
   scaleratio: 1
-}
+},
   };
 
   Plotly.newPlot(

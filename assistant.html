@@ -744,16 +744,27 @@ function drawMathPlot(plotData) {
  let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
 
-// Fenêtre carrée pour repère orthonormé
+// 🔥 Fenêtre quasi carrée mais contrôlée
 const width = xRange[1] - xRange[0];
 const height = yRange[1] - yRange[0];
-const size = Math.max(width, height);
+
+// on limite l'étirement horizontal
+const maxRatio = 2; // 👈 réglable (1.5 = plus serré, 3 = plus large)
+
+let sizeX = width;
+let sizeY = height;
+
+if (height > width * maxRatio) {
+  sizeX = height / maxRatio;
+} else {
+  sizeX = width;
+}
 
 const xCenter = (xRange[0] + xRange[1]) / 2;
 const yCenter = (yRange[0] + yRange[1]) / 2;
 
-xRange = [xCenter - size / 2, xCenter + size / 2];
-yRange = [yCenter - size / 2, yCenter + size / 2];
+xRange = [xCenter - sizeX / 2, xCenter + sizeX / 2];
+yRange = [yCenter - height / 2, yCenter + height / 2];
 
 // 🔥 Choix automatique d'un pas commun "propre"
 function chooseNiceStep(span) {

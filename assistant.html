@@ -852,9 +852,12 @@ function drawMathPlot(plotData) {
   function getFxAtCritical(xVal) {
     const found = criticalValues.find(item => String(item.x) === String(xVal));
     if (!found) return "";
-    return found["f(x)_latex"]
-      ? `\\(${found["f(x)_latex"]}\\)`
-      : formatVal(found["f(x)"]);
+
+    if (found["f(x)_latex"]) {
+      return `\\(${found["f(x)_latex"]}\\)`;
+    }
+
+    return formatVal(found["f(x)"]);
   }
 
   const leftInf = limits.left_infinity_latex
@@ -900,12 +903,14 @@ function drawMathPlot(plotData) {
   for (let i = 0; i < xPoints.length; i++) {
     let xDisplay = "";
 
-    if (i === 0) xDisplay = "−∞";
-    else if (i === xPoints.length - 1) xDisplay = "+∞";
-    else {
-      xDisplay = cpsLatex[i - 1]
-        ? `\\(${cpsLatex[i - 1]}\\)`
-        : formatVal(xPoints[i]);
+    if (i === 0) {
+      xDisplay = "−∞";
+    } else if (i === xPoints.length - 1) {
+      xDisplay = "+∞";
+    } else if (cpsLatex && cpsLatex[i - 1]) {
+      xDisplay = `\\(${cpsLatex[i - 1]}\\)`;
+    } else {
+      xDisplay = formatVal(xPoints[i]);
     }
 
     html += `<td style="

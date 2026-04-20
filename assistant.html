@@ -773,29 +773,32 @@ function drawMathPlot(plotData) {
     plot_bgcolor: "#ffffff",
 
     xaxis: {
-      range: xRange,
-      dtick: 1,
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      ticklabelposition: "outside bottom",
-      showline: false
-    },
+  range: xRange,
+  dtick: 1,
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  ticklabelposition: "outside bottom",
+  showline: false
+},
 
-    yaxis: {
-      range: yRange,
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      showticklabels: false,
-      ticks: "",
-      showline: false
-    },
+yaxis: {
+  range: yRange,
+  dtick: 1,
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  showticklabels: true,
+  showline: false,
+  scaleanchor: "x",
+  scaleratio: 1
+},
 
     annotations,
     showlegend: functions.length > 1,

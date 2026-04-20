@@ -742,72 +742,73 @@ function drawMathPlot(plotData) {
   allY.push(0);
 
   let xRange = computeRange(allX, 0.1, 1);
-  let yRange = computeRange(allY, 0.1, 1);
+let yRange = computeRange(allY, 0.1, 1);
 
-  const layout = {
-    title: {
-      text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
-      font: { size: 22 }
-    },
-    margin: { l: 60, r: 20, t: 70, b: 60 },
-    paper_bgcolor: "#ffffff",
-    plot_bgcolor: "#ffffff",
-    annotations,
-    showlegend: functions.length > 1,
-    legend: {
-      orientation: "h",
-      y: 1.08,
-      x: 0
-    },
+// 🔥 Fenêtre carrée pour vrai repère orthonormé
+const width = xRange[1] - xRange[0];
+const height = yRange[1] - yRange[0];
+const size = Math.max(width, height);
 
-    xaxis: {
-  type: "linear",
-  autorange: false,
-  range: xRange,
+const xCenter = (xRange[0] + xRange[1]) / 2;
+const yCenter = (yRange[0] + yRange[1]) / 2;
 
-  tickmode: "auto",   // 🔥 IMPORTANT
-  nticks: 10,         // limite le nombre
+xRange = [xCenter - size / 2, xCenter + size / 2];
+yRange = [yCenter - size / 2, yCenter + size / 2];
 
-  showgrid: true,
-  gridcolor: "#d1d5db",
-  gridwidth: 1,
+const layout = {
+  title: {
+    text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
+    font: { size: 22 }
+  },
+  margin: { l: 60, r: 20, t: 70, b: 60 },
+  paper_bgcolor: "#ffffff",
+  plot_bgcolor: "#ffffff",
+  annotations,
+  showlegend: functions.length > 1,
+  legend: {
+    orientation: "h",
+    y: 1.08,
+    x: 0
+  },
 
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
+  xaxis: {
+    type: "linear",
+    autorange: false,
+    range: xRange,
+    tickmode: "auto",
+    nticks: 10,
+    showgrid: true,
+    gridcolor: "#d1d5db",
+    gridwidth: 1,
+    zeroline: true,
+    zerolinecolor: "#000",
+    zerolinewidth: 2,
+    ticks: "outside",
+    ticklen: 6,
+    showline: false
+  },
 
-  ticks: "outside",
-  ticklen: 6,
-
-  showline: false
-},
-
-yaxis: {
-  type: "linear",
-  autorange: false,
-  range: yRange,
-
-  tickmode: "auto",
-  nticks: 10,
-
-  showgrid: true,
-  gridcolor: "#d1d5db",
-  gridwidth: 1,
-
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
-
-  ticks: "outside",
-  ticklen: 6,
-
-  showticklabels: true,
-  showline: false,
-
-  scaleanchor: "x",
-  scaleratio: 1
-},
-  };
+  yaxis: {
+    type: "linear",
+    autorange: false,
+    range: yRange,
+    tickmode: "auto",
+    nticks: 10,
+    showgrid: true,
+    gridcolor: "#d1d5db",
+    gridwidth: 1,
+    zeroline: true,
+    zerolinecolor: "#000",
+    zerolinewidth: 2,
+    ticks: "outside",
+    ticklen: 6,
+    showticklabels: true,
+    showline: false,
+    scaleanchor: "x",
+    scaleratio: 1
+  }
+};
+  
 
   Plotly.newPlot(
     document.getElementById("plotInner"),

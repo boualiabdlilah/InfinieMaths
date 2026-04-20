@@ -788,7 +788,8 @@ function normalize(item, defaultLabel = "f(x)") {
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
-   xaxis: {
+  xaxis: {
+  type: "linear",
   range: xRange,
   dtick: 1,
   showgrid: true,
@@ -804,6 +805,7 @@ function normalize(item, defaultLabel = "f(x)") {
 },
 
 yaxis: {
+  type: "linear",
   range: yRange,
   dtick: 1,
   showgrid: true,
@@ -816,8 +818,6 @@ yaxis: {
   ticklen: 6,
   showticklabels: true,
   showline: false,
-
-  // 🔥 REPÈRE ORTHONORMÉ
   scaleanchor: "x",
   scaleratio: 1
 },

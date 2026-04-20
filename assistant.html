@@ -743,6 +743,13 @@ allY.push(0);
 
 let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
+  // 🔥 LIMITE LA LARGEUR MAX (évite -40 à 40)
+const MAX_X_SPAN = 12;
+
+if (xRange[1] - xRange[0] > MAX_X_SPAN) {
+  const xCenter = (xRange[0] + xRange[1]) / 2;
+  xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
+}
 
 const width = xRange[1] - xRange[0];
 const height = yRange[1] - yRange[0];

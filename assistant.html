@@ -757,10 +757,9 @@ const maxRatio = 2;
 
 let sizeX = width;
 
-if (height > width * maxRatio) {
+// 🔥 NE PAS ré-agrandir si déjà limité
+if (height > width * maxRatio && width < MAX_X_SPAN) {
   sizeX = height / maxRatio;
-} else {
-  sizeX = width;
 }
 
 const xCenter = (xRange[0] + xRange[1]) / 2;

@@ -558,27 +558,43 @@ function drawMathPlot(plotData) {
     if (Math.abs(v) < 1e-10) return "0";
     return Number(v.toFixed(3)).toString();
   }
+function normalize(item, defaultLabel = "f(x)") {
+  let x = [];
+  let y = [];
 
-  function normalize(item, defaultLabel = "f(x)") {
-    let x = [];
-    let y = [];
-
-    if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
-      x = item.x.slice();
-      y = item.y.slice();
-    } else if (Array.isArray(item?.points)) {
-      x = item.points.map(p => p.x);
-      y = item.points.map(p => p.y);
-    }
-
-    return {
-      label: item?.label || defaultLabel,
-      x,
-      y,
-      roots: Array.isArray(item?.roots) ? item.roots : [],
-      vertex: item?.vertex || null
-    };
+  if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
+    x = item.x.map(v => Number(v)).filter(v => Number.isFinite(v));
+    y = item.y.map(v => Number(v)).filter(v => Number.isFinite(v));
+  } else if (Array.isArray(item?.points)) {
+    x = item.points.map(p => Number(p.x)).filter(v => Number.isFinite(v));
+    y = item.points.map(p => Number(p.y)).filter(v => Number.isFinite(v));
   }
+
+  const n = Math.min(x.length, y.length);
+  x = x.slice(0, n);
+  y = y.slice(0, n);
+
+  return {
+    label: item?.label || defaultLabel,
+    x,
+    y,
+    roots: Array.isArray(item?.roots)
+      ? item.roots.map(r => ({
+          ...r,
+          x: Number(r.x),
+          y: Number(r.y)
+        })).filter(r => Number.isFinite(r.x) && Number.isFinite(r.y))
+      : [],
+    vertex: item?.vertex &&
+            Number.isFinite(Number(item.vertex.x)) &&
+            Number.isFinite(Number(item.vertex.y))
+      ? {
+          x: Number(item.vertex.x),
+          y: Number(item.vertex.y)
+        }
+      : null
+  };
+}
 
   function computeRange(values, padRatio = 0.1, minPad = 1) {
     const clean = values.filter(isNum);

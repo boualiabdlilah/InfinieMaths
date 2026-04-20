@@ -761,40 +761,42 @@ function drawMathPlot(plotData) {
     },
 
     xaxis: {
-      type: "linear",
-      autorange: false,
-      range: xRange,
-      dtick: 1,
-      tickmode: "linear",
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      gridwidth: 1,
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      ticklen: 6,
-      ticklabelposition: "outside bottom",
-      showline: false
-    },
+  type: "linear",
+  autorange: false,
+  range: xRange,
+  dtick: 1,
+  tickmode: "linear",
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  ticklen: 6,
+  ticklabelposition: "outside bottom",
+  showline: false
+},
 
-    yaxis: {
-      type: "linear",
-      autorange: false,
-      range: yRange,
-      dtick: 1,
-      tickmode: "linear",
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      gridwidth: 1,
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      ticklen: 6,
-      showticklabels: true,
-      showline: false
-    }
+yaxis: {
+  type: "linear",
+  autorange: false,
+  range: yRange,
+  dtick: 1,
+  tickmode: "linear",
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  ticklen: 6,
+  showticklabels: true,
+  showline: false,
+  scaleanchor: "x",
+  scaleratio: 1
+}
   };
 
   Plotly.newPlot(

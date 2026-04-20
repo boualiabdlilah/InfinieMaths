@@ -741,18 +741,7 @@ function drawMathPlot(plotData) {
   allX.push(0);
   allY.push(0);
 
- let xRange = computeRange(allX, 0.1, 1);
-let yRange = computeRange(allY, 0.1, 1);
-
-// 🔥 Fenêtre quasi carrée mais contrôlée
-const width = xRange[1] - xRange[0];
-const height = yRange[1] - yRange[0];
-
-// on limite l'étirement horizontal
-const maxRatio = 2; // 👈 réglable (1.5 = plus serré, 3 = plus large)
-
-let sizeX = width;
-let sizeY = height;
+ let sizeX = width;
 
 if (height > width * maxRatio) {
   sizeX = height / maxRatio;
@@ -766,9 +755,14 @@ const yCenter = (yRange[0] + yRange[1]) / 2;
 xRange = [xCenter - sizeX / 2, xCenter + sizeX / 2];
 yRange = [yCenter - height / 2, yCenter + height / 2];
 
+const span = Math.max(
+  xRange[1] - xRange[0],
+  yRange[1] - yRange[0]
+);
+
 // 🔥 Choix automatique d'un pas commun "propre"
 function chooseNiceStep(span) {
-  const rawStep = span / 8; // environ 8 graduations
+  const rawStep = span / 8;
   const power = Math.pow(10, Math.floor(Math.log10(rawStep)));
   const normalized = rawStep / power;
 
@@ -786,7 +780,7 @@ function chooseNiceStep(span) {
   return niceNormalized * power;
 }
 
-const commonDtick = chooseNiceStep(size);
+const commonDtick = chooseNiceStep(span);
 
 const layout = {
   title: {

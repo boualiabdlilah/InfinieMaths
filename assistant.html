@@ -813,25 +813,33 @@ const layout = {
     x: 0
   },
 
-  xaxis: {
-    type: "linear",
-    autorange: false,
-    range: xRange,
-    dtick: commonDtick,
-    showgrid: true,
-    gridcolor: "#d1d5db",
-    gridwidth: 1,
-    zeroline: true,
-    zerolinecolor: "#000",
-    zerolinewidth: 2,
-    ticks: "outside",
-    ticklen: 6,
-    showline: false
-  },
+ xaxis: {
+  type: "linear",
+  range: xRange,
+
+  autorange: false,
+  fixedrange: true,   // 🔥 IMPORTANT
+
+  dtick: commonDtick,
+
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+
+  ticks: "outside",
+  ticklen: 6,
+
+  showline: false
+},
 
   yaxis: {
     type: "linear",
     autorange: false,
+    fixedrange: true,
     range: yRange,
     dtick: commonDtick,
     showgrid: true,

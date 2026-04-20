@@ -817,7 +817,7 @@ function drawMathPlot(plotData) {
   );
 }
 
-    function renderVariationTable(variationData) {
+   function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
 
   if (!variationData || !variationData.intervals || !variationData.intervals.length) {
@@ -849,7 +849,6 @@ function drawMathPlot(plotData) {
     return String(v);
   }
 
-  // 🔥 UTILISE LATEX SI DISPONIBLE
   function getFxAtCritical(xVal) {
     const found = criticalValues.find(item => String(item.x) === String(xVal));
     if (!found) return "";
@@ -867,7 +866,12 @@ function drawMathPlot(plotData) {
     : formatVal(limits.right_infinity);
 
   let html = `
-    <h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
+    <h3 style="
+      margin-top:0;
+      margin-bottom:18px;
+      font-size:20px;
+      color:#0f172a;
+    ">
       Tableau de variation
     </h3>
     <div style="overflow-x:auto; margin-bottom:35px;">
@@ -878,76 +882,125 @@ function drawMathPlot(plotData) {
         font-size:18px;
         text-align:center;
         font-family:'Times New Roman', serif;
+        color:#0f172a;
+        background:white;
       ">
   `;
 
-  // 🔥 LIGNE x AVEC LATEX
+  // Ligne x
   html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:10px; width:90px;">x</th>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:10px;
+    width:90px;
+    font-style:italic;
+    background:#f8fafc;
+  ">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-
     let xDisplay = "";
 
     if (i === 0) xDisplay = "−∞";
     else if (i === xPoints.length - 1) xDisplay = "+∞";
-    else xDisplay = cpsLatex[i - 1]
-      ? `\\(${cpsLatex[i - 1]}\\)`
-      : formatVal(xPoints[i]);
-
-    html += `<td style="border:1px solid #666; padding:10px;">${xDisplay}</td>`;
-
-    if (i < xPoints.length - 1) {
-      html += `<td style="width:50px;"></td>`;
+    else {
+      xDisplay = cpsLatex[i - 1]
+        ? `\\(${cpsLatex[i - 1]}\\)`
+        : formatVal(xPoints[i]);
     }
+
+    html += `<td style="
+      border:1px solid #666;
+      padding:10px;
+      word-break:break-word;
+    ">${xDisplay}</td>`;
   }
   html += `</tr>`;
 
-  // 🔥 f'(x)
+  // Ligne f'(x)
   html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:10px;">f'(x)</th>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:10px;
+    width:90px;
+    font-style:italic;
+    background:#f8fafc;
+  ">f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
+    let content = "";
 
-    const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
-
-    html += `<td style="border:1px solid #666; height:28px;">${pointContent}</td>`;
-
-    if (i < xPoints.length - 1) {
-      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      html += `<td>${sign}</td>`;
+    if (i > 0 && i < xPoints.length - 1) {
+      content = "0";
+    } else if (i < xPoints.length - 1) {
+      content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
     }
+
+    html += `<td style="
+      border:1px solid #666;
+      padding:10px;
+      height:36px;
+      font-size:22px;
+      font-weight:600;
+      vertical-align:middle;
+    ">${content}</td>`;
   }
   html += `</tr>`;
 
-  // 🔥 f(x)
+  // Ligne f(x)
   html += `<tr>`;
-  html += `<th style="border:1px solid #666; padding:10px;">f(x)</th>`;
+  html += `<th style="
+    border:1px solid #666;
+    padding:10px;
+    width:90px;
+    font-style:italic;
+    background:#f8fafc;
+  ">f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-
     let value = "";
-    if (i === 0) value = leftInf;
-    else if (i === xPoints.length - 1) value = rightInf;
-    else value = getFxAtCritical(xPoints[i]);
 
-    html += `<td style="border:1px solid #666; padding:10px;">${value}</td>`;
+    if (i === 0) {
+      value = leftInf;
+    } else if (i === xPoints.length - 1) {
+      value = rightInf;
+    } else {
+      value = getFxAtCritical(xPoints[i]);
+    }
 
+    let arrow = "";
     if (i < xPoints.length - 1) {
       const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      const arrow = variation === "increasing" ? "↗" :
-                    variation === "decreasing" ? "↘" : "";
-
-      html += `<td>${arrow}</td>`;
+      if (variation === "increasing") arrow = "↗";
+      else if (variation === "decreasing") arrow = "↘";
     }
+
+    html += `<td style="
+      border:1px solid #666;
+      padding:10px 6px;
+      min-height:42px;
+      vertical-align:middle;
+      word-break:break-word;
+      font-size:18px;
+    ">
+      <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        min-height:42px;
+      ">
+        <span>${value}</span>
+        ${arrow ? `<span style="font-size:24px; line-height:1;">${arrow}</span>` : ""}
+      </div>
+    </td>`;
   }
 
-  html += `</tr></table></div>`;
+  html += `</tr>`;
+  html += `</table></div>`;
 
   box.innerHTML = html;
   box.style.display = "block";
 
-  // 🔥 RENDU LATEX
   if (window.renderMathInElement) {
     renderMathInElement(box, {
       delimiters: [

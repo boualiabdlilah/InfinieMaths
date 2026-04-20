@@ -644,96 +644,101 @@ function drawMathPlot(plotData) {
   const traces = [];
   const markers = [];
   const annotations = [];
+functions.forEach(fn => {
 
-  functions.forEach(fn => {
-    // 🔥 FILTRE DES POINTS (IMPORTANT)
-const X_LIMIT = 6;
+  const X_LIMIT = 6;
+  const Y_LIMIT = 20;
 
-const newX = [];
-const newY = [];
+  const newX = [];
+  const newY = [];
 
-for (let i = 0; i < fn.x.length; i++) {
-  if (Math.abs(fn.x[i]) <= X_LIMIT) {
-    newX.push(fn.x[i]);
-    newY.push(fn.y[i]);
+  for (let i = 0; i < fn.x.length; i++) {
+    if (
+      Math.abs(fn.x[i]) <= X_LIMIT &&
+      Math.abs(fn.y[i]) <= Y_LIMIT
+    ) {
+      newX.push(fn.x[i]);
+      newY.push(fn.y[i]);
+    }
   }
-}
 
-fn.x = newX;
-fn.y = newY;
-    traces.push({
-      x: fn.x,
-      y: fn.y,
+  fn.x = newX;
+  fn.y = newY;
+
+  traces.push({
+    x: fn.x,
+    y: fn.y,
+    type: "scatter",
+    mode: "lines",
+    name: fn.label,
+    line: {
+      width: 4,
+      shape: "linear"
+    },
+    hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
+  });
+
+  if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
+    markers.push({
+      x: [fn.vertex.x],
+      y: [fn.vertex.y],
       type: "scatter",
-      mode: "lines",
-      name: fn.label,
-      line: {
-        width: 4,
-        shape: "linear"
+      mode: "markers",
+      marker: {
+        size: 10,
+        color: "#dc2626",
+        symbol: "diamond"
       },
-      hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
+      showlegend: false,
+      hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})<extra></extra>`
     });
 
-    if (fn.vertex && isNum(fn.vertex.x) && isNum(fn.vertex.y)) {
-      markers.push({
-        x: [fn.vertex.x],
-        y: [fn.vertex.y],
-        type: "scatter",
-        mode: "markers",
-        marker: {
-          size: 10,
-          color: "#dc2626",
-          symbol: "diamond"
-        },
-        showlegend: false,
-        hovertemplate: `Sommet : (${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})<extra></extra>`
-      });
+    annotations.push({
+      x: fn.vertex.x,
+      y: fn.vertex.y,
+      text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
+      showarrow: true,
+      arrowhead: 2,
+      ax: 50,
+      ay: -40,
+      bgcolor: "white",
+      bordercolor: "#ccc",
+      borderwidth: 1,
+      font: { size: 13 }
+    });
+  }
 
-      annotations.push({
-        x: fn.vertex.x,
-        y: fn.vertex.y,
-        text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
-        showarrow: true,
-        arrowhead: 2,
-        ax: 50,
-        ay: -40,
-        bgcolor: "white",
-        bordercolor: "#ccc",
-        borderwidth: 1,
-        font: { size: 13 }
-      });
-    }
+  fn.roots.forEach((root, i) => {
+    markers.push({
+      x: [root.x],
+      y: [root.y],
+      type: "scatter",
+      mode: "markers",
+      marker: {
+        size: 9,
+        color: "#16a34a",
+        symbol: "circle"
+      },
+      showlegend: false,
+      hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
+    });
 
-    fn.roots.forEach((root, i) => {
-      markers.push({
-        x: [root.x],
-        y: [root.y],
-        type: "scatter",
-        mode: "markers",
-        marker: {
-          size: 9,
-          color: "#16a34a",
-          symbol: "circle"
-        },
-        showlegend: false,
-        hovertemplate: `Racine : (${pretty(root.x)}, ${pretty(root.y)})<extra></extra>`
-      });
-
-      annotations.push({
-        x: root.x,
-        y: root.y,
-        text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
-        showarrow: true,
-        arrowhead: 2,
-        ax: 0,
-        ay: -35,
-        bgcolor: "white",
-        bordercolor: "#ccc",
-        borderwidth: 1,
-        font: { size: 12 }
-      });
+    annotations.push({
+      x: root.x,
+      y: root.y,
+      text: root.label || `R${i + 1}(${pretty(root.x)}, ${pretty(root.y)})`,
+      showarrow: true,
+      arrowhead: 2,
+      ax: 0,
+      ay: -35,
+      bgcolor: "white",
+      bordercolor: "#ccc",
+      borderwidth: 1,
+      font: { size: 12 }
     });
   });
+
+});
 
   let allX = [];
   let allY = [];
@@ -808,25 +813,33 @@ const layout = {
     x: 0
   },
 
-  xaxis: {
-    type: "linear",
-    autorange: false,
-    range: xRange,
-    dtick: commonDtick,
-    showgrid: true,
-    gridcolor: "#d1d5db",
-    gridwidth: 1,
-    zeroline: true,
-    zerolinecolor: "#000",
-    zerolinewidth: 2,
-    ticks: "outside",
-    ticklen: 6,
-    showline: false
-  },
+ xaxis: {
+  type: "linear",
+  range: xRange,
+
+  autorange: false,
+  fixedrange: true,   // 🔥 IMPORTANT
+
+  dtick: commonDtick,
+
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+
+  ticks: "outside",
+  ticklen: 6,
+
+  showline: false
+},
 
   yaxis: {
     type: "linear",
     autorange: false,
+    fixedrange: true,
     range: yRange,
     dtick: commonDtick,
     showgrid: true,
@@ -1206,4 +1219,3 @@ throwOnError: false
   </script>
 </body>
 </html>
-

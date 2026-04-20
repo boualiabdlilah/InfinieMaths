@@ -772,15 +772,17 @@ function drawMathPlot(plotData) {
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
 
-    xaxis: {
+   xaxis: {
   range: xRange,
   dtick: 1,
   showgrid: true,
   gridcolor: "#d1d5db",
+  gridwidth: 1,
   zeroline: true,
   zerolinecolor: "#000",
   zerolinewidth: 2,
   ticks: "outside",
+  ticklen: 6,
   ticklabelposition: "outside bottom",
   showline: false
 },
@@ -790,12 +792,16 @@ yaxis: {
   dtick: 1,
   showgrid: true,
   gridcolor: "#d1d5db",
+  gridwidth: 1,
   zeroline: true,
   zerolinecolor: "#000",
   zerolinewidth: 2,
   ticks: "outside",
+  ticklen: 6,
   showticklabels: true,
   showline: false,
+
+  // 🔥 REPÈRE ORTHONORMÉ
   scaleanchor: "x",
   scaleratio: 1
 },

@@ -759,18 +759,11 @@ allY.push(0);
 let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
 
-// 🔥 limite la largeur max
-const MAX_X_SPAN = 10;
+// 🔥 UNE SEULE limitation propre
+const MAX_X_SPAN = 8;
 
-if (xRange[1] - xRange[0] > MAX_X_SPAN) {
-  const xMid = (xRange[0] + xRange[1]) / 2;
-  xRange = [xMid - MAX_X_SPAN / 2, xMid + MAX_X_SPAN / 2];
-}
-
-// 🔥 LIMITE PROPRE ET STABLE
-
-const xCenter = (xRange[0] + xRange[1]) / 2;
-xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];
+const xMid = (xRange[0] + xRange[1]) / 2;
+xRange = [xMid - MAX_X_SPAN / 2, xMid + MAX_X_SPAN / 2];
 
 const span = Math.max(
   xRange[1] - xRange[0],

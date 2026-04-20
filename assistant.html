@@ -853,11 +853,9 @@ function drawMathPlot(plotData) {
     const found = criticalValues.find(item => String(item.x) === String(xVal));
     if (!found) return "";
 
-    if (found["f(x)_latex"]) {
-      return `\\(${found["f(x)_latex"]}\\)`;
-    }
-
-    return formatVal(found["f(x)"]);
+    return found["f(x)_latex"]
+      ? `\\(${found["f(x)_latex"]}\\)`
+      : formatVal(found["f(x)"]);
   }
 
   const leftInf = limits.left_infinity_latex
@@ -890,118 +888,67 @@ function drawMathPlot(plotData) {
       ">
   `;
 
-  // Ligne x
+  // ===== Ligne x : structure de ta dernière version conservée =====
   html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:10px;
-    width:90px;
-    font-style:italic;
-    background:#f8fafc;
-  ">x</th>`;
+  html += `<th style="border:1px solid #666; padding:10px; width:90px;">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let xDisplay = "";
 
-    if (i === 0) {
-      xDisplay = "−∞";
-    } else if (i === xPoints.length - 1) {
-      xDisplay = "+∞";
-    } else if (cpsLatex && cpsLatex[i - 1]) {
+    if (i === 0) xDisplay = "−∞";
+    else if (i === xPoints.length - 1) xDisplay = "+∞";
+    else if (cpsLatex && cpsLatex[i - 1]) {
       xDisplay = `\\(${cpsLatex[i - 1]}\\)`;
     } else {
       xDisplay = formatVal(xPoints[i]);
     }
 
-    html += `<td style="
-      border:1px solid #666;
-      padding:10px;
-      word-break:break-word;
-    ">${xDisplay}</td>`;
+    html += `<td style="border:1px solid #666; padding:10px;">${xDisplay}</td>`;
+
+    if (i < xPoints.length - 1) {
+      html += `<td style="width:50px;"></td>`;
+    }
   }
   html += `</tr>`;
 
-  // Ligne f'(x)
+  // ===== Ligne f'(x) : structure conservée =====
   html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:10px;
-    width:90px;
-    font-style:italic;
-    background:#f8fafc;
-  ">f'(x)</th>`;
+  html += `<th style="border:1px solid #666; padding:10px;">f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-    let content = "";
+    const pointContent = (i > 0 && i < xPoints.length - 1) ? "0" : "";
 
-    if (i > 0 && i < xPoints.length - 1) {
-      content = "0";
-    } else if (i < xPoints.length - 1) {
-      content = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+    html += `<td style="border:1px solid #666; height:28px;">${pointContent}</td>`;
+
+    if (i < xPoints.length - 1) {
+      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+      html += `<td>${sign}</td>`;
     }
-
-    html += `<td style="
-      border:1px solid #666;
-      padding:10px;
-      height:36px;
-      font-size:22px;
-      font-weight:600;
-      vertical-align:middle;
-    ">${content}</td>`;
   }
   html += `</tr>`;
 
-  // Ligne f(x)
+  // ===== Ligne f(x) : structure conservée =====
   html += `<tr>`;
-  html += `<th style="
-    border:1px solid #666;
-    padding:10px;
-    width:90px;
-    font-style:italic;
-    background:#f8fafc;
-  ">f(x)</th>`;
+  html += `<th style="border:1px solid #666; padding:10px;">f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let value = "";
+    if (i === 0) value = leftInf;
+    else if (i === xPoints.length - 1) value = rightInf;
+    else value = getFxAtCritical(xPoints[i]);
 
-    if (i === 0) {
-      value = leftInf;
-    } else if (i === xPoints.length - 1) {
-      value = rightInf;
-    } else {
-      value = getFxAtCritical(xPoints[i]);
-    }
+    html += `<td style="border:1px solid #666; padding:10px;">${value}</td>`;
 
-    let arrow = "";
     if (i < xPoints.length - 1) {
       const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
-      if (variation === "increasing") arrow = "↗";
-      else if (variation === "decreasing") arrow = "↘";
-    }
+      const arrow = variation === "increasing" ? "↗" :
+                    variation === "decreasing" ? "↘" : "";
 
-    html += `<td style="
-      border:1px solid #666;
-      padding:10px 6px;
-      min-height:42px;
-      vertical-align:middle;
-      word-break:break-word;
-      font-size:18px;
-    ">
-      <div style="
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:10px;
-        min-height:42px;
-      ">
-        <span>${value}</span>
-        ${arrow ? `<span style="font-size:24px; line-height:1;">${arrow}</span>` : ""}
-      </div>
-    </td>`;
+      html += `<td>${arrow}</td>`;
+    }
   }
 
-  html += `</tr>`;
-  html += `</table></div>`;
+  html += `</tr></table></div>`;
 
   box.innerHTML = html;
   box.style.display = "block";

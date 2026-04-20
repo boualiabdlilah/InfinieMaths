@@ -740,7 +740,9 @@ function drawMathPlot(plotData) {
 
   allX.push(0);
   allY.push(0);
-
+  const width = xRange[1] - xRange[0];
+ const height = yRange[1] - yRange[0];
+ const maxRatio = 2; // tu peux mettre 1.5 si tu veux plus serré
  let sizeX = width;
 
 if (height > width * maxRatio) {

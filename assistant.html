@@ -745,7 +745,7 @@ let xRange = computeRange(allX, 0.1, 1);
 let yRange = computeRange(allY, 0.1, 1);
 
 // 🔥 limite la largeur max
-const MAX_X_SPAN = 12;
+const MAX_X_SPAN = 10;
 
 if (xRange[1] - xRange[0] > MAX_X_SPAN) {
   const xMid = (xRange[0] + xRange[1]) / 2;
@@ -753,7 +753,6 @@ if (xRange[1] - xRange[0] > MAX_X_SPAN) {
 }
 
 // 🔥 LIMITE PROPRE ET STABLE
-const MAX_X_SPAN = 10;
 
 const xCenter = (xRange[0] + xRange[1]) / 2;
 xRange = [xCenter - MAX_X_SPAN / 2, xCenter + MAX_X_SPAN / 2];

@@ -889,12 +889,20 @@ return String(v);
 }
 
 function getFxAtCritical(xVal) {
-const found = criticalValues.find(item => String(item.x) === String(xVal));
-if (!found) return "";
+  const found = criticalValues.find(item => String(item.x) === String(xVal));
+  if (!found) return "";
 
-return found["f(x)_latex"]
-? `\\(${found["f(x)_latex"]}\\)`
-: formatVal(found["f(x)"]);
+  // 🔥 priorité au latex propre
+  if (found["f(x)_latex"]) {
+    return `\\(${found["f(x)_latex"]}\\)`;
+  }
+
+  // 🔥 filtre les valeurs bizarres
+  if (typeof found["f(x)"] === "string" && found["f(x)"].includes("tableau")) {
+    return "";
+  }
+
+  return formatVal(found["f(x)"]);
 }
 
 const leftInf = limits.left_infinity_latex

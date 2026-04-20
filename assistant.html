@@ -519,13 +519,9 @@
 
 function drawMathPlot(plotData) {
   const plotContainer = document.getElementById("plotContainer");
-  if (!plotContainer) {
-    console.error("plotContainer introuvable");
-    return;
-  }
+  if (!plotContainer) return;
 
   plotContainer.style.display = "block";
-
   plotContainer.innerHTML = `
     <div style="
       display:inline-block;
@@ -540,17 +536,18 @@ function drawMathPlot(plotData) {
     ">
       Courbe représentative
     </div>
-
     <div id="plotInner" style="width:100%; min-height:480px;"></div>
   `;
 
-  if (!plotData) {
-    console.error("Aucune donnée reçue pour le tracé");
-    return;
+  if (!plotData) return;
+
+  function toNum(v) {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
   }
 
   function isNum(v) {
-    return typeof v === "number" && isFinite(v);
+    return typeof v === "number" && Number.isFinite(v);
   }
 
   function pretty(v) {
@@ -558,43 +555,60 @@ function drawMathPlot(plotData) {
     if (Math.abs(v) < 1e-10) return "0";
     return Number(v.toFixed(3)).toString();
   }
-function normalize(item, defaultLabel = "f(x)") {
-  let x = [];
-  let y = [];
 
-  if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
-    x = item.x.map(v => Number(v)).filter(v => Number.isFinite(v));
-    y = item.y.map(v => Number(v)).filter(v => Number.isFinite(v));
-  } else if (Array.isArray(item?.points)) {
-    x = item.points.map(p => Number(p.x)).filter(v => Number.isFinite(v));
-    y = item.points.map(p => Number(p.y)).filter(v => Number.isFinite(v));
+  function normalize(item, defaultLabel = "f(x)") {
+    let rawX = [];
+    let rawY = [];
+
+    if (Array.isArray(item?.x) && Array.isArray(item?.y)) {
+      rawX = item.x;
+      rawY = item.y;
+    } else if (Array.isArray(item?.points)) {
+      rawX = item.points.map(p => p?.x);
+      rawY = item.points.map(p => p?.y);
+    }
+
+    const x = [];
+    const y = [];
+    const n = Math.min(rawX.length, rawY.length);
+
+    for (let i = 0; i < n; i++) {
+      const xv = toNum(rawX[i]);
+      const yv = toNum(rawY[i]);
+      if (xv !== null && yv !== null) {
+        x.push(xv);
+        y.push(yv);
+      }
+    }
+
+    const roots = Array.isArray(item?.roots)
+      ? item.roots
+          .map(r => ({
+            ...r,
+            x: toNum(r?.x),
+            y: toNum(r?.y)
+          }))
+          .filter(r => r.x !== null && r.y !== null)
+      : [];
+
+    const vertex =
+      item?.vertex &&
+      toNum(item.vertex.x) !== null &&
+      toNum(item.vertex.y) !== null
+        ? {
+            x: toNum(item.vertex.x),
+            y: toNum(item.vertex.y)
+          }
+        : null;
+
+    return {
+      label: item?.label || defaultLabel,
+      x,
+      y,
+      roots,
+      vertex
+    };
   }
-
-  const n = Math.min(x.length, y.length);
-  x = x.slice(0, n);
-  y = y.slice(0, n);
-
-  return {
-    label: item?.label || defaultLabel,
-    x,
-    y,
-    roots: Array.isArray(item?.roots)
-      ? item.roots.map(r => ({
-          ...r,
-          x: Number(r.x),
-          y: Number(r.y)
-        })).filter(r => Number.isFinite(r.x) && Number.isFinite(r.y))
-      : [],
-    vertex: item?.vertex &&
-            Number.isFinite(Number(item.vertex.x)) &&
-            Number.isFinite(Number(item.vertex.y))
-      ? {
-          x: Number(item.vertex.x),
-          y: Number(item.vertex.y)
-        }
-      : null
-  };
-}
 
   function computeRange(values, padRatio = 0.1, minPad = 1) {
     const clean = values.filter(isNum);
@@ -620,21 +634,11 @@ function normalize(item, defaultLabel = "f(x)") {
     functions = [normalize(plotData, plotData.label || "f(x)")];
   }
 
-  if (!functions[0].x.length || !functions[0].y.length) {
-    const x = [];
-    const y = [];
-    for (let t = -4; t <= 4; t += 0.1) {
-      x.push(Number(t.toFixed(2)));
-      y.push(Number((t * t).toFixed(4)));
-    }
+  functions = functions.filter(fn => fn.x.length && fn.y.length);
 
-    functions = [{
-      label: "f(x)=x²",
-      x,
-      y,
-      roots: [{ x: 0, y: 0 }],
-      vertex: { x: 0, y: 0 }
-    }];
+  if (!functions.length) {
+    document.getElementById("plotInner").innerHTML = "Impossible d'afficher la courbe.";
+    return;
   }
 
   const traces = [];
@@ -650,8 +654,7 @@ function normalize(item, defaultLabel = "f(x)") {
       name: fn.label,
       line: {
         width: 4,
-        shape: "spline",
-        smoothing: 0.6
+        shape: "linear"
       },
       hovertemplate: `${fn.label}<br>x = %{x}<br>y = %{y}<extra></extra>`
     });
@@ -663,7 +666,7 @@ function normalize(item, defaultLabel = "f(x)") {
         type: "scatter",
         mode: "markers",
         marker: {
-          size: 12,
+          size: 10,
           color: "#dc2626",
           symbol: "diamond"
         },
@@ -677,35 +680,23 @@ function normalize(item, defaultLabel = "f(x)") {
         text: `S(${pretty(fn.vertex.x)}, ${pretty(fn.vertex.y)})`,
         showarrow: true,
         arrowhead: 2,
-        ax: 60,
-        ay: -60,
+        ax: 50,
+        ay: -40,
         bgcolor: "white",
         bordercolor: "#ccc",
         borderwidth: 1,
-        font: { size: 14 }
+        font: { size: 13 }
       });
     }
 
     fn.roots.forEach((root, i) => {
-      if (!isNum(root?.x) || !isNum(root?.y)) return;
-
-      if (
-        fn.vertex &&
-        isNum(fn.vertex.x) &&
-        isNum(fn.vertex.y) &&
-        Math.abs(root.x - fn.vertex.x) < 1e-6 &&
-        Math.abs(root.y - fn.vertex.y) < 1e-6
-      ) {
-        return;
-      }
-
       markers.push({
         x: [root.x],
         y: [root.y],
         type: "scatter",
         mode: "markers",
         marker: {
-          size: 10,
+          size: 9,
           color: "#16a34a",
           symbol: "circle"
         },
@@ -720,11 +711,11 @@ function normalize(item, defaultLabel = "f(x)") {
         showarrow: true,
         arrowhead: 2,
         ax: 0,
-        ay: -40,
+        ay: -35,
         bgcolor: "white",
         bordercolor: "#ccc",
         borderwidth: 1,
-        font: { size: 13 }
+        font: { size: 12 }
       });
     });
   });
@@ -733,51 +724,25 @@ function normalize(item, defaultLabel = "f(x)") {
   let allY = [];
 
   functions.forEach(fn => {
-    allX.push(...fn.x.filter(isNum));
-    allY.push(...fn.y.filter(isNum));
+    allX.push(...fn.x);
+    allY.push(...fn.y);
 
     fn.roots.forEach(r => {
-      if (isNum(r?.x)) allX.push(r.x);
-      if (isNum(r?.y)) allY.push(r.y);
+      allX.push(r.x);
+      allY.push(r.y);
     });
 
     if (fn.vertex) {
-      if (isNum(fn.vertex.x)) allX.push(fn.vertex.x);
-      if (isNum(fn.vertex.y)) allY.push(fn.vertex.y);
+      allX.push(fn.vertex.x);
+      allY.push(fn.vertex.y);
     }
   });
 
   allX.push(0);
   allY.push(0);
 
-  let xRange, yRange;
-
-  if (
-    functions.length === 1 &&
-    functions[0].vertex &&
-    isNum(functions[0].vertex.x)
-  ) {
-    const vx = functions[0].vertex.x;
-    const xs = functions[0].x.filter(isNum);
-    const ys = functions[0].y.filter(isNum);
-
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    const dx = Math.max(Math.abs(vx - minX), Math.abs(maxX - vx));
-
-    xRange = [Math.floor(vx - dx), Math.ceil(vx + dx)];
-
-    const minY = ys.length ? Math.min(...ys) : -5;
-    const maxY = ys.length ? Math.max(...ys) : 10;
-
-    yRange = [
-      Math.floor(minY - 1),
-      Math.ceil(maxY + 1)
-    ];
-  } else {
-    xRange = computeRange(allX, 0.1, 1);
-    yRange = computeRange(allY, 0.12, 1);
-  }
+  let xRange = computeRange(allX, 0.1, 1);
+  let yRange = computeRange(allY, 0.1, 1);
 
   const layout = {
     title: {
@@ -787,47 +752,48 @@ function normalize(item, defaultLabel = "f(x)") {
     margin: { l: 60, r: 20, t: 70, b: 60 },
     paper_bgcolor: "#ffffff",
     plot_bgcolor: "#ffffff",
-
-  xaxis: {
-  type: "linear",
-  range: xRange,
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#d1d5db",
-  gridwidth: 1,
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
-  ticks: "outside",
-  ticklen: 6,
-  ticklabelposition: "outside bottom",
-  showline: false
-},
-
-yaxis: {
-  type: "linear",
-  range: yRange,
-  dtick: 1,
-  showgrid: true,
-  gridcolor: "#d1d5db",
-  gridwidth: 1,
-  zeroline: true,
-  zerolinecolor: "#000",
-  zerolinewidth: 2,
-  ticks: "outside",
-  ticklen: 6,
-  showticklabels: true,
-  showline: false,
-  scaleanchor: "x",
-  scaleratio: 1
-},
-
     annotations,
     showlegend: functions.length > 1,
     legend: {
       orientation: "h",
       y: 1.08,
       x: 0
+    },
+
+    xaxis: {
+      type: "linear",
+      autorange: false,
+      range: xRange,
+      dtick: 1,
+      tickmode: "linear",
+      showgrid: true,
+      gridcolor: "#d1d5db",
+      gridwidth: 1,
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      ticklen: 6,
+      ticklabelposition: "outside bottom",
+      showline: false
+    },
+
+    yaxis: {
+      type: "linear",
+      autorange: false,
+      range: yRange,
+      dtick: 1,
+      tickmode: "linear",
+      showgrid: true,
+      gridcolor: "#d1d5db",
+      gridwidth: 1,
+      zeroline: true,
+      zerolinecolor: "#000",
+      zerolinewidth: 2,
+      ticks: "outside",
+      ticklen: 6,
+      showticklabels: true,
+      showline: false
     }
   };
 

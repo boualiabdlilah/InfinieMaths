@@ -626,25 +626,6 @@ function drawMathPlot(plotData) {
     return [Math.floor(min - pad), Math.ceil(max + pad)];
   }
 
-  function chooseNiceStep(span) {
-    const rawStep = span / 8;
-    const power = Math.pow(10, Math.floor(Math.log10(rawStep)));
-    const normalized = rawStep / power;
-
-    let niceNormalized;
-    if (normalized <= 1) {
-      niceNormalized = 1;
-    } else if (normalized <= 2) {
-      niceNormalized = 2;
-    } else if (normalized <= 5) {
-      niceNormalized = 5;
-    } else {
-      niceNormalized = 10;
-    }
-
-    return niceNormalized * power;
-  }
-
   let functions = [];
 
   if (Array.isArray(plotData.functions) && plotData.functions.length) {
@@ -763,13 +744,6 @@ function drawMathPlot(plotData) {
   let xRange = computeRange(allX, 0.1, 1);
   let yRange = computeRange(allY, 0.1, 1);
 
-  const span = Math.max(
-    xRange[1] - xRange[0],
-    yRange[1] - yRange[0]
-  );
-
-  const commonDtick = chooseNiceStep(span);
-
   const layout = {
     title: {
       text: functions.length === 1 ? functions[0].label : "Plusieurs fonctions",
@@ -787,39 +761,42 @@ function drawMathPlot(plotData) {
     },
 
     xaxis: {
-      type: "linear",
-      autorange: false,
-      range: xRange,
-      dtick: commonDtick,
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      gridwidth: 1,
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      ticklen: 6,
-      showline: false
-    },
+  type: "linear",
+  autorange: false,
+  range: xRange,
+  dtick: 1,
+  tickmode: "linear",
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  ticklen: 6,
+  ticklabelposition: "outside bottom",
+  showline: false
+},
 
-    yaxis: {
-      type: "linear",
-      autorange: false,
-      range: yRange,
-      dtick: commonDtick,
-      showgrid: true,
-      gridcolor: "#d1d5db",
-      gridwidth: 1,
-      zeroline: true,
-      zerolinecolor: "#000",
-      zerolinewidth: 2,
-      ticks: "outside",
-      ticklen: 6,
-      showticklabels: true,
-      showline: false,
-      scaleanchor: "x",
-      scaleratio: 1
-    }
+yaxis: {
+  type: "linear",
+  autorange: false,
+  range: yRange,
+  dtick: 1,
+  tickmode: "linear",
+  showgrid: true,
+  gridcolor: "#d1d5db",
+  gridwidth: 1,
+  zeroline: true,
+  zerolinecolor: "#000",
+  zerolinewidth: 2,
+  ticks: "outside",
+  ticklen: 6,
+  showticklabels: true,
+  showline: false,
+  scaleanchor: "x",
+  scaleratio: 1
+}
   };
 
   Plotly.newPlot(

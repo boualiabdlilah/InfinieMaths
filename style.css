@@ -2651,8 +2651,16 @@ a.back-link:focus{
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
-
-
+.brand {
+  background: linear-gradient(90deg, #00e0ff, #3b82f6, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-title {
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1.15;
+}
 
 
 

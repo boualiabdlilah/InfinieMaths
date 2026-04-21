@@ -2870,7 +2870,10 @@ a.back-link:focus{
   line-height: 1.1;
   white-space: nowrap;
 }
-
+.logo-img {
+  height: 48px;
+  width: auto;
+}
 
 
 

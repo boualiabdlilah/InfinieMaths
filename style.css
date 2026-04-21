@@ -2656,7 +2656,19 @@ a.back-link:focus{
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
+.hero-buttons .btn-primary:first-child {
+  background: #f97316;
+  color: #111827;
+}
 
+.hero-buttons .btn-primary:last-child {
+  background: transparent;
+  color: #f97316;
+  border: 1px solid #f97316;
+}
+.hero-buttons .btn-primary:last-child:hover {
+  background: rgba(249, 115, 22, 0.1);
+}
 
 
 

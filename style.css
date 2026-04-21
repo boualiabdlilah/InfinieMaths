@@ -2637,7 +2637,19 @@ a.back-link:focus{
     border-radius: 16px;
     padding: 10px;
 }
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #f8fbff; /* blanc légèrement adouci */
+}
 
+/* InfinieMaths en gradient bleu */
+.hero-title span {
+  background: linear-gradient(90deg, #00d4ff, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 
 

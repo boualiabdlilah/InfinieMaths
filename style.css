@@ -2776,7 +2776,48 @@ a.back-link:focus{
     background: linear-gradient(180deg, #fb923c, #f97316);
     color: #ffffff;
 }
+/* ===== NOUVEAU LOGO (SAFE) ===== */
 
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* ligne principale */
+.logo-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* image infini */
+.logo-img {
+  height: 32px;
+  width: auto;
+}
+
+/* texte */
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+/* couleur "Maths" */
+.logo-blue {
+  color: #38bdf8;
+}
+
+/* slogan dessous */
+.logo-tagline {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  letter-spacing: 1.5px;
+  margin-left: 40px; /* aligne sous le texte */
+}
 
 
 

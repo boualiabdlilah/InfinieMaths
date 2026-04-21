@@ -2818,7 +2818,58 @@ a.back-link:focus{
   letter-spacing: 1.5px;
   margin-left: 40px; /* aligne sous le texte */
 }
+/* ===== LOGO HEADER FIX FINAL ===== */
 
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:hover,
+.logo:focus,
+.logo:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+.logo-blue {
+  color: #38bdf8;
+}
+
+.logo-tagline {
+  font-size: 0.62rem;
+  color: #94a3b8;
+  letter-spacing: 1.3px;
+  margin-left: 48px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
 
 
 

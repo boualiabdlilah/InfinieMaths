@@ -2643,6 +2643,8 @@ a.back-link:focus{
   line-height: 1.1;
   color: #0f172a;
   margin: 18px 0 24px 0;
+  max-width: 680px;
+  margin-bottom: 18px;
 }
 
 .hero-title span {
@@ -2651,8 +2653,6 @@ a.back-link:focus{
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
-
-
 
 
 

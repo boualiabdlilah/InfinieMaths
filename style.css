@@ -2662,13 +2662,14 @@ a.back-link:focus{
 }
 
 .hero-buttons .btn-primary:last-child {
-  background: transparent;
+  background: rgba(249, 115, 22, 0.04);
   color: #ea580c;
   border: 1px solid #f97316;
   font-weight: 600;
 }
 .hero-buttons .btn-primary:last-child:hover {
-  background: rgba(249, 115, 22, 0.1);
+  background: rgba(249, 115, 22, 0.12);
+  border-color: #ea580c;
 }
 
 

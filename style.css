@@ -2663,8 +2663,9 @@ a.back-link:focus{
 
 .hero-buttons .btn-primary:last-child {
   background: transparent;
-  color: #f97316;
+  color: #ea580c;
   border: 1px solid #f97316;
+  font-weight: 600;
 }
 .hero-buttons .btn-primary:last-child:hover {
   background: rgba(249, 115, 22, 0.1);

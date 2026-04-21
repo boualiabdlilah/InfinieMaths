@@ -2641,10 +2641,9 @@ a.back-link:focus{
   font-size: 56px;
   font-weight: 800;
   line-height: 1.1;
-  color: #f8fbff; /* blanc légèrement adouci */
+  color: #0f172a; /* pour ton fond clair actuel */
 }
 
-/* InfinieMaths en gradient bleu */
 .hero-title span {
   background: linear-gradient(90deg, #00d4ff, #3b82f6);
   -webkit-background-clip: text;

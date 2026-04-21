@@ -2668,10 +2668,11 @@ a.back-link:focus{
   font-weight: 600;
 }
 .hero-buttons .btn-primary:last-child:hover {
-  background: rgba(249, 115, 22, 0.12);
+  background: rgba(249, 115, 22, 0.15);
   border-color: #ea580c;
+  transform: translateY(-1px);
+  transition: 0.2s;
 }
-
 
 
 

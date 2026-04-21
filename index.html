@@ -157,7 +157,34 @@
     <script>
         document.getElementById("year-home").textContent = new Date().getFullYear();
     </script>
+<script>
+(function () {
+    const PASSWORD = "6512"; // change ici
 
+    const entered = prompt("Mot de passe :");
+
+    if (entered !== PASSWORD) {
+        document.body.innerHTML = `
+            <div style="
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#0b1220;
+                color:white;
+                font-family:Arial,sans-serif;
+                text-align:center;
+                padding:20px;
+            ">
+                <div>
+                    <h1>Accès refusé</h1>
+                    <p>Mot de passe incorrect.</p>
+                </div>
+            </div>
+        `;
+    }
+})();
+</script>
 </body>
 </html>
 

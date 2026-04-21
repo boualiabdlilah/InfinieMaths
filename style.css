@@ -2673,7 +2673,109 @@ a.back-link:focus{
   transform: translateY(-1px);
   transition: 0.2s;
 }
+/* =========================
+   HEADER PREMIUM FINAL (SAFE)
+   ========================= */
 
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 1.05rem 2rem;
+    background: rgba(2, 6, 23, 0.96);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    backdrop-filter: blur(8px);
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: nowrap;
+}
+
+.logo-mark {
+    background: #f97316;
+    color: #111827;
+    padding: 0.18rem 0.52rem;
+    border-radius: 999px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.22);
+}
+
+.logo-text {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #f8fafc;
+    letter-spacing: 0.2px;
+}
+
+.logo-subtitle {
+    margin-left: 0.8rem;
+    font-size: 0.98rem;
+    color: #e5e7eb;
+    white-space: nowrap;
+    opacity: 0.96;
+}
+
+/* NAVIGATION */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-left: auto;
+}
+
+.main-nav a {
+    color: #f8fafc;
+    text-decoration: none;
+    font-size: 0.96rem;
+    padding: 0.52rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ACTIF */
+.main-nav a.active {
+    border-color: #f97316;
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.06);
+}
+
+/* INSCRIPTION (avant-dernier lien) */
+.main-nav a:nth-last-child(2) {
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    background: transparent;
+    color: #f8fafc;
+    padding: 0.52rem 0.95rem;
+}
+
+.main-nav a:nth-last-child(2):hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* CONNEXION (dernier lien) */
+.main-nav a:last-child {
+    background: linear-gradient(180deg, #f97316, #ea580c);
+    color: #ffffff;
+    padding: 0.52rem 1rem;
+    border: 1px solid #ea580c;
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+}
+
+.main-nav a:last-child:hover {
+    background: linear-gradient(180deg, #fb923c, #f97316);
+    color: #ffffff;
+}
 
 
 

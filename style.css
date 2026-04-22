@@ -2884,11 +2884,11 @@ a.back-link:focus{
   text-decoration: none;
 }
 
-/* LIGNE PRINCIPALE */
+/* ALIGNEMENT */
 .logo-main {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 /* TEXTE */
@@ -2910,19 +2910,20 @@ a.back-link:focus{
   margin-top: 2px;
 }
 
-/* INFINI */
+/* INFINI PRO */
 .infinity {
   position: relative;
-  width: 40px;
-  height: 20px;
+  width: 46px;
+  height: 24px;
 }
 
+/* cercles */
 .infinity::before,
 .infinity::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border: 3px solid #38bdf8;
   border-radius: 50%;
 }
@@ -2935,12 +2936,19 @@ a.back-link:focus{
   right: 0;
 }
 
-/* + et = */
+/* centre */
+.infinity::after,
+.infinity::before {
+  box-shadow: inset 0 0 5px rgba(56,189,248,0.4);
+}
+
+/* + et = BIEN CENTRÉS */
 .plus, .equal {
   position: absolute;
+  top: 4px;
+  font-size: 11px;
+  font-weight: bold;
   color: white;
-  font-size: 10px;
-  top: 3px;
 }
 
 .plus {
@@ -2948,19 +2956,17 @@ a.back-link:focus{
 }
 
 .equal {
-  right: 5px;
+  right: 6px;
 }
 
-/* √x */
+/* √x BIEN POSITIONNÉ */
 .sqrt {
   position: absolute;
-  top: -12px;
-  left: 8px;
-  font-size: 10px;
+  top: -14px;
+  left: 10px;
+  font-size: 11px;
   color: #38bdf8;
 }
-
-
 
 
 

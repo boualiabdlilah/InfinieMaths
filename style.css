@@ -2873,10 +2873,9 @@ a.back-link:focus{
   white-space: nowrap;
 }
 .logo-img {
-  height: 120px;
-  margin-top: -25px;
-  width: auto;
-  display: block;
+  height: 55px;
+  transform: scale(1.8);
+  transform-origin: left center;
 }
 
 

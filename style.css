@@ -2936,7 +2936,7 @@ a.back-link:focus{
 
 .logo-clean .logo-main {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 14px;
 }
 
@@ -2959,8 +2959,8 @@ a.back-link:focus{
   font-size: 12px;
   font-weight: 700;
   color: #38bdf8;
-  margin-bottom: 4px;
-  margin-left: 2px;
+  margin-bottom: 2px;
+  margin-left: 12px;
 }
 
 .logo-clean .logo-text {

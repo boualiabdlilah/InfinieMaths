@@ -2823,109 +2823,58 @@ a.back-link:focus{
 .logo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  flex-shrink: 0;
-  text-decoration: none;
-  color: inherit;
-  align-items: center;
-  height: 80px;
-}
-
-.logo:hover,
-.logo:focus,
-.logo:visited {
-  text-decoration: none;
-  color: inherit;
-}
-
-.logo-main {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-img {
-  height: 38px;
-  width: auto;
-  display: block;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #f8fafc;
-  line-height: 1;
-  letter-spacing: 0.2px;
-}
-
-.logo-blue {
-  color: #38bdf8;
-}
-
-.logo-tagline {
-  font-size: 0.62rem;
-  color: #94a3b8;
-  letter-spacing: 1.3px;
-  margin-left: 48px;
-  line-height: 1.1;
-  white-space: nowrap;
-}
-.logo-img {
-  height: 55px;
-  transform: scale(1.8);
-  transform-origin: left center;
-}
-/* LOGO GLOBAL */
-.logo {
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
 }
 
-/* ALIGNEMENT */
 .logo-main {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* TEXTE */
 .logo-text {
   font-size: 22px;
   font-weight: 700;
-  color: white;
+  color: #f8fafc;
+  line-height: 1;
 }
 
 .logo-blue {
   color: #38bdf8;
 }
 
-/* TAGLINE */
 .logo-tagline {
   font-size: 10px;
   letter-spacing: 1px;
   color: #9ca3af;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
-/* INFINI PRO */
-.infinity {
+/* bloc infini */
+.infinity-wrap {
   position: relative;
-  width: 46px;
+  width: 54px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.infinity {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 54px;
   height: 24px;
 }
 
-/* cercles */
 .infinity::before,
 .infinity::after {
   content: "";
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border: 3px solid #38bdf8;
   border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .infinity::before {
@@ -2936,38 +2885,37 @@ a.back-link:focus{
   right: 0;
 }
 
-/* centre */
-.infinity::after,
-.infinity::before {
-  box-shadow: inset 0 0 5px rgba(56,189,248,0.4);
-}
-
-/* + et = BIEN CENTRÉS */
-.plus, .equal {
+/* signes */
+.plus,
+.equal {
   position: absolute;
-  top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
   font-size: 11px;
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 2;
 }
 
 .plus {
-  left: 6px;
+  left: 8px;
 }
 
 .equal {
-  right: 6px;
+  right: 7px;
 }
 
-/* √x BIEN POSITIONNÉ */
+/* racine */
 .sqrt {
   position: absolute;
-  top: -14px;
-  left: 10px;
+  top: -2px;
+  left: 13px;
   font-size: 11px;
   color: #38bdf8;
+  font-weight: 700;
+  line-height: 1;
 }
-
 
 
 

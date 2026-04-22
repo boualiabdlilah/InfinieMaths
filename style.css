@@ -3462,7 +3462,86 @@ a.back-link:focus{
 .hero-feature:not(:last-child)::after {
   content: none;
 }
+/* =========================
+   HERO FIX FINAL
+   ========================= */
 
+/* on remet un hero équilibré */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-left {
+  flex: 1.15;
+  min-width: 0;
+}
+
+.hero-side {
+  flex: 0.95;
+}
+
+/* le titre ne doit pas être trop étroit */
+.hero-title {
+  max-width: 760px;
+  line-height: 1.1;
+}
+
+/* ligne des 4 badges */
+.hero-features {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.hero-features::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.05);
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.hero-feature-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0ecff;
+  border: 1px solid #93c5fd;
+  color: #2563eb;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.hero-feature-text {
+  color: #334155;
+  white-space: nowrap;
+}
+
+.hero-feature:not(:last-child)::after {
+  content: none;
+}
 
 
 

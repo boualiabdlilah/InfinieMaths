@@ -3266,7 +3266,6 @@ a.back-link:focus{
   justify-content: center;
   gap: 28px;
   margin-top: 32px;
-  flex-wrap: wrap; /* 🔥 évite dépassement */
 }
 
 .hero-feature {

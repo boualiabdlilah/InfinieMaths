@@ -2871,8 +2871,9 @@ a.back-link:focus{
   white-space: nowrap;
 }
 .logo-img {
-  height: 52px;
+  height: 65px;   /* 🔥 augmente ici */
   width: auto;
+  display: block;
 }
 
 

@@ -2828,6 +2828,8 @@ a.back-link:focus{
   flex-shrink: 0;
   text-decoration: none;
   color: inherit;
+  align-items: center;
+  height: 80px;
 }
 
 .logo:hover,
@@ -2871,7 +2873,7 @@ a.back-link:focus{
   white-space: nowrap;
 }
 .logo-img {
-  height: 100px;   /* 🔥 augmente ici */
+  height: 80px;   /* 🔥 augmente ici */
   width: auto;
   display: block;
 }

@@ -3302,7 +3302,24 @@ a.back-link:focus{
   color: #334155;
 }
 
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
+  padding: 6px 10px;      /* 🔥 plus compact */
+  font-size: 13px;        /* 🔥 plus petit */
+  border-radius: 8px;
+
+  background: rgba(59, 130, 246, 0.05);
+  color: #334155;
+  white-space: nowrap;
+}
+.hero-feature-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
 
 
 

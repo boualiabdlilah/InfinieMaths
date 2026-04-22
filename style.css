@@ -2877,7 +2877,88 @@ a.back-link:focus{
   transform: scale(1.8);
   transform-origin: left center;
 }
+/* LOGO GLOBAL */
+.logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
 
+/* LIGNE PRINCIPALE */
+.logo-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* TEXTE */
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.logo-blue {
+  color: #38bdf8;
+}
+
+/* TAGLINE */
+.logo-tagline {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* INFINI */
+.infinity {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.infinity::before,
+.infinity::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #38bdf8;
+  border-radius: 50%;
+}
+
+.infinity::before {
+  left: 0;
+}
+
+.infinity::after {
+  right: 0;
+}
+
+/* + et = */
+.plus, .equal {
+  position: absolute;
+  color: white;
+  font-size: 10px;
+  top: 3px;
+}
+
+.plus {
+  left: 6px;
+}
+
+.equal {
+  right: 5px;
+}
+
+/* √x */
+.sqrt {
+  position: absolute;
+  top: -12px;
+  left: 8px;
+  font-size: 10px;
+  color: #38bdf8;
+}
 
 
 

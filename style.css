@@ -3193,7 +3193,6 @@ a.back-link:focus{
   align-items: center;
   gap: 28px;
   margin-top: 32px;
-  flex-wrap: wrap;
 }
 
 /* bloc individuel */
@@ -3239,7 +3238,14 @@ a.back-link:focus{
 .hero-feature-text {
   white-space: nowrap;
 }
-
+.hero-features {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔥 aligne sur toute la largeur */
+  gap: 20px;
+  margin-top: 32px;
+  flex-wrap: nowrap;              /* 🔥 empêche retour à la ligne */
+}
 
 
 

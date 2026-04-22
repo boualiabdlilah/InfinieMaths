@@ -3256,7 +3256,51 @@ a.back-link:focus{
   top: 50%;
   transform: translateY(-50%);
 }
+/* =========================
+   HERO FEATURES FINAL PRO
+   ========================= */
 
+.hero-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 32px;
+  flex-wrap: wrap; /* 🔥 évite dépassement */
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(59, 130, 246, 0.05);
+  padding: 8px 14px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.hero-feature-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e0ecff;
+  border: 1px solid #93c5fd;
+  color: #2563eb;
+  font-size: 16px;
+}
+
+.hero-feature-text {
+  color: #334155;
+}
 
 
 

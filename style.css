@@ -3241,12 +3241,21 @@ a.back-link:focus{
 .hero-features {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 🔥 aligne sur toute la largeur */
-  gap: 20px;
+  justify-content: center;   /* 🔥 centre tout */
+  gap: 40px;                 /* 🔥 espace propre */
   margin-top: 32px;
-  flex-wrap: nowrap;              /* 🔥 empêche retour à la ligne */
+  flex-wrap: nowrap;
 }
-
+.hero-feature:not(:last-child)::after {
+  content: "";
+  width: 1px;
+  height: 20px;
+  background: rgba(100, 116, 139, 0.25);
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 
 

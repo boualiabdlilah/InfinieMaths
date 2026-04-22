@@ -2980,7 +2980,155 @@ a.back-link:focus{
   color: #9ca3af;
   white-space: nowrap;
 }
+/* =========================
+   LOGO WORDMARK FINAL
+   ========================= */
 
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.logo-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #f97316;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(249, 115, 22, 0.22);
+  transform: translateY(-1px);
+}
+
+.logo-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
+}
+
+.logo-blue {
+  color: #38bdf8;
+}
+
+.logo-tagline {
+  margin-top: 6px;
+  margin-left: 46px;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* =========================
+   HEADER PREMIUM FINAL
+   ========================= */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.05rem 2rem;
+  background: rgba(2, 6, 23, 0.96);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: auto;
+  flex-wrap: nowrap;
+}
+
+.main-nav a {
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 0.96rem;
+  padding: 0.52rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.main-nav a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.main-nav a.active {
+  border-color: #f97316;
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.06);
+}
+
+.nav-signup {
+  border: 1px solid rgba(148, 163, 184, 0.4) !important;
+  background: transparent;
+  color: #f8fafc !important;
+  padding: 0.52rem 0.95rem !important;
+}
+
+.nav-signup:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.nav-login {
+  background: linear-gradient(180deg, #f97316, #ea580c) !important;
+  color: #ffffff !important;
+  padding: 0.52rem 1rem !important;
+  border: 1px solid #ea580c !important;
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+}
+
+.nav-login:hover {
+  background: linear-gradient(180deg, #fb923c, #f97316) !important;
+  color: #ffffff !important;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .site-header {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .main-nav {
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .logo-tagline {
+    white-space: normal;
+    margin-left: 46px;
+    line-height: 1.3;
+  }
+}
 
 
 

@@ -2907,16 +2907,26 @@ a.back-link:focus{
 }
 
 /* racine */
-.sqrt {
-  position: absolute;
-  top: -2px;
-  left: 13px;
-  font-size: 11px;
-  color: #38bdf8;
-  font-weight: 700;
-  line-height: 1;
+.infinity-svg {
+  position: relative;
+  width: 60px;
+  height: 30px;
 }
 
+.infinity-icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* √x */
+.sqrt {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: bold;
+}
 
 
 

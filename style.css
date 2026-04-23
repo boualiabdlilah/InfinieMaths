@@ -3693,7 +3693,64 @@ a.back-link:focus{
 .level-btn {
   margin-top: auto;    /* pousse le bouton en bas de chaque carte */
 }
+/* ===== FIX FINAL ALIGNEMENT DES 3 CARTES NIVEAUX ===== */
 
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.levels-grid .level-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.levels-grid .level-card p {
+  min-height: 132px;
+  margin-bottom: 18px;
+}
+
+.levels-grid .level-tags {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 12px;
+  align-content: start;
+  min-height: 92px;
+}
+
+.levels-grid .level-tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 126px;
+  height: 40px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.levels-grid .level-btn {
+  margin-top: auto;
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  .levels-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .levels-grid .level-card p {
+    min-height: auto;
+  }
+
+  .levels-grid .level-tags {
+    min-height: auto;
+  }
+}
 
 
 

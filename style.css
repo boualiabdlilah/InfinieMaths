@@ -3630,7 +3630,18 @@ a.back-link:focus{
   transform: scale(1.08);
   box-shadow: 0 0 60px rgba(255,140,0,0.5);
 }
+/* ===== ALIGNEMENT DES TAGS (Cours / Exercices / Progression) ===== */
 
+.level-tags {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 8px 10px;
+}
+
+/* Pour que chaque "pill" soit propre */
+.level-tags span {
+  display: inline-block;
+}
 
 
 

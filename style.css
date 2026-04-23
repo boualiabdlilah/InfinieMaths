@@ -2031,3 +2031,14 @@ body.home-page .logo-badge span{
   z-index: 1;
   transform: translateY(-1px);
 }
+/* FIX BOUTONS CARTES NIVEAUX */
+body.home-page .levels-section .level-btn{
+  text-decoration: none !important;
+  color: #ffffff !important;
+  display: inline-flex !important;
+}
+
+/* version terminale */
+body.home-page .levels-section .level-card-terminale .level-btn{
+  color: #111827 !important;
+}

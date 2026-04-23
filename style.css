@@ -3791,6 +3791,14 @@ body.home-page .levels-grid .level-card-top {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
+/* ===== BOUTONS PLUS COURTS ET CENTRÉS (ACCUEIL) ===== */
+
+body.home-page .levels-grid .level-btn {
+  align-self: center;        /* centre horizontalement */
+  width: auto !important;    /* enlève le full width */
+  padding: 12px 28px !important; /* taille propre */
+  text-align: center;
+}
 
 
 

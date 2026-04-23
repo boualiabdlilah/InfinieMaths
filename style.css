@@ -3737,3 +3737,6 @@ body.home-page .levels-grid .level-tags {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
+body.home-page .highlight {
+  transform: none !important;
+}

@@ -3799,6 +3799,22 @@ body.home-page .levels-grid .level-btn {
   padding: 12px 28px !important; /* taille propre */
   text-align: center;
 }
+/* ===== FIX DÉFINITIF BOUTONS (ACCUEIL) ===== */
 
+body.home-page .levels-grid .level-card {
+  align-items: center; /* centre le contenu */
+}
+
+body.home-page .levels-grid .level-btn {
+  width: fit-content !important;
+  min-width: 220px;
+  max-width: 260px;
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px !important;
+  text-align: center;
+  margin-top: auto;
+}
 
 

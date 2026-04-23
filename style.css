@@ -3630,7 +3630,84 @@ a.back-link:focus{
   transform: scale(1.08);
   box-shadow: 0 0 60px rgba(255,140,0,0.5);
 }
+/* ===== FIX FINAL SECTION NIVEAUX ===== */
 
+.levels-section{
+  max-width: 1100px;
+  margin: 48px auto 0 auto;   /* réduit l'espace au-dessus */
+  padding: 0 0 8px 0;
+}
+
+.levels-title{
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.levels-subtitle{
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.trust{
+  margin: 0 0 18px 0;         /* espace plus petit avant les cartes */
+  text-align: center;
+}
+
+.levels-grid{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+  margin-top: 0 !important;
+}
+
+.levels-grid > .level-card{
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  height: 100% !important;
+}
+
+.levels-grid > .level-card > p{
+  min-height: 110px !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.levels-grid > .level-card > .level-tags{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  min-height: 92px !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.levels-grid > .level-card > .level-tags > span{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.levels-grid > .level-card > .level-btn{
+  margin-top: auto !important;
+}
+
+@media (max-width: 900px){
+  .levels-grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .levels-grid > .level-card > p,
+  .levels-grid > .level-card > .level-tags{
+    min-height: auto !important;
+  }
+}
 
 
 

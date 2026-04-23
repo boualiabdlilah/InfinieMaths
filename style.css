@@ -2026,4 +2026,8 @@ body.home-page .logo-tagline {
     animation: none;
   }
 }
-
+body.home-page .logo-badge span{
+  position: relative;
+  z-index: 1;
+  transform: translateY(-1px);
+}

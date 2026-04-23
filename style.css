@@ -3791,28 +3791,28 @@ body.home-page .levels-grid .level-card-top {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
-/* ===== ACCUEIL UNIQUEMENT : BOUTONS CARTES CORRIGÉS ===== */
+/* ===== ACCUEIL UNIQUEMENT — BOUTONS CARTES NIVEAUX (OVERRIDE TOTAL) ===== */
 
-body.home-page .levels-grid .level-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  align-self: center !important;
-
-  width: auto !important;
-  min-width: 260px !important;
-  max-width: 320px !important;
-
-  padding: 14px 28px !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-}
-
-body.home-page .levels-grid .level-card {
+body.home-page .levels-grid > .level-card {
   display: flex !important;
   flex-direction: column !important;
 }
 
-body.home-page .levels-grid .level-card .level-btn {
+body.home-page .levels-grid > .level-card > .level-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  align-self: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  padding: 14px 28px !important;
   margin-top: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  white-space: nowrap !important;
+  text-align: center !important;
 }

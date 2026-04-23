@@ -2042,3 +2042,8 @@ body.home-page .levels-section .level-btn{
 body.home-page .levels-section .level-card-terminale .level-btn{
   color: #111827 !important;
 }
+body.home-page .level-btn{
+  text-decoration: none !important;
+  color: #ffffff !important;
+  display: inline-flex !important;
+}

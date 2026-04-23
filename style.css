@@ -1814,7 +1814,20 @@ body.home-page .logo-blue,
 body.home-page .logo-tagline{
   color: transparent !important;
 }
-
+/* SYMBOLE ∞ — accueil */
+body.home-page .logo-badge{
+  font-size: 1.4rem;
+  color: #a855f7;   /* violet visible */
+  margin-bottom: 2px;
+  display: block;
+}
+/* TAGLINE — taille corrigée */
+body.home-page .logo-tagline{
+  font-size: 0.85rem;   /* 👈 clé */
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
 
 
 

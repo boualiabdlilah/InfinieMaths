@@ -3751,7 +3751,53 @@ a.back-link:focus{
     min-height: auto;
   }
 }
+/* ===== FIX DÉFINITIF ALIGNEMENT CARTES NIVEAUX ===== */
 
+.levels-grid > .level-card{
+  display: grid !important;
+  grid-template-rows: auto 132px 92px auto !important;
+  align-content: start !important;
+  height: 100% !important;
+}
+
+.levels-grid > .level-card > p{
+  margin: 0 !important;
+  min-height: 0 !important;
+}
+
+.levels-grid > .level-card > .level-tags{
+  display: grid !important;
+  grid-template-columns: repeat(2, max-content) !important;
+  gap: 12px !important;
+  align-content: start !important;
+}
+
+.levels-grid > .level-card > .level-tags > span{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 126px !important;
+  height: 40px !important;
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.levels-grid > .level-card > .level-btn{
+  align-self: end !important;
+  margin-top: 16px !important;
+}
+
+@media (max-width: 900px){
+  .levels-grid > .level-card{
+    grid-template-rows: auto auto auto auto !important;
+  }
+
+  .levels-grid > .level-card > .level-tags{
+    grid-template-columns: repeat(2, max-content) !important;
+  }
+}
 
 
 

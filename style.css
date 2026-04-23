@@ -3738,7 +3738,7 @@ body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
 /* =====================================================
-   RESET FINAL – SECTION NIVEAUX (PAGE ACCUEIL UNIQUEMENT)
+   ACCUEIL UNIQUEMENT — ALIGNEMENT PROPRE SANS DÉBORDEMENT
    ===================================================== */
 
 body.home-page .levels-grid {
@@ -3748,23 +3748,21 @@ body.home-page .levels-grid {
   align-items: stretch !important;
 }
 
-/* Carte */
 body.home-page .levels-grid .level-card {
   display: flex !important;
   flex-direction: column !important;
-  height: 100% !important;
+  height: auto !important;
+  min-height: 610px !important; /* même hauteur globale, sans forcer trop fort */
 }
 
-/* Bloc haut (icône + titre) */
 body.home-page .levels-grid .level-card-top {
   display: grid !important;
   grid-template-columns: 80px 1fr !important;
-  align-items: center !important;
   column-gap: 16px !important;
-  min-height: 110px !important;
+  align-items: center !important;
+  min-height: 96px !important;
 }
 
-/* Icône */
 body.home-page .levels-grid .level-icon {
   width: 80px !important;
   height: 80px !important;
@@ -3773,35 +3771,20 @@ body.home-page .levels-grid .level-icon {
   justify-content: center !important;
 }
 
-/* Texte du haut */
-body.home-page .levels-grid .level-meta {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
-/* Titre */
 body.home-page .levels-grid .level-meta h3 {
   margin: 6px 0 0 0 !important;
-  min-height: 50px !important;
-  display: flex !important;
-  align-items: center !important;
   line-height: 1.05 !important;
 }
 
-/* Paragraphe */
 body.home-page .levels-grid .level-card > p {
-  height: 140px !important;
-  overflow: hidden !important;
-  margin-bottom: 18px !important;
+  margin: 0 0 18px 0 !important;
+  min-height: 120px !important;   /* minimum seulement, pas hauteur fixe */
 }
 
-/* Chips */
 body.home-page .levels-grid .level-tags {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 12px !important;
-  min-height: 96px !important;
   margin-bottom: 18px !important;
 }
 
@@ -3809,30 +3792,27 @@ body.home-page .levels-grid .level-tags > span {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 100% !important;
-  height: 40px !important;
+  min-height: 40px !important;
   padding: 0 12px !important;
   box-sizing: border-box !important;
   text-align: center !important;
   white-space: nowrap !important;
 }
 
-/* Bouton */
 body.home-page .levels-grid .level-btn {
   margin-top: auto !important;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   body.home-page .levels-grid {
     grid-template-columns: 1fr !important;
   }
 
-  body.home-page .levels-grid .level-card > p {
-    height: auto !important;
+  body.home-page .levels-grid .level-card {
+    min-height: auto !important;
   }
 
-  body.home-page .levels-grid .level-tags {
+  body.home-page .levels-grid .level-card > p {
     min-height: auto !important;
   }
 }

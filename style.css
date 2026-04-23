@@ -3708,6 +3708,34 @@ a.back-link:focus{
     min-height: auto !important;
   }
 }
+/* ===== ACCUEIL UNIQUEMENT : ALIGNEMENT FINAL DES 3 CARTES ===== */
 
+body.home-page .levels-grid {
+  align-items: stretch;
+}
+
+body.home-page .levels-grid .level-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+body.home-page .levels-grid .level-card-top {
+  min-height: 110px;   /* même hauteur pour icône + NIVEAU + titre */
+}
+
+body.home-page .levels-grid .level-card > p {
+  min-height: 150px;   /* même hauteur pour le texte */
+  margin-bottom: 18px;
+}
+
+body.home-page .levels-grid .level-tags {
+  min-height: 96px;    /* même zone pour les chips */
+  margin-bottom: 18px;
+}
+
+body.home-page .levels-grid .level-btn {
+  margin-top: auto;
+}
 
 

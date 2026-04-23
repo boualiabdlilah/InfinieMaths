@@ -3595,7 +3595,41 @@ a.back-link:focus{
   font-weight: 600;
   opacity: 0.9;
 }
+/* ===== BADGE TERMINALE PREMIUM (FIX COMPLET) ===== */
 
+.level-card-terminale {
+  position: relative;
+}
+
+/* Badge "Le plus choisi" */
+.level-card-terminale .badge-pop {
+  position: absolute;
+  top: 58px;      /* ajuste si besoin (55–65) */
+  right: 16px;
+
+  font-size: 11px;
+  color: #ffb347;
+  font-weight: 600;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+}
+
+/* Ajoute automatiquement l’emoji 🔥 */
+.level-card-terminale .badge-pop::before {
+  content: "🔥 ";
+}
+
+/* Petit effet premium sur la carte Terminale */
+.level-card-terminale.highlight {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255,140,0,0.35);
+  border: 1px solid rgba(255,140,0,0.6);
+}
+
+.level-card-terminale.highlight:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 60px rgba(255,140,0,0.5);
+}
 
 
 

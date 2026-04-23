@@ -3708,7 +3708,16 @@ a.back-link:focus{
     min-height: auto !important;
   }
 }
+/* ===== ACCUEIL UNIQUEMENT : ALIGNEMENT DES CARTES NIVEAUX ===== */
 
+body.home-page .levels-grid .level-card > p {
+  height: 140px !important;
+  overflow: hidden;
+}
+
+body.home-page .levels-grid .level-tags {
+  margin-top: 0 !important;
+}
 
 
 

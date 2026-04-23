@@ -1769,3 +1769,21 @@ body.home-page .levels-subtitle,
 body.home-page .trust{
   text-align: center;
 }
+body.home-page .levels-section{
+  text-align: center;
+}
+
+body.home-page .levels-section .levels-title{
+  display: inline-block;
+  margin: 0 0 10px 0;
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+body.home-page .levels-section .levels-subtitle,
+body.home-page .levels-section .trust{
+  text-align: center;
+}

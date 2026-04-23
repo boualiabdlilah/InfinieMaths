@@ -1502,3 +1502,208 @@ a.back-link:focus {
     white-space: normal !important;
   }
 }
+/* =========================================
+   HOME ONLY — section "Choisis ton niveau"
+   ne touche aucune autre page
+   ========================================= */
+
+body.home-page .levels-section{
+  max-width: 1100px;
+  margin: 48px auto 0 auto;
+  padding: 0 20px;
+}
+
+body.home-page .levels-title{
+  margin: 0 0 10px 0;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #f8fafc;
+  text-align: left;
+}
+
+body.home-page .levels-subtitle{
+  margin: 0 0 8px 0;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  text-align: left;
+}
+
+body.home-page .trust{
+  margin: 0 0 22px 0;
+  font-size: 1rem;
+  color: #e2e8f0;
+  text-align: left;
+}
+
+body.home-page .levels-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+body.home-page .levels-grid > .level-card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  padding: 24px 20px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #020817, #030b1f);
+  border: 1px solid rgba(148, 163, 184, 0.20);
+  box-shadow:
+    0 16px 40px rgba(2, 6, 23, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+body.home-page .levels-grid > .level-card:hover{
+  transform: translateY(-2px);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  box-shadow:
+    0 20px 46px rgba(2, 6, 23, 0.55),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+body.home-page .level-card-top{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+body.home-page .level-icon{
+  font-size: 1.35rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+body.home-page .level-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body.home-page .level-label{
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+body.home-page .level-card h3{
+  margin: 0;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+body.home-page .levels-grid > .level-card > p{
+  margin: 0 0 20px 0;
+  min-height: 96px;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: #dbe4f0;
+}
+
+body.home-page .level-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+body.home-page .level-tags span{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.10);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: #dbeafe;
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+body.home-page .level-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #2563eb;
+  border: 1px solid #60a5fa;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.98rem;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+}
+
+body.home-page .level-btn:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  transition: 0.18s ease;
+}
+
+/* Accent premium sur Terminale seulement */
+body.home-page .level-card-terminale{
+  border: 1px solid rgba(249, 115, 22, 0.42);
+  box-shadow:
+    0 18px 42px rgba(2, 6, 23, 0.55),
+    0 0 0 1px rgba(249, 115, 22, 0.10) inset;
+}
+
+body.home-page .level-card-terminale .level-label,
+body.home-page .level-card-terminale h3,
+body.home-page .level-card-terminale p,
+body.home-page .level-card-terminale .level-icon{
+  color: inherit;
+}
+
+body.home-page .level-card-terminale .level-label{
+  color: #fdba74;
+}
+
+body.home-page .level-card-terminale h3{
+  color: #f97316;
+}
+
+body.home-page .level-card-terminale p{
+  color: #fdba74;
+}
+
+body.home-page .level-card-terminale .level-tags span{
+  background: rgba(249, 115, 22, 0.10);
+  border-color: rgba(249, 115, 22, 0.28);
+  color: #fdba74;
+}
+
+body.home-page .level-card-terminale .level-btn{
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  border: none;
+  color: #111827;
+  box-shadow: 0 12px 28px rgba(245, 158, 11, 0.28);
+}
+
+/* Responsive accueil uniquement */
+@media (max-width: 980px){
+  body.home-page .levels-grid{
+    grid-template-columns: 1fr;
+  }
+
+  body.home-page .levels-grid > .level-card{
+    min-height: auto;
+  }
+
+  body.home-page .levels-grid > .level-card > p{
+    min-height: auto;
+  }
+}

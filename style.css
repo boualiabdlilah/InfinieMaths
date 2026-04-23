@@ -1828,7 +1828,59 @@ body.home-page .logo-tagline{
   letter-spacing: 0.06em;
   margin-top: 2px;
 }
+/* =========================================
+   LOGO NAVBAR — ALIGNEMENT PRO
+   ========================================= */
 
+/* conteneur principal du logo */
+body.home-page .logo-wordmark{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ligne du haut : ∞ + InfinieMaths */
+body.home-page .logo-top{
+  display: flex;
+  align-items: center;
+  gap: 6px;   /* espace entre ∞ et texte */
+}
+
+/* symbole ∞ */
+body.home-page .logo-badge{
+  font-size: 1.2rem;
+  color: #a855f7;
+  line-height: 1;
+}
+
+/* texte InfinieMaths */
+body.home-page .logo-name{
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Maths en dégradé */
+body.home-page .logo-blue{
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* slogan en dessous */
+body.home-page .logo-tagline{
+  font-size: 0.75rem;
+  opacity: 0.75;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 
 

@@ -3754,7 +3754,11 @@ body.home-page .levels-grid .level-card {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
+/* ===== AJUSTEMENT ESPACE ENTRE CARTES ===== */
 
+body.home-page .levels-grid {
+  gap: 18px !important;
+}
 
 
 

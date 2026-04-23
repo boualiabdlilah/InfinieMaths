@@ -1823,7 +1823,7 @@ body.home-page .logo-badge{
 }
 /* TAGLINE — taille corrigée */
 body.home-page .logo-tagline{
-  font-size: 0.8rem;   /* 👈 clé */
+  font-size: 0.7rem;   /* 👈 clé */
   line-height: 1.2;
   letter-spacing: 0.06em;
   margin-top: 2px;

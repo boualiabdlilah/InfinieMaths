@@ -3548,8 +3548,30 @@ a.back-link:focus{
     max-width: 720px;
   }
 }
+/* 🔥 Mise en avant carte Terminale */
+.highlight {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255,140,0,0.35);
+  border: 1px solid rgba(255,140,0,0.6);
+}
 
-
+/* effet hover encore plus premium */
+.highlight:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 60px rgba(255,140,0,0.5);
+}
+.badge-pop {
+  font-size: 13px;
+  color: #ffb347;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.trust {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 10px;
+}
 
 
 

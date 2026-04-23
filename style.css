@@ -1740,3 +1740,32 @@ body.home-page .levels-section .levels-subtitle,
 body.home-page .levels-section .trust{
   text-align: center;
 }
+/* =========================================
+   ACCUEIL — Dégradés texte (fix final)
+   ========================================= */
+
+/* InfinieMaths dans le hero */
+body.home-page .hero-title .brand{
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Choisis ton niveau */
+body.home-page .levels-title{
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  text-align: center;
+}
+
+/* Sous-titres centrés */
+body.home-page .levels-subtitle,
+body.home-page .trust{
+  text-align: center;
+}

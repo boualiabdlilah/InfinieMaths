@@ -3561,10 +3561,12 @@ a.back-link:focus{
   box-shadow: 0 0 60px rgba(255,140,0,0.5);
 }
 .badge-pop {
-  font-size: 13px;
+  font-size: 12px;
   color: #ffb347;
   margin-top: 6px;
-  font-weight: 500;
+  font-weight: 600;
+  text-align: right;
+  opacity: 0.9;
 }
 .trust {
   text-align: center;
@@ -3572,7 +3574,11 @@ a.back-link:focus{
   font-size: 14px;
   margin-top: 10px;
 }
-
+.level-card-terminale .badge-pop {
+  position: absolute;
+  top: 38px;
+  right: 16px;
+}
 
 
 

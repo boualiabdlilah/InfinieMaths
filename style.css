@@ -3579,7 +3579,22 @@ a.back-link:focus{
   top: 38px;
   right: 16px;
 }
+/* ===== FIX BADGE TERMINALE ===== */
 
+.level-card-terminale {
+  position: relative;
+}
+
+.level-card-terminale .badge-pop {
+  position: absolute;
+  top: 42px;
+  right: 16px;
+
+  font-size: 12px;
+  color: #ffb347;
+  font-weight: 600;
+  opacity: 0.9;
+}
 
 
 

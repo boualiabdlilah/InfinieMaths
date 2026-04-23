@@ -3791,34 +3791,3 @@ body.home-page .levels-grid .level-card-top {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
-/* ===== ACCUEIL UNIQUEMENT : boutons des cartes comme le bouton premium ===== */
-
-body.home-page .levels-grid .level-btn {
-  display: inline-block !important;
-  width: auto !important;
-  padding: 12px 26px !important;
-  border-radius: 999px !important;
-  text-decoration: none !important;
-  font-weight: 800 !important;
-  align-self: center !important;
-  margin-top: auto !important;
-  white-space: nowrap !important;
-  text-align: center !important;
-}
-/* ===== ACCUEIL UNIQUEMENT : level-btn + btn-premium ===== */
-
-body.home-page .levels-grid .level-btn.btn-premium {
-  display: inline-block !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: none !important;
-
-  padding: 12px 26px !important;
-  border-radius: 999px !important;
-
-  align-self: center !important;
-  margin-top: auto !important;
-
-  text-align: center !important;
-  white-space: nowrap !important;
-}

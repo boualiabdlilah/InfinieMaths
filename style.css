@@ -3845,7 +3845,45 @@ a.back-link:focus{
     min-height: auto !important;
   }
 }
+/* ===== FIX FINAL ALIGNEMENT (BON SELECTEUR) ===== */
 
+.level-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.level-grid .level-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.level-grid .level-card p {
+  min-height: 130px;
+}
+
+.level-grid .level-tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-height: 95px;
+}
+
+.level-grid .level-tags span {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+}
+
+.level-grid .level-btn {
+  margin-top: auto;
+}
 
 
 

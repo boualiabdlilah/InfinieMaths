@@ -1708,3 +1708,35 @@ body.home-page .levels-title{
   background-clip: text;
   color: transparent;
 }
+/* =========================================
+   ACCUEIL UNIQUEMENT — dégradés texte
+   ========================================= */
+
+/* Logo InfinieMaths dans la navbar accueil */
+body.home-page .logo-wordmark .logo-name{
+  color: #ffffff;
+}
+
+body.home-page .logo-wordmark .logo-blue{
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Titre "Choisis ton niveau" */
+body.home-page .levels-section .levels-title{
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sous-titre centré */
+body.home-page .levels-section .levels-subtitle,
+body.home-page .levels-section .trust{
+  text-align: center;
+}

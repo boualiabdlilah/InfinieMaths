@@ -3630,38 +3630,6 @@ a.back-link:focus{
   transform: scale(1.08);
   box-shadow: 0 0 60px rgba(255,140,0,0.5);
 }
-/* ===== ALIGNEMENT DES TAGS (Cours / Exercices / Progression) ===== */
-
-.level-tags {
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 8px 10px;
-}
-
-/* Pour que chaque "pill" soit propre */
-.level-tags span {
-  display: inline-block;
-}
-/* ===== ALIGNEMENT PROPRE DE TOUS LES CHIPS ===== */
-
-.level-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 10px;
-  align-items: flex-start;
-}
-
-.level-tags span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;   /* même largeur visuelle */
-  height: 38px;       /* même hauteur */
-  padding: 0 14px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
 
 
 

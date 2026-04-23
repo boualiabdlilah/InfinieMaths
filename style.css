@@ -1692,3 +1692,19 @@ body.home-page section.levels-section .level-card-terminale .level-btn {
     min-height: auto;
   }
 }
+/* =========================================
+   GRADIENT TEXTE — ACCUEIL UNIQUEMENT
+   ========================================= */
+
+body.home-page .highlight{
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+body.home-page .levels-title{
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

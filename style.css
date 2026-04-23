@@ -3737,56 +3737,102 @@ body.home-page .levels-grid .level-tags {
 body.home-page .levels-grid .level-btn {
   margin-top: auto;
 }
-/* ===== ACCUEIL UNIQUEMENT : ALIGNEMENT VRAIMENT FINAL ===== */
+/* =====================================================
+   RESET FINAL – SECTION NIVEAUX (PAGE ACCUEIL UNIQUEMENT)
+   ===================================================== */
 
+body.home-page .levels-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+}
+
+/* Carte */
 body.home-page .levels-grid .level-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
 }
 
+/* Bloc haut (icône + titre) */
 body.home-page .levels-grid .level-card-top {
-  display: grid;
-  grid-template-columns: 88px 1fr;
-  align-items: center;
-  column-gap: 18px;
-  min-height: 120px;
+  display: grid !important;
+  grid-template-columns: 80px 1fr !important;
+  align-items: center !important;
+  column-gap: 16px !important;
+  min-height: 110px !important;
 }
 
+/* Icône */
 body.home-page .levels-grid .level-icon {
-  width: 88px;
-  height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 80px !important;
+  height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
+/* Texte du haut */
 body.home-page .levels-grid .level-meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 88px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
 
+/* Titre */
 body.home-page .levels-grid .level-meta h3 {
   margin: 6px 0 0 0 !important;
-  line-height: 1.05;
-  min-height: 52px;
-  display: flex;
-  align-items: center;
+  min-height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1.05 !important;
 }
 
+/* Paragraphe */
 body.home-page .levels-grid .level-card > p {
-  min-height: 150px;
-  margin: 0 0 18px 0;
+  height: 140px !important;
+  overflow: hidden !important;
+  margin-bottom: 18px !important;
 }
 
+/* Chips */
 body.home-page .levels-grid .level-tags {
-  min-height: 96px;
-  margin-bottom: 18px;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  min-height: 96px !important;
+  margin-bottom: 18px !important;
 }
 
+body.home-page .levels-grid .level-tags > span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+/* Bouton */
 body.home-page .levels-grid .level-btn {
-  margin-top: auto;
+  margin-top: auto !important;
 }
 
+/* Responsive */
+@media (max-width: 900px) {
+  body.home-page .levels-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.home-page .levels-grid .level-card > p {
+    height: auto !important;
+  }
+
+  body.home-page .levels-grid .level-tags {
+    min-height: auto !important;
+  }
+}

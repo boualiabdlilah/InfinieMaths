@@ -1787,3 +1787,36 @@ body.home-page .levels-section .levels-subtitle,
 body.home-page .levels-section .trust{
   text-align: center;
 }
+/* LOGO NAVBAR — accueil uniquement */
+body.home-page .logo-name{
+  color: #ffffff;
+}
+
+body.home-page .logo-blue{
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+body.home-page .logo-tagline{
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+body.home-page .logo-blue,
+body.home-page .logo-tagline{
+  color: transparent !important;
+}
+
+
+
+
+
+

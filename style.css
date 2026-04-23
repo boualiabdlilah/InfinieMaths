@@ -3661,7 +3661,38 @@ a.back-link:focus{
   box-sizing: border-box;
   text-align: center;
 }
+/* ===== ALIGNEMENT FINAL DES CARTES NIVEAUX ===== */
 
+.level-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.level-card p {
+  min-height: 120px;   /* harmonise la hauteur du texte descriptif */
+}
+
+.level-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 92px;    /* réserve la même zone pour les chips */
+  align-content: flex-start;
+}
+.level-tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 38px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.level-btn {
+  margin-top: auto;    /* pousse le bouton en bas de chaque carte */
+}
 
 
 

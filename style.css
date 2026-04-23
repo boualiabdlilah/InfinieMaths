@@ -3332,7 +3332,222 @@ a.back-link:focus{
   line-height: 1.55;
   color: #cbd5e1;
 }
+/* =========================
+   LEVELS SECTION - VERSION 2 CLEAN
+   ========================= */
 
+.levels-section {
+  padding: 72px 20px 40px;
+}
+
+.levels-title {
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #2ea3ff;
+  margin-bottom: 10px;
+}
+
+.levels-subtitle {
+  text-align: center;
+  color: #dbe7ff;
+  font-size: 1.1rem;
+  margin-bottom: 34px;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.level-card {
+  position: relative;
+  background: linear-gradient(145deg, #020617, #0b1220);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px 26px 24px;
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.22);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  overflow: hidden;
+}
+
+.level-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 38px rgba(2, 6, 23, 0.32);
+}
+
+.level-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.level-card:hover::before {
+  opacity: 1;
+}
+
+.level-card-seconde:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.level-card-premiere:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.level-card-terminale:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+}
+
+.level-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.level-icon {
+  width: 62px;
+  height: 62px;
+  min-width: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.level-card-seconde .level-icon {
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.level-card-premiere .level-icon {
+  color: #22d3ee;
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.level-card-terminale .level-icon {
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.level-meta {
+  min-width: 0;
+}
+
+.level-label {
+  font-size: 0.9rem;
+  letter-spacing: 1.2px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.level-card h3 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: #f8fafc;
+}
+
+.level-card p {
+  color: #d7e4ff;
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 18px 0;
+}
+
+.level-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.level-tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: #dbeafe;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+}
+
+.level-card-premiere .level-tags span {
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.16);
+}
+
+.level-card-terminale .level-tags span {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: rgba(249, 115, 22, 0.16);
+}
+
+.level-btn {
+  display: inline-block;
+  margin-top: 4px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 13px 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.level-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.32);
+}
+
+.level-card-terminale .level-btn {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.24);
+}
+
+.level-card-terminale .level-btn:hover {
+  box-shadow: 0 14px 26px rgba(249, 115, 22, 0.34);
+}
+
+.level-card.featured {
+  border-color: rgba(249, 115, 22, 0.48);
+  box-shadow:
+    0 16px 32px rgba(2, 6, 23, 0.28),
+    0 0 0 1px rgba(249, 115, 22, 0.10);
+}
+
+.level-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 16px rgba(245, 158, 11, 0.22);
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .levels-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+}
 
 
 

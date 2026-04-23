@@ -3798,7 +3798,53 @@ a.back-link:focus{
     grid-template-columns: repeat(2, max-content) !important;
   }
 }
+/* ===== FIX LARGEUR + ALIGNEMENT DES CHIPS ===== */
 
+.levels-grid .level-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.levels-grid .level-card > p {
+  min-height: 132px !important;
+  margin-bottom: 18px !important;
+}
+
+.levels-grid .level-card > .level-tags {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  align-content: start !important;
+  min-height: 96px !important;
+}
+
+.levels-grid .level-card > .level-tags > span {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  padding: 0 12px !important;
+}
+
+.levels-grid .level-card > .level-btn {
+  margin-top: auto !important;
+}
+
+@media (max-width: 900px) {
+  .levels-grid .level-card > p {
+    min-height: auto !important;
+  }
+
+  .levels-grid .level-card > .level-tags {
+    min-height: auto !important;
+  }
+}
 
 
 

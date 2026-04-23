@@ -3759,7 +3759,38 @@ body.home-page .levels-grid .level-btn {
 body.home-page .levels-grid {
   gap: 14px !important;
 }
+/* ===== SUPPRESSION DU VIDE DANS LES CARTES ===== */
 
+body.home-page .levels-grid .level-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto !important;
+  min-height: unset !important;
+}
+
+/* texte */
+body.home-page .levels-grid .level-card > p {
+  min-height: unset !important;
+  height: auto !important;
+  margin-bottom: 16px;
+}
+
+/* chips */
+body.home-page .levels-grid .level-tags {
+  min-height: unset !important;
+  margin-bottom: 16px;
+}
+
+/* haut de carte */
+body.home-page .levels-grid .level-card-top {
+  min-height: unset !important;
+}
+
+/* bouton */
+body.home-page .levels-grid .level-btn {
+  margin-top: auto;
+}
 
 
 

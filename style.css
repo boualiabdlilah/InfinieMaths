@@ -3740,3 +3740,22 @@ body.home-page .levels-grid .level-btn {
 body.home-page .highlight {
   transform: none !important;
 }
+/* ===== ALIGNEMENT FINAL DES CARTES ===== */
+
+body.home-page .levels-grid .level-tags {
+  min-height: 96px;
+}
+
+body.home-page .levels-grid .level-card {
+  display: flex;
+  flex-direction: column;
+}
+
+body.home-page .levels-grid .level-btn {
+  margin-top: auto;
+}
+
+
+
+
+

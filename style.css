@@ -3642,7 +3642,25 @@ a.back-link:focus{
 .level-tags span {
   display: inline-block;
 }
+/* ===== ALIGNEMENT PROPRE DE TOUS LES CHIPS ===== */
 
+.level-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  align-items: flex-start;
+}
+
+.level-tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;   /* même largeur visuelle */
+  height: 38px;       /* même hauteur */
+  padding: 0 14px;
+  box-sizing: border-box;
+  text-align: center;
+}
 
 
 

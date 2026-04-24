@@ -1996,7 +1996,25 @@ body.home-page .assistant-preview-button {
   color: #fbbf24;
   font-weight: bold;
 }
+/* =========================================
+   PROTECTION AUTRES PAGES — NE TOUCHE PAS HOME
+========================================= */
 
+body:not(.home-page) .level-card {
+  min-height: auto !important;
+  transform: none !important;
+}
+
+body:not(.home-page) .level-card:hover {
+  transform: none !important;
+}
+
+body:not(.home-page) .level-card .btn,
+body:not(.home-page) .level-card .btn-primary {
+  min-width: initial !important;
+  margin-top: initial !important;
+  align-self: initial !important;
+}
 
 
 

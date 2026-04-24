@@ -2598,3 +2598,38 @@ body.home-page .signature-subtitle {
 
   color: #94a3b8;
 }
+/* =========================================
+   BOOST VISUEL CREDIBILITY CARD
+========================================= */
+
+.credibility-card {
+  position: relative;
+
+  background: linear-gradient(135deg, #020617, #020617 60%, #041a3a);
+
+  box-shadow:
+    0 25px 70px rgba(2,6,23,0.85),
+    0 0 40px rgba(59,130,246,0.18);
+}
+
+/* halo discret derrière signature */
+.credibility-signature::after {
+  content: "";
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 180px;
+  height: 100px;
+
+  background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+}
+
+/* léger accent sur titre */
+.credibility-text h2 {
+  color: #e2e8f0;
+  text-shadow: 0 0 8px rgba(56,189,248,0.2);
+}

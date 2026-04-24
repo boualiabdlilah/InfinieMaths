@@ -2035,5 +2035,46 @@ body.home-page section.levels-section .level-card .btn.btn-primary {
 body.home-page section.levels-section .level-card-premiere .level-tags {
   flex-direction: row !important;
 }
+/* =========================================
+   HOME — ALIGNEMENT FINAL DES 3 CARTES
+========================================= */
 
+body.home-page section.levels-section .levels-grid > .level-card {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 360px !important;
+  height: 100% !important;
+}
+
+/* le texte pousse les tags vers le bas */
+body.home-page section.levels-section .levels-grid > .level-card > p {
+  flex: 1 1 auto !important;
+}
+
+/* tags toujours sur UNE SEULE LIGNE */
+body.home-page section.levels-section .level-tags {
+  margin-top: auto !important;
+  margin-bottom: 18px !important;
+  min-height: 44px !important;
+
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* badges un peu plus compacts */
+body.home-page section.levels-section .level-tags span {
+  min-height: 38px !important;
+  padding: 0 12px !important;
+  font-size: 0.9rem !important;
+  white-space: nowrap !important;
+}
+
+/* bouton parfaitement aligné */
+body.home-page section.levels-section .level-card .btn.btn-primary {
+  margin-top: 0 !important;
+  align-self: center !important;
+}
 

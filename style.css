@@ -2488,3 +2488,40 @@ body.home-page .footer-bottom {
   margin-top: 22px !important;
   padding: 12px 0 !important;
 }
+/* FOOTER — réutilise le branding du header */
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand .logo-circle {
+  width: 34px;
+  height: 34px;
+}
+
+.footer-brand .logo-text {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.footer-brand .highlight {
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer-brand .premium-slogan {
+  margin-top: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  background: linear-gradient(90deg, #c084fc, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

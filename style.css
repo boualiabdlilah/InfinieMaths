@@ -1830,7 +1830,41 @@ body.home-page .assistant-preview-button:hover {
   }
 }
 
+/* =========================================
+   FIX ASSISTANT — TEXTE À GAUCHE + ROBOT À DROITE
+========================================= */
 
+body.home-page .assistant-preview-content {
+  display: grid !important;
+  grid-template-columns: 1fr 220px !important;
+  align-items: center !important;
+  gap: 36px !important;
+}
+
+body.home-page .assistant-preview-body {
+  display: block !important;
+  grid-column: 1 !important;
+}
+
+body.home-page .assistant-preview-top,
+body.home-page .assistant-preview-text,
+body.home-page .assistant-preview-action {
+  grid-column: 1 !important;
+  text-align: left !important;
+}
+
+body.home-page .assistant-preview-content::after {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  content: "🤖";
+  font-size: 7rem !important;
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+body.home-page .assistant-preview-button {
+  margin-top: 20px !important;
+}
 
 
 

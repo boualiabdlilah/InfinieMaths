@@ -2512,3 +2512,55 @@ body.home-page .signature-subtitle {
   0%,100% { transform: scale(1); }
   50% { transform: scale(1.2); }
 }
+/* =========================================
+   CREDIBILITY — ANIMATION GARANTIE PAR BORDURE
+========================================= */
+
+.credibility-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* halo lumineux indépendant */
+.credibility-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  border: 2px solid rgba(59,130,246,0.75);
+
+  box-shadow:
+    0 0 18px rgba(59,130,246,0.55),
+    0 0 45px rgba(59,130,246,0.35),
+    inset 0 0 28px rgba(59,130,246,0.18);
+
+  animation: credibilityBorderPulse 1.8s ease-in-out infinite !important;
+}
+
+/* animation bien visible */
+@keyframes credibilityBorderPulse {
+  0%, 100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* icône pulse visible */
+.credibility-icon {
+  animation: credibilityIconPulse 1.6s ease-in-out infinite !important;
+}
+
+@keyframes credibilityIconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}

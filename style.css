@@ -1905,3 +1905,33 @@ body.home-page .assistant-preview-button {
   -webkit-background-clip: text;
   color: transparent;
 }
+/* =========================================
+   LOGO BADGE (∞ avec cercle)
+========================================= */
+
+.logo-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at 30% 30%, #7c3aed, #0f172a);
+  border: 1px solid rgba(124,58,237,0.6);
+
+  box-shadow:
+    0 0 12px rgba(124,58,237,0.4),
+    inset 0 0 8px rgba(124,58,237,0.3);
+}
+
+/* symbole ∞ */
+.logo-badge span {
+  font-size: 1.1rem;
+  font-weight: 900;
+
+  background: linear-gradient(90deg, #c084fc, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}

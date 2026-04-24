@@ -1935,3 +1935,26 @@ body.home-page .assistant-preview-button {
   -webkit-background-clip: text;
   color: transparent;
 }
+/* =========================================
+   LOGO — BOOST PREMIUM (GLOW + ANIMATION)
+========================================= */
+
+/* cercle plus lumineux */
+.logo-circle {
+  box-shadow:
+    0 0 18px rgba(124,58,237,0.7),
+    0 0 35px rgba(37,99,235,0.5),
+    0 0 60px rgba(34,211,238,0.25);
+
+  transition: transform 0.3s ease;
+}
+
+/* animation hover */
+.logo-circle:hover {
+  transform: scale(1.08);
+}
+
+/* glow sur "Maths" */
+.logo-name span {
+  text-shadow: 0 0 10px rgba(34,211,238,0.4);
+}

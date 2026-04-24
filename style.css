@@ -2463,3 +2463,28 @@ body.home-page .signature-subtitle {
     transform: none;
   }
 }
+/* =========================================
+   FIX ESPACE AVANT FOOTER
+========================================= */
+
+/* réduit l’espace sous le bloc crédibilité */
+body.home-page .credibility-card {
+  margin-bottom: 24px !important;
+}
+
+/* réduit l’espace au-dessus du footer */
+body.home-page .footer {
+  margin-top: 24px !important;
+  padding-top: 24px !important;
+}
+
+/* footer plus compact */
+body.home-page .footer-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body.home-page .footer-bottom {
+  margin-top: 22px !important;
+  padding: 12px 0 !important;
+}

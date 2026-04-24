@@ -2016,61 +2016,30 @@ body:not(.home-page) .level-card .btn-primary {
   align-self: initial !important;
 }
 /* =========================================
-   FIX PAGE SECONDE — CARTES CHAPITRES
+   FIX PAGES NIVEAUX — TITRES CHAPITRES
 ========================================= */
 
-body.seconde-page .level-card {
-  min-height: auto !important;
-  transform: none !important;
-  display: block !important;
+body.seconde-page .level-card h3,
+body.premiere-page .level-card h3,
+body.terminale-page .level-card h3 {
+  font-size: 1.55rem !important;
+  line-height: 1.12 !important;
+  font-weight: 900 !important;
+  color: #f9fafb !important;
+  margin: 0 0 10px 0 !important;
+  letter-spacing: -0.02em !important;
 }
 
-body.seconde-page .level-card:hover {
-  transform: none !important;
-}
-
-/* boutons chapitres propres */
-body.seconde-page .level-card .btn,
-body.seconde-page .level-card .btn-primary,
-body.seconde-page .chapter-pill,
-body.seconde-page .chapter-course,
-body.seconde-page .chapter-pill--blue {
-  display: inline-flex !important;
-  align-items: center !important;
+/* les cartes chapitres ne doivent pas reprendre la mise en page accueil */
+body.seconde-page .level-card,
+body.premiere-page .level-card,
+body.terminale-page .level-card {
+  padding: 1.6rem 1.4rem !important;
+  min-height: 210px !important;
+  display: flex !important;
+  flex-direction: column !important;
   justify-content: center !important;
-
-  min-width: auto !important;
-  min-height: 34px !important;
-  padding: 0 14px !important;
-
-  border-radius: 999px !important;
-  background: #3b82f6 !important;
-  color: #0f172a !important;
-  border: 1px solid #93c5fd !important;
-
-  font-size: 0.9rem !important;
-  font-weight: 800 !important;
-  text-decoration: none !important;
-
-  margin-top: 12px !important;
-  margin-right: 8px !important;
-  align-self: initial !important;
 }
-
-/* grille des chapitres */
-body.seconde-page .level-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 1.5rem !important;
-}
-
-/* mobile */
-@media (max-width: 900px) {
-  body.seconde-page .level-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
 
 
 

@@ -2180,5 +2180,96 @@ body.home-page .assistant-visual {
   align-self: center !important;
 }
 
+/* =========================================
+   BLOC CRÉDIBILITÉ — VERSION FINALE
+========================================= */
 
+body.home-page .credibility-card {
+  max-width: 1100px;
+  margin: 36px auto 44px;
+  padding: 28px 34px;
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-columns: 90px 1fr 320px;
+  align-items: center;
+  gap: 28px;
+
+  background: linear-gradient(135deg, #061226, #020617);
+  border: 1px solid rgba(59,130,246,0.35);
+
+  box-shadow:
+    0 20px 55px rgba(2,6,23,0.65),
+    0 0 28px rgba(59,130,246,0.18);
+}
+
+body.home-page .credibility-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  background: rgba(37,99,235,0.18);
+  border: 1px solid rgba(96,165,250,0.45);
+  box-shadow: 0 0 22px rgba(59,130,246,0.25);
+}
+
+body.home-page .credibility-text h2 {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+body.home-page .credibility-text p {
+  margin: 4px 0;
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+body.home-page .credibility-signature {
+  text-align: left;
+  border-left: 1px solid rgba(96,165,250,0.28);
+  padding-left: 28px;
+}
+
+body.home-page .signature-name {
+  font-size: 2rem;
+  font-style: italic;
+  color: #38bdf8;
+  line-height: 1;
+}
+
+body.home-page .signature-title,
+body.home-page .signature-subtitle {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  body.home-page .credibility-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  body.home-page .credibility-icon {
+    margin: 0 auto;
+  }
+
+  body.home-page .credibility-signature {
+    border-left: none;
+    padding-left: 0;
+    text-align: center;
+  }
+}
 

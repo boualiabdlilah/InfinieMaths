@@ -2598,38 +2598,129 @@ body.home-page .signature-subtitle {
 
   color: #94a3b8;
 }
-/* =========================================
-   BOOST VISUEL CREDIBILITY CARD
-========================================= */
+/* ================= FOOTER ================= */
 
-.credibility-card {
-  position: relative;
+.footer {
+  background: #020617;
+  padding-top: 40px;
+  margin-top: 60px;
+}
 
-  background: linear-gradient(135deg, #020617, #020617 60%, #041a3a);
+/* GRID */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 0 20px 30px;
+}
+
+/* LOGO */
+.logo-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle, #7c3aed, #2563eb);
+  box-shadow: 0 0 20px rgba(99,102,241,0.6);
+}
+
+.logo-badge span {
+  color: white;
+  font-weight: bold;
+}
+
+.logo-name {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+.logo-blue {
+  color: #38bdf8;
+}
+
+.logo-tagline {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #64748b;
+}
+
+/* COLONNES */
+.footer-column h4 {
+  color: white;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.footer-column a {
+  display: block;
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-column a:hover {
+  color: #38bdf8;
+}
+
+/* SOCIALS */
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.social {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(56,189,248,0.3);
+  color: #38bdf8;
+
+  transition: 0.3s;
+}
+
+.social:hover {
+  background: rgba(56,189,248,0.1);
+  box-shadow: 0 0 15px rgba(56,189,248,0.4);
+}
+
+/* BAS FOOTER */
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 13px;
+  color: #64748b;
+
+  padding: 16px 0;
+
+  border-top: 1px solid rgba(56,189,248,0.25);
 
   box-shadow:
-    0 25px 70px rgba(2,6,23,0.85),
-    0 0 40px rgba(59,130,246,0.18);
+    0 -1px 0 rgba(56,189,248,0.15),
+    0 -10px 25px rgba(2,6,23,0.6);
 }
 
-/* halo discret derrière signature */
-.credibility-signature::after {
-  content: "";
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 180px;
-  height: 100px;
-
-  background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%);
-  filter: blur(20px);
-  z-index: 0;
-}
-
-/* léger accent sur titre */
-.credibility-text h2 {
-  color: #e2e8f0;
-  text-shadow: 0 0 8px rgba(56,189,248,0.2);
+.footer-separator {
+  opacity: 0.5;
 }

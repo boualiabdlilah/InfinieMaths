@@ -2397,3 +2397,124 @@ body.home-page section.levels-section .levels-grid > .level-card-terminale {
     0 0 60px rgba(251,191,36,0.4),
     0 0 120px rgba(251,191,36,0.2) !important;
 }
+/* =========================================
+   ASSISTANT + PREMIUM — VERSION PRO SIMPLE
+========================================= */
+
+/* ===== ASSISTANT ===== */
+
+body.home-page .assistant-preview-content {
+  display: grid !important;
+  grid-template-columns: 1.3fr 0.7fr !important;
+  align-items: center;
+  gap: 24px;
+
+  padding: 30px !important;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(circle at 90% 50%, rgba(59,130,246,0.25), transparent 35%),
+    linear-gradient(135deg, #101827, #1e3355) !important;
+
+  border: 1px solid rgba(96,165,250,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* texte assistant */
+body.home-page .assistant-preview-text h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+body.home-page .assistant-preview-text p {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+}
+
+/* bouton assistant */
+body.home-page .assistant-preview-button {
+  height: 52px;
+  border-radius: 14px;
+
+  font-weight: 800;
+  font-size: 1.05rem;
+
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+
+  box-shadow: 0 10px 25px rgba(37,99,235,0.3);
+}
+
+/* icône robot simple */
+body.home-page .assistant-preview-content::after {
+  content: "🤖";
+  font-size: 6rem;
+  text-align: center;
+}
+
+
+/* ===== PREMIUM ===== */
+
+body.home-page .premium-card {
+  padding: 26px;
+  border-radius: 20px;
+
+  background: linear-gradient(145deg, #050b1a, #020617);
+
+  border: 1px solid rgba(251,191,36,0.35);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.7),
+    0 0 25px rgba(251,191,36,0.12);
+}
+
+/* titre premium */
+body.home-page .premium-card h2 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+/* texte premium */
+body.home-page .premium-card p {
+  color: #e5e7eb;
+}
+
+/* bouton premium */
+body.home-page .btn-premium {
+  margin-top: 14px;
+  width: 100%;
+
+  height: 50px;
+  border-radius: 12px;
+
+  font-weight: 900;
+  font-size: 1rem;
+
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #111827;
+
+  box-shadow: 0 10px 25px rgba(251,191,36,0.3);
+}
+
+/* hover léger */
+body.home-page .btn-premium:hover,
+body.home-page .assistant-preview-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 800px) {
+  body.home-page .assistant-preview-content {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  body.home-page .assistant-preview-content::after {
+    font-size: 4.5rem;
+  }
+}

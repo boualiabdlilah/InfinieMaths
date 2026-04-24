@@ -2719,25 +2719,57 @@ body.home-page .signature-subtitle {
   /* ligne principale */
   border-top: 1px solid rgba(56,189,248,0.25);
 }
+.footer-bottom {
+  position: relative;
 
-/* glow premium discret */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 13px;
+  color: #64748b;
+
+  padding: 18px 0;
+
+  border-top: 1px solid rgba(56,189,248,0.2);
+}
+
+/* ligne glow principale */
 .footer-bottom::before {
   content: "";
   position: absolute;
   top: -1px;
-  left: 10%;
-  width: 80%;
+  left: 15%;
+  width: 70%;
   height: 1px;
 
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(56,189,248,0.6),
+    rgba(56,189,248,0.8),
+    rgba(34,211,238,0.6),
+    rgba(56,189,248,0.8),
     transparent
   );
 
-  filter: blur(2px);
+  filter: blur(3px);
 }
-.footer-separator {
-  opacity: 0.5;
+
+/* halo très léger en dessous */
+.footer-bottom::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 25%;
+  width: 50%;
+  height: 10px;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(56,189,248,0.15),
+    transparent 70%
+  );
+
+  filter: blur(10px);
 }

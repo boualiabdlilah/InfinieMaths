@@ -1958,3 +1958,48 @@ body.home-page .assistant-preview-button {
 .logo-name span {
   text-shadow: 0 0 10px rgba(34,211,238,0.4);
 }
+/* =========================================
+   PREMIUM — LISTE PROPRE & CENTRÉE
+========================================= */
+
+/* enlève les points blancs */
+.premium-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 28px;
+}
+
+/* centre la liste */
+.premium-benefits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* style des lignes */
+.premium-benefits li {
+  font-size: 1.05rem;
+  color: #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-align: left;
+  min-width: 280px;
+}
+
+/* icône ✔ plus jolie */
+.premium-benefits li::before {
+  content: "✔";
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+
+
+
+
+
+

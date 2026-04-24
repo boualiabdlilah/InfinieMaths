@@ -2475,56 +2475,8 @@ body.home-page .signature-subtitle {
   transform-origin: left center;
   margin-top: 6px;
 }
-/* =========================================
-   CREDIBILITY CARD — VERSION QUI MARCHE
-========================================= */
-
+/* TEST VISUEL CREDIBILITY */
 .credibility-card {
-  position: relative;
-  overflow: hidden;
-
-  /* IMPORTANT : enlève ton ancien shadow */
-  box-shadow: none !important;
-
-  animation: glowCard 4s ease-in-out infinite;
-  transition: transform 0.3s ease;
-}
-
-.credibility-card:hover {
-  transform: translateY(-6px);
-}
-
-/* GLOW DYNAMIQUE */
-@keyframes glowCard {
-  0%, 100% {
-    box-shadow:
-      0 20px 60px rgba(2,6,23,0.7),
-      0 0 20px rgba(59,130,246,0.2);
-  }
-
-  50% {
-    box-shadow:
-      0 30px 80px rgba(2,6,23,0.9),
-      0 0 50px rgba(59,130,246,0.45);
-  }
-}
-
-/* ICON PULSE */
-.credibility-icon {
-  animation: pulseIcon 3s ease-in-out infinite;
-}
-
-@keyframes pulseIcon {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
-
-/* SIGNATURE GLOW */
-.signature-name {
-  animation: glowText 3s ease-in-out infinite;
-}
-
-@keyframes glowText {
-  0%,100% { text-shadow: 0 0 8px rgba(56,189,248,0.3); }
-  50% { text-shadow: 0 0 20px rgba(56,189,248,0.7); }
+  border: 5px solid red !important;
+  background: red !important;
 }

@@ -2467,3 +2467,11 @@ body.home-page .signature-subtitle {
   transform: scale(0.88);
   transform-origin: left center;
 }
+.footer .logo-tagline {
+  white-space: nowrap;
+}
+.footer-wordmark {
+  transform: scale(0.9);
+  transform-origin: left center;
+  margin-top: 6px;
+}

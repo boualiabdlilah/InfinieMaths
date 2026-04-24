@@ -2153,3 +2153,32 @@ body.home-page .levels-grid > .level-card:hover {
   text-shadow:
     0 0 12px rgba(250,204,21,0.6);
 }
+/* =========================================
+   ASSISTANT — SUPPRIMER L'ANCIEN ROBOT
+========================================= */
+
+body.home-page .assistant-preview-content::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* placer le Sigma à droite */
+body.home-page .assistant-preview-content {
+  display: grid !important;
+  grid-template-columns: 1fr 220px !important;
+  align-items: center !important;
+}
+
+body.home-page .assistant-preview-body {
+  grid-column: 1 !important;
+}
+
+body.home-page .assistant-visual {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+
+

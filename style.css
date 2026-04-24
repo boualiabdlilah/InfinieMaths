@@ -2917,7 +2917,39 @@ button:hover {
 .assistant-response p {
   color: #cbd5f5 !important;
 }
+/* =========================
+   ASSISTANT — CARTE DARK PREMIUM
+========================= */
 
+.assistant-card {
+  background: linear-gradient(180deg, #020817, #030b1f) !important;
+  border: 1px solid rgba(96,165,250,0.28) !important;
+  box-shadow:
+    0 24px 70px rgba(2,6,23,0.75),
+    0 0 35px rgba(59,130,246,0.14) !important;
+}
+
+.assistant-label {
+  color: #f8fafc !important;
+}
+
+.assistant-hint {
+  color: #94a3b8 !important;
+}
+
+.assistant-hero h1 {
+  color: #f8fafc !important;
+}
+
+.assistant-hero p {
+  color: #cbd5e1 !important;
+}
+
+.assistant-badge {
+  background: rgba(59,130,246,0.16) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(96,165,250,0.35) !important;
+}
 
 
 

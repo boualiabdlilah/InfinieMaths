@@ -2773,3 +2773,99 @@ body.home-page .signature-subtitle {
 
   filter: blur(10px);
 }
+/* ===== CONTAINER GLOBAL ===== */
+.assistant-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+
+  border-radius: 20px;
+  background: linear-gradient(180deg, #020817, #030b1f);
+
+  border: 1px solid rgba(96,165,250,0.2);
+
+  box-shadow:
+    0 20px 60px rgba(2,6,23,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ===== TITRE ===== */
+.assistant-container h2 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+  width: 100%;
+  min-height: 120px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(96,165,250,0.3);
+
+  background: #020617;
+  color: white;
+
+  padding: 16px;
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56,189,248,0.4);
+}
+
+/* ===== BOUTON ===== */
+button {
+  margin-top: 15px;
+
+  padding: 12px 22px;
+  border-radius: 999px;
+
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59,130,246,0.5);
+}
+
+/* ===== REPONSE IA ===== */
+.assistant-response {
+  margin-top: 25px;
+  padding: 20px;
+
+  border-radius: 16px;
+
+  background: rgba(15,23,42,0.7);
+  border: 1px solid rgba(96,165,250,0.2);
+
+  color: #e2e8f0;
+  line-height: 1.6;
+
+  backdrop-filter: blur(6px);
+}
+
+/* ===== TITRES DANS REPONSE ===== */
+.assistant-response h3 {
+  color: #38bdf8;
+  margin-top: 20px;
+}
+
+
+
+
+
+

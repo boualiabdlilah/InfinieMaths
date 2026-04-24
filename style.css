@@ -1866,38 +1866,51 @@ body.home-page .assistant-preview-button {
   margin-top: 20px !important;
 }
 /* =========================================
-   FINITION ASSISTANT — VERSION PRO
+   ASSISTANT — ÉQUILIBRE FINAL PARFAIT
 ========================================= */
 
-/* contraste + profondeur */
+/* on crée de l’espace pour le robot */
 body.home-page .assistant-preview-content {
-  background:
-    radial-gradient(circle at 85% 50%, rgba(96,165,250,0.45), transparent 40%),
-    linear-gradient(135deg, #0f172a, #1e3355) !important;
+  grid-template-columns: 1.2fr 0.8fr !important;
+  padding-right: 60px !important;
 }
 
-/* robot mieux intégré */
+/* robot mieux positionné */
 body.home-page .assistant-preview-content::after {
-  font-size: 7.8rem !important;
+  font-size: 7.5rem !important;
+
+  justify-self: end !important;     /* plus à droite */
+  margin-right: 10px;
 
   opacity: 0.95;
 
   filter:
-    drop-shadow(0 0 25px rgba(59,130,246,0.35))
-    drop-shadow(0 25px 40px rgba(0,0,0,0.5));
+    drop-shadow(0 0 30px rgba(59,130,246,0.35))
+    drop-shadow(0 30px 45px rgba(0,0,0,0.55));
 }
 
-/* bouton assistant plus fort */
-body.home-page .assistant-preview-button {
-  transform: scale(1.03);
-  box-shadow:
-    0 16px 40px rgba(37,99,235,0.45),
-    0 0 30px rgba(59,130,246,0.25) !important;
+/* halo derrière le robot (très pro) */
+body.home-page .assistant-preview-content::before {
+  content: "";
+  position: absolute;
+
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 180px;
+  height: 180px;
+
+  background: radial-gradient(circle, rgba(96,165,250,0.25), transparent 70%);
+  filter: blur(20px);
+
+  z-index: 0;
 }
 
-/* hover bouton */
-body.home-page .assistant-preview-button:hover {
-  transform: scale(1.06);
+/* texte au-dessus */
+body.home-page .assistant-preview-text,
+body.home-page .assistant-preview-top,
+body.home-page .assistant-preview-action {
+  position: relative;
+  z-index: 2;
 }
-
-

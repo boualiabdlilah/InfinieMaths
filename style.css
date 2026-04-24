@@ -1865,6 +1865,39 @@ body.home-page .assistant-preview-content::after {
 body.home-page .assistant-preview-button {
   margin-top: 20px !important;
 }
+/* =========================================
+   FINITION ASSISTANT — VERSION PRO
+========================================= */
 
+/* contraste + profondeur */
+body.home-page .assistant-preview-content {
+  background:
+    radial-gradient(circle at 85% 50%, rgba(96,165,250,0.45), transparent 40%),
+    linear-gradient(135deg, #0f172a, #1e3355) !important;
+}
+
+/* robot mieux intégré */
+body.home-page .assistant-preview-content::after {
+  font-size: 7.8rem !important;
+
+  opacity: 0.95;
+
+  filter:
+    drop-shadow(0 0 25px rgba(59,130,246,0.35))
+    drop-shadow(0 25px 40px rgba(0,0,0,0.5));
+}
+
+/* bouton assistant plus fort */
+body.home-page .assistant-preview-button {
+  transform: scale(1.03);
+  box-shadow:
+    0 16px 40px rgba(37,99,235,0.45),
+    0 0 30px rgba(59,130,246,0.25) !important;
+}
+
+/* hover bouton */
+body.home-page .assistant-preview-button:hover {
+  transform: scale(1.06);
+}
 
 

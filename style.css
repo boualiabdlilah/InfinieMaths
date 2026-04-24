@@ -2383,3 +2383,17 @@ body.home-page section.levels-section .levels-grid > .level-card:hover {
   transform: translateY(-6px);
   transition: all 0.2s ease;
 }
+/* =========================================
+   FIX TERMINALE — supprime effet scale bug
+========================================= */
+
+body.home-page section.levels-section .levels-grid > .level-card-terminale {
+  transform: translateY(-6px) !important;
+
+  border: 1px solid rgba(251,191,36,0.55) !important;
+
+  box-shadow:
+    0 25px 60px rgba(2,6,23,0.75),
+    0 0 60px rgba(251,191,36,0.4),
+    0 0 120px rgba(251,191,36,0.2) !important;
+}

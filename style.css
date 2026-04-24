@@ -1996,51 +1996,6 @@ body.home-page .assistant-preview-button {
   color: #fbbf24;
   font-weight: bold;
 }
-/* =========================================
-   PROTECTION AUTRES PAGES — NE TOUCHE PAS HOME
-========================================= */
-
-body:not(.home-page) .level-card {
-  min-height: auto !important;
-  transform: none !important;
-}
-
-body:not(.home-page) .level-card:hover {
-  transform: none !important;
-}
-
-body:not(.home-page) .level-card .btn,
-body:not(.home-page) .level-card .btn-primary {
-  min-width: initial !important;
-  margin-top: initial !important;
-  align-self: initial !important;
-}
-/* =========================================
-   FIX PAGES NIVEAUX — TITRES CHAPITRES
-========================================= */
-
-body.seconde-page .level-card h3,
-body.premiere-page .level-card h3,
-body.terminale-page .level-card h3 {
-  font-size: 1.55rem !important;
-  line-height: 1.12 !important;
-  font-weight: 900 !important;
-  color: #f9fafb !important;
-  margin: 0 0 10px 0 !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* les cartes chapitres ne doivent pas reprendre la mise en page accueil */
-body.seconde-page .level-card,
-body.premiere-page .level-card,
-body.terminale-page .level-card {
-  padding: 1.6rem 1.4rem !important;
-  min-height: 210px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
 
 
 

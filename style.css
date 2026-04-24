@@ -3036,5 +3036,52 @@ button:hover {
 
   opacity: 0.6;
 }
+/* =========================
+   MODE CHAT ULTRA PREMIUM
+========================= */
 
+.chat-container {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* MESSAGE COMMUN */
+.chat-message {
+  max-width: 75%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  line-height: 1.5;
+  font-size: 15px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* UTILISATEUR */
+.user-message {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+/* IA */
+.ai-message {
+  align-self: flex-start;
+  background: #020617;
+  color: #e2e8f0;
+  border: 1px solid rgba(96,165,250,0.3);
+}
+
+/* EFFET APPARITION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 

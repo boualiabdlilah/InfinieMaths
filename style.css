@@ -2863,7 +2863,60 @@ button:hover {
   color: #38bdf8;
   margin-top: 20px;
 }
+/* =========================
+   DESIGN PREMIUM ASSISTANT
+   ========================= */
 
+/* TEXTAREA */
+.assistant-textarea {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 14px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.4);
+}
+
+.assistant-textarea::placeholder {
+  color: #64748b;
+}
+
+.assistant-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* BOUTON */
+.assistant-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+.assistant-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(37,99,235,0.6);
+}
+
+/* RÉPONSE */
+.assistant-response {
+  background: #020617 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* TITRES DANS RÉPONSE */
+.assistant-response h1,
+.assistant-response h2,
+.assistant-response h3 {
+  color: #60a5fa !important;
+}
+
+/* TEXTE */
+.assistant-response p {
+  color: #cbd5f5 !important;
+}
 
 
 

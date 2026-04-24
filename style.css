@@ -2565,44 +2565,83 @@ body.home-page .signature-subtitle {
   }
 }
 /* =========================================
-   SIGNATURE PREMIUM VISIBLE
+   SIGNATURE ULTIME — A. BOUALI
 ========================================= */
 
-/* bloc signature */
 .credibility-card .credibility-signature {
-  padding-left: 30px;
-  border-left: 1px solid rgba(56,189,248,0.25);
+  position: relative;
+  padding-left: 34px !important;
+  border-left: 1px solid rgba(56,189,248,0.28) !important;
 }
 
-/* NOM (effet premium fort) */
+/* Nom signature */
 .credibility-card .signature-name {
-  font-size: 34px !important;
+  position: relative;
+  display: inline-block;
+
+  font-family: "Segoe Script", "Brush Script MT", cursive !important;
+  font-size: 42px !important;
   font-weight: 400 !important;
-  font-style: italic !important;
+  font-style: normal !important;
+  line-height: 1 !important;
 
   color: #38bdf8 !important;
 
-  letter-spacing: 1px;
-
   text-shadow:
-    0 0 12px rgba(56,189,248,0.6),
-    0 0 30px rgba(56,189,248,0.3),
-    0 0 60px rgba(56,189,248,0.15) !important;
+    0 0 12px rgba(56,189,248,0.65),
+    0 0 32px rgba(56,189,248,0.35),
+    0 0 70px rgba(56,189,248,0.16) !important;
 }
 
-/* TITRE */
+/* trait sous la signature */
+.credibility-card .signature-name::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: -12px;
+  bottom: -8px;
+
+  height: 2px;
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+  box-shadow: 0 0 18px rgba(56,189,248,0.55);
+}
+
+/* Titre */
 .credibility-card .signature-title {
-  margin-top: 12px;
+  margin-top: 20px !important;
   font-size: 12px !important;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #cbd5f5 !important;
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
 }
 
-/* SOUS TITRE */
+/* Sous-titre */
 .credibility-card .signature-subtitle {
+  margin-top: 8px !important;
   font-size: 11px !important;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #64748b !important;
+  font-weight: 800 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+  color: #93c5fd !important;
+  opacity: 0.9;
+}
+
+/* petit halo discret derrière la signature */
+.credibility-card .credibility-signature::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 160px;
+  height: 90px;
+  border-radius: 999px;
+
+  background: radial-gradient(circle, rgba(56,189,248,0.14), transparent 70%);
+  filter: blur(18px);
+  z-index: -1;
 }

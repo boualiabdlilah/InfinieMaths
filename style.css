@@ -2326,3 +2326,60 @@ body.home-page section.levels-section .levels-grid > .level-card:hover {
   transform: translateY(-6px);
   transition: all 0.2s ease;
 }
+/* =========================================
+   PREMIÈRE — glow subtil pour éviter l'effet désactivé
+========================================= */
+
+body.home-page section.levels-section .levels-grid > .level-card-premiere {
+  border: 1px solid rgba(96,165,250,0.32) !important;
+
+  box-shadow:
+    0 12px 30px rgba(2,6,23,0.55),
+    0 0 16px rgba(59,130,246,0.18),
+    0 0 26px rgba(251,191,36,0.08) !important;
+}
+/* =========================================
+   FIX FINAL — HAUTEUR + ALIGNEMENT + BOUTONS
+========================================= */
+
+/* cartes cliquables uniformes */
+body.home-page section.levels-section .levels-grid > a.level-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* force toutes les cartes à même structure */
+body.home-page section.levels-section .levels-grid > .level-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* texte prend l'espace (équilibrage hauteur) */
+body.home-page section.levels-section .level-card > p {
+  flex-grow: 1;
+}
+
+/* zone tags bien positionnée */
+body.home-page section.levels-section .level-tags {
+  margin-top: auto;
+}
+
+/* bouton toujours en bas + centré */
+body.home-page section.levels-section .level-card .btn.btn-primary {
+  margin-top: 12px !important;
+  align-self: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  min-width: 190px;
+  text-align: center;
+}
+
+/* sécurité : hover propre */
+body.home-page section.levels-section .levels-grid > .level-card:hover {
+  transform: translateY(-6px);
+  transition: all 0.2s ease;
+}

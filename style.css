@@ -1865,3 +1865,43 @@ body.home-page .assistant-preview-content::after {
 body.home-page .assistant-preview-button {
   margin-top: 20px !important;
 }
+/* =========================================
+   FIX LOGO — SANS home-page (URGENT)
+========================================= */
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  text-decoration: none;
+}
+
+.logo-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-name {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.logo-blue {
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 🔥 TON SLOGAN REVIT ICI */
+.logo-tagline {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+
+  background: linear-gradient(90deg, #c084fc, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  color: transparent;
+}

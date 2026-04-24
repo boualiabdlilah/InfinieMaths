@@ -2475,3 +2475,54 @@ body.home-page .signature-subtitle {
   transform-origin: left center;
   margin-top: 6px;
 }
+/* =========================================
+   CREDIBILITY CARD — ANIMATION PREMIUM
+========================================= */
+
+body.home-page .credibility-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: credibilityGlow 4s ease-in-out infinite;
+}
+
+body.home-page .credibility-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 28px 70px rgba(2,6,23,0.75),
+    0 0 42px rgba(59,130,246,0.28) !important;
+}
+
+body.home-page .credibility-icon {
+  animation: credibilityIconPulse 3s ease-in-out infinite;
+}
+
+body.home-page .signature-name {
+  text-shadow:
+    0 0 10px rgba(56,189,248,0.35),
+    0 0 22px rgba(56,189,248,0.18);
+}
+
+@keyframes credibilityGlow {
+  0%, 100% {
+    box-shadow:
+      0 20px 55px rgba(2,6,23,0.65),
+      0 0 28px rgba(59,130,246,0.16);
+  }
+
+  50% {
+    box-shadow:
+      0 24px 65px rgba(2,6,23,0.75),
+      0 0 40px rgba(59,130,246,0.25);
+  }
+}
+
+@keyframes credibilityIconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 22px rgba(59,130,246,0.25);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 34px rgba(59,130,246,0.45);
+  }
+}

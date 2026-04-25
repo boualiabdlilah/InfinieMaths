@@ -3185,7 +3185,20 @@ button:hover {
 #variationContainer svg marker path {
   fill: #60a5fa !important;
 }
+#variationContainer table {
+  margin-top: 28px !important;
+}
 
+#variationContainer td,
+#variationContainer th {
+  height: 74px !important;
+  font-size: 22px !important;
+}
+
+#variationContainer h3 {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(96,165,250,0.25);
+}
 
 
 

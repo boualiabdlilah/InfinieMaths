@@ -3134,108 +3134,57 @@ button:hover {
 .assistant-response {
   line-height: 1.6;
 }
-/* ===== TABLEAU VARIATION PREMIUM SOMBRE ===== */
+/* =========================================
+   TABLEAU DE VARIATION — PREMIUM SOMBRE FIX
+========================================= */
 
-.variation-container {
-  background: linear-gradient(145deg, #020617, #020617);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 0 40px rgba(59,130,246,0.15);
-  overflow-x: auto;
+#variationContainer {
+  background: linear-gradient(180deg, #020617, #030b1f) !important;
+  border: 1px solid rgba(96,165,250,0.35) !important;
+  border-radius: 18px !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.75) !important;
+  color: #e2e8f0 !important;
 }
 
-/* TABLE */
-.variation-container table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent;
+#variationContainer h3 {
+  color: #ffffff !important;
+  font-size: 24px !important;
+  margin-bottom: 22px !important;
 }
 
-/* CELLULES */
-.variation-container td,
-.variation-container th {
-  border: 1px solid rgba(148,163,184,0.2);
-  padding: 14px 10px;
-  text-align: center;
-  color: #e2e8f0;
+#variationContainer table,
+#variationContainer .tab-variation-manual {
+  background: #020617 !important;
+  color: #e2e8f0 !important;
+  border-collapse: collapse !important;
 }
 
-/* COLONNE GAUCHE (x, f', f) */
-.variation-container th {
-  background: rgba(30,41,59,0.6);
-  color: #60a5fa;
-  font-style: italic;
-  font-weight: 600;
-  width: 90px;
+#variationContainer th {
+  background: #0f172a !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(148,163,184,0.35) !important;
 }
 
-/* LIGNE X */
-.variation-container tr:first-child td {
-  color: #93c5fd;
-  font-weight: 600;
-  font-size: 16px;
+#variationContainer td {
+  background: #020617 !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(148,163,184,0.35) !important;
 }
 
-/* LIGNE f'(x) */
-.variation-container tr:nth-child(2) td {
-  color: #f8fafc;
-  font-size: 20px;
-  font-weight: bold;
+#variationContainer td *,
+#variationContainer .katex,
+#variationContainer .katex * {
+  color: #e2e8f0 !important;
 }
 
-/* LIGNE f(x) */
-.variation-container tr:nth-child(3) td {
-  color: #e2e8f0;
-  font-size: 18px;
-  position: relative;
-}
-
-/* VALEURS IMPORTANTES */
-.variation-container span,
-.variation-container .math {
-  color: #f8fafc;
-  font-weight: 500;
-}
-
-/* POINTS CRITIQUES */
-.variation-container td strong {
-  color: #38bdf8;
-}
-
-/* FLÈCHES */
-.variation-container svg line {
+#variationContainer svg line {
   stroke: #60a5fa !important;
-  stroke-width: 2.5;
 }
 
-.variation-container svg marker path {
+#variationContainer svg marker path {
   fill: #60a5fa !important;
 }
-
-/* EFFET LUMINEUX */
-.variation-container td {
-  transition: all 0.2s ease;
-}
-
-.variation-container td:hover {
-  background: rgba(59,130,246,0.08);
-}
-
-/* LIGNE SEPARATION */
-.variation-container tr:nth-child(2) td {
-  border-bottom: 2px solid rgba(96,165,250,0.4);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .variation-container td,
-  .variation-container th {
-    padding: 10px 6px;
-    font-size: 14px;
-  }
-}
-
-
 
 
 

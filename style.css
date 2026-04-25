@@ -3134,3 +3134,64 @@ button:hover {
 .assistant-response {
   line-height: 1.6;
 }
+/* ===== FIX TABLEAU DE VARIATION ===== */
+
+.variation-container table {
+  background: #ffffff !important;
+}
+
+.variation-container td,
+.variation-container th {
+  color: #0f172a !important; /* texte bien visible */
+  font-weight: 500;
+}
+
+/* Ligne x */
+.variation-container tr:first-child td {
+  color: #1e293b !important;
+  font-weight: 600;
+}
+
+/* Ligne f'(x) */
+.variation-container tr:nth-child(2) td {
+  color: #0f172a !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Ligne f(x) */
+.variation-container tr:nth-child(3) td {
+  color: #0f172a !important;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Les valeurs importantes (racines, fractions) */
+.variation-container .math,
+.variation-container span {
+  color: #0f172a !important;
+}
+
+/* Flèches */
+.variation-container svg line {
+  stroke: #0f172a !important;
+}
+
+/* Bordures */
+.variation-container table,
+.variation-container td,
+.variation-container th {
+  border-color: #94a3b8 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

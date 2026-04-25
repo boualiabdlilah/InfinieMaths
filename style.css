@@ -3134,58 +3134,106 @@ button:hover {
 .assistant-response {
   line-height: 1.6;
 }
-/* ===== FIX TABLEAU DE VARIATION ===== */
+/* ===== TABLEAU VARIATION PREMIUM SOMBRE ===== */
 
-.variation-container table {
-  background: #ffffff !important;
+.variation-container {
+  background: linear-gradient(145deg, #020617, #020617);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 40px rgba(59,130,246,0.15);
+  overflow-x: auto;
 }
 
+/* TABLE */
+.variation-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+/* CELLULES */
 .variation-container td,
 .variation-container th {
-  color: #0f172a !important; /* texte bien visible */
-  font-weight: 500;
+  border: 1px solid rgba(148,163,184,0.2);
+  padding: 14px 10px;
+  text-align: center;
+  color: #e2e8f0;
 }
 
-/* Ligne x */
-.variation-container tr:first-child td {
-  color: #1e293b !important;
+/* COLONNE GAUCHE (x, f', f) */
+.variation-container th {
+  background: rgba(30,41,59,0.6);
+  color: #60a5fa;
+  font-style: italic;
   font-weight: 600;
+  width: 90px;
 }
 
-/* Ligne f'(x) */
+/* LIGNE X */
+.variation-container tr:first-child td {
+  color: #93c5fd;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* LIGNE f'(x) */
 .variation-container tr:nth-child(2) td {
-  color: #0f172a !important;
+  color: #f8fafc;
   font-size: 20px;
   font-weight: bold;
 }
 
-/* Ligne f(x) */
+/* LIGNE f(x) */
 .variation-container tr:nth-child(3) td {
-  color: #0f172a !important;
+  color: #e2e8f0;
   font-size: 18px;
+  position: relative;
+}
+
+/* VALEURS IMPORTANTES */
+.variation-container span,
+.variation-container .math {
+  color: #f8fafc;
   font-weight: 500;
 }
 
-/* Les valeurs importantes (racines, fractions) */
-.variation-container .math,
-.variation-container span {
-  color: #0f172a !important;
+/* POINTS CRITIQUES */
+.variation-container td strong {
+  color: #38bdf8;
 }
 
-/* Flèches */
+/* FLÈCHES */
 .variation-container svg line {
-  stroke: #0f172a !important;
+  stroke: #60a5fa !important;
+  stroke-width: 2.5;
 }
 
-/* Bordures */
-.variation-container table,
-.variation-container td,
-.variation-container th {
-  border-color: #94a3b8 !important;
+.variation-container svg marker path {
+  fill: #60a5fa !important;
 }
 
+/* EFFET LUMINEUX */
+.variation-container td {
+  transition: all 0.2s ease;
+}
 
+.variation-container td:hover {
+  background: rgba(59,130,246,0.08);
+}
 
+/* LIGNE SEPARATION */
+.variation-container tr:nth-child(2) td {
+  border-bottom: 2px solid rgba(96,165,250,0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .variation-container td,
+  .variation-container th {
+    padding: 10px 6px;
+    font-size: 14px;
+  }
+}
 
 
 

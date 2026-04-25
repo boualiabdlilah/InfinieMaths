@@ -3084,4 +3084,17 @@ button:hover {
     transform: translateY(0);
   }
 }
+.assistant-card::before {
+  pointer-events: none;
+  z-index: 0;
+}
 
+.assistant-card {
+  position: relative;
+  z-index: 1;
+}
+
+.assistant-textarea {
+  position: relative;
+  z-index: 2;
+}

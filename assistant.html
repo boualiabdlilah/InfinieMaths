@@ -916,15 +916,29 @@ function renderVariationTable(variationData) {
 
       if (sides) {
         return `
-          <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
-            <span>${sides.left}</span>
-            <span style="font-size:26px;font-weight:800;">∥</span>
-            <span>${sides.right}</span>
+          <div style="
+            display:grid;
+            grid-template-columns:1fr auto 1fr;
+            align-items:center;
+            width:100%;
+            gap:18px;
+            font-size:22px;
+            font-weight:700;
+          ">
+            <span style="justify-self:end;">${sides.left}</span>
+            <span style="
+              justify-self:center;
+              font-size:32px;
+              font-weight:900;
+              color:#60a5fa;
+              text-shadow:0 0 14px rgba(96,165,250,0.7);
+            ">∥</span>
+            <span style="justify-self:start;">${sides.right}</span>
           </div>
         `;
       }
 
-      return "<span style='font-size:26px;font-weight:800;'>∥</span>";
+      return "<span style='font-size:30px;font-weight:900;color:#60a5fa;'>∥</span>";
     }
 
     return found["f(x)_latex"]
@@ -941,30 +955,33 @@ function renderVariationTable(variationData) {
     : formatVal(limits.right_infinity);
 
   let html = `
-<h3 style="margin-top:0; margin-bottom:18px; font-size:20px; color:#0f172a;">
+<h3 style="margin-top:0; margin-bottom:26px; font-size:26px; color:#ffffff;">
 Tableau de variation
 </h3>
+
 <div style="overflow-x:auto; margin-bottom:35px;">
 <table class="tab-variation-manual" style="
 border-collapse:collapse;
 table-layout:fixed;
 width:100%;
-min-width:0;
-background:white;
-font-size:18px;
+min-width:760px;
+background:#020617;
+font-size:22px;
 text-align:center;
-color:#0f172a;
+color:#e2e8f0;
 font-family:'Times New Roman', serif;
+border:1px solid rgba(148,163,184,0.35);
 ">
 `;
 
   html += `<tr>`;
   html += `<th style="
-border:1px solid #666;
-padding:10px 8px;
-width:90px;
+border:1px solid rgba(148,163,184,0.35);
+padding:14px 10px;
+width:110px;
 font-style:italic;
-background:#f8fafc;
+background:#0f172a;
+color:#60a5fa;
 ">x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
@@ -976,23 +993,21 @@ background:#f8fafc;
     else xDisplay = formatVal(xPoints[i]);
 
     html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-padding:10px 8px;
-width:90px;
-word-break:break-word;
-${i === 0 ? "border-left:1px solid #666;" : ""}
-${i === xPoints.length - 1 ? "border-right:1px solid #666;" : ""}
+border-top:1px solid rgba(148,163,184,0.35);
+border-bottom:1px solid rgba(148,163,184,0.35);
+padding:14px 10px;
+width:110px;
+color:#e2e8f0;
+${i === 0 ? "border-left:1px solid rgba(148,163,184,0.35);" : ""}
+${i === xPoints.length - 1 ? "border-right:1px solid rgba(148,163,184,0.35);" : ""}
 ">${xDisplay}</td>`;
 
     if (i < xPoints.length - 1) {
       html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-border-left:none;
-border-right:none;
+border-top:1px solid rgba(148,163,184,0.35);
+border-bottom:1px solid rgba(148,163,184,0.35);
 padding:8px 2px;
-width:50px;
+width:80px;
 "></td>`;
     }
   }
@@ -1001,27 +1016,15 @@ width:50px;
 
   html += `<tr>`;
   html += `<th style="
-border:1px solid #666;
-padding:10px 8px;
-width:90px;
+border:1px solid rgba(148,163,184,0.35);
+padding:14px 10px;
+width:110px;
 font-style:italic;
-background:#f8fafc;
+background:#0f172a;
+color:#60a5fa;
 ">f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
-    let pointStyle = `
-border-top:1px solid #666;
-border-bottom:1px solid #666;
-padding:0;
-width:90px;
-height:28px;
-line-height:28px;
-vertical-align:middle;
-`;
-
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
-
     let pointContent = "";
 
     if (i > 0 && i < xPoints.length - 1) {
@@ -1034,16 +1037,22 @@ vertical-align:middle;
       }
     }
 
-    html += `<td style="${pointStyle}">
+    html += `<td style="
+border-top:1px solid rgba(148,163,184,0.35);
+border-bottom:1px solid rgba(148,163,184,0.35);
+padding:0;
+width:110px;
+height:58px;
+vertical-align:middle;
+">
 <div style="
 display:flex;
 align-items:center;
 justify-content:center;
-height:28px;
+height:58px;
 width:100%;
-font-size:24px;
-font-weight:700;
-line-height:1;
+font-size:26px;
+font-weight:800;
 ">${pointContent}</div>
 </td>`;
 
@@ -1051,23 +1060,21 @@ line-height:1;
       const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
 
       html += `<td style="
-border-top:1px solid #666;
-border-bottom:1px solid #666;
+border-top:1px solid rgba(148,163,184,0.35);
+border-bottom:1px solid rgba(148,163,184,0.35);
 padding:0;
-width:50px;
-height:28px;
-line-height:28px;
+width:80px;
+height:58px;
 vertical-align:middle;
 ">
 <div style="
 display:flex;
 align-items:center;
 justify-content:center;
-height:28px;
+height:58px;
 width:100%;
-font-size:22px;
-font-weight:600;
-line-height:1;
+font-size:26px;
+font-weight:800;
 ">${sign}</div>
 </td>`;
     }
@@ -1077,14 +1084,13 @@ line-height:1;
 
   html += `<tr>`;
   html += `<th style="
-border:1px solid #666;
-padding:2px 8px;
-width:80px;
-min-width:80px;
-max-width:80px;
-height:32px;
+border:1px solid rgba(148,163,184,0.35);
+padding:10px;
+width:110px;
+height:96px;
 font-style:italic;
-background:#f8fafc;
+background:#0f172a;
+color:#60a5fa;
 ">f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
@@ -1094,21 +1100,15 @@ background:#f8fafc;
     else if (i === xPoints.length - 1) value = rightInf;
     else value = getFxAtCritical(xPoints[i]);
 
-    let pointStyle = `
-border-top:2px solid #444;
-border-bottom:1px solid #666;
-padding:2px 6px;
-width:80px;
-height:32px;
+    html += `<td style="
+border-top:2px solid rgba(148,163,184,0.45);
+border-bottom:1px solid rgba(148,163,184,0.35);
+padding:4px 8px;
+width:110px;
+height:96px;
 vertical-align:middle;
-font-size:18px;
-word-break:break-word;
-`;
-
-    if (i === 0) pointStyle += `border-left:1px solid #666;`;
-    if (i === xPoints.length - 1) pointStyle += `border-right:1px solid #666;`;
-
-    html += `<td style="${pointStyle}">
+font-size:24px;
+">
 <div style="
 display:flex;
 align-items:center;
@@ -1125,37 +1125,45 @@ width:100%;
 
       if (variation === "decreasing") {
         svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;width:100%; height:32px; transform: translateY(-10px);">
+<svg viewBox="0 0 100 54" preserveAspectRatio="none" style="display:block;width:100%;height:54px;">
 <defs>
-<marker id="arrow-down" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
-<path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
+<marker id="arrow-down-${i}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+<path d="M0,0 L7,3.5 L0,7 Z" fill="#60a5fa"></path>
 </marker>
 </defs>
-<line x1="0" y1="2" x2="100" y2="24" stroke="#0f172a" stroke-width="2.2" marker-end="url(#arrow-down)"/>
+<line x1="4" y1="8" x2="96" y2="46"
+stroke="#60a5fa"
+stroke-width="3"
+marker-end="url(#arrow-down-${i})"/>
 </svg>`;
       } else if (variation === "increasing") {
         svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;width:100%; height:32px; transform: translateY(-10px);">
+<svg viewBox="0 0 100 54" preserveAspectRatio="none" style="display:block;width:100%;height:54px;">
 <defs>
-<marker id="arrow-up" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
-<path d="M0,0 L6,3 L0,6 Z" fill="#0f172a"></path>
+<marker id="arrow-up-${i}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+<path d="M0,0 L7,3.5 L0,7 Z" fill="#60a5fa"></path>
 </marker>
 </defs>
-<line x1="0" y1="24" x2="100" y2="2" stroke="#0f172a" stroke-width="2.2" marker-end="url(#arrow-up)"/>
+<line x1="4" y1="46" x2="96" y2="8"
+stroke="#60a5fa"
+stroke-width="3"
+marker-end="url(#arrow-up-${i})"/>
 </svg>`;
       } else {
         svg = `
-<svg viewBox="0 0 100 32" preserveAspectRatio="none" style="display:block;width:100%; height:32px; transform: translateY(-4px);">
-<line x1="5" y1="16" x2="95" y2="16" stroke="#0f172a" stroke-width="1.8"/>
+<svg viewBox="0 0 100 54" preserveAspectRatio="none" style="display:block;width:100%;height:54px;">
+<line x1="4" y1="27" x2="96" y2="27"
+stroke="#60a5fa"
+stroke-width="2.4"/>
 </svg>`;
       }
 
       html += `<td style="
-border-top:2px solid #444;
-border-bottom:1px solid #666;
+border-top:2px solid rgba(148,163,184,0.45);
+border-bottom:1px solid rgba(148,163,184,0.35);
 padding:0;
-width:50px;
-height:32px;
+width:80px;
+height:96px;
 vertical-align:middle;
 ">${svg}</td>`;
     }

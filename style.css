@@ -3309,26 +3309,6 @@ button:hover {
   font-size: 34px !important;
   color: #60a5fa !important;
 }
-/* FLÈCHES VERSION LIVRE */
-
-#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 0 !important; /* cache le symbole ↗ */
-}
-
-/* flèche montante */
-#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even)::before {
-  content: "⟶";
-  font-size: 38px;
-  color: #60a5fa;
-  display: inline-block;
-  transform: rotate(-20deg);
-}
-
-/* flèche descendante */
-#variationContainer .tab-variation-manual tr:nth-child(3) td[data-var="decreasing"]::before {
-  content: "⟶";
-  transform: rotate(20deg);
-}
 
 
 

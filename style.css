@@ -3291,3 +3291,28 @@ button:hover {
   font-weight: 800 !important;
   text-align: center !important;
 }
+/* ALIGNEMENT PARFAIT VALEURS + FLÈCHES */
+
+#variationContainer .tab-variation-manual td {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+/* cellules valeurs (0, ∞, -4, etc.) */
+#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(odd) {
+  min-width: 80px !important;
+}
+
+/* cellules flèches */
+#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
+  min-width: 60px !important;
+  font-size: 34px !important;
+  color: #60a5fa !important;
+}
+
+
+
+
+
+
+

@@ -859,10 +859,9 @@ const layout = {
 }
 function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
-
   if (!box) return;
 
-  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+  if (!variationData || !Array.isArray(variationData.intervals) || variationData.intervals.length === 0) {
     box.style.display = "none";
     box.innerHTML = "";
     return;
@@ -873,6 +872,7 @@ function renderVariationTable(variationData) {
   const criticalValues = variationData.critical_values || [];
   const limits = variationData.limits || {};
 
+  // IMPORTANT : ton backend utilise bien -inf et +inf
   const xPoints = ["-inf", ...cps, "+inf"];
 
   const signBetween = {};
@@ -886,7 +886,7 @@ function renderVariationTable(variationData) {
 
   function formatVal(v) {
     if (v === "-inf" || v === "-oo") return "−∞";
-    if (v === "+inf" || v === "oo" || v === "+oo") return "+∞";
+    if (v === "+inf" || v === "+oo" || v === "oo") return "+∞";
     if (v === null || v === undefined || v === "None") return "";
     return String(v);
   }
@@ -902,7 +902,6 @@ function renderVariationTable(variationData) {
 
   function getFxAtCritical(xVal) {
     const found = findCriticalValue(xVal);
-
     if (!found) return "";
 
     if (found.point_type === "forbidden") {
@@ -939,7 +938,6 @@ function renderVariationTable(variationData) {
 
   let html = `
     <h3 class="variation-title">Tableau de variation</h3>
-
     <div class="variation-scroll">
       <table class="tab-variation-manual">
   `;
@@ -985,7 +983,8 @@ function renderVariationTable(variationData) {
     html += `<td class="var-point var-derivative-point">${pointContent}</td>`;
 
     if (i < xPoints.length - 1) {
-      const sign = signBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+      const key = `${xPoints[i]}|${xPoints[i + 1]}`;
+      const sign = signBetween[key] || "";
       html += `<td class="var-between var-sign">${sign}</td>`;
     }
   }
@@ -1010,7 +1009,8 @@ function renderVariationTable(variationData) {
     `;
 
     if (i < xPoints.length - 1) {
-      const variation = varBetween[`${xPoints[i]}|${xPoints[i + 1]}`] || "";
+      const key = `${xPoints[i]}|${xPoints[i + 1]}`;
+      const variation = varBetween[key] || "";
 
       let arrow = "→";
       if (variation === "increasing") arrow = "↗";

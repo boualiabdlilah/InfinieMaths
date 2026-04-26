@@ -3207,10 +3207,13 @@ button:hover {
 
 #variationContainer .tab-variation-manual {
   width: max-content !important;
-  min-width: 100% !important;
+  min-width: unset !important;   /* 🔥 IMPORTANT */
   table-layout: auto !important;
 }
-
+#variationContainer {
+  overflow-x: auto !important;
+  padding-bottom: 10px; /* espace scroll */
+}
 #variationContainer .tab-variation-manual th {
   min-width: 90px !important;
 }

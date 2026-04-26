@@ -3188,6 +3188,88 @@ button:hover {
 #variationContainer svg marker path {
   transform: scale(0.9);
 }
+/* ==============================
+   TABLEAU DE VARIATION — STABLE
+============================== */
 
+#variationContainer {
+  max-width: 100%;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+
+  background: linear-gradient(180deg, #020617, #030b1f) !important;
+  border: 1px solid rgba(96,165,250,0.35) !important;
+  border-radius: 18px !important;
+  padding: 22px !important;
+
+  color: #e2e8f0 !important;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.75) !important;
+}
+
+#variationContainer h3 {
+  color: #ffffff !important;
+  font-size: 24px !important;
+  margin-bottom: 22px !important;
+  text-shadow: 0 0 12px rgba(96,165,250,0.25);
+}
+
+#variationContainer .tab-variation-manual {
+  width: max-content !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: collapse !important;
+
+  background: #020617 !important;
+  color: #e2e8f0 !important;
+}
+
+#variationContainer .tab-variation-manual th {
+  min-width: 90px !important;
+  padding: 12px 10px !important;
+
+  background: #0f172a !important;
+  color: #60a5fa !important;
+
+  border: 1px solid rgba(148,163,184,0.35) !important;
+  font-size: 22px !important;
+  font-style: italic;
+}
+
+#variationContainer .tab-variation-manual td {
+  min-width: 75px !important;
+  padding: 8px 10px !important;
+
+  background: #020617 !important;
+  color: #e2e8f0 !important;
+
+  border: 1px solid rgba(148,163,184,0.35) !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+#variationContainer .tab-variation-manual tr:nth-child(2) td {
+  height: 46px !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+}
+
+#variationContainer .tab-variation-manual tr:nth-child(3) td {
+  height: 78px !important;
+  font-size: 24px !important;
+}
+
+#variationContainer .katex,
+#variationContainer .katex * {
+  color: #e2e8f0 !important;
+}
+
+#variationContainer::-webkit-scrollbar {
+  height: 7px;
+}
+
+#variationContainer::-webkit-scrollbar-thumb {
+  background: rgba(96,165,250,0.55);
+  border-radius: 999px;
+}
 
 

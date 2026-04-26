@@ -3135,61 +3135,44 @@ button:hover {
   line-height: 1.6;
 }
 /* ==============================
-   TABLEAU DE VARIATION — AUTO-FIT PRO
+   TABLEAU DE VARIATION — VERSION PRO STABLE
 ============================== */
 
 #variationContainer {
   max-width: 100% !important;
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
+  padding-bottom: 10px !important;
 }
 
 #variationContainer > div {
   max-width: 100% !important;
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
 }
 
-/* le tableau prend exactement la largeur disponible */
+/* TABLEAU LIBRE */
 #variationContainer .tab-variation-manual {
-  width: 100% !important;
-  min-width: 0 !important;
-  table-layout: fixed !important;
+  width: max-content !important;
+  min-width: 100% !important;
+  border-collapse: collapse !important;
 }
 
-/* colonnes compactes */
+/* cellules */
 #variationContainer .tab-variation-manual th,
 #variationContainer .tab-variation-manual td {
-  min-width: 0 !important;
-  max-width: none !important;
-  padding-left: 4px !important;
-  padding-right: 4px !important;
+  min-width: 90px !important;
+  padding: 10px !important;
   white-space: nowrap !important;
-}
-
-/* colonne de gauche */
-#variationContainer .tab-variation-manual th {
-  width: 80px !important;
+  text-align: center !important;
 }
 
 /* ligne f(x) */
 #variationContainer .tab-variation-manual tr:nth-child(3) td {
-  font-size: 21px !important;
+  height: 80px !important;
+  font-size: 24px !important;
 }
 
-/* flèches plus petites si tableau long */
+/* flèches */
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 30px !important;
-}
-/* FIX DERNIÈRE FLÈCHE COUPÉE */
-
-#variationContainer .tab-variation-manual {
-  width: 96% !important;
-  margin-right: 4% !important;
-}
-
-#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 26px !important;
-}
-
-#variationContainer .tab-variation-manual tr:nth-child(3) td {
-  font-size: 19px !important;
+  font-size: 34px !important;
+  color: #60a5fa !important;
 }

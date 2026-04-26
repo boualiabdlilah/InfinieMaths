@@ -3135,100 +3135,59 @@ button:hover {
   line-height: 1.6;
 }
 /* =========================================
-   TABLEAU DE VARIATION — PREMIUM SOMBRE FIX
+   TABLEAU DE VARIATION — VERSION ULTIME
 ========================================= */
 
 #variationContainer {
-  background: linear-gradient(180deg, #020617, #030b1f) !important;
-  border: 1px solid rgba(96,165,250,0.35) !important;
-  border-radius: 18px !important;
-  padding: 24px !important;
-  box-shadow: 0 20px 60px rgba(2,6,23,0.75) !important;
-  color: #e2e8f0 !important;
+  max-width: 100%;
+  overflow-x: auto !important;
+  padding: 20px !important;
 }
 
-#variationContainer h3 {
-  color: #ffffff !important;
-  font-size: 24px !important;
-  margin-bottom: 22px !important;
-}
-
-#variationContainer table,
+/* TABLE */
 #variationContainer .tab-variation-manual {
-  background: #020617 !important;
-  color: #e2e8f0 !important;
+  width: max-content !important;
   border-collapse: collapse !important;
 }
 
-#variationContainer th {
-  background: #0f172a !important;
-  color: #60a5fa !important;
-  border: 1px solid rgba(148,163,184,0.35) !important;
-}
-
-#variationContainer td {
-  background: #020617 !important;
-  color: #e2e8f0 !important;
-  border-color: rgba(148,163,184,0.35) !important;
-}
-
-#variationContainer td *,
-#variationContainer .katex,
-#variationContainer .katex * {
-  color: #e2e8f0 !important;
-}
-
-#variationContainer svg line {
-  stroke: #60a5fa !important;
-}
-
-#variationContainer svg marker path {
-  fill: #60a5fa !important;
-}
-#variationContainer table {
-  margin-top: 28px !important;
-}
-
-#variationContainer td,
-#variationContainer th {
-  height: 74px !important;
-  font-size: 22px !important;
-}
-
-#variationContainer h3 {
-  color: #ffffff !important;
-  text-shadow: 0 0 12px rgba(96,165,250,0.25);
-}
-/* TABLEAU DE VARIATION DYNAMIQUE */
-#variationContainer {
-  max-width: 100%;
-  overflow-x: auto !important;
-}
-
-#variationContainer .tab-variation-manual {
-  width: max-content !important;
-  min-width: unset !important;   /* 🔥 IMPORTANT */
-  table-layout: auto !important;
-}
-#variationContainer {
-  overflow-x: auto !important;
-  padding-bottom: 10px; /* espace scroll */
-}
+/* COLONNES PROPRES */
 #variationContainer .tab-variation-manual th {
-  min-width: 90px !important;
+  min-width: 80px !important;
+  padding: 10px 8px !important;
 }
 
 #variationContainer .tab-variation-manual td {
-  min-width: 72px !important;
-  max-width: none !important;
+  min-width: 60px !important;
+  padding: 6px 6px !important;
+  text-align: center;
   white-space: nowrap !important;
 }
 
-#variationContainer .tab-variation-manual svg {
-  min-width: 90px !important;
+/* LIGNE f'(x) plus fine */
+#variationContainer tr:nth-child(2) td {
+  height: 40px !important;
+  font-size: 18px !important;
 }
 
+/* LIGNE f(x) compacte */
+#variationContainer tr:nth-child(3) td {
+  height: 70px !important;
+}
 
+/* SVG FLÈCHES */
+#variationContainer svg {
+  width: 80px !important;
+  height: 40px !important;
+}
+
+/* rapprocher les flèches des valeurs */
+#variationContainer svg line {
+  stroke-width: 2.5 !important;
+}
+
+#variationContainer svg marker path {
+  transform: scale(0.9);
+}
 
 
 

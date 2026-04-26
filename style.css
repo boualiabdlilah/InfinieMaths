@@ -3324,6 +3324,13 @@ button:hover {
   min-width: 100% !important;
   table-layout: auto !important;
 }
+/* DONNER DE LA PLACE À LA DERNIÈRE COLONNE DU TABLEAU */
+#variationContainer > div {
+  padding-right: 28px !important;
+}
 
+#variationContainer .tab-variation-manual {
+  margin-right: 28px !important;
+}
 
 

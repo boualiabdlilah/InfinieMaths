@@ -859,9 +859,8 @@ const layout = {
 }
 function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
-  if (!box) return;
 
-  if (!variationData || !Array.isArray(variationData.intervals) || variationData.intervals.length === 0) {
+  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
     box.style.display = "none";
     box.innerHTML = "";
     return;
@@ -869,59 +868,23 @@ function renderVariationTable(variationData) {
 
   const cps = variationData.critical_points || [];
   const cpsLatex = variationData.critical_points_latex || [];
-  const criticalValues = variationData.critical_values || [];
   const limits = variationData.limits || {};
+  const signBetween = variationData.sign_between || {};
+  const varBetween = variationData.variations_between || {};
 
-  // IMPORTANT : ton backend utilise bien -inf et +inf
-  const xPoints = ["-inf", ...cps, "+inf"];
-
-  const signBetween = {};
-  const varBetween = {};
-
-  variationData.intervals.forEach(interval => {
-    const key = `${interval.from}|${interval.to}`;
-    signBetween[key] = interval.sign || "";
-    varBetween[key] = interval.variation || "";
-  });
-
-  function formatVal(v) {
-    if (v === "-inf" || v === "-oo") return "−∞";
-    if (v === "+inf" || v === "+oo" || v === "oo") return "+∞";
-    if (v === null || v === undefined || v === "None") return "";
-    return String(v);
+  function formatVal(val) {
+    if (val === Infinity) return "+∞";
+    if (val === -Infinity) return "−∞";
+    return val;
   }
 
-  function findCriticalValue(xVal) {
-    return criticalValues.find(item => String(item.x) === String(xVal));
+  function findCriticalValue(x) {
+    return (variationData.critical_values || []).find(v => v.x == x);
   }
 
-  function getSideLimitsAt(xVal) {
-    const sides = limits.critical_sides || [];
-    return sides.find(item => String(item.x) === String(xVal)) || null;
-  }
-
-  function getFxAtCritical(xVal) {
-    const found = findCriticalValue(xVal);
+  function getFxAtCritical(x) {
+    const found = findCriticalValue(x);
     if (!found) return "";
-
-    if (found.point_type === "forbidden") {
-      const sides = getSideLimitsAt(xVal);
-
-      if (sides) {
-        const left = sides.left_limit_latex ? `\\(${sides.left_limit_latex}\\)` : "";
-        const right = sides.right_limit_latex ? `\\(${sides.right_limit_latex}\\)` : "";
-
-        return `
-          <div class="var-side-limits">
-            <span>${left}</span>
-            <strong>∥</strong>
-            <span>${right}</span>
-          </div>
-        `;
-      }
-
-      return `<strong class="var-forbidden">∥</strong>`;
-    }
 
     return found["f(x)_latex"]
       ? `\\(${found["f(x)_latex"]}\\)`
@@ -936,15 +899,18 @@ function renderVariationTable(variationData) {
     ? `\\(${limits.right_infinity_latex}\\)`
     : formatVal(limits.right_infinity);
 
+  const xPoints = [-Infinity, ...cps, Infinity];
+
   let html = `
     <h3 class="variation-title">Tableau de variation</h3>
     <div class="variation-scroll">
       <table class="tab-variation-manual">
   `;
 
-  // Ligne x
-  html += `<tr>`;
-  html += `<th>x</th>`;
+  // =========================
+  // LIGNE x
+  // =========================
+  html += `<tr><th>x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let xDisplay = "";
@@ -963,9 +929,10 @@ function renderVariationTable(variationData) {
 
   html += `</tr>`;
 
-  // Ligne f'(x)
-  html += `<tr>`;
-  html += `<th>f'(x)</th>`;
+  // =========================
+  // LIGNE f'(x)
+  // =========================
+  html += `<tr><th>f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let pointContent = "";
@@ -991,9 +958,10 @@ function renderVariationTable(variationData) {
 
   html += `</tr>`;
 
-  // Ligne f(x)
-  html += `<tr>`;
-  html += `<th>f(x)</th>`;
+  // =========================
+  // LIGNE f(x)
+  // =========================
+  html += `<tr><th>f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let value = "";
@@ -1026,13 +994,17 @@ function renderVariationTable(variationData) {
   box.innerHTML = html;
   box.style.display = "block";
 
+  // =========================
+  // 🔥 RENDU KATEX CORRIGÉ
+  // =========================
   if (window.renderMathInElement) {
     renderMathInElement(box, {
       delimiters: [
-        { left: "\\(", right: "\\)", display: false },
-        { left: "\\[", right: "\\]", display: true }
+        { left: "$$", right: "$$", display: true },
+        { left: "\\(", right: "\\)", display: false }
       ],
-      throwOnError: false
+      throwOnError: false,
+      strict: false
     });
   }
 }

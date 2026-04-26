@@ -3135,26 +3135,28 @@ button:hover {
   line-height: 1.6;
 }
 /* ==============================
-   TABLEAU DE VARIATION — VERSION FINALE PRO
+   TABLEAU DE VARIATION — VERSION FINALE UNIQUE
 ============================== */
 
 #variationContainer {
   max-width: 100% !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  padding-bottom: 12px !important;
+  padding-bottom: 10px !important;
 }
 
-/* IMPORTANT : inline-block pour forcer le vrai scroll */
+/* conteneur interne */
 #variationContainer > div {
-  display: inline-block !important;
+  width: max-content !important;
   min-width: 100% !important;
 }
 
 /* TABLEAU */
 #variationContainer .tab-variation-manual {
   width: max-content !important;
+  min-width: max-content !important;
   border-collapse: collapse !important;
+  table-layout: auto !important;
 }
 
 /* CELLULES */
@@ -3169,6 +3171,13 @@ button:hover {
 /* COLONNE GAUCHE */
 #variationContainer .tab-variation-manual th {
   min-width: 85px !important;
+  color: #60a5fa !important;
+  font-style: italic !important;
+}
+
+/* LIGNE f'(x) */
+#variationContainer .tab-variation-manual tr:nth-child(2) td {
+  font-size: 22px !important;
 }
 
 /* LIGNE f(x) */
@@ -3181,4 +3190,11 @@ button:hover {
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
   font-size: 34px !important;
   color: #60a5fa !important;
+  font-weight: 700 !important;
+}
+
+/* KaTeX (formules) */
+#variationContainer .katex,
+#variationContainer .katex * {
+  color: #e2e8f0 !important;
 }

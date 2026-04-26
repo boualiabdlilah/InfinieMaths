@@ -3273,9 +3273,22 @@ button:hover {
 }
 /* AGRANDIR LES FLÈCHES DU TABLEAU */
 
+/* LIGNE f(x) ULTRA PRO */
+
 #variationContainer .tab-variation-manual tr:nth-child(3) td {
-  min-width: 105px !important;
-  height: 90px !important;
+  min-width: 85px !important;
+  height: 70px !important;
+  padding: 4px 6px !important;
+}
+
+/* FLÈCHES PARFAITEMENT ALIGNÉES */
+
+#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
+  font-size: 34px !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {

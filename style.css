@@ -3309,29 +3309,6 @@ button:hover {
   font-size: 34px !important;
   color: #60a5fa !important;
 }
-/* FIX TABLEAU COUPÉ À DROITE */
-
-#variationContainer {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-}
-
-#variationContainer > div {
-  overflow-x: auto !important;
-  max-width: 100% !important;
-}
-
-#variationContainer .tab-variation-manual {
-  width: max-content !important;
-  min-width: max-content !important;
-  table-layout: auto !important;
-}
-
-#variationContainer .tab-variation-manual th,
-#variationContainer .tab-variation-manual td {
-  white-space: nowrap !important;
-}
 
 
 

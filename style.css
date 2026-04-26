@@ -3135,13 +3135,13 @@ button:hover {
   line-height: 1.6;
 }
 /* ==============================
-   TABLEAU DE VARIATION — VERSION PRO STABLE
+   TABLEAU DE VARIATION — VERSION ÉQUILIBRÉE
 ============================== */
 
 #variationContainer {
   max-width: 100% !important;
   overflow-x: auto !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 8px !important;
 }
 
 #variationContainer > div {
@@ -3149,30 +3149,40 @@ button:hover {
   overflow-x: auto !important;
 }
 
-/* TABLEAU LIBRE */
+/* TABLEAU */
 #variationContainer .tab-variation-manual {
   width: max-content !important;
   min-width: 100% !important;
   border-collapse: collapse !important;
 }
 
-/* cellules */
+/* CELLULES */
 #variationContainer .tab-variation-manual th,
 #variationContainer .tab-variation-manual td {
-  min-width: 90px !important;
-  padding: 10px !important;
+  min-width: 85px !important;
+  padding: 10px 8px !important;
   white-space: nowrap !important;
   text-align: center !important;
 }
 
-/* ligne f(x) */
-#variationContainer .tab-variation-manual tr:nth-child(3) td {
-  height: 80px !important;
-  font-size: 24px !important;
+/* TITRES */
+#variationContainer .tab-variation-manual th {
+  width: 80px !important;
 }
 
-/* flèches */
+/* LIGNE f'(x) */
+#variationContainer .tab-variation-manual tr:nth-child(2) td {
+  font-size: 22px !important;
+}
+
+/* LIGNE f(x) */
+#variationContainer .tab-variation-manual tr:nth-child(3) td {
+  height: 80px !important;
+  font-size: 23px !important;
+}
+
+/* FLÈCHES */
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 34px !important;
+  font-size: 32px !important;
   color: #60a5fa !important;
 }

@@ -3283,17 +3283,20 @@ button:hover {
 
 /* FLÈCHES PARFAITEMENT ALIGNÉES */
 
-#variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 34px !important;
-  line-height: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+/* FIX FINAL — ne pas casser les cellules du tableau */
+
+#variationContainer .tab-variation-manual tr:nth-child(3) td {
+  min-width: 85px !important;
+  height: 78px !important;
+  padding: 6px 8px !important;
+  vertical-align: middle !important;
 }
 
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 42px !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
   color: #60a5fa !important;
-  font-weight: 900 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
 }
 

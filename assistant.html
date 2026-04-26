@@ -981,8 +981,8 @@ function renderVariationTable(variationData) {
       const variation = varBetween[key] || "";
 
       let arrow = "→";
-      if (variation === "increasing") arrow = "↗";
-      if (variation === "decreasing") arrow = "↘";
+      if (variation === "increasing") arrow = "⟶";
+      if (variation === "decreasing") arrow = "⟶";
 
       html += `<td class="var-between var-arrow">${arrow}</td>`;
     }

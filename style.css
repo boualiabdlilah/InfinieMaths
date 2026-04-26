@@ -3135,73 +3135,50 @@ button:hover {
   line-height: 1.6;
 }
 /* ==============================
-   TABLEAU DE VARIATION — VERSION ÉQUILIBRÉE
+   TABLEAU DE VARIATION — VERSION FINALE PRO
 ============================== */
 
 #variationContainer {
   max-width: 100% !important;
   overflow-x: auto !important;
-  padding-bottom: 8px !important;
+  overflow-y: hidden !important;
+  padding-bottom: 12px !important;
 }
 
+/* IMPORTANT : inline-block pour forcer le vrai scroll */
 #variationContainer > div {
-  max-width: 100% !important;
-  overflow-x: auto !important;
+  display: inline-block !important;
+  min-width: 100% !important;
 }
 
 /* TABLEAU */
 #variationContainer .tab-variation-manual {
   width: max-content !important;
-  min-width: 100% !important;
   border-collapse: collapse !important;
 }
 
 /* CELLULES */
 #variationContainer .tab-variation-manual th,
 #variationContainer .tab-variation-manual td {
-  min-width: 85px !important;
+  min-width: 95px !important;
   padding: 10px 8px !important;
   white-space: nowrap !important;
   text-align: center !important;
 }
 
-/* TITRES */
+/* COLONNE GAUCHE */
 #variationContainer .tab-variation-manual th {
-  width: 80px !important;
-}
-
-/* LIGNE f'(x) */
-#variationContainer .tab-variation-manual tr:nth-child(2) td {
-  font-size: 22px !important;
+  min-width: 85px !important;
 }
 
 /* LIGNE f(x) */
 #variationContainer .tab-variation-manual tr:nth-child(3) td {
-  height: 80px !important;
-  font-size: 23px !important;
+  height: 85px !important;
+  font-size: 24px !important;
 }
 
 /* FLÈCHES */
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 32px !important;
+  font-size: 34px !important;
   color: #60a5fa !important;
-}
-/* FIX DROITE TABLEAU — VERSION STABLE */
-
-#variationContainer {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-}
-
-#variationContainer > div {
-  max-width: 100% !important;
-  overflow-x: auto !important;
-  padding-right: 40px !important;
-}
-
-#variationContainer .tab-variation-manual {
-  width: auto !important;
-  min-width: 100% !important;
-  table-layout: auto !important;
-  margin-right: 40px !important;
 }

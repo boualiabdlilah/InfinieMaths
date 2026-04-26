@@ -3275,28 +3275,19 @@ button:hover {
 
 /* LIGNE f(x) ULTRA PRO */
 
-#variationContainer .tab-variation-manual tr:nth-child(3) td {
-  min-width: 85px !important;
-  height: 70px !important;
-  padding: 4px 6px !important;
-}
-
-/* FLÈCHES PARFAITEMENT ALIGNÉES */
-
-/* FIX FINAL — ne pas casser les cellules du tableau */
+/* LIGNE f(x) AVEC FLÈCHES PLUS VISIBLES */
 
 #variationContainer .tab-variation-manual tr:nth-child(3) td {
-  min-width: 85px !important;
-  height: 78px !important;
+  min-width: 105px !important;
+  height: 90px !important;
   padding: 6px 8px !important;
   vertical-align: middle !important;
 }
 
 #variationContainer .tab-variation-manual tr:nth-child(3) td:nth-child(even) {
-  font-size: 32px !important;
+  font-size: 36px !important;
   line-height: 1 !important;
   color: #60a5fa !important;
   font-weight: 800 !important;
   text-align: center !important;
 }
-

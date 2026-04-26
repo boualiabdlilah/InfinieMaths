@@ -3199,7 +3199,31 @@ button:hover {
   color: #ffffff !important;
   text-shadow: 0 0 12px rgba(96,165,250,0.25);
 }
+/* TABLEAU DE VARIATION DYNAMIQUE */
+#variationContainer {
+  max-width: 100%;
+  overflow-x: auto !important;
+}
 
+#variationContainer .tab-variation-manual {
+  width: max-content !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+#variationContainer .tab-variation-manual th {
+  min-width: 90px !important;
+}
+
+#variationContainer .tab-variation-manual td {
+  min-width: 72px !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+}
+
+#variationContainer .tab-variation-manual svg {
+  min-width: 90px !important;
+}
 
 
 

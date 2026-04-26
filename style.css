@@ -3309,7 +3309,21 @@ button:hover {
   font-size: 34px !important;
   color: #60a5fa !important;
 }
+#variationContainer {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
 
+#variationContainer > div {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+#variationContainer .tab-variation-manual {
+  width: auto !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
 
 
 

@@ -931,7 +931,7 @@ function renderVariationTable(variationData) {
     return `${a}|${b}`;
   }
 
- function svgArrow(type) {
+function svgArrow(type) {
   if (type === "increasing") {
     return `
       <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
@@ -948,7 +948,8 @@ function renderVariationTable(variationData) {
       </svg>
     `;
   }
-      if (type === "decreasing") {
+
+  if (type === "decreasing") {
     return `
       <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
         <defs>
@@ -965,11 +966,9 @@ function renderVariationTable(variationData) {
     `;
   }
 
-  return "→";
+  // cas par défaut
+  return `<span class="var-flat-arrow">→</span>`;
 }
-    return `<span class="var-flat-arrow">→</span>`;
-  }
-
   const leftInf = limits.left_infinity_latex
     ? `\\(${limits.left_infinity_latex}\\)`
     : formatVal(limits.left_infinity);

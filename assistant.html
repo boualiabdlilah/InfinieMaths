@@ -931,41 +931,42 @@ function renderVariationTable(variationData) {
     return `${a}|${b}`;
   }
 
-  function svgArrow(type) {
-    if (type === "increasing") {
-      return `
-        <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
-          <defs>
-            <marker id="arrowUp" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#60a5fa"></path>
-            </marker>
-          </defs>
-          <line x1="15" y1="55" x2="105" y2="15"
-                stroke="#60a5fa"
-                stroke-width="2"
-                stroke-linecap="round"
-                marker-end="url(#arrowUp)" />
-        </svg>
-      `;
-    }
+ function svgArrow(type) {
+  if (type === "increasing") {
+    return `
+      <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
+        <defs>
+          <marker id="arrowUp" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#60a5fa"></path>
+          </marker>
+        </defs>
+        <line x1="15" y1="55" x2="105" y2="15"
+              stroke="#60a5fa"
+              stroke-width="2"
+              stroke-linecap="round"
+              marker-end="url(#arrowUp)" />
+      </svg>
+    `;
+  }
+      if (type === "decreasing") {
+    return `
+      <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
+        <defs>
+          <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#60a5fa"></path>
+          </marker>
+        </defs>
+        <line x1="15" y1="15" x2="105" y2="55"
+              stroke="#60a5fa"
+              stroke-width="2"
+              stroke-linecap="round"
+              marker-end="url(#arrowDown)" />
+      </svg>
+    `;
+  }
 
-    if (type === "decreasing") {
-      return `
-        <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
-          <defs>
-            <marker id="arrowDown" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#60a5fa"></path>
-            </marker>
-          </defs>
-          <line x1="15" y1="15" x2="105" y2="55"
-                stroke="#60a5fa"
-                stroke-width="2"
-                stroke-linecap="round"
-                marker-end="url(#arrowDown)" />
-        </svg>
-      `;
-    }
-
+  return "→";
+}
     return `<span class="var-flat-arrow">→</span>`;
   }
 

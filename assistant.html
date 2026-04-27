@@ -859,8 +859,9 @@ const layout = {
 }
 function renderVariationTable(variationData) {
   const box = document.getElementById("variationContainer");
+  if (!box) return;
 
-  if (!variationData || !variationData.intervals || !variationData.intervals.length) {
+  if (!variationData || !Array.isArray(variationData.intervals) || variationData.intervals.length === 0) {
     box.style.display = "none";
     box.innerHTML = "";
     return;
@@ -868,27 +869,104 @@ function renderVariationTable(variationData) {
 
   const cps = variationData.critical_points || [];
   const cpsLatex = variationData.critical_points_latex || [];
+  const criticalValues = variationData.critical_values || [];
   const limits = variationData.limits || {};
-  const signBetween = variationData.sign_between || {};
-  const varBetween = variationData.variations_between || {};
 
-  function formatVal(val) {
-    if (val === Infinity) return "+∞";
-    if (val === -Infinity) return "−∞";
-    return val;
+  const xPoints = ["-inf", ...cps, "+inf"];
+
+  const signBetween = {};
+  const varBetween = {};
+
+  variationData.intervals.forEach(interval => {
+    const key = `${interval.from}|${interval.to}`;
+    signBetween[key] = interval.sign || "";
+    varBetween[key] = interval.variation || "";
+  });
+
+  function formatVal(v) {
+    if (v === "-inf" || v === "-oo") return "−∞";
+    if (v === "+inf" || v === "+oo" || v === "oo") return "+∞";
+    if (v === null || v === undefined || v === "None") return "";
+    return String(v);
   }
 
-  function findCriticalValue(x) {
-    return (variationData.critical_values || []).find(v => v.x == x);
+  function findCriticalValue(xVal) {
+    return criticalValues.find(item => String(item.x) === String(xVal));
   }
 
-  function getFxAtCritical(x) {
-    const found = findCriticalValue(x);
+  function getSideLimitsAt(xVal) {
+    const sides = limits.critical_sides || [];
+    return sides.find(item => String(item.x) === String(xVal)) || null;
+  }
+
+  function getFxAtCritical(xVal) {
+    const found = findCriticalValue(xVal);
     if (!found) return "";
+
+    if (found.point_type === "forbidden") {
+      const sides = getSideLimitsAt(xVal);
+
+      if (sides) {
+        const left = sides.left_limit_latex ? `\\(${sides.left_limit_latex}\\)` : "";
+        const right = sides.right_limit_latex ? `\\(${sides.right_limit_latex}\\)` : "";
+
+        return `
+          <div class="var-side-limits">
+            <span>${left}</span>
+            <strong>∥</strong>
+            <span>${right}</span>
+          </div>
+        `;
+      }
+
+      return `<strong class="var-forbidden">∥</strong>`;
+    }
 
     return found["f(x)_latex"]
       ? `\\(${found["f(x)_latex"]}\\)`
       : formatVal(found["f(x)"]);
+  }
+
+  function getIntervalKey(a, b) {
+    return `${a}|${b}`;
+  }
+
+  function svgArrow(type) {
+    if (type === "increasing") {
+      return `
+        <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
+          <defs>
+            <marker id="arrowUp" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#60a5fa"></path>
+            </marker>
+          </defs>
+          <line x1="15" y1="55" x2="105" y2="15"
+                stroke="#60a5fa"
+                stroke-width="4"
+                stroke-linecap="round"
+                marker-end="url(#arrowUp)" />
+        </svg>
+      `;
+    }
+
+    if (type === "decreasing") {
+      return `
+        <svg class="var-svg-arrow" viewBox="0 0 120 70" preserveAspectRatio="none">
+          <defs>
+            <marker id="arrowDown" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#60a5fa"></path>
+            </marker>
+          </defs>
+          <line x1="15" y1="15" x2="105" y2="55"
+                stroke="#60a5fa"
+                stroke-width="4"
+                stroke-linecap="round"
+                marker-end="url(#arrowDown)" />
+        </svg>
+      `;
+    }
+
+    return `<span class="var-flat-arrow">→</span>`;
   }
 
   const leftInf = limits.left_infinity_latex
@@ -899,18 +977,15 @@ function renderVariationTable(variationData) {
     ? `\\(${limits.right_infinity_latex}\\)`
     : formatVal(limits.right_infinity);
 
-  const xPoints = [-Infinity, ...cps, Infinity];
-
   let html = `
     <h3 class="variation-title">Tableau de variation</h3>
     <div class="variation-scroll">
       <table class="tab-variation-manual">
   `;
 
-  // =========================
-  // LIGNE x
-  // =========================
-  html += `<tr><th>x</th>`;
+  // Ligne x
+  html += `<tr>`;
+  html += `<th>x</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let xDisplay = "";
@@ -929,10 +1004,9 @@ function renderVariationTable(variationData) {
 
   html += `</tr>`;
 
-  // =========================
-  // LIGNE f'(x)
-  // =========================
-  html += `<tr><th>f'(x)</th>`;
+  // Ligne f'(x)
+  html += `<tr>`;
+  html += `<th>f'(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let pointContent = "";
@@ -950,7 +1024,7 @@ function renderVariationTable(variationData) {
     html += `<td class="var-point var-derivative-point">${pointContent}</td>`;
 
     if (i < xPoints.length - 1) {
-      const key = `${xPoints[i]}|${xPoints[i + 1]}`;
+      const key = getIntervalKey(xPoints[i], xPoints[i + 1]);
       const sign = signBetween[key] || "";
       html += `<td class="var-between var-sign">${sign}</td>`;
     }
@@ -958,10 +1032,9 @@ function renderVariationTable(variationData) {
 
   html += `</tr>`;
 
-  // =========================
-  // LIGNE f(x)
-  // =========================
-  html += `<tr><th>f(x)</th>`;
+  // Ligne f(x)
+  html += `<tr>`;
+  html += `<th>f(x)</th>`;
 
   for (let i = 0; i < xPoints.length; i++) {
     let value = "";
@@ -977,14 +1050,14 @@ function renderVariationTable(variationData) {
     `;
 
     if (i < xPoints.length - 1) {
-      const key = `${xPoints[i]}|${xPoints[i + 1]}`;
+      const key = getIntervalKey(xPoints[i], xPoints[i + 1]);
       const variation = varBetween[key] || "";
 
-      let arrow = "→";
-      if (variation === "increasing") arrow = "⟶";
-      if (variation === "decreasing") arrow = "⟶";
-
-      html += `<td class="var-between var-arrow">${arrow}</td>`;
+      html += `
+        <td class="var-between var-arrow">
+          ${svgArrow(variation)}
+        </td>
+      `;
     }
   }
 
@@ -994,14 +1067,12 @@ function renderVariationTable(variationData) {
   box.innerHTML = html;
   box.style.display = "block";
 
-  // =========================
-  // 🔥 RENDU KATEX CORRIGÉ
-  // =========================
   if (window.renderMathInElement) {
     renderMathInElement(box, {
       delimiters: [
         { left: "$$", right: "$$", display: true },
-        { left: "\\(", right: "\\)", display: false }
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
       ],
       throwOnError: false,
       strict: false

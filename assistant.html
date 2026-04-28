@@ -458,7 +458,6 @@
 
       let text = reply || "Aucune réponse générée.";
 
-      text = text.replace(/\\begin\{array\}[\s\S]*?\\end\{array\}/g, "");
       text = text.replace(/Voici le tableau de variation[\s\S]*?croît à nouveau\./g, "");
 
       responseBox.innerHTML = marked.parse(text);
